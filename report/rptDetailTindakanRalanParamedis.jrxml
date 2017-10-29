@@ -115,7 +115,7 @@ rawat_jl_pr.tgl_perawatan between $P{tanggal1} and $P{tanggal2} and poliklinik.n
 	<title>
 		<band height="84" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="51" width="1184" height="23"/>
+				<reportElement x="0" y="54" width="1184" height="23"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="11" isBold="false"/>
 				</textElement>
