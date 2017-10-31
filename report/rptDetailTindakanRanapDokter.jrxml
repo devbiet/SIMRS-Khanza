@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="1440" pageHeight="792" orientation="Landscape" columnWidth="1400" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="1224" pageHeight="792" orientation="Landscape" columnWidth="1184" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 	<property name="ireport.zoom" value="2.0"/>
-	<property name="ireport.x" value="1626"/>
+	<property name="ireport.x" value="829"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="namars" class="java.lang.String"/>
 	<parameter name="alamatrs" class="java.lang.String"/>
@@ -14,32 +14,31 @@
 	<parameter name="tanggal2" class="java.lang.String"/>
 	<parameter name="cari" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[select rawat_jl_drpr.no_rawat,reg_periksa.no_rkm_medis,
-pasien.nm_pasien,rawat_jl_drpr.kd_jenis_prw,jns_perawatan.nm_perawatan,
-rawat_jl_drpr.kd_dokter,dokter.nm_dokter,rawat_jl_drpr.nip,petugas.nama,rawat_jl_drpr.tgl_perawatan,
-rawat_jl_drpr.jam_rawat,penjab.png_jawab,poliklinik.nm_poli,  +
-rawat_jl_drpr.material,rawat_jl_drpr.bhp,rawat_jl_drpr.tarif_tindakandr,rawat_jl_drpr.tarif_tindakanpr,
-rawat_jl_drpr.kso,rawat_jl_drpr.menejemen,rawat_jl_drpr.biaya_rawat 
-from pasien inner join reg_periksa inner join jns_perawatan inner join 
-dokter inner join rawat_jl_drpr inner join poliklinik inner join penjab 
-inner join petugas on rawat_jl_drpr.no_rawat=reg_periksa.no_rawat 
+		<![CDATA[select rawat_inap_dr.no_rawat,reg_periksa.no_rkm_medis,
+pasien.nm_pasien,rawat_inap_dr.kd_jenis_prw,jns_perawatan_inap.nm_perawatan,
+rawat_inap_dr.kd_dokter,dokter.nm_dokter,rawat_inap_dr.tgl_perawatan,
+rawat_inap_dr.jam_rawat,penjab.png_jawab,
+(select bangsal.nm_bangsal from kamar_inap 
+inner join kamar inner join bangsal on 
+kamar_inap.kd_kamar=kamar.kd_kamar 
+and kamar.kd_bangsal=bangsal.kd_bangsal where kamar_inap.no_rawat=rawat_inap_dr.no_rawat limit 1 ) as nm_bangsal ,  +
+rawat_inap_dr.material,rawat_inap_dr.bhp,rawat_inap_dr.tarif_tindakandr,
+rawat_inap_dr.kso,rawat_inap_dr.menejemen,rawat_inap_dr.biaya_rawat 
+from pasien inner join reg_periksa inner join jns_perawatan_inap inner join 
+dokter inner join rawat_inap_dr inner join penjab 
+on rawat_inap_dr.no_rawat=reg_periksa.no_rawat 
 and reg_periksa.no_rkm_medis=pasien.no_rkm_medis 
 and reg_periksa.kd_pj=penjab.kd_pj 
-and reg_periksa.kd_poli=poliklinik.kd_poli 
-and rawat_jl_drpr.kd_jenis_prw=jns_perawatan.kd_jenis_prw 
-and rawat_jl_drpr.kd_dokter=dokter.kd_dokter 
-and rawat_jl_drpr.nip=petugas.nip 
-where rawat_jl_drpr.tgl_perawatan between $P{tanggal1} and $P{tanggal2} and rawat_jl_drpr.no_rawat like $P{cari} or 
- rawat_jl_drpr.tgl_perawatan between $P{tanggal1} and $P{tanggal2} and reg_periksa.no_rkm_medis like $P{cari} or 
- rawat_jl_drpr.tgl_perawatan between $P{tanggal1} and $P{tanggal2} and pasien.nm_pasien like $P{cari} or 
- rawat_jl_drpr.tgl_perawatan between $P{tanggal1} and $P{tanggal2} and jns_perawatan.nm_perawatan like $P{cari} or 
- rawat_jl_drpr.tgl_perawatan between $P{tanggal1} and $P{tanggal2} and rawat_jl_drpr.kd_dokter like $P{cari} or 
- rawat_jl_drpr.tgl_perawatan between $P{tanggal1} and $P{tanggal2} and dokter.nm_dokter like $P{cari} or 
- rawat_jl_drpr.tgl_perawatan between $P{tanggal1} and $P{tanggal2} and rawat_jl_drpr.nip like $P{cari} or 
- rawat_jl_drpr.tgl_perawatan between $P{tanggal1} and $P{tanggal2} and petugas.nama like $P{cari} or 
- rawat_jl_drpr.tgl_perawatan between $P{tanggal1} and $P{tanggal2} and penjab.png_jawab like $P{cari} or 
- rawat_jl_drpr.tgl_perawatan between $P{tanggal1} and $P{tanggal2} and poliklinik.nm_poli like $P{cari} 
- order by rawat_jl_drpr.no_rawat desc]]>
+and rawat_inap_dr.kd_jenis_prw=jns_perawatan_inap.kd_jenis_prw 
+and rawat_inap_dr.kd_dokter=dokter.kd_dokter 
+where rawat_inap_dr.tgl_perawatan between $P{tanggal1} and $P{tanggal2} and rawat_inap_dr.no_rawat like $P{cari} or 
+ rawat_inap_dr.tgl_perawatan between $P{tanggal1} and $P{tanggal2} and reg_periksa.no_rkm_medis like $P{cari} or 
+ rawat_inap_dr.tgl_perawatan between $P{tanggal1} and $P{tanggal2} and pasien.nm_pasien like $P{cari} or 
+ rawat_inap_dr.tgl_perawatan between $P{tanggal1} and $P{tanggal2} and jns_perawatan_inap.nm_perawatan like $P{cari} or 
+ rawat_inap_dr.tgl_perawatan between $P{tanggal1} and $P{tanggal2} and rawat_inap_dr.kd_dokter like $P{cari} or 
+ rawat_inap_dr.tgl_perawatan between $P{tanggal1} and $P{tanggal2} and dokter.nm_dokter like $P{cari} or 
+ rawat_inap_dr.tgl_perawatan between $P{tanggal1} and $P{tanggal2} and penjab.png_jawab like $P{cari} 
+ order by rawat_inap_dr.no_rawat desc]]>
 	</queryString>
 	<field name="no_rawat" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -62,12 +61,6 @@ where rawat_jl_drpr.tgl_perawatan between $P{tanggal1} and $P{tanggal2} and rawa
 	<field name="nm_dokter" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="nip" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="nama" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
 	<field name="tgl_perawatan" class="java.sql.Date">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
@@ -77,7 +70,7 @@ where rawat_jl_drpr.tgl_perawatan between $P{tanggal1} and $P{tanggal2} and rawa
 	<field name="png_jawab" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="nm_poli" class="java.lang.String">
+	<field name="nm_bangsal" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="material" class="java.lang.Double">
@@ -87,9 +80,6 @@ where rawat_jl_drpr.tgl_perawatan between $P{tanggal1} and $P{tanggal2} and rawa
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="tarif_tindakandr" class="java.lang.Double">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="tarif_tindakanpr" class="java.lang.Double">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="kso" class="java.lang.Double">
@@ -122,43 +112,40 @@ where rawat_jl_drpr.tgl_perawatan between $P{tanggal1} and $P{tanggal2} and rawa
 	<variable name="totalsemua" class="java.lang.Double" calculation="Sum">
 		<variableExpression><![CDATA[$F{biaya_rawat}]]></variableExpression>
 	</variable>
-	<variable name="totaljmparamedis" class="java.lang.Double" calculation="Sum">
-		<variableExpression><![CDATA[$F{tarif_tindakanpr}]]></variableExpression>
-	</variable>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
 		<band height="84" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="55" width="1400" height="23"/>
+				<reportElement x="0" y="54" width="1184" height="23"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="11" isBold="false"/>
 				</textElement>
-				<text><![CDATA[Detail Tindakan Ralan Dokter & Paramedis]]></text>
+				<text><![CDATA[Detail Tindakan Ranap Dokter]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="3" y="14" width="1397" height="14"/>
+				<reportElement x="3" y="14" width="1181" height="14"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="9"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{alamatrs}+", "+$P{kotars}+", "+$P{propinsirs}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="3" y="0" width="1397" height="17"/>
+				<reportElement x="3" y="0" width="1181" height="17"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="12"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{namars}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="1" y="48" width="1399" height="1"/>
+				<reportElement x="1" y="48" width="1183" height="1"/>
 				<graphicElement>
 					<pen lineWidth="2.0" lineStyle="Double"/>
 				</graphicElement>
 			</line>
 			<textField>
-				<reportElement x="3" y="35" width="1397" height="14"/>
+				<reportElement x="3" y="35" width="1181" height="14"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="9"/>
 				</textElement>
@@ -169,7 +156,7 @@ where rawat_jl_drpr.tgl_perawatan between $P{tanggal1} and $P{tanggal2} and rawa
 				<imageExpression class="java.io.InputStream"><![CDATA[$P{logo}]]></imageExpression>
 			</image>
 			<textField>
-				<reportElement x="3" y="25" width="1397" height="14"/>
+				<reportElement x="3" y="25" width="1181" height="14"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="9"/>
 				</textElement>
@@ -183,84 +170,63 @@ where rawat_jl_drpr.tgl_perawatan between $P{tanggal1} and $P{tanggal2} and rawa
 	<columnHeader>
 		<band height="18" splitType="Stretch">
 			<staticText>
-				<reportElement mode="Opaque" x="940" y="0" width="105" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
-				<textElement verticalAlignment="Middle" lineSpacing="Single">
-					<font fontName="Tahoma" size="8" isBold="false"/>
-				</textElement>
-				<text><![CDATA[Paramedis Yang Menangani]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Opaque" x="891" y="0" width="49" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
-				<textElement verticalAlignment="Middle" lineSpacing="Single">
-					<font fontName="Tahoma" size="8" isBold="false"/>
-				</textElement>
-				<text><![CDATA[NIP]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Opaque" x="1195" y="0" width="50" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle" lineSpacing="Single">
-					<font fontName="Tahoma" size="8" isBold="false"/>
-				</textElement>
-				<text><![CDATA[JM Petugas]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Opaque" x="1045" y="0" width="50" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
+				<reportElement mode="Opaque" x="879" y="0" width="50" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8" isBold="false"/>
 				</textElement>
 				<text><![CDATA[Jasa Sarana]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="1095" y="0" width="50" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
+				<reportElement mode="Opaque" x="929" y="0" width="50" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8" isBold="false"/>
 				</textElement>
 				<text><![CDATA[Paket BHP]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="1145" y="0" width="50" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
+				<reportElement mode="Opaque" x="979" y="0" width="50" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8" isBold="false"/>
 				</textElement>
 				<text><![CDATA[JM Dokter]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="1245" y="0" width="50" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
+				<reportElement mode="Opaque" x="1029" y="0" width="50" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8" isBold="false"/>
 				</textElement>
 				<text><![CDATA[KSO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="1295" y="0" width="50" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
+				<reportElement mode="Opaque" x="1079" y="0" width="50" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8" isBold="false"/>
 				</textElement>
 				<text><![CDATA[Menejemen]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="1345" y="0" width="55" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
+				<reportElement mode="Opaque" x="1129" y="0" width="55" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8" isBold="false"/>
 				</textElement>
 				<text><![CDATA[Total]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="822" y="0" width="69" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
+				<reportElement mode="Opaque" x="814" y="0" width="65" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
 				<textElement verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8" isBold="false"/>
 				</textElement>
 				<text><![CDATA[Ruangan]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="755" y="0" width="67" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
+				<reportElement mode="Opaque" x="749" y="0" width="65" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
 				<textElement verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8" isBold="false"/>
 				</textElement>
 				<text><![CDATA[Cara Bayar]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="718" y="0" width="37" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
+				<reportElement mode="Opaque" x="712" y="0" width="37" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8" isBold="false"/>
 				</textElement>
@@ -274,14 +240,14 @@ where rawat_jl_drpr.tgl_perawatan between $P{tanggal1} and $P{tanggal2} and rawa
 				<text><![CDATA[Kode Dokter]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="557" y="0" width="111" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
+				<reportElement mode="Opaque" x="557" y="0" width="105" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
 				<textElement verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8" isBold="false"/>
 				</textElement>
 				<text><![CDATA[Dokter Yang Menangani]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="668" y="0" width="50" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
+				<reportElement mode="Opaque" x="662" y="0" width="50" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8" isBold="false"/>
 				</textElement>
@@ -330,13 +296,13 @@ where rawat_jl_drpr.tgl_perawatan between $P{tanggal1} and $P{tanggal2} and rawa
 				<text><![CDATA[Nama Pasien]]></text>
 			</staticText>
 			<line>
-				<reportElement x="0" y="0" width="1400" height="1"/>
+				<reportElement x="0" y="0" width="1184" height="1"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="0" y="16" width="1400" height="1"/>
+				<reportElement x="0" y="16" width="1184" height="1"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
@@ -344,7 +310,7 @@ where rawat_jl_drpr.tgl_perawatan between $P{tanggal1} and $P{tanggal2} and rawa
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="14" splitType="Stretch">
+		<band height="13" splitType="Stretch">
 			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
 				<reportElement stretchType="RelativeToBandHeight" x="22" y="0" width="75" height="10"/>
 				<textElement lineSpacing="Single">
@@ -395,105 +361,84 @@ where rawat_jl_drpr.tgl_perawatan between $P{tanggal1} and $P{tanggal2} and rawa
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{kd_dokter}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement stretchType="RelativeToBandHeight" x="558" y="0" width="110" height="10"/>
+				<reportElement stretchType="RelativeToBandHeight" x="558" y="0" width="104" height="10"/>
 				<textElement lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{nm_dokter}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy" isBlankWhenNull="true">
-				<reportElement stretchType="RelativeToBandHeight" x="668" y="0" width="49" height="10"/>
+				<reportElement stretchType="RelativeToBandHeight" x="662" y="0" width="49" height="10"/>
 				<textElement lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.util.Date"><![CDATA[$F{tgl_perawatan}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="HH:mm:ss" isBlankWhenNull="true">
-				<reportElement stretchType="RelativeToBandHeight" x="718" y="0" width="36" height="10"/>
+				<reportElement stretchType="RelativeToBandHeight" x="712" y="0" width="36" height="10"/>
 				<textElement lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.sql.Time"><![CDATA[$F{jam_rawat}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement stretchType="RelativeToBandHeight" x="755" y="0" width="65" height="10"/>
+				<reportElement stretchType="RelativeToBandHeight" x="749" y="0" width="63" height="10"/>
 				<textElement lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{png_jawab}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement stretchType="RelativeToBandHeight" x="822" y="0" width="68" height="10"/>
+				<reportElement stretchType="RelativeToBandHeight" x="814" y="0" width="64" height="10"/>
 				<textElement lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{nm_poli}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nm_bangsal}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="#,##0" isBlankWhenNull="true">
-				<reportElement stretchType="RelativeToBandHeight" x="1045" y="0" width="50" height="10"/>
+				<reportElement stretchType="RelativeToBandHeight" x="879" y="0" width="50" height="10"/>
 				<textElement textAlignment="Right" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.Double"><![CDATA[$F{material}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="#,##0" isBlankWhenNull="true">
-				<reportElement stretchType="RelativeToBandHeight" x="1095" y="0" width="50" height="10"/>
+				<reportElement stretchType="RelativeToBandHeight" x="929" y="0" width="50" height="10"/>
 				<textElement textAlignment="Right" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.Double"><![CDATA[$F{bhp}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="#,##0" isBlankWhenNull="true">
-				<reportElement stretchType="RelativeToBandHeight" x="1145" y="0" width="50" height="10"/>
+				<reportElement stretchType="RelativeToBandHeight" x="979" y="0" width="50" height="10"/>
 				<textElement textAlignment="Right" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.Double"><![CDATA[$F{tarif_tindakandr}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="#,##0" isBlankWhenNull="true">
-				<reportElement stretchType="RelativeToBandHeight" x="1245" y="0" width="50" height="10"/>
+				<reportElement stretchType="RelativeToBandHeight" x="1029" y="0" width="50" height="10"/>
 				<textElement textAlignment="Right" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.Double"><![CDATA[$F{kso}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="#,##0" isBlankWhenNull="true">
-				<reportElement stretchType="RelativeToBandHeight" x="1295" y="0" width="50" height="10"/>
+				<reportElement stretchType="RelativeToBandHeight" x="1079" y="0" width="50" height="10"/>
 				<textElement textAlignment="Right" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.Double"><![CDATA[$F{menejemen}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="#,##0" isBlankWhenNull="true">
-				<reportElement stretchType="RelativeToBandHeight" x="1345" y="0" width="55" height="10"/>
+				<reportElement stretchType="RelativeToBandHeight" x="1129" y="0" width="55" height="10"/>
 				<textElement textAlignment="Right" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.Double"><![CDATA[$F{biaya_rawat}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" pattern="#,##0" isBlankWhenNull="true">
-				<reportElement stretchType="RelativeToBandHeight" x="1195" y="0" width="50" height="10"/>
-				<textElement textAlignment="Right" lineSpacing="Single">
-					<font fontName="Tahoma" size="8"/>
-				</textElement>
-				<textFieldExpression class="java.lang.Double"><![CDATA[$F{tarif_tindakanpr}]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement stretchType="RelativeToBandHeight" x="940" y="0" width="104" height="10"/>
-				<textElement lineSpacing="Single">
-					<font fontName="Tahoma" size="8"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{nama}]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement stretchType="RelativeToBandHeight" x="891" y="0" width="48" height="10"/>
-				<textElement lineSpacing="Single">
-					<font fontName="Tahoma" size="8"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{nip}]]></textFieldExpression>
-			</textField>
 			<line>
-				<reportElement positionType="FixRelativeToBottom" stretchType="RelativeToTallestObject" x="0" y="12" width="1400" height="1"/>
+				<reportElement positionType="FixRelativeToBottom" stretchType="RelativeToTallestObject" x="0" y="12" width="1184" height="1"/>
 				<graphicElement>
 					<pen lineWidth="0.35"/>
 				</graphicElement>
@@ -545,13 +490,13 @@ where rawat_jl_drpr.tgl_perawatan between $P{tanggal1} and $P{tanggal2} and rawa
 				<textFieldExpression class="java.util.Date"><![CDATA[new Date()]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="0" y="0" width="1400" height="1"/>
+				<reportElement x="0" y="0" width="1184" height="1"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="0" y="23" width="1400" height="1"/>
+				<reportElement x="0" y="23" width="1184" height="1"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
@@ -561,60 +506,53 @@ where rawat_jl_drpr.tgl_perawatan between $P{tanggal1} and $P{tanggal2} and rawa
 	<summary>
 		<band height="15" splitType="Stretch">
 			<staticText>
-				<reportElement mode="Transparent" x="940" y="0" width="71" height="13" forecolor="#000000" backcolor="#FFFFFF"/>
+				<reportElement mode="Transparent" x="749" y="0" width="71" height="13" forecolor="#000000" backcolor="#FFFFFF"/>
 				<textElement verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8" isBold="false"/>
 				</textElement>
 				<text><![CDATA[Jumlah Total :]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true" pattern="#,##0" isBlankWhenNull="true">
-				<reportElement stretchType="RelativeToBandHeight" x="1145" y="0" width="50" height="13"/>
+				<reportElement stretchType="RelativeToBandHeight" x="978" y="0" width="50" height="13"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.Double"><![CDATA[$V{totaljmdokter}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="#,##0" isBlankWhenNull="true">
-				<reportElement stretchType="RelativeToBandHeight" x="1045" y="0" width="50" height="13"/>
+				<reportElement stretchType="RelativeToBandHeight" x="878" y="0" width="50" height="13"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.Double"><![CDATA[$V{totalmaterial}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="#,##0" isBlankWhenNull="true">
-				<reportElement stretchType="RelativeToBandHeight" x="1295" y="0" width="50" height="13"/>
+				<reportElement stretchType="RelativeToBandHeight" x="1078" y="0" width="50" height="13"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.Double"><![CDATA[$V{totalmenejemen}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="#,##0" isBlankWhenNull="true">
-				<reportElement stretchType="RelativeToBandHeight" x="1345" y="0" width="55" height="13"/>
+				<reportElement stretchType="RelativeToBandHeight" x="1128" y="0" width="55" height="13"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.Double"><![CDATA[$V{totalsemua}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="#,##0" isBlankWhenNull="true">
-				<reportElement stretchType="RelativeToBandHeight" x="1095" y="0" width="50" height="13"/>
+				<reportElement stretchType="RelativeToBandHeight" x="928" y="0" width="50" height="13"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.Double"><![CDATA[$V{totalbhp}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="#,##0" isBlankWhenNull="true">
-				<reportElement stretchType="RelativeToBandHeight" x="1245" y="0" width="50" height="13"/>
+				<reportElement stretchType="RelativeToBandHeight" x="1028" y="0" width="50" height="13"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.Double"><![CDATA[$V{totalkso}]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true" pattern="#,##0" isBlankWhenNull="true">
-				<reportElement stretchType="RelativeToBandHeight" x="1195" y="0" width="50" height="13"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle" lineSpacing="Single">
-					<font fontName="Tahoma" size="8"/>
-				</textElement>
-				<textFieldExpression class="java.lang.Double"><![CDATA[$V{totaljmparamedis}]]></textFieldExpression>
 			</textField>
 		</band>
 	</summary>
