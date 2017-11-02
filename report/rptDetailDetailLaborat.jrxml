@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="1656" pageHeight="792" orientation="Landscape" columnWidth="1616" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 	<property name="ireport.zoom" value="2.0"/>
-	<property name="ireport.x" value="0"/>
+	<property name="ireport.x" value="503"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="namars" class="java.lang.String"/>
 	<parameter name="alamatrs" class="java.lang.String"/>
@@ -14,36 +14,41 @@
 	<parameter name="tanggal2" class="java.lang.String"/>
 	<parameter name="cari" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[select periksa_lab.no_rawat,reg_periksa.no_rkm_medis,pasien.nm_pasien, 
-periksa_lab.kd_jenis_prw,jns_perawatan_lab.nm_perawatan, 
+		<![CDATA[select detail_periksa_lab.no_rawat,reg_periksa.no_rkm_medis,
+pasien.nm_pasien,detail_periksa_lab.id_template,template_laboratorium.Pemeriksaan,
 periksa_lab.kd_dokter,dokter.nm_dokter,periksa_lab.nip,
-petugas.nama,periksa_lab.dokter_perujuk,
+petugas.nama,periksa_lab.dokter_perujuk,penjab.png_jawab,
 (select nm_dokter from dokter where dokter.kd_dokter=periksa_lab.dokter_perujuk ) as perujuk,
-periksa_lab.tgl_periksa,periksa_lab.jam,penjab.png_jawab,
-periksa_lab.bagian_rs,periksa_lab.bhp,periksa_lab.tarif_perujuk,
-periksa_lab.tarif_tindakan_dokter,periksa_lab.tarif_tindakan_petugas,
-periksa_lab.kso,periksa_lab.menejemen,periksa_lab.biaya,
+detail_periksa_lab.tgl_periksa,detail_periksa_lab.jam,
 if(periksa_lab.status='Ralan',(select nm_poli from poliklinik where poliklinik.kd_poli=reg_periksa.kd_poli),
 (select bangsal.nm_bangsal from kamar_inap inner join kamar inner join bangsal on kamar_inap.kd_kamar=kamar.kd_kamar 
-and kamar.kd_bangsal=bangsal.kd_bangsal where kamar_inap.no_rawat=periksa_lab.no_rawat limit 1 )) as ruangan 
-from periksa_lab inner join reg_periksa 
-inner join pasien inner join dokter inner join petugas inner join penjab 
-inner join jns_perawatan_lab on periksa_lab.no_rawat=reg_periksa.no_rawat 
-and reg_periksa.no_rkm_medis=pasien.no_rkm_medis and reg_periksa.kd_pj=penjab.kd_pj 
-and periksa_lab.kd_dokter=dokter.kd_dokter and periksa_lab.nip=petugas.nip 
-and periksa_lab.kd_jenis_prw=jns_perawatan_lab.kd_jenis_prw 
-where periksa_lab.tgl_periksa between $P{tanggal1} and $P{tanggal2} and periksa_lab.no_rawat like $P{cari} or 
-periksa_lab.tgl_periksa between $P{tanggal1} and $P{tanggal2} and reg_periksa.no_rkm_medis like $P{cari} or 
-periksa_lab.tgl_periksa between $P{tanggal1} and $P{tanggal2} and pasien.nm_pasien like $P{cari} or 
-periksa_lab.tgl_periksa between $P{tanggal1} and $P{tanggal2} and periksa_lab.kd_jenis_prw like $P{cari} or 
-periksa_lab.tgl_periksa between $P{tanggal1} and $P{tanggal2} and jns_perawatan_lab.nm_perawatan like $P{cari} or 
-periksa_lab.tgl_periksa between $P{tanggal1} and $P{tanggal2} and periksa_lab.kd_dokter like $P{cari} or 
-periksa_lab.tgl_periksa between $P{tanggal1} and $P{tanggal2} and dokter.nm_dokter like $P{cari} or 
-periksa_lab.tgl_periksa between $P{tanggal1} and $P{tanggal2} and periksa_lab.nip like $P{cari} or 
-periksa_lab.tgl_periksa between $P{tanggal1} and $P{tanggal2} and petugas.nama like $P{cari} or 
-periksa_lab.tgl_periksa between $P{tanggal1} and $P{tanggal2} and periksa_lab.dokter_perujuk like $P{cari} or 
-periksa_lab.tgl_periksa between $P{tanggal1} and $P{tanggal2} and penjab.png_jawab like $P{cari} 
- order by periksa_lab.tgl_periksa]]>
+and kamar.kd_bangsal=bangsal.kd_bangsal where kamar_inap.no_rawat=periksa_lab.no_rawat limit 1 )) as ruangan,
+detail_periksa_lab.bagian_rs,detail_periksa_lab.bhp,detail_periksa_lab.bagian_perujuk,
+detail_periksa_lab.bagian_dokter,detail_periksa_lab.bagian_laborat,
+detail_periksa_lab.kso,detail_periksa_lab.menejemen,
+detail_periksa_lab.biaya_item from detail_periksa_lab 
+inner join reg_periksa inner join pasien inner join template_laboratorium 
+inner join jns_perawatan_lab inner join periksa_lab 
+inner join dokter inner join petugas inner join penjab 
+on detail_periksa_lab.no_rawat=reg_periksa.no_rawat 
+and reg_periksa.no_rkm_medis=pasien.no_rkm_medis and periksa_lab.no_rawat=detail_periksa_lab.no_rawat 
+and periksa_lab.kd_jenis_prw=detail_periksa_lab.kd_jenis_prw 
+and reg_periksa.kd_pj=penjab.kd_pj and periksa_lab.kd_dokter=dokter.kd_dokter 
+and periksa_lab.nip=petugas.nip and periksa_lab.tgl_periksa=detail_periksa_lab.tgl_periksa 
+and periksa_lab.jam=detail_periksa_lab.jam and detail_periksa_lab.id_template=template_laboratorium.id_template 
+and jns_perawatan_lab.kd_jenis_prw=detail_periksa_lab.kd_jenis_prw 
+where detail_periksa_lab.tgl_periksa between $P{tanggal1} and $P{tanggal2} and detail_periksa_lab.no_rawat like $P{cari} or 
+detail_periksa_lab.tgl_periksa between $P{tanggal1} and $P{tanggal2} and reg_periksa.no_rkm_medis like $P{cari} or 
+detail_periksa_lab.tgl_periksa between $P{tanggal1} and $P{tanggal2} and pasien.nm_pasien like $P{cari} or 
+detail_periksa_lab.tgl_periksa between $P{tanggal1} and $P{tanggal2} and detail_periksa_lab.kd_jenis_prw like $P{cari} or 
+detail_periksa_lab.tgl_periksa between $P{tanggal1} and $P{tanggal2} and jns_perawatan_lab.nm_perawatan like $P{cari} or 
+detail_periksa_lab.tgl_periksa between $P{tanggal1} and $P{tanggal2} and periksa_lab.kd_dokter like $P{cari} or 
+detail_periksa_lab.tgl_periksa between $P{tanggal1} and $P{tanggal2} and dokter.nm_dokter like $P{cari} or 
+detail_periksa_lab.tgl_periksa between $P{tanggal1} and $P{tanggal2} and periksa_lab.nip like $P{cari} or 
+detail_periksa_lab.tgl_periksa between $P{tanggal1} and $P{tanggal2} and petugas.nama like $P{cari} or 
+detail_periksa_lab.tgl_periksa between $P{tanggal1} and $P{tanggal2} and periksa_lab.dokter_perujuk like $P{cari} or 
+detail_periksa_lab.tgl_periksa between $P{tanggal1} and $P{tanggal2} and penjab.png_jawab like $P{cari} 
+ order by detail_periksa_lab.tgl_periksa]]>
 	</queryString>
 	<field name="no_rawat" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -54,10 +59,10 @@ periksa_lab.tgl_periksa between $P{tanggal1} and $P{tanggal2} and penjab.png_jaw
 	<field name="nm_pasien" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="kd_jenis_prw" class="java.lang.String">
+	<field name="id_template" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="nm_perawatan" class="java.lang.String">
+	<field name="Pemeriksaan" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="kd_dokter" class="java.lang.String">
@@ -75,6 +80,9 @@ periksa_lab.tgl_periksa between $P{tanggal1} and $P{tanggal2} and penjab.png_jaw
 	<field name="dokter_perujuk" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
+	<field name="png_jawab" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
 	<field name="perujuk" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
@@ -84,22 +92,20 @@ periksa_lab.tgl_periksa between $P{tanggal1} and $P{tanggal2} and penjab.png_jaw
 	<field name="jam" class="java.sql.Time">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="png_jawab" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
+	<field name="ruangan" class="java.lang.String"/>
 	<field name="bagian_rs" class="java.lang.Double">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="bhp" class="java.lang.Double">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="tarif_perujuk" class="java.lang.Double">
+	<field name="bagian_perujuk" class="java.lang.Double">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="tarif_tindakan_dokter" class="java.lang.Double">
+	<field name="bagian_dokter" class="java.lang.Double">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="tarif_tindakan_petugas" class="java.lang.Double">
+	<field name="bagian_laborat" class="java.lang.Double">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="kso" class="java.lang.Double">
@@ -108,10 +114,9 @@ periksa_lab.tgl_periksa between $P{tanggal1} and $P{tanggal2} and penjab.png_jaw
 	<field name="menejemen" class="java.lang.Double">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="biaya" class="java.lang.Double">
+	<field name="biaya_item" class="java.lang.Double">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="ruangan" class="java.lang.String"/>
 	<variable name="no" class="java.lang.Integer" calculation="Count">
 		<variableExpression><![CDATA[$F{no_rawat}]]></variableExpression>
 	</variable>
@@ -122,7 +127,7 @@ periksa_lab.tgl_periksa between $P{tanggal1} and $P{tanggal2} and penjab.png_jaw
 		<variableExpression><![CDATA[$F{bhp}]]></variableExpression>
 	</variable>
 	<variable name="totaljmdokter" class="java.lang.Double" calculation="Sum">
-		<variableExpression><![CDATA[$F{tarif_tindakan_dokter}]]></variableExpression>
+		<variableExpression><![CDATA[$F{bagian_dokter}]]></variableExpression>
 	</variable>
 	<variable name="totalkso" class="java.lang.Double" calculation="Sum">
 		<variableExpression><![CDATA[$F{kso}]]></variableExpression>
@@ -131,13 +136,13 @@ periksa_lab.tgl_periksa between $P{tanggal1} and $P{tanggal2} and penjab.png_jaw
 		<variableExpression><![CDATA[$F{menejemen}]]></variableExpression>
 	</variable>
 	<variable name="totalsemua" class="java.lang.Double" calculation="Sum">
-		<variableExpression><![CDATA[$F{biaya}]]></variableExpression>
+		<variableExpression><![CDATA[$F{biaya_item}]]></variableExpression>
 	</variable>
 	<variable name="totaljmparamedis" class="java.lang.Double" calculation="Sum">
-		<variableExpression><![CDATA[$F{tarif_tindakan_petugas}]]></variableExpression>
+		<variableExpression><![CDATA[$F{bagian_laborat}]]></variableExpression>
 	</variable>
 	<variable name="totaljmparujuk" class="java.lang.Double" calculation="Sum">
-		<variableExpression><![CDATA[$F{tarif_perujuk}]]></variableExpression>
+		<variableExpression><![CDATA[$F{bagian_perujuk}]]></variableExpression>
 	</variable>
 	<background>
 		<band splitType="Stretch"/>
@@ -149,7 +154,7 @@ periksa_lab.tgl_periksa between $P{tanggal1} and $P{tanggal2} and penjab.png_jaw
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="11" isBold="false"/>
 				</textElement>
-				<text><![CDATA[Detail Pemeriksaan Laborat]]></text>
+				<text><![CDATA[Detail Detail Pemeriksaan Laboratorium]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="3" y="14" width="1613" height="14"/>
@@ -334,7 +339,7 @@ periksa_lab.tgl_periksa between $P{tanggal1} and $P{tanggal2} and penjab.png_jaw
 				<textElement verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8" isBold="false"/>
 				</textElement>
-				<text><![CDATA[Kd.Prk]]></text>
+				<text><![CDATA[Id Periksa]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="0" y="0" width="20" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
@@ -441,14 +446,14 @@ periksa_lab.tgl_periksa between $P{tanggal1} and $P{tanggal2} and penjab.png_jaw
 				<textElement lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{kd_jenis_prw}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{id_template}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement stretchType="RelativeToBandHeight" x="327" y="0" width="180" height="10"/>
 				<textElement lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{nm_perawatan}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Pemeriksaan}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement stretchType="RelativeToBandHeight" x="508" y="0" width="48" height="10"/>
@@ -511,7 +516,7 @@ periksa_lab.tgl_periksa between $P{tanggal1} and $P{tanggal2} and penjab.png_jaw
 				<textElement textAlignment="Right" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
-				<textFieldExpression class="java.lang.Double"><![CDATA[$F{tarif_tindakan_dokter}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{bagian_dokter}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="#,##0" isBlankWhenNull="true">
 				<reportElement stretchType="RelativeToBandHeight" x="1461" y="0" width="50" height="10"/>
@@ -532,21 +537,21 @@ periksa_lab.tgl_periksa between $P{tanggal1} and $P{tanggal2} and penjab.png_jaw
 				<textElement textAlignment="Right" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
-				<textFieldExpression class="java.lang.Double"><![CDATA[$F{biaya}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{biaya_item}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="#,##0" isBlankWhenNull="true">
 				<reportElement stretchType="RelativeToBandHeight" x="1361" y="0" width="50" height="10"/>
 				<textElement textAlignment="Right" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
-				<textFieldExpression class="java.lang.Double"><![CDATA[$F{tarif_tindakan_petugas}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{bagian_laborat}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="#,##0" isBlankWhenNull="true">
 				<reportElement stretchType="RelativeToBandHeight" x="1411" y="0" width="50" height="10"/>
 				<textElement textAlignment="Right" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
-				<textFieldExpression class="java.lang.Double"><![CDATA[$F{tarif_perujuk}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{bagian_perujuk}]]></textFieldExpression>
 			</textField>
 			<line>
 				<reportElement positionType="FixRelativeToBottom" stretchType="RelativeToTallestObject" x="0" y="12" width="1616" height="1"/>
