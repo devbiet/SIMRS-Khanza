@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 	<property name="ireport.zoom" value="1.5"/>
-	<property name="ireport.x" value="321"/>
+	<property name="ireport.x" value="261"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="namars" class="java.lang.String"/>
 	<parameter name="alamatrs" class="java.lang.String"/>
@@ -11,8 +11,8 @@
 	<parameter name="emailrs" class="java.lang.String"/>
 	<parameter name="logo" class="java.io.InputStream"/>
 	<queryString>
-		<![CDATA[select opname.kode_brng, databarang.nama_brng,opname.h_beli, databarang.kode_sat, opname.tanggal, opname.stok, 
-opname.real, opname.selisih, opname.nomihilang, opname.keterangan, bangsal.kd_bangsal, bangsal.nm_bangsal, (opname.real*opname.h_beli) as totalreal 
+		<![CDATA[select opname.kode_brng, databarang.nama_brng, databarang.kode_sat, opname.tanggal, opname.stok, 
+opname.real, opname.selisih, opname.nomihilang, opname.keterangan, bangsal.kd_bangsal, bangsal.nm_bangsal
 from opname inner join databarang inner join bangsal 
 on opname.kode_brng=databarang.kode_brng and opname.kd_bangsal=bangsal.kd_bangsal]]>
 	</queryString>
@@ -20,9 +20,6 @@ on opname.kode_brng=databarang.kode_brng and opname.kd_bangsal=bangsal.kd_bangsa
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="nama_brng" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="h_beli" class="java.lang.Double">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="kode_sat" class="java.lang.String">
@@ -52,12 +49,8 @@ on opname.kode_brng=databarang.kode_brng and opname.kd_bangsal=bangsal.kd_bangsa
 	<field name="nm_bangsal" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="totalreal" class="java.lang.Double"/>
 	<variable name="total" class="java.lang.Double" calculation="Sum">
 		<variableExpression><![CDATA[$F{nomihilang}]]></variableExpression>
-	</variable>
-	<variable name="real" class="java.lang.Double" calculation="Sum">
-		<variableExpression><![CDATA[$F{totalreal}]]></variableExpression>
 	</variable>
 	<background>
 		<band splitType="Stretch"/>
@@ -117,18 +110,11 @@ on opname.kode_brng=databarang.kode_brng and opname.kd_bangsal=bangsal.kd_bangsa
 	<columnHeader>
 		<band height="18" splitType="Stretch">
 			<staticText>
-				<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="502" y="0" width="82" height="18" forecolor="#000000" backcolor="#F0F0DC"/>
+				<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="582" y="0" width="82" height="18" forecolor="#000000" backcolor="#F0F0DC"/>
 				<textElement verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
-				<text><![CDATA[Total Real(Rp)]]></text>
-			</staticText>
-			<staticText>
-				<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="272" y="0" width="54" height="18" forecolor="#000000" backcolor="#F0F0DC"/>
-				<textElement verticalAlignment="Middle" lineSpacing="Single">
-					<font fontName="Tahoma" size="8"/>
-				</textElement>
-				<text><![CDATA[Harga Beli]]></text>
+				<text><![CDATA[Keterangan]]></text>
 			</staticText>
 			<staticText>
 				<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="89" height="18" forecolor="#000000" backcolor="#F0F0DC"/>
@@ -145,7 +131,7 @@ on opname.kode_brng=databarang.kode_brng and opname.kd_bangsal=bangsal.kd_bangsa
 				<text><![CDATA[Tanggal]]></text>
 			</staticText>
 			<staticText>
-				<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="89" y="0" width="183" height="18" forecolor="#000000" backcolor="#F0F0DC"/>
+				<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="89" y="0" width="237" height="18" forecolor="#000000" backcolor="#F0F0DC"/>
 				<textElement verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
@@ -173,7 +159,7 @@ on opname.kode_brng=databarang.kode_brng and opname.kd_bangsal=bangsal.kd_bangsa
 				<text><![CDATA[Selisih]]></text>
 			</staticText>
 			<staticText>
-				<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="584" y="0" width="80" height="18" forecolor="#000000" backcolor="#F0F0DC"/>
+				<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="502" y="0" width="80" height="18" forecolor="#000000" backcolor="#F0F0DC"/>
 				<textElement verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
@@ -217,7 +203,7 @@ on opname.kode_brng=databarang.kode_brng and opname.kd_bangsal=bangsal.kd_bangsa
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{kode_brng}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement stretchType="RelativeToBandHeight" x="89" y="1" width="183" height="10"/>
+				<reportElement stretchType="RelativeToBandHeight" x="89" y="1" width="237" height="10"/>
 				<textElement lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
@@ -266,25 +252,18 @@ on opname.kode_brng=databarang.kode_brng and opname.kd_bangsal=bangsal.kd_bangsa
 				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{selisih}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="#,##0" isBlankWhenNull="true">
-				<reportElement stretchType="RelativeToBandHeight" x="584" y="1" width="80" height="10"/>
+				<reportElement stretchType="RelativeToBandHeight" x="502" y="1" width="80" height="10"/>
 				<textElement lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.Double"><![CDATA[$F{nomihilang}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" pattern="#,##0" isBlankWhenNull="true">
-				<reportElement stretchType="RelativeToBandHeight" x="272" y="1" width="54" height="10"/>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="583" y="1" width="80" height="10"/>
 				<textElement lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
-				<textFieldExpression class="java.lang.Double"><![CDATA[$F{h_beli}]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true" pattern="#,##0" isBlankWhenNull="true">
-				<reportElement stretchType="RelativeToBandHeight" x="503" y="1" width="80" height="10"/>
-				<textElement lineSpacing="Single">
-					<font fontName="Tahoma" size="8"/>
-				</textElement>
-				<textFieldExpression class="java.lang.Double"><![CDATA[$F{totalreal}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{keterangan}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
@@ -352,7 +331,7 @@ on opname.kode_brng=databarang.kode_brng and opname.kd_bangsal=bangsal.kd_bangsa
 				</graphicElement>
 			</line>
 			<textField isStretchWithOverflow="true" pattern="#,##0" isBlankWhenNull="true">
-				<reportElement stretchType="RelativeToBandHeight" x="584" y="3" width="80" height="15"/>
+				<reportElement stretchType="RelativeToBandHeight" x="503" y="3" width="80" height="15"/>
 				<textElement lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
@@ -365,13 +344,6 @@ on opname.kode_brng=databarang.kode_brng and opname.kd_bangsal=bangsal.kd_bangsa
 				</textElement>
 				<text><![CDATA[Total: ]]></text>
 			</staticText>
-			<textField isStretchWithOverflow="true" pattern="#,##0" isBlankWhenNull="true">
-				<reportElement stretchType="RelativeToBandHeight" x="503" y="3" width="80" height="15"/>
-				<textElement lineSpacing="Single">
-					<font fontName="Tahoma" size="8"/>
-				</textElement>
-				<textFieldExpression class="java.lang.Double"><![CDATA[$V{real}]]></textFieldExpression>
-			</textField>
 		</band>
 	</pageFooter>
 </jasperReport>
