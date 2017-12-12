@@ -28,7 +28,7 @@ import org.jfree.data.general.DefaultPieDataset;
  *
  * @author dosen
  */
-public class GrafikKunjunganPerDokter extends javax.swing.JDialog {
+public class GrafikKunjunganPerTahun extends javax.swing.JDialog {
     private final Connection koneksi=koneksiDB.condb();
     private final validasi Valid=new validasi();
     private ResultSet rs;
@@ -36,7 +36,7 @@ public class GrafikKunjunganPerDokter extends javax.swing.JDialog {
     /** Creates new form DlgSpesialis
      * @param parent
      * @param modal */
-    public GrafikKunjunganPerDokter(java.awt.Frame parent, boolean modal) {
+    public GrafikKunjunganPerTahun(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
 
@@ -77,7 +77,7 @@ public class GrafikKunjunganPerDokter extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Grafik Kunjungan Registrasi Per Dokter ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(90, 120, 80))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Grafik Kunjungan Registrasi Per Tahun ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(90, 120, 80))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -96,7 +96,7 @@ public class GrafikKunjunganPerDokter extends javax.swing.JDialog {
 
         Tanggal1.setEditable(false);
         Tanggal1.setForeground(new java.awt.Color(50, 70, 50));
-        Tanggal1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-12-2017" }));
+        Tanggal1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-12-2017" }));
         Tanggal1.setDisplayFormat("dd-MM-yyyy");
         Tanggal1.setName("Tanggal1"); // NOI18N
         Tanggal1.setOpaque(false);
@@ -111,7 +111,7 @@ public class GrafikKunjunganPerDokter extends javax.swing.JDialog {
 
         Tanggal2.setEditable(false);
         Tanggal2.setForeground(new java.awt.Color(50, 70, 50));
-        Tanggal2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-12-2017" }));
+        Tanggal2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-12-2017" }));
         Tanggal2.setDisplayFormat("dd-MM-yyyy");
         Tanggal2.setName("Tanggal2"); // NOI18N
         Tanggal2.setOpaque(false);
@@ -213,24 +213,26 @@ public class GrafikKunjunganPerDokter extends javax.swing.JDialog {
     private void BtnPrint3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPrint3ActionPerformed
         DefaultCategoryDataset dcd = new DefaultCategoryDataset();
         try {                
-            rs = koneksi.prepareStatement("select dokter.nm_dokter,count(dokter.nm_dokter) as jumlah "+
-                   "from reg_periksa inner join dokter on reg_periksa.kd_dokter=dokter.kd_dokter "+
-                   "where tgl_registrasi between '"+Valid.SetTgl(Tanggal1.getSelectedItem()+"")+"' and '"+Valid.SetTgl(Tanggal2.getSelectedItem()+"")+"' group by dokter.nm_dokter").executeQuery();
+            rs = koneksi.prepareStatement("select year(reg_periksa.tgl_registrasi),count(year(reg_periksa.tgl_registrasi)) as jumlah "+
+                "from reg_periksa where tgl_registrasi between '"+Valid.SetTgl(Tanggal1.getSelectedItem()+"")+"' and '"+Valid.SetTgl(Tanggal2.getSelectedItem()+"")+"' group by year(reg_periksa.tgl_registrasi)").executeQuery();
             while(rs.next()) {
                 dcd.setValue(rs.getDouble(2),rs.getString(1)+"("+rs.getString(2)+")",rs.getString(1));
+            }
+            
+            if(rs!=null){
+                rs.close();
             }
         } catch (Exception e) {
             System.out.println("Notifikasi : " + e);
         }
-        
-       JFreeChart freeChart = ChartFactory.createBarChart("Grafik Periksa Per Dokter Tanggal "+Valid.SetTgl(Tanggal1.getSelectedItem()+"")+" S.D. "+Valid.SetTgl(Tanggal2.getSelectedItem()+""),"Dokter","Jumlah Pasien", dcd, PlotOrientation.VERTICAL,true, true,true); 
-        ChartFrame cf = new ChartFrame("Grafik Periksa Per Dokter",freeChart);
+        JFreeChart freeChart = ChartFactory.createBarChart("Grafik Kunjungan Per Tahun Tanggal "+Valid.SetTgl(Tanggal1.getSelectedItem()+"")+" S.D. "+Valid.SetTgl(Tanggal2.getSelectedItem()+""),"Tahun","Jumlah Pasien", dcd, PlotOrientation.VERTICAL,true, true,true); 
+        ChartFrame cf = new ChartFrame("Grafik Kunjungan Per Tahun",freeChart);
         cf.setSize(panelBiasa3.getWidth(),panelBiasa3.getHeight());   
-        cf.setLocationRelativeTo(panelBiasa3);
         cf.setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
+        cf.setLocationRelativeTo(panelBiasa3);
         cf.setAlwaysOnTop(true);
         cf.setIconImage(new ImageIcon(super.getClass().getResource("/picture/addressbook-edit24.png")).getImage());
-        cf.setVisible(true);         
+        cf.setVisible(true);  
     }//GEN-LAST:event_BtnPrint3ActionPerformed
 
     private void BtnPrint3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnPrint3KeyPressed
@@ -246,7 +248,10 @@ public class GrafikKunjunganPerDokter extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnKeluar3KeyPressed
 
     private void BtnPrint4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPrint4ActionPerformed
-       grafikperiksaperdokter kas=new grafikperiksaperdokter("Grafik Periksa Per Dokter Tanggal "+Valid.SetTgl(Tanggal1.getSelectedItem()+"")+" S.D. "+Valid.SetTgl(Tanggal2.getSelectedItem()+""),"where tgl_registrasi between '"+Valid.SetTgl(Tanggal1.getSelectedItem()+"")+"' and '"+Valid.SetTgl(Tanggal2.getSelectedItem()+"")+"' ");
+       grafiksql2 kas=new grafiksql2("Grafik Kunjungan Per Tahun Tanggal "+Valid.SetTgl(Tanggal1.getSelectedItem()+"")+" S.D. "+Valid.SetTgl(Tanggal2.getSelectedItem()+""),
+               "select year(reg_periksa.tgl_registrasi),count(year(reg_periksa.tgl_registrasi)) as jumlah from reg_periksa "+
+               "where tgl_registrasi between '"+Valid.SetTgl(Tanggal1.getSelectedItem()+"")+"' and '"+Valid.SetTgl(Tanggal2.getSelectedItem()+"")+"' "+
+               "group by year(reg_periksa.tgl_registrasi)","Tahun");
        kas.setSize(panelBiasa3.getWidth(),panelBiasa3.getHeight());  
        kas.setModal(true);
        kas.setAlwaysOnTop(true);
@@ -259,27 +264,29 @@ public class GrafikKunjunganPerDokter extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnPrint4KeyPressed
 
     private void BtnPrint5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPrint5ActionPerformed
-        
         DefaultPieDataset dpd = new DefaultPieDataset();
         try {                
-            rs = koneksi.prepareStatement("select dokter.nm_dokter,count(dokter.nm_dokter) as jumlah "+
-                   "from reg_periksa inner join dokter on reg_periksa.kd_dokter=dokter.kd_dokter "+
-                   "where tgl_registrasi between '"+Valid.SetTgl(Tanggal1.getSelectedItem()+"")+"' and '"+Valid.SetTgl(Tanggal2.getSelectedItem()+"")+"' group by dokter.nm_dokter").executeQuery();
+            rs = koneksi.prepareStatement("select year(reg_periksa.tgl_registrasi),count(year(reg_periksa.tgl_registrasi)) as jumlah "+
+                "from reg_periksa where tgl_registrasi between '"+Valid.SetTgl(Tanggal1.getSelectedItem()+"")+"' and '"+Valid.SetTgl(Tanggal2.getSelectedItem()+"")+"' group by year(reg_periksa.tgl_registrasi)").executeQuery();
             while(rs.next()) {
                 dpd.setValue(rs.getString(1)+"("+rs.getString(2)+")",rs.getDouble(2));
             }
+            
+            if(rs!=null){
+                rs.close();
+            }
         } catch (Exception e) {
             System.out.println("Notifikasi : " + e);
-        }
+        } 
         
-        JFreeChart freeChart = ChartFactory.createPieChart("Grafik Periksa Per Dokter Tanggal "+Valid.SetTgl(Tanggal1.getSelectedItem()+"")+" S.D. "+Valid.SetTgl(Tanggal2.getSelectedItem()+""),dpd,true,true, false);
-        ChartFrame cf = new ChartFrame("Grafik Periksa Per Dokter",freeChart);
+        JFreeChart freeChart = ChartFactory.createPieChart("Grafik Kunjungan Per Tahun Tanggal "+Valid.SetTgl(Tanggal1.getSelectedItem()+"")+" S.D. "+Valid.SetTgl(Tanggal2.getSelectedItem()+""),dpd,true,true, false); //String title,PieDatasheet datasheet,boolean legends,boolean tooltips,boolean url 
+        ChartFrame cf = new ChartFrame("Grafik Kunjungan Per Tahun",freeChart);
         cf.setSize(panelBiasa3.getWidth(),panelBiasa3.getHeight());   
-        cf.setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
         cf.setLocationRelativeTo(panelBiasa3);
+        cf.setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
         cf.setAlwaysOnTop(true);
         cf.setIconImage(new ImageIcon(super.getClass().getResource("/picture/addressbook-edit24.png")).getImage());
-        cf.setVisible(true);
+        cf.setVisible(true);  
     }//GEN-LAST:event_BtnPrint5ActionPerformed
 
     private void BtnPrint5KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnPrint5KeyPressed
@@ -291,7 +298,7 @@ public class GrafikKunjunganPerDokter extends javax.swing.JDialog {
     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> {
-            GrafikKunjunganPerDokter dialog = new GrafikKunjunganPerDokter(new javax.swing.JFrame(), true);
+            GrafikKunjunganPerTahun dialog = new GrafikKunjunganPerTahun(new javax.swing.JFrame(), true);
             dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                 @Override
                 public void windowClosing(java.awt.event.WindowEvent e) {
