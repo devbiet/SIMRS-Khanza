@@ -43,7 +43,7 @@ import org.springframework.web.client.RestTemplate;
  *
  * @author dosen
  */
-public final class PCareCekReferensiPenyakit extends javax.swing.JDialog {
+public final class PCareCekReferensiDokter extends javax.swing.JDialog {
     private final DefaultTableModel tabMode;
     private final Properties prop = new Properties();
     private validasi Valid=new validasi();
@@ -53,13 +53,13 @@ public final class PCareCekReferensiPenyakit extends javax.swing.JDialog {
     /** Creates new form DlgKamar
      * @param parent
      * @param modal */
-    public PCareCekReferensiPenyakit(java.awt.Frame parent, boolean modal) {
+    public PCareCekReferensiDokter(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
 
         this.setLocation(10,2);
         setSize(628,674);
-        tabMode=new DefaultTableModel(null,new String[]{"No.","Kode ICD X","Nama Penyakit"}){
+        tabMode=new DefaultTableModel(null,new String[]{"No.","Kode Dokter","Nama Dokter"}){
               @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
         tbKamar.setModel(tabMode);
@@ -122,7 +122,7 @@ public final class PCareCekReferensiPenyakit extends javax.swing.JDialog {
         setUndecorated(true);
         setResizable(false);
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Pencarian Data Referensi Diagnosa PCare ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(90, 120, 80))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Pencarian Data Referensi Dokter PCare ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(90, 120, 80))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -269,11 +269,7 @@ public final class PCareCekReferensiPenyakit extends javax.swing.JDialog {
 
     private void BtnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCariActionPerformed
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        if(diagnosa.getText().trim().equals("")){
-            JOptionPane.showMessageDialog(null,"Silahkan masukkan diagnosa terlebih dahulu..!!!");
-        }else{
-            tampil(diagnosa.getText());
-        }        
+        tampil(diagnosa.getText());
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_BtnCariActionPerformed
 
@@ -290,7 +286,7 @@ public final class PCareCekReferensiPenyakit extends javax.swing.JDialog {
     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> {
-            PCareCekReferensiPenyakit dialog = new PCareCekReferensiPenyakit(new javax.swing.JFrame(), true);
+            PCareCekReferensiDokter dialog = new PCareCekReferensiDokter(new javax.swing.JFrame(), true);
             dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                 @Override
                 public void windowClosing(java.awt.event.WindowEvent e) {
@@ -318,7 +314,7 @@ public final class PCareCekReferensiPenyakit extends javax.swing.JDialog {
         PcareApi api=new PcareApi();
         try {
             prop.loadFromXML(new FileInputStream("setting/database.xml"));
-            String URL = prop.getProperty("URLAPIPCARE")+"/v1/diagnosa/"+diagnosa+"/0/500";	
+            String URL = prop.getProperty("URLAPIPCARE")+"/v1/dokter/0/10000";	
 
             HttpHeaders headers = new HttpHeaders();
             headers.add("X-cons-id",prop.getProperty("CONSIDAPIPCARE"));
@@ -341,10 +337,13 @@ public final class PCareCekReferensiPenyakit extends javax.swing.JDialog {
                 if(response.path("list").isArray()){
                     i=1;
                     for(JsonNode list:response.path("list")){
-                        tabMode.addRow(new Object[]{
-                            i+".",list.path("kdDiag").asText(),list.path("nmDiag").asText()
-                        });
-                        i++;
+                        if(list.path("kdDokter").asText().toLowerCase().contains(diagnosa.toLowerCase())||
+                                list.path("nmDokter").asText().toLowerCase().contains(diagnosa.toLowerCase())){
+                            tabMode.addRow(new Object[]{
+                                i+".",list.path("kdDokter").asText(),list.path("nmDokter").asText()
+                            });
+                            i++;
+                        }
                     }
                 }
             }else {
