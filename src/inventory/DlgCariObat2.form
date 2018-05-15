@@ -394,7 +394,7 @@
                 </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="1">
-                    <StringItem index="0" value="10-05-2018"/>
+                    <StringItem index="0" value="15-05-2018"/>
                   </StringArray>
                 </Property>
                 <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -801,7 +801,7 @@
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                 <LineBorder>
-                  <Color PropertyName="color" blue="e1" green="eb" red="e6" type="rgb"/>
+                  <Color PropertyName="color" blue="eb" green="fa" red="ec" type="rgb"/>
                 </LineBorder>
               </Border>
             </Property>
