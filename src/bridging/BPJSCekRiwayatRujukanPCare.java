@@ -43,7 +43,7 @@ import simrskhanza.DlgPasien;
  *
  * @author dosen
  */
-public final class BPJSCekRiwayatPeserta extends javax.swing.JDialog {
+public final class BPJSCekRiwayatRujukanPCare extends javax.swing.JDialog {
     private final DefaultTableModel tabMode;
     private final Properties prop = new Properties();
     private validasi Valid=new validasi();
@@ -51,18 +51,19 @@ public final class BPJSCekRiwayatPeserta extends javax.swing.JDialog {
     private int i=0;
     private DlgPasien pasien=new DlgPasien(null,false);
     private BPJSApi api=new BPJSApi();
+    private String URL="";
         
     /** Creates new form DlgKamar
      * @param parent
      * @param modal */
-    public BPJSCekRiwayatPeserta(java.awt.Frame parent, boolean modal) {
+    public BPJSCekRiwayatRujukanPCare(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
 
         this.setLocation(10,2);
         setSize(628,674);
 
-        Object[] row={"","","",""};
+        Object[] row={"","",""};
         tabMode=new DefaultTableModel(null,row){
               @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
@@ -72,18 +73,17 @@ public final class BPJSCekRiwayatPeserta extends javax.swing.JDialog {
         tbKamar.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbKamar.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (int i = 0; i < 4; i++) {
+        for (i = 0; i < 3; i++) {
             TableColumn column = tbKamar.getColumnModel().getColumn(i);
             if(i==0){
-                column.setPreferredWidth(60);
+                column.setPreferredWidth(25);
             }else if(i==1){
-                column.setPreferredWidth(130);
+                column.setPreferredWidth(170);
             }else if(i==2){
-                column.setPreferredWidth(210);
-            }else if(i==3){
-                column.setPreferredWidth(360);
+                column.setPreferredWidth(450);
             }
         }
+        
         tbKamar.setDefaultRenderer(Object.class, new WarnaTable());
         pasien.addWindowListener(new WindowListener() {
             @Override
@@ -164,7 +164,7 @@ public final class BPJSCekRiwayatPeserta extends javax.swing.JDialog {
         setUndecorated(true);
         setResizable(false);
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Pencarian 10 Riwayat Peserta BPJS Terakhir Berdasarkan Nomor Kepesertaan ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(130,100,100))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Pencarian Riwayat Rujukan PCare di VClaim Berdasarkan Nomor Kepesertaan ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(130, 100, 100))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -364,7 +364,7 @@ public final class BPJSCekRiwayatPeserta extends javax.swing.JDialog {
     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> {
-            BPJSCekRiwayatPeserta dialog = new BPJSCekRiwayatPeserta(new javax.swing.JFrame(), true);
+            BPJSCekRiwayatRujukanPCare dialog = new BPJSCekRiwayatRujukanPCare(new javax.swing.JFrame(), true);
             dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                 @Override
                 public void windowClosing(java.awt.event.WindowEvent e) {
@@ -390,82 +390,136 @@ public final class BPJSCekRiwayatPeserta extends javax.swing.JDialog {
     private widget.Table tbKamar;
     // End of variables declaration//GEN-END:variables
 
-    public void tampil(String nomorpeserta) {
+    public void tampil(String nomorrujukan) {
         try {
-            String URL = prop.getProperty("URLAPIBPJS")+"/sep/peserta/"+nomorpeserta;	
+            URL = prop.getProperty("URLAPIBPJS")+"/Rujukan/Peserta/"+nomorrujukan;	
 
 	    HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_JSON);
 	    headers.add("X-Cons-ID",prop.getProperty("CONSIDAPIBPJS"));
 	    headers.add("X-Timestamp",String.valueOf(api.GetUTCdatetimeAsString()));            
 	    headers.add("X-Signature",api.getHmac());
+            
 	    HttpEntity requestEntity = new HttpEntity(headers);
 	    RestTemplate rest = new RestTemplate();	
-            
             ObjectMapper mapper = new ObjectMapper();
-            System.out.println(""+rest.exchange(URL, HttpMethod.GET, requestEntity, String.class).getBody());
             JsonNode root = mapper.readTree(rest.exchange(URL, HttpMethod.GET, requestEntity, String.class).getBody());
-            JsonNode nameNode = root.path("metadata");
-            if(nameNode.path("message").asText().equals("Peserta Tidak Ditemukan")){
-                JOptionPane.showMessageDialog(rootPane,"Peserta Tidak Ditemukan");
-                BtnKeluar.requestFocus();
-            }else if(nameNode.path("message").asText().equals("Riwayat Kunjungan Tidak Ada")){
-                JOptionPane.showMessageDialog(rootPane,"Riwayat Kunjungan Tidak Ada");
-                BtnKeluar.requestFocus();
-            }else if(nameNode.path("message").asText().equals("OK")){
+            JsonNode nameNode = root.path("metaData");
+            if(nameNode.path("code").asText().equals("200")){
                 Valid.tabelKosong(tabMode);
-                JsonNode response = root.path("response");
-                tabMode.addRow(new Object[]{
-                    "Count",": "+response.path("count").asText(),"",""
-                });
-                tabMode.addRow(new Object[]{
-                    "Limit",": "+response.path("limit").asText(),"",""
-                });  
-                tabMode.addRow(new Object[]{
-                    "List",":","",""
-                });
-                if(response.path("list").isArray()){
+                JsonNode response = root.path("response").path("rujukan");
+                if(response.isArray()){
                     i=1;
-                    for(JsonNode list:response.path("list")){
+                    for(JsonNode list:response){
                         tabMode.addRow(new Object[]{
-                            "",i+". Biaya Tagihan",": Rp. "+list.path("biayaTagihan").asText(),""
+                            i+".","Diagnosa",": "+list.path("diagnosa").path("kode").asText()+" "+list.path("diagnosa").path("nama").asText()
+                        });                   
+                        tabMode.addRow(new Object[]{
+                            "","Keluhan",": "+list.path("keluhan").asText()
+                        }); 
+                        tabMode.addRow(new Object[]{
+                            "","No.Kunjungan",": "+list.path("noKunjungan").asText()
+                        }); 
+                        tabMode.addRow(new Object[]{
+                            "","Pelayanan",": "+list.path("pelayanan").path("kode").asText()+" "+list.path("pelayanan").path("nama").asText()
+                        }); 
+                        tabMode.addRow(new Object[]{
+                            "","Peserta",": "
+                        }); 
+                        tabMode.addRow(new Object[]{
+                            "","       COB",": "
                         });
                         tabMode.addRow(new Object[]{
-                            "","     Diagnosa",":",""
+                            "","              Nama Asuransi",": "+list.path("peserta").path("cob").path("nmAsuransi").asText()
+                        }); 
+                        tabMode.addRow(new Object[]{
+                            "","              No. Asuransi",": "+list.path("peserta").path("cob").path("noAsuransi").asText()
+                        }); 
+                        tabMode.addRow(new Object[]{
+                            "","              Tanggal TAT",": "+list.path("peserta").path("cob").path("tglTAT").asText()
+                        }); 
+                        tabMode.addRow(new Object[]{
+                            "","              Tanggal TMT",": "+list.path("peserta").path("cob").path("tglTMT").asText()
+                        }); 
+                        tabMode.addRow(new Object[]{
+                            "","       Hak Kelas",": "+list.path("peserta").path("hakKelas").path("kode").asText()+". "+list.path("peserta").path("hakKelas").path("keterangan").asText()
                         });
                         tabMode.addRow(new Object[]{
-                            "","","  Kode Diagnosa",": "+list.path("diagnosa").path("kodeDiagnosa").asText()
+                            "","       Informasi",": "
                         });
                         tabMode.addRow(new Object[]{
-                            "","","  Nama Diagnosa",": "+list.path("diagnosa").path("namaDiagnosa").asText()
+                            "","              Dinsos",": "+list.path("peserta").path("informasi").path("dinsos").asText()
+                        }); 
+                        tabMode.addRow(new Object[]{
+                            "","              No.SKTM",": "+list.path("peserta").path("informasi").path("noSKTM").asText()
+                        }); 
+                        tabMode.addRow(new Object[]{
+                            "","              Prolanis PRB",": "+list.path("peserta").path("informasi").path("prolanisPRB").asText()
+                        }); 
+                        tabMode.addRow(new Object[]{
+                            "","       Jenis Peserta",": "+list.path("peserta").path("jenisPeserta").path("kode").asText()+". "+list.path("peserta").path("jenisPeserta").path("keterangan").asText()
                         });
                         tabMode.addRow(new Object[]{
-                            "","     Jenis Pelayanan",": "+list.path("jnsPelayanan").asText(),""
+                            "","       Medical Record",": "
                         });
                         tabMode.addRow(new Object[]{
-                            "","     Nomor SEP",": "+list.path("noSEP").asText(),""
+                            "","              Nomor RM",": "+list.path("peserta").path("mr").path("noMR").asText()
+                        }); 
+                        tabMode.addRow(new Object[]{
+                            "","              Nomor Telp",": "+list.path("peserta").path("mr").path("noTelepon").asText()
                         });
                         tabMode.addRow(new Object[]{
-                            "","     Poli Tujuan",":",""
+                            "","       Nama Pasien",": "+list.path("peserta").path("nama").asText()
                         });
                         tabMode.addRow(new Object[]{
-                            "","","  Kode Poli",": "+list.path("poliTujuan").path("kdPoli").asText()
+                            "","       NIK",": "+list.path("peserta").path("nik").asText()
                         });
                         tabMode.addRow(new Object[]{
-                            "","","  Nama Poli",": "+list.path("poliTujuan").path("nmPoli").asText()
+                            "","       No.Kartu",": "+list.path("peserta").path("noKartu").asText()
                         });
                         tabMode.addRow(new Object[]{
-                            "","     Tanggal Pulang",": "+list.path("tglPulang").asText(),""
+                            "","       Pisa",": "+list.path("peserta").path("pisa").asText()
                         });
                         tabMode.addRow(new Object[]{
-                            "","     Tanggal SEP",": "+list.path("tglSEP").asText(),""
+                            "","       Provider",": "+list.path("peserta").path("provUmum").path("kdProvider").asText()+" "+list.path("peserta").path("provUmum").path("nmProvider").asText()
                         });
+                        tabMode.addRow(new Object[]{
+                            "","       Jenis Kelamin",": "+list.path("peserta").path("sex").asText().replaceAll("L","Laki-Laki").replaceAll("P","Perempuan")
+                        });
+                        tabMode.addRow(new Object[]{
+                            "","       Status Peserta",": "+list.path("peserta").path("statusPeserta").path("kode").asText()+" "+list.path("peserta").path("statusPeserta").path("keterangan").asText()
+                        });
+                        tabMode.addRow(new Object[]{
+                            "","       Tgl. Cetak Kartu",": "+list.path("peserta").path("tglCetakKartu").asText()
+                        });
+                        tabMode.addRow(new Object[]{
+                            "","       Tgl. Lahir",": "+list.path("peserta").path("tglLahir").asText()
+                        });
+                        tabMode.addRow(new Object[]{
+                            "","       Tgl. TAT",": "+list.path("peserta").path("tglTAT").asText()
+                        });
+                        tabMode.addRow(new Object[]{
+                            "","       Tgl. TMT",": "+list.path("peserta").path("tglTMT").asText()
+                        });
+                        tabMode.addRow(new Object[]{
+                            "","       Umur Saat Pelayanan",": "+list.path("peserta").path("umur").path("umurSaatPelayanan").asText()
+                        });
+                        tabMode.addRow(new Object[]{
+                            "","       Umur Sekarang",": "+list.path("peserta").path("umur").path("umurSekarang").asText()
+                        });
+                        tabMode.addRow(new Object[]{
+                            "","Poli Rujukan",": "+list.path("poliRujukan").path("kode").asText()+" "+list.path("poliRujukan").path("nama").asText()
+                        }); 
+                        tabMode.addRow(new Object[]{
+                            "","Provider Perujuk",": "+list.path("provPerujuk").path("kode").asText()+" "+list.path("provPerujuk").path("nama").asText()
+                        });
+                        tabMode.addRow(new Object[]{
+                            "","Tanggal Kunjungan",": "+list.path("tglKunjungan").asText()
+                        });  
                         i++;
                     }
                 }
-                tabMode.addRow(new Object[]{
-                    "Start",": "+response.path("start").asText(),"",""
-                });
+                                       
             }else {
                 JOptionPane.showMessageDialog(null,nameNode.path("message").asText());                
             }   
@@ -475,6 +529,6 @@ public final class BPJSCekRiwayatPeserta extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(rootPane,"Koneksi ke server BPJS terputus...!");
             }
         }
-    }    
+    }   
  
 }
