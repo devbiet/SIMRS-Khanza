@@ -41,7 +41,7 @@
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="11" isBold="false"/>
 				</textElement>
-				<text><![CDATA[ REKAP DATA PEMBERIAN OBAT RESEP]]></text>
+				<text><![CDATA[ REKAP DATA RESEP]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="2" y="0" width="553" height="17"/>
@@ -96,14 +96,14 @@
 				<text><![CDATA[ No.Resep]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="58" y="0" width="130" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
+				<reportElement mode="Opaque" x="58" y="0" width="91" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
 				<textElement verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8" isBold="false"/>
 				</textElement>
 				<text><![CDATA[Tgl.Resep]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="188" y="0" width="212" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
+				<reportElement mode="Opaque" x="149" y="0" width="251" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
 				<textElement verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8" isBold="false"/>
 				</textElement>
@@ -140,14 +140,14 @@
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{temp1}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="58" y="0" width="130" height="10"/>
+				<reportElement x="58" y="0" width="91" height="10"/>
 				<textElement lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{temp2}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="188" y="0" width="212" height="10"/>
+				<reportElement x="149" y="0" width="251" height="10"/>
 				<textElement lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
