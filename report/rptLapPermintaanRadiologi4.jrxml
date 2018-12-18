@@ -126,7 +126,7 @@
 				<textElement verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
-				<text><![CDATA[Poli Registrasi]]></text>
+				<text><![CDATA[Kamar Terakhir]]></text>
 			</staticText>
 			<staticText>
 				<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="310" y="0" width="210" height="18" forecolor="#000000" backcolor="#F0F0DC"/>
