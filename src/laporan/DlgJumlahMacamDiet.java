@@ -37,7 +37,7 @@ import javax.swing.table.TableColumn;
  *
  * @author dosen
  */
-public class DlgJumlahPorsiDiet extends javax.swing.JDialog {
+public class DlgJumlahMacamDiet extends javax.swing.JDialog {
     private DefaultTableModel tabMode;
     private Connection koneksi=koneksiDB.condb();
     private sekuel Sequel=new sekuel();
@@ -56,7 +56,7 @@ public class DlgJumlahPorsiDiet extends javax.swing.JDialog {
     /** Creates new form DlgJadwal
      * @param parent
      * @param modal */
-    public DlgJumlahPorsiDiet(java.awt.Frame parent, boolean modal) {
+    public DlgJumlahMacamDiet(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
 
@@ -94,7 +94,7 @@ public class DlgJumlahPorsiDiet extends javax.swing.JDialog {
         setUndecorated(true);
         setResizable(false);
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Rekap Jumlah Porsi Diet Yang Dilayani Gizi ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(70, 70, 70))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Rekap Jumlah Macam Diet Yang Dilayani Gizi ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(70, 70, 70))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -300,7 +300,7 @@ public class DlgJumlahPorsiDiet extends javax.swing.JDialog {
                 param.put("jd31","("+konversi(Integer.parseInt(ThnCari.getSelectedItem().toString()),Integer.parseInt(BlnCari.getSelectedItem().toString()),31)+")");
                 
                 this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-                Valid.MyReport("rptRekapGizi.jrxml","report","::[ Rekap Kehadiran Non Jadwal Tambahan ]::","select * from temporary_gizi",param);            
+                Valid.MyReport("rptRekapGizi2.jrxml","report","::[ Rekap Kehadiran Non Jadwal Tambahan ]::","select * from temporary_gizi",param);            
                 this.setCursor(Cursor.getDefaultCursor());                       
         }
         this.setCursor(Cursor.getDefaultCursor());
@@ -341,7 +341,7 @@ public class DlgJumlahPorsiDiet extends javax.swing.JDialog {
     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> {
-            DlgJumlahPorsiDiet dialog = new DlgJumlahPorsiDiet(new javax.swing.JFrame(), true);
+            DlgJumlahMacamDiet dialog = new DlgJumlahMacamDiet(new javax.swing.JFrame(), true);
             dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                 @Override
                 public void windowClosing(java.awt.event.WindowEvent e) {
@@ -369,7 +369,7 @@ public class DlgJumlahPorsiDiet extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     private void tampil() {        
-        Object[] row={"No.","Nama Bangsal/Kamar",
+        Object[] row={"No.","Nama/Macam Diet",
             "1("+konversi(Integer.parseInt(ThnCari.getSelectedItem().toString()),Integer.parseInt(BlnCari.getSelectedItem().toString()),1)+")",
             "2("+konversi(Integer.parseInt(ThnCari.getSelectedItem().toString()),Integer.parseInt(BlnCari.getSelectedItem().toString()),2)+")",
             "3("+konversi(Integer.parseInt(ThnCari.getSelectedItem().toString()),Integer.parseInt(BlnCari.getSelectedItem().toString()),3)+")",
@@ -442,7 +442,7 @@ public class DlgJumlahPorsiDiet extends javax.swing.JDialog {
         Valid.tabelKosong(tabMode);
         try{
             ps=koneksi.prepareStatement(
-                    "select kd_bangsal,nm_bangsal from bangsal where status='1' and nm_bangsal like ? order by nm_bangsal");
+                    "select kd_diet,nama_diet from diet where nama_diet like ? order by nama_diet");
             try {
                 ps.setString(1,"%"+TCari.getText().trim()+"%");
                 rs=ps.executeQuery();
@@ -452,78 +452,76 @@ public class DlgJumlahPorsiDiet extends javax.swing.JDialog {
                 jmlh20=0;jmlh21=0;jmlh22=0;jmlh23=0;jmlh24=0;jmlh25=0;jmlh26=0;jmlh27=0;jmlh28=0;
                 jmlh29=0;jmlh30=0;jmlh31=0;
                 while(rs.next()){
-                    if((!rs.getString("nm_bangsal").toLowerCase().contains("apotek"))&&(!rs.getString("nm_bangsal").toLowerCase().contains("gudang"))&&(!rs.getString("nm_bangsal").toLowerCase().contains("depo"))&&(!rs.getString("nm_bangsal").toLowerCase().contains("farmasi"))){
-                        h1=Sequel.cariInteger("select count(detail_beri_diet.kd_kamar) from detail_beri_diet inner join kamar inner join bangsal on detail_beri_diet.kd_kamar=kamar.kd_kamar and bangsal.kd_bangsal=kamar.kd_bangsal where detail_beri_diet.tanggal=? and bangsal.kd_bangsal=?",ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"-01",rs.getString("kd_bangsal"));
-                        h2=Sequel.cariInteger("select count(detail_beri_diet.kd_kamar) from detail_beri_diet inner join kamar inner join bangsal on detail_beri_diet.kd_kamar=kamar.kd_kamar and bangsal.kd_bangsal=kamar.kd_bangsal where detail_beri_diet.tanggal=? and bangsal.kd_bangsal=?",ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"-02",rs.getString("kd_bangsal"));
-                        h3=Sequel.cariInteger("select count(detail_beri_diet.kd_kamar) from detail_beri_diet inner join kamar inner join bangsal on detail_beri_diet.kd_kamar=kamar.kd_kamar and bangsal.kd_bangsal=kamar.kd_bangsal where detail_beri_diet.tanggal=? and bangsal.kd_bangsal=?",ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"-03",rs.getString("kd_bangsal"));
-                        h4=Sequel.cariInteger("select count(detail_beri_diet.kd_kamar) from detail_beri_diet inner join kamar inner join bangsal on detail_beri_diet.kd_kamar=kamar.kd_kamar and bangsal.kd_bangsal=kamar.kd_bangsal where detail_beri_diet.tanggal=? and bangsal.kd_bangsal=?",ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"-04",rs.getString("kd_bangsal"));
-                        h5=Sequel.cariInteger("select count(detail_beri_diet.kd_kamar) from detail_beri_diet inner join kamar inner join bangsal on detail_beri_diet.kd_kamar=kamar.kd_kamar and bangsal.kd_bangsal=kamar.kd_bangsal where detail_beri_diet.tanggal=? and bangsal.kd_bangsal=?",ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"-05",rs.getString("kd_bangsal"));
-                        h6=Sequel.cariInteger("select count(detail_beri_diet.kd_kamar) from detail_beri_diet inner join kamar inner join bangsal on detail_beri_diet.kd_kamar=kamar.kd_kamar and bangsal.kd_bangsal=kamar.kd_bangsal where detail_beri_diet.tanggal=? and bangsal.kd_bangsal=?",ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"-06",rs.getString("kd_bangsal"));
-                        h7=Sequel.cariInteger("select count(detail_beri_diet.kd_kamar) from detail_beri_diet inner join kamar inner join bangsal on detail_beri_diet.kd_kamar=kamar.kd_kamar and bangsal.kd_bangsal=kamar.kd_bangsal where detail_beri_diet.tanggal=? and bangsal.kd_bangsal=?",ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"-07",rs.getString("kd_bangsal"));
-                        h8=Sequel.cariInteger("select count(detail_beri_diet.kd_kamar) from detail_beri_diet inner join kamar inner join bangsal on detail_beri_diet.kd_kamar=kamar.kd_kamar and bangsal.kd_bangsal=kamar.kd_bangsal where detail_beri_diet.tanggal=? and bangsal.kd_bangsal=?",ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"-08",rs.getString("kd_bangsal"));
-                        h9=Sequel.cariInteger("select count(detail_beri_diet.kd_kamar) from detail_beri_diet inner join kamar inner join bangsal on detail_beri_diet.kd_kamar=kamar.kd_kamar and bangsal.kd_bangsal=kamar.kd_bangsal where detail_beri_diet.tanggal=? and bangsal.kd_bangsal=?",ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"-09",rs.getString("kd_bangsal"));
-                        h10=Sequel.cariInteger("select count(detail_beri_diet.kd_kamar) from detail_beri_diet inner join kamar inner join bangsal on detail_beri_diet.kd_kamar=kamar.kd_kamar and bangsal.kd_bangsal=kamar.kd_bangsal where detail_beri_diet.tanggal=? and bangsal.kd_bangsal=?",ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"-10",rs.getString("kd_bangsal"));
-                        h11=Sequel.cariInteger("select count(detail_beri_diet.kd_kamar) from detail_beri_diet inner join kamar inner join bangsal on detail_beri_diet.kd_kamar=kamar.kd_kamar and bangsal.kd_bangsal=kamar.kd_bangsal where detail_beri_diet.tanggal=? and bangsal.kd_bangsal=?",ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"-11",rs.getString("kd_bangsal"));
-                        h12=Sequel.cariInteger("select count(detail_beri_diet.kd_kamar) from detail_beri_diet inner join kamar inner join bangsal on detail_beri_diet.kd_kamar=kamar.kd_kamar and bangsal.kd_bangsal=kamar.kd_bangsal where detail_beri_diet.tanggal=? and bangsal.kd_bangsal=?",ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"-12",rs.getString("kd_bangsal"));
-                        h13=Sequel.cariInteger("select count(detail_beri_diet.kd_kamar) from detail_beri_diet inner join kamar inner join bangsal on detail_beri_diet.kd_kamar=kamar.kd_kamar and bangsal.kd_bangsal=kamar.kd_bangsal where detail_beri_diet.tanggal=? and bangsal.kd_bangsal=?",ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"-13",rs.getString("kd_bangsal"));
-                        h14=Sequel.cariInteger("select count(detail_beri_diet.kd_kamar) from detail_beri_diet inner join kamar inner join bangsal on detail_beri_diet.kd_kamar=kamar.kd_kamar and bangsal.kd_bangsal=kamar.kd_bangsal where detail_beri_diet.tanggal=? and bangsal.kd_bangsal=?",ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"-14",rs.getString("kd_bangsal"));
-                        h15=Sequel.cariInteger("select count(detail_beri_diet.kd_kamar) from detail_beri_diet inner join kamar inner join bangsal on detail_beri_diet.kd_kamar=kamar.kd_kamar and bangsal.kd_bangsal=kamar.kd_bangsal where detail_beri_diet.tanggal=? and bangsal.kd_bangsal=?",ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"-15",rs.getString("kd_bangsal"));
-                        h16=Sequel.cariInteger("select count(detail_beri_diet.kd_kamar) from detail_beri_diet inner join kamar inner join bangsal on detail_beri_diet.kd_kamar=kamar.kd_kamar and bangsal.kd_bangsal=kamar.kd_bangsal where detail_beri_diet.tanggal=? and bangsal.kd_bangsal=?",ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"-16",rs.getString("kd_bangsal"));
-                        h17=Sequel.cariInteger("select count(detail_beri_diet.kd_kamar) from detail_beri_diet inner join kamar inner join bangsal on detail_beri_diet.kd_kamar=kamar.kd_kamar and bangsal.kd_bangsal=kamar.kd_bangsal where detail_beri_diet.tanggal=? and bangsal.kd_bangsal=?",ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"-17",rs.getString("kd_bangsal"));
-                        h18=Sequel.cariInteger("select count(detail_beri_diet.kd_kamar) from detail_beri_diet inner join kamar inner join bangsal on detail_beri_diet.kd_kamar=kamar.kd_kamar and bangsal.kd_bangsal=kamar.kd_bangsal where detail_beri_diet.tanggal=? and bangsal.kd_bangsal=?",ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"-18",rs.getString("kd_bangsal"));
-                        h19=Sequel.cariInteger("select count(detail_beri_diet.kd_kamar) from detail_beri_diet inner join kamar inner join bangsal on detail_beri_diet.kd_kamar=kamar.kd_kamar and bangsal.kd_bangsal=kamar.kd_bangsal where detail_beri_diet.tanggal=? and bangsal.kd_bangsal=?",ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"-19",rs.getString("kd_bangsal"));
-                        h20=Sequel.cariInteger("select count(detail_beri_diet.kd_kamar) from detail_beri_diet inner join kamar inner join bangsal on detail_beri_diet.kd_kamar=kamar.kd_kamar and bangsal.kd_bangsal=kamar.kd_bangsal where detail_beri_diet.tanggal=? and bangsal.kd_bangsal=?",ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"-20",rs.getString("kd_bangsal"));
-                        h21=Sequel.cariInteger("select count(detail_beri_diet.kd_kamar) from detail_beri_diet inner join kamar inner join bangsal on detail_beri_diet.kd_kamar=kamar.kd_kamar and bangsal.kd_bangsal=kamar.kd_bangsal where detail_beri_diet.tanggal=? and bangsal.kd_bangsal=?",ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"-21",rs.getString("kd_bangsal"));
-                        h22=Sequel.cariInteger("select count(detail_beri_diet.kd_kamar) from detail_beri_diet inner join kamar inner join bangsal on detail_beri_diet.kd_kamar=kamar.kd_kamar and bangsal.kd_bangsal=kamar.kd_bangsal where detail_beri_diet.tanggal=? and bangsal.kd_bangsal=?",ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"-22",rs.getString("kd_bangsal"));
-                        h23=Sequel.cariInteger("select count(detail_beri_diet.kd_kamar) from detail_beri_diet inner join kamar inner join bangsal on detail_beri_diet.kd_kamar=kamar.kd_kamar and bangsal.kd_bangsal=kamar.kd_bangsal where detail_beri_diet.tanggal=? and bangsal.kd_bangsal=?",ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"-23",rs.getString("kd_bangsal"));
-                        h24=Sequel.cariInteger("select count(detail_beri_diet.kd_kamar) from detail_beri_diet inner join kamar inner join bangsal on detail_beri_diet.kd_kamar=kamar.kd_kamar and bangsal.kd_bangsal=kamar.kd_bangsal where detail_beri_diet.tanggal=? and bangsal.kd_bangsal=?",ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"-24",rs.getString("kd_bangsal"));
-                        h25=Sequel.cariInteger("select count(detail_beri_diet.kd_kamar) from detail_beri_diet inner join kamar inner join bangsal on detail_beri_diet.kd_kamar=kamar.kd_kamar and bangsal.kd_bangsal=kamar.kd_bangsal where detail_beri_diet.tanggal=? and bangsal.kd_bangsal=?",ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"-25",rs.getString("kd_bangsal"));
-                        h26=Sequel.cariInteger("select count(detail_beri_diet.kd_kamar) from detail_beri_diet inner join kamar inner join bangsal on detail_beri_diet.kd_kamar=kamar.kd_kamar and bangsal.kd_bangsal=kamar.kd_bangsal where detail_beri_diet.tanggal=? and bangsal.kd_bangsal=?",ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"-26",rs.getString("kd_bangsal"));
-                        h27=Sequel.cariInteger("select count(detail_beri_diet.kd_kamar) from detail_beri_diet inner join kamar inner join bangsal on detail_beri_diet.kd_kamar=kamar.kd_kamar and bangsal.kd_bangsal=kamar.kd_bangsal where detail_beri_diet.tanggal=? and bangsal.kd_bangsal=?",ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"-27",rs.getString("kd_bangsal"));
-                        h28=Sequel.cariInteger("select count(detail_beri_diet.kd_kamar) from detail_beri_diet inner join kamar inner join bangsal on detail_beri_diet.kd_kamar=kamar.kd_kamar and bangsal.kd_bangsal=kamar.kd_bangsal where detail_beri_diet.tanggal=? and bangsal.kd_bangsal=?",ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"-28",rs.getString("kd_bangsal"));
-                        h29=Sequel.cariInteger("select count(detail_beri_diet.kd_kamar) from detail_beri_diet inner join kamar inner join bangsal on detail_beri_diet.kd_kamar=kamar.kd_kamar and bangsal.kd_bangsal=kamar.kd_bangsal where detail_beri_diet.tanggal=? and bangsal.kd_bangsal=?",ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"-29",rs.getString("kd_bangsal"));
-                        h30=Sequel.cariInteger("select count(detail_beri_diet.kd_kamar) from detail_beri_diet inner join kamar inner join bangsal on detail_beri_diet.kd_kamar=kamar.kd_kamar and bangsal.kd_bangsal=kamar.kd_bangsal where detail_beri_diet.tanggal=? and bangsal.kd_bangsal=?",ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"-30",rs.getString("kd_bangsal"));
-                        h31=Sequel.cariInteger("select count(detail_beri_diet.kd_kamar) from detail_beri_diet inner join kamar inner join bangsal on detail_beri_diet.kd_kamar=kamar.kd_kamar and bangsal.kd_bangsal=kamar.kd_bangsal where detail_beri_diet.tanggal=? and bangsal.kd_bangsal=?",ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"-31",rs.getString("kd_bangsal"));
-                        jmlh1=jmlh1+h1;
-                        jmlh2=jmlh2+h2;
-                        jmlh3=jmlh3+h3;
-                        jmlh4=jmlh4+h4;
-                        jmlh5=jmlh5+h5;
-                        jmlh6=jmlh6+h6;
-                        jmlh7=jmlh7+h7;
-                        jmlh8=jmlh8+h8;
-                        jmlh9=jmlh9+h9;
-                        jmlh10=jmlh10+h10;
-                        jmlh11=jmlh11+h11;
-                        jmlh12=jmlh12+h12;
-                        jmlh13=jmlh13+h13;
-                        jmlh14=jmlh14+h14;
-                        jmlh15=jmlh14+h14;
-                        jmlh16=jmlh16+h16;
-                        jmlh17=jmlh17+h17;
-                        jmlh18=jmlh18+h18;
-                        jmlh19=jmlh19+h19;
-                        jmlh20=jmlh20+h20;
-                        jmlh21=jmlh21+h21;
-                        jmlh22=jmlh22+h22;
-                        jmlh23=jmlh23+h23;
-                        jmlh24=jmlh24+h24;
-                        jmlh25=jmlh25+h25;
-                        jmlh26=jmlh26+h26;
-                        jmlh27=jmlh27+h27;
-                        jmlh28=jmlh28+h28;
-                        jmlh29=jmlh28+h28;
-                        jmlh30=jmlh30+h30;
-                        jmlh31=jmlh31+h31;    
-                        tabMode.addRow(new String[]{                        
-                            i+"",rs.getString("nm_bangsal"),h1+"",h2+"",h3+"",h4+"",h5+"",h6+"",h7+"",h8+"",h9+"",h10+"",
-                            h11+"",h12+"",h13+"",h14+"",h15+"",h16+"",h17+"",h18+"",h19+"",h20+"",
-                            h21+"",h22+"",h23+"",h24+"",h25+"",h26+"",h27+"",h28+"",h29+"",h30+"",h31+"",
-                            (h1+h2+h3+h4+h5+h6+h7+h8+h9+h10+h11+h12+h13+h14+h15+h16+h17+h18+h19+h20+
-                            h21+h22+h23+h24+h25+h26+h27+h28+h29+h30+h31)+""
-                        });
-                        i++;
-                    }                        
+                    h1=Sequel.cariInteger("select count(detail_beri_diet.kd_diet) from detail_beri_diet inner join diet on detail_beri_diet.kd_diet=diet.kd_diet where detail_beri_diet.tanggal=? and diet.kd_diet=?",ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"-01",rs.getString("kd_diet"));
+                    h2=Sequel.cariInteger("select count(detail_beri_diet.kd_diet) from detail_beri_diet inner join diet on detail_beri_diet.kd_diet=diet.kd_diet where detail_beri_diet.tanggal=? and diet.kd_diet=?",ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"-02",rs.getString("kd_diet"));
+                    h3=Sequel.cariInteger("select count(detail_beri_diet.kd_diet) from detail_beri_diet inner join diet on detail_beri_diet.kd_diet=diet.kd_diet where detail_beri_diet.tanggal=? and diet.kd_diet=?",ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"-03",rs.getString("kd_diet"));
+                    h4=Sequel.cariInteger("select count(detail_beri_diet.kd_diet) from detail_beri_diet inner join diet on detail_beri_diet.kd_diet=diet.kd_diet where detail_beri_diet.tanggal=? and diet.kd_diet=?",ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"-04",rs.getString("kd_diet"));
+                    h5=Sequel.cariInteger("select count(detail_beri_diet.kd_diet) from detail_beri_diet inner join diet on detail_beri_diet.kd_diet=diet.kd_diet where detail_beri_diet.tanggal=? and diet.kd_diet=?",ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"-05",rs.getString("kd_diet"));
+                    h6=Sequel.cariInteger("select count(detail_beri_diet.kd_diet) from detail_beri_diet inner join diet on detail_beri_diet.kd_diet=diet.kd_diet where detail_beri_diet.tanggal=? and diet.kd_diet=?",ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"-06",rs.getString("kd_diet"));
+                    h7=Sequel.cariInteger("select count(detail_beri_diet.kd_diet) from detail_beri_diet inner join diet on detail_beri_diet.kd_diet=diet.kd_diet where detail_beri_diet.tanggal=? and diet.kd_diet=?",ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"-07",rs.getString("kd_diet"));
+                    h8=Sequel.cariInteger("select count(detail_beri_diet.kd_diet) from detail_beri_diet inner join diet on detail_beri_diet.kd_diet=diet.kd_diet where detail_beri_diet.tanggal=? and diet.kd_diet=?",ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"-08",rs.getString("kd_diet"));
+                    h9=Sequel.cariInteger("select count(detail_beri_diet.kd_diet) from detail_beri_diet inner join diet on detail_beri_diet.kd_diet=diet.kd_diet where detail_beri_diet.tanggal=? and diet.kd_diet=?",ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"-09",rs.getString("kd_diet"));
+                    h10=Sequel.cariInteger("select count(detail_beri_diet.kd_diet) from detail_beri_diet inner join diet on detail_beri_diet.kd_diet=diet.kd_diet where detail_beri_diet.tanggal=? and diet.kd_diet=?",ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"-10",rs.getString("kd_diet"));
+                    h11=Sequel.cariInteger("select count(detail_beri_diet.kd_diet) from detail_beri_diet inner join diet on detail_beri_diet.kd_diet=diet.kd_diet where detail_beri_diet.tanggal=? and diet.kd_diet=?",ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"-11",rs.getString("kd_diet"));
+                    h12=Sequel.cariInteger("select count(detail_beri_diet.kd_diet) from detail_beri_diet inner join diet on detail_beri_diet.kd_diet=diet.kd_diet where detail_beri_diet.tanggal=? and diet.kd_diet=?",ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"-12",rs.getString("kd_diet"));
+                    h13=Sequel.cariInteger("select count(detail_beri_diet.kd_diet) from detail_beri_diet inner join diet on detail_beri_diet.kd_diet=diet.kd_diet where detail_beri_diet.tanggal=? and diet.kd_diet=?",ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"-13",rs.getString("kd_diet"));
+                    h14=Sequel.cariInteger("select count(detail_beri_diet.kd_diet) from detail_beri_diet inner join diet on detail_beri_diet.kd_diet=diet.kd_diet where detail_beri_diet.tanggal=? and diet.kd_diet=?",ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"-14",rs.getString("kd_diet"));
+                    h15=Sequel.cariInteger("select count(detail_beri_diet.kd_diet) from detail_beri_diet inner join diet on detail_beri_diet.kd_diet=diet.kd_diet where detail_beri_diet.tanggal=? and diet.kd_diet=?",ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"-15",rs.getString("kd_diet"));
+                    h16=Sequel.cariInteger("select count(detail_beri_diet.kd_diet) from detail_beri_diet inner join diet on detail_beri_diet.kd_diet=diet.kd_diet where detail_beri_diet.tanggal=? and diet.kd_diet=?",ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"-16",rs.getString("kd_diet"));
+                    h17=Sequel.cariInteger("select count(detail_beri_diet.kd_diet) from detail_beri_diet inner join diet on detail_beri_diet.kd_diet=diet.kd_diet where detail_beri_diet.tanggal=? and diet.kd_diet=?",ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"-17",rs.getString("kd_diet"));
+                    h18=Sequel.cariInteger("select count(detail_beri_diet.kd_diet) from detail_beri_diet inner join diet on detail_beri_diet.kd_diet=diet.kd_diet where detail_beri_diet.tanggal=? and diet.kd_diet=?",ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"-18",rs.getString("kd_diet"));
+                    h19=Sequel.cariInteger("select count(detail_beri_diet.kd_diet) from detail_beri_diet inner join diet on detail_beri_diet.kd_diet=diet.kd_diet where detail_beri_diet.tanggal=? and diet.kd_diet=?",ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"-19",rs.getString("kd_diet"));
+                    h20=Sequel.cariInteger("select count(detail_beri_diet.kd_diet) from detail_beri_diet inner join diet on detail_beri_diet.kd_diet=diet.kd_diet where detail_beri_diet.tanggal=? and diet.kd_diet=?",ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"-20",rs.getString("kd_diet"));
+                    h21=Sequel.cariInteger("select count(detail_beri_diet.kd_diet) from detail_beri_diet inner join diet on detail_beri_diet.kd_diet=diet.kd_diet where detail_beri_diet.tanggal=? and diet.kd_diet=?",ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"-21",rs.getString("kd_diet"));
+                    h22=Sequel.cariInteger("select count(detail_beri_diet.kd_diet) from detail_beri_diet inner join diet on detail_beri_diet.kd_diet=diet.kd_diet where detail_beri_diet.tanggal=? and diet.kd_diet=?",ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"-22",rs.getString("kd_diet"));
+                    h23=Sequel.cariInteger("select count(detail_beri_diet.kd_diet) from detail_beri_diet inner join diet on detail_beri_diet.kd_diet=diet.kd_diet where detail_beri_diet.tanggal=? and diet.kd_diet=?",ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"-23",rs.getString("kd_diet"));
+                    h24=Sequel.cariInteger("select count(detail_beri_diet.kd_diet) from detail_beri_diet inner join diet on detail_beri_diet.kd_diet=diet.kd_diet where detail_beri_diet.tanggal=? and diet.kd_diet=?",ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"-24",rs.getString("kd_diet"));
+                    h25=Sequel.cariInteger("select count(detail_beri_diet.kd_diet) from detail_beri_diet inner join diet on detail_beri_diet.kd_diet=diet.kd_diet where detail_beri_diet.tanggal=? and diet.kd_diet=?",ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"-25",rs.getString("kd_diet"));
+                    h26=Sequel.cariInteger("select count(detail_beri_diet.kd_diet) from detail_beri_diet inner join diet on detail_beri_diet.kd_diet=diet.kd_diet where detail_beri_diet.tanggal=? and diet.kd_diet=?",ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"-26",rs.getString("kd_diet"));
+                    h27=Sequel.cariInteger("select count(detail_beri_diet.kd_diet) from detail_beri_diet inner join diet on detail_beri_diet.kd_diet=diet.kd_diet where detail_beri_diet.tanggal=? and diet.kd_diet=?",ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"-27",rs.getString("kd_diet"));
+                    h28=Sequel.cariInteger("select count(detail_beri_diet.kd_diet) from detail_beri_diet inner join diet on detail_beri_diet.kd_diet=diet.kd_diet where detail_beri_diet.tanggal=? and diet.kd_diet=?",ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"-28",rs.getString("kd_diet"));
+                    h29=Sequel.cariInteger("select count(detail_beri_diet.kd_diet) from detail_beri_diet inner join diet on detail_beri_diet.kd_diet=diet.kd_diet where detail_beri_diet.tanggal=? and diet.kd_diet=?",ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"-29",rs.getString("kd_diet"));
+                    h30=Sequel.cariInteger("select count(detail_beri_diet.kd_diet) from detail_beri_diet inner join diet on detail_beri_diet.kd_diet=diet.kd_diet where detail_beri_diet.tanggal=? and diet.kd_diet=?",ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"-30",rs.getString("kd_diet"));
+                    h31=Sequel.cariInteger("select count(detail_beri_diet.kd_diet) from detail_beri_diet inner join diet on detail_beri_diet.kd_diet=diet.kd_diet where detail_beri_diet.tanggal=? and diet.kd_diet=?",ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"-31",rs.getString("kd_diet"));
+                    jmlh1=jmlh1+h1;
+                    jmlh2=jmlh2+h2;
+                    jmlh3=jmlh3+h3;
+                    jmlh4=jmlh4+h4;
+                    jmlh5=jmlh5+h5;
+                    jmlh6=jmlh6+h6;
+                    jmlh7=jmlh7+h7;
+                    jmlh8=jmlh8+h8;
+                    jmlh9=jmlh9+h9;
+                    jmlh10=jmlh10+h10;
+                    jmlh11=jmlh11+h11;
+                    jmlh12=jmlh12+h12;
+                    jmlh13=jmlh13+h13;
+                    jmlh14=jmlh14+h14;
+                    jmlh15=jmlh14+h14;
+                    jmlh16=jmlh16+h16;
+                    jmlh17=jmlh17+h17;
+                    jmlh18=jmlh18+h18;
+                    jmlh19=jmlh19+h19;
+                    jmlh20=jmlh20+h20;
+                    jmlh21=jmlh21+h21;
+                    jmlh22=jmlh22+h22;
+                    jmlh23=jmlh23+h23;
+                    jmlh24=jmlh24+h24;
+                    jmlh25=jmlh25+h25;
+                    jmlh26=jmlh26+h26;
+                    jmlh27=jmlh27+h27;
+                    jmlh28=jmlh28+h28;
+                    jmlh29=jmlh28+h28;
+                    jmlh30=jmlh30+h30;
+                    jmlh31=jmlh31+h31;    
+                    tabMode.addRow(new String[]{                        
+                        i+"",rs.getString("nama_diet"),h1+"",h2+"",h3+"",h4+"",h5+"",h6+"",h7+"",h8+"",h9+"",h10+"",
+                        h11+"",h12+"",h13+"",h14+"",h15+"",h16+"",h17+"",h18+"",h19+"",h20+"",
+                        h21+"",h22+"",h23+"",h24+"",h25+"",h26+"",h27+"",h28+"",h29+"",h30+"",h31+"",
+                        (h1+h2+h3+h4+h5+h6+h7+h8+h9+h10+h11+h12+h13+h14+h15+h16+h17+h18+h19+h20+
+                        h21+h22+h23+h24+h25+h26+h27+h28+h29+h30+h31)+""
+                    });
+                    i++;                 
                 }
                 if(i>1){
                     tabMode.addRow(new String[]{
@@ -555,7 +553,7 @@ public class DlgJumlahPorsiDiet extends javax.swing.JDialog {
         try {
             date = new SimpleDateFormat("yyyy-M-d").parse(dateString);
         } catch (Exception ex) {
-            Logger.getLogger(DlgJumlahPorsiDiet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DlgJumlahMacamDiet.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         // Then get the day of week from the Date based on specific locale.
