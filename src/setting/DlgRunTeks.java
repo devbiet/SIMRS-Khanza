@@ -9,14 +9,13 @@
  * Created on 21 Jun 10, 20:53:44
  */
 
-package simrskhanza;
+package setting;
 
 import fungsi.batasInput;
 import fungsi.koneksiDB;
 import fungsi.sekuel;
 import fungsi.validasi;
 import fungsi.WarnaTable;
-import fungsi.*;
 import java.awt.Canvas;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -43,22 +42,18 @@ import javax.swing.table.TableColumn;
  * @author perpustakaan
  */
 public class DlgRunTeks extends javax.swing.JDialog {
-    private DefaultTableModel tabMode;
+    private DefaultTableModel tabMode,tabmode2;
     private Connection koneksi=koneksiDB.condb();
     private sekuel Sequel=new sekuel();
     private validasi Valid=new validasi();
 
-    /** Creates new form DlgAdmin */
+    /** Creates new form DlgAdmin
+     * @param parent */
     public DlgRunTeks(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        this.setLocation(10,10);
-        setSize(457,249);
 
-        Object[] row={"Teks Berjalan",
-                      "Aktifkan?",
-                      "Wallpaper"};
-        tabMode=new DefaultTableModel(null,row){
+        tabMode=new DefaultTableModel(null,new Object[]{"Teks Berjalan","Aktifkan?","Wallpaper"}){
               @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
 
@@ -128,7 +123,7 @@ public class DlgRunTeks extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(215, 225, 215)), "::[ Set Display ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 70, 50))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(215, 225, 215)), "::[ Set Display Antrian Registrasi & Poli ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 70, 50))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
