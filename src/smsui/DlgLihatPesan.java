@@ -9,7 +9,7 @@
  * Created on Aug 6, 2010, 6:54:00 PM
  */
 
-package simrskhanza;
+package smsui;
 
 import fungsi.koneksiDB;
 import fungsi.sekuel;
