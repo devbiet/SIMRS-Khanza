@@ -33,7 +33,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder title="::[ Grafik Kunjungan Registrasi Per Agama ]::">
+            <TitledBorder title="::[ Grafik Periode Laporan TB ]::">
               <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                 <LineBorder>
                   <Color PropertyName="color" blue="eb" green="f5" red="f0" type="rgb"/>
@@ -91,10 +91,10 @@
           <SubComponents>
             <Component class="widget.Label" name="jLabel33">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Periode Kunjungan :"/>
+                <Property name="text" type="java.lang.String" value="Tanggal :"/>
                 <Property name="name" type="java.lang.String" value="jLabel33" noResource="true"/>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[105, 23]"/>
+                  <Dimension value="[55, 23]"/>
                 </Property>
               </Properties>
             </Component>

@@ -12,7 +12,6 @@
 package grafikanalisa;
 
 import fungsi.koneksiDB;
-import fungsi.sekuel;
 import fungsi.validasi;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -28,7 +27,7 @@ import org.jfree.data.general.DefaultPieDataset;
  *
  * @author dosen
  */
-public class GrafikStatusRegPerBulan2 extends javax.swing.JDialog {
+public class GrafikTBPeriodeLaporan extends javax.swing.JDialog {
     private final Connection koneksi=koneksiDB.condb();
     private final validasi Valid=new validasi();
     private ResultSet rs;
@@ -36,7 +35,7 @@ public class GrafikStatusRegPerBulan2 extends javax.swing.JDialog {
     /** Creates new form DlgSpesialis
      * @param parent
      * @param modal */
-    public GrafikStatusRegPerBulan2(java.awt.Frame parent, boolean modal) {
+    public GrafikTBPeriodeLaporan(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
 
@@ -77,7 +76,7 @@ public class GrafikStatusRegPerBulan2 extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Grafik Status Kunjungan Registrasi Baru Per Bulan ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(70, 70, 70))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Grafik Periode Laporan TB ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(70, 70, 70))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -89,9 +88,9 @@ public class GrafikStatusRegPerBulan2 extends javax.swing.JDialog {
         panelGlass5.setPreferredSize(new java.awt.Dimension(55, 55));
         panelGlass5.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
 
-        jLabel33.setText("Periode Kunjungan :");
+        jLabel33.setText("Tanggal :");
         jLabel33.setName("jLabel33"); // NOI18N
-        jLabel33.setPreferredSize(new java.awt.Dimension(105, 23));
+        jLabel33.setPreferredSize(new java.awt.Dimension(55, 23));
         panelGlass5.add(jLabel33);
 
         Tanggal1.setForeground(new java.awt.Color(50, 70, 50));
@@ -211,8 +210,8 @@ public class GrafikStatusRegPerBulan2 extends javax.swing.JDialog {
     private void BtnPrint3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPrint3ActionPerformed
         DefaultCategoryDataset dcd = new DefaultCategoryDataset();
         try {                
-            rs = koneksi.prepareStatement("select DATE_FORMAT(reg_periksa.tgl_registrasi, '%y-%m'),count(DATE_FORMAT(reg_periksa.tgl_registrasi, '%y-%m')) as jumlah "+
-                "from reg_periksa where reg_periksa.stts_daftar='Baru' and tgl_registrasi between '"+Valid.SetTgl(Tanggal1.getSelectedItem()+"")+"' and '"+Valid.SetTgl(Tanggal2.getSelectedItem()+"")+"' group by DATE_FORMAT(reg_periksa.tgl_registrasi, '%y-%m')").executeQuery();
+            rs = koneksi.prepareStatement("select id_periode_laporan,count(id_periode_laporan) as jumlah "+
+                "from data_tb where tanggal_buat_laporan between '"+Valid.SetTgl(Tanggal1.getSelectedItem()+"")+" 00:00:00' and '"+Valid.SetTgl(Tanggal2.getSelectedItem()+"")+" 23:59:59' group by id_periode_laporan").executeQuery();
             while(rs.next()) {
                 dcd.setValue(rs.getDouble(2),rs.getString(1)+"("+rs.getString(2)+")",rs.getString(1));
             }
@@ -223,8 +222,8 @@ public class GrafikStatusRegPerBulan2 extends javax.swing.JDialog {
         } catch (Exception e) {
             System.out.println("Notifikasi : " + e);
         }
-        JFreeChart freeChart = ChartFactory.createBarChart("Grafik Kunjungan Pasien Baru Per Bulan Tanggal "+Valid.SetTgl(Tanggal1.getSelectedItem()+"")+" S.D. "+Valid.SetTgl(Tanggal2.getSelectedItem()+""),"Bulan","Jumlah Pasien", dcd, PlotOrientation.VERTICAL,true, true,true); 
-        ChartFrame cf = new ChartFrame("Grafik Kunjungan Pasien Baru Per Bulan",freeChart);
+        JFreeChart freeChart = ChartFactory.createBarChart("Grafik Periode Laporan TB Tanggal "+Valid.SetTgl(Tanggal1.getSelectedItem()+"")+" S.D. "+Valid.SetTgl(Tanggal2.getSelectedItem()+""),"Periode Laporan","Jumlah Pasien", dcd, PlotOrientation.VERTICAL,true, true,true); 
+        ChartFrame cf = new ChartFrame("Grafik Periode Laporan TB",freeChart);
         cf.setSize(panelBiasa3.getWidth(),panelBiasa3.getHeight());   
         cf.setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
         cf.setLocationRelativeTo(panelBiasa3);
@@ -246,10 +245,10 @@ public class GrafikStatusRegPerBulan2 extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnKeluar3KeyPressed
 
     private void BtnPrint4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPrint4ActionPerformed
-       grafiksql2 kas=new grafiksql2("Grafik Kunjungan Pasien Baru Per Bulan Tanggal "+Valid.SetTgl(Tanggal1.getSelectedItem()+"")+" S.D. "+Valid.SetTgl(Tanggal2.getSelectedItem()+""),
-               "select DATE_FORMAT(reg_periksa.tgl_registrasi, '%y-%m'),count(DATE_FORMAT(reg_periksa.tgl_registrasi, '%y-%m')) as jumlah from reg_periksa "+
-               "where reg_periksa.stts_daftar='Baru' and tgl_registrasi between '"+Valid.SetTgl(Tanggal1.getSelectedItem()+"")+"' and '"+Valid.SetTgl(Tanggal2.getSelectedItem()+"")+"' "+
-               "group by DATE_FORMAT(reg_periksa.tgl_registrasi, '%y-%m')","Bulan");
+       grafiksql2 kas=new grafiksql2("Grafik Periode Laporan TB Tanggal "+Valid.SetTgl(Tanggal1.getSelectedItem()+"")+" S.D. "+Valid.SetTgl(Tanggal2.getSelectedItem()+""),
+               "select id_periode_laporan,count(id_periode_laporan) as jumlah from data_tb "+
+               "where tanggal_buat_laporan between '"+Valid.SetTgl(Tanggal1.getSelectedItem()+"")+" 00:00:00' and '"+Valid.SetTgl(Tanggal2.getSelectedItem()+"")+" 23:59:59' "+
+               "group by id_periode_laporan","Periode Laporan");
        kas.setSize(panelBiasa3.getWidth(),panelBiasa3.getHeight());  
        kas.setModal(true);
        kas.setAlwaysOnTop(true);
@@ -264,8 +263,8 @@ public class GrafikStatusRegPerBulan2 extends javax.swing.JDialog {
     private void BtnPrint5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPrint5ActionPerformed
         DefaultPieDataset dpd = new DefaultPieDataset();
         try {                
-            rs = koneksi.prepareStatement("select DATE_FORMAT(reg_periksa.tgl_registrasi, '%y-%m'),count(DATE_FORMAT(reg_periksa.tgl_registrasi, '%y-%m')) as jumlah "+
-                "from reg_periksa where reg_periksa.stts_daftar='Baru' and tgl_registrasi  between '"+Valid.SetTgl(Tanggal1.getSelectedItem()+"")+"' and '"+Valid.SetTgl(Tanggal2.getSelectedItem()+"")+"' group by DATE_FORMAT(reg_periksa.tgl_registrasi, '%y-%m')").executeQuery();
+            rs = koneksi.prepareStatement("select id_periode_laporan,count(id_periode_laporan) as jumlah "+
+                "from data_tb where tanggal_buat_laporan  between '"+Valid.SetTgl(Tanggal1.getSelectedItem()+"")+" 00:00:00' and '"+Valid.SetTgl(Tanggal2.getSelectedItem()+"")+" 23:59:59' group by id_periode_laporan").executeQuery();
             while(rs.next()) {
                 dpd.setValue(rs.getString(1)+"("+rs.getString(2)+")",rs.getDouble(2));
             }
@@ -277,8 +276,8 @@ public class GrafikStatusRegPerBulan2 extends javax.swing.JDialog {
             System.out.println("Notifikasi : " + e);
         } 
         
-        JFreeChart freeChart = ChartFactory.createPieChart("Grafik Kunjungan Pasien Baru Per Bulan Tanggal "+Valid.SetTgl(Tanggal1.getSelectedItem()+"")+" S.D. "+Valid.SetTgl(Tanggal2.getSelectedItem()+""),dpd,true,true, false); //String title,PieDatasheet datasheet,boolean legends,boolean tooltips,boolean url 
-        ChartFrame cf = new ChartFrame("Grafik Kunjungan Pasien Baru Per Bulan",freeChart);
+        JFreeChart freeChart = ChartFactory.createPieChart("Grafik Periode Laporan TB Tanggal "+Valid.SetTgl(Tanggal1.getSelectedItem()+"")+" S.D. "+Valid.SetTgl(Tanggal2.getSelectedItem()+""),dpd,true,true, false); //String title,PieDatasheet datasheet,boolean legends,boolean tooltips,boolean url 
+        ChartFrame cf = new ChartFrame("Grafik Periode Laporan TB",freeChart);
         cf.setSize(panelBiasa3.getWidth(),panelBiasa3.getHeight());   
         cf.setLocationRelativeTo(panelBiasa3);
         cf.setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
@@ -296,7 +295,7 @@ public class GrafikStatusRegPerBulan2 extends javax.swing.JDialog {
     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> {
-            GrafikStatusRegPerBulan2 dialog = new GrafikStatusRegPerBulan2(new javax.swing.JFrame(), true);
+            GrafikTBPeriodeLaporan dialog = new GrafikTBPeriodeLaporan(new javax.swing.JFrame(), true);
             dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                 @Override
                 public void windowClosing(java.awt.event.WindowEvent e) {
