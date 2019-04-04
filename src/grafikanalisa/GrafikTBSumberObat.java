@@ -27,7 +27,7 @@ import org.jfree.data.general.DefaultPieDataset;
  *
  * @author dosen
  */
-public class GrafikTBKonfirmasiSkoring5 extends javax.swing.JDialog {
+public class GrafikTBSumberObat extends javax.swing.JDialog {
     private final Connection koneksi=koneksiDB.condb();
     private final validasi Valid=new validasi();
     private ResultSet rs;
@@ -35,7 +35,7 @@ public class GrafikTBKonfirmasiSkoring5 extends javax.swing.JDialog {
     /** Creates new form DlgSpesialis
      * @param parent
      * @param modal */
-    public GrafikTBKonfirmasiSkoring5(java.awt.Frame parent, boolean modal) {
+    public GrafikTBSumberObat(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
 
@@ -76,7 +76,7 @@ public class GrafikTBKonfirmasiSkoring5 extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Grafik Konfirmasi Skoring 5 TB ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(70, 70, 70))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Grafik Sumber Obat TB ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(70, 70, 70))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -210,8 +210,8 @@ public class GrafikTBKonfirmasiSkoring5 extends javax.swing.JDialog {
     private void BtnPrint3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPrint3ActionPerformed
         DefaultCategoryDataset dcd = new DefaultCategoryDataset();
         try {                
-            rs = koneksi.prepareStatement("select konfirmasiSkoring5,count(konfirmasiSkoring5) as jumlah "+
-                "from data_tb where tanggal_buat_laporan between '"+Valid.SetTgl(Tanggal1.getSelectedItem()+"")+" 00:00:00' and '"+Valid.SetTgl(Tanggal2.getSelectedItem()+"")+" 23:59:59' group by konfirmasiSkoring5").executeQuery();
+            rs = koneksi.prepareStatement("select sumber_obat,count(sumber_obat) as jumlah "+
+                "from data_tb where tanggal_buat_laporan between '"+Valid.SetTgl(Tanggal1.getSelectedItem()+"")+" 00:00:00' and '"+Valid.SetTgl(Tanggal2.getSelectedItem()+"")+" 23:59:59' group by sumber_obat").executeQuery();
             while(rs.next()) {
                 dcd.setValue(rs.getDouble(2),rs.getString(1)+"("+rs.getString(2)+")",rs.getString(1));
             }
@@ -222,8 +222,8 @@ public class GrafikTBKonfirmasiSkoring5 extends javax.swing.JDialog {
         } catch (Exception e) {
             System.out.println("Notifikasi : " + e);
         }
-        JFreeChart freeChart = ChartFactory.createBarChart("Grafik Konfirmasi Skoring 5 TB Tanggal "+Valid.SetTgl(Tanggal1.getSelectedItem()+"")+" S.D. "+Valid.SetTgl(Tanggal2.getSelectedItem()+""),"Konfirmasi Skoring 5","Jumlah Pasien", dcd, PlotOrientation.VERTICAL,true, true,true); 
-        ChartFrame cf = new ChartFrame("Grafik Konfirmasi Skoring 5 TB",freeChart);
+        JFreeChart freeChart = ChartFactory.createBarChart("Grafik Sumber Obat TB Tanggal "+Valid.SetTgl(Tanggal1.getSelectedItem()+"")+" S.D. "+Valid.SetTgl(Tanggal2.getSelectedItem()+""),"Sumber Obat","Jumlah Pasien", dcd, PlotOrientation.VERTICAL,true, true,true); 
+        ChartFrame cf = new ChartFrame("Grafik Sumber Obat TB",freeChart);
         cf.setSize(panelBiasa3.getWidth(),panelBiasa3.getHeight());   
         cf.setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
         cf.setLocationRelativeTo(panelBiasa3);
@@ -245,10 +245,10 @@ public class GrafikTBKonfirmasiSkoring5 extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnKeluar3KeyPressed
 
     private void BtnPrint4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPrint4ActionPerformed
-       grafiksql2 kas=new grafiksql2("Grafik Konfirmasi Skoring 5 TB Tanggal "+Valid.SetTgl(Tanggal1.getSelectedItem()+"")+" S.D. "+Valid.SetTgl(Tanggal2.getSelectedItem()+""),
-               "select konfirmasiSkoring5,count(konfirmasiSkoring5) as jumlah from data_tb "+
+       grafiksql2 kas=new grafiksql2("Grafik Sumber Obat TB Tanggal "+Valid.SetTgl(Tanggal1.getSelectedItem()+"")+" S.D. "+Valid.SetTgl(Tanggal2.getSelectedItem()+""),
+               "select sumber_obat,count(sumber_obat) as jumlah from data_tb "+
                "where tanggal_buat_laporan between '"+Valid.SetTgl(Tanggal1.getSelectedItem()+"")+" 00:00:00' and '"+Valid.SetTgl(Tanggal2.getSelectedItem()+"")+" 23:59:59' "+
-               "group by konfirmasiSkoring5","Konfirmasi Skoring 5");
+               "group by sumber_obat","Sumber Obat");
        kas.setSize(panelBiasa3.getWidth(),panelBiasa3.getHeight());  
        kas.setModal(true);
        kas.setAlwaysOnTop(true);
@@ -263,8 +263,8 @@ public class GrafikTBKonfirmasiSkoring5 extends javax.swing.JDialog {
     private void BtnPrint5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPrint5ActionPerformed
         DefaultPieDataset dpd = new DefaultPieDataset();
         try {                
-            rs = koneksi.prepareStatement("select konfirmasiSkoring5,count(konfirmasiSkoring5) as jumlah "+
-                "from data_tb where tanggal_buat_laporan  between '"+Valid.SetTgl(Tanggal1.getSelectedItem()+"")+" 00:00:00' and '"+Valid.SetTgl(Tanggal2.getSelectedItem()+"")+" 23:59:59' group by konfirmasiSkoring5").executeQuery();
+            rs = koneksi.prepareStatement("select sumber_obat,count(sumber_obat) as jumlah "+
+                "from data_tb where tanggal_buat_laporan  between '"+Valid.SetTgl(Tanggal1.getSelectedItem()+"")+" 00:00:00' and '"+Valid.SetTgl(Tanggal2.getSelectedItem()+"")+" 23:59:59' group by sumber_obat").executeQuery();
             while(rs.next()) {
                 dpd.setValue(rs.getString(1)+"("+rs.getString(2)+")",rs.getDouble(2));
             }
@@ -276,8 +276,8 @@ public class GrafikTBKonfirmasiSkoring5 extends javax.swing.JDialog {
             System.out.println("Notifikasi : " + e);
         } 
         
-        JFreeChart freeChart = ChartFactory.createPieChart("Grafik Konfirmasi Skoring 5 TB Tanggal "+Valid.SetTgl(Tanggal1.getSelectedItem()+"")+" S.D. "+Valid.SetTgl(Tanggal2.getSelectedItem()+""),dpd,true,true, false); //String title,PieDatasheet datasheet,boolean legends,boolean tooltips,boolean url 
-        ChartFrame cf = new ChartFrame("Grafik Konfirmasi Skoring 5 TB",freeChart);
+        JFreeChart freeChart = ChartFactory.createPieChart("Grafik Sumber Obat TB Tanggal "+Valid.SetTgl(Tanggal1.getSelectedItem()+"")+" S.D. "+Valid.SetTgl(Tanggal2.getSelectedItem()+""),dpd,true,true, false); //String title,PieDatasheet datasheet,boolean legends,boolean tooltips,boolean url 
+        ChartFrame cf = new ChartFrame("Grafik Sumber Obat TB",freeChart);
         cf.setSize(panelBiasa3.getWidth(),panelBiasa3.getHeight());   
         cf.setLocationRelativeTo(panelBiasa3);
         cf.setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
@@ -295,7 +295,7 @@ public class GrafikTBKonfirmasiSkoring5 extends javax.swing.JDialog {
     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> {
-            GrafikTBKonfirmasiSkoring5 dialog = new GrafikTBKonfirmasiSkoring5(new javax.swing.JFrame(), true);
+            GrafikTBSumberObat dialog = new GrafikTBSumberObat(new javax.swing.JFrame(), true);
             dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                 @Override
                 public void windowClosing(java.awt.event.WindowEvent e) {
