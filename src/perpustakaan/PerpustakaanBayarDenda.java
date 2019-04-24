@@ -31,7 +31,7 @@ import javax.swing.table.TableColumn;
  *
  * @author dosen
  */
-public class PerpustakaanKategori extends javax.swing.JDialog {
+public class PerpustakaanBayarDenda extends javax.swing.JDialog {
     private final DefaultTableModel tabMode;
     private Connection koneksi=koneksiDB.condb();
     private sekuel Sequel=new sekuel();
@@ -42,12 +42,12 @@ public class PerpustakaanKategori extends javax.swing.JDialog {
     /** Creates new form DlgSpesialis
      * @param parent
      * @param modal */
-    public PerpustakaanKategori(java.awt.Frame parent, boolean modal) {
+    public PerpustakaanBayarDenda(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
 
 
-        Object[] row={"Kode Kategori","Nama Kategori"};
+        Object[] row={"Kode","Nama Pengarang/Penulis"};
         tabMode=new DefaultTableModel(null,row){
               @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
@@ -69,7 +69,7 @@ public class PerpustakaanKategori extends javax.swing.JDialog {
 
         tbSpesialis.setDefaultRenderer(Object.class, new WarnaTable());
 
-        TKd.setDocument(new batasInput((byte)5).getKata(TKd));
+        TKd.setDocument(new batasInput((byte)7).getKata(TKd));
         TNm.setDocument(new batasInput((byte)40).getKata(TNm));
         TCari.setDocument(new batasInput((byte)100).getKata(TCari));
         if(koneksiDB.cariCepat().equals("aktif")){
@@ -114,8 +114,14 @@ public class PerpustakaanKategori extends javax.swing.JDialog {
         BtnBatal = new widget.Button();
         BtnHapus = new widget.Button();
         BtnEdit = new widget.Button();
+        jLabel9 = new widget.Label();
+        LCount1 = new widget.Label();
         BtnKeluar = new widget.Button();
         panelGlass9 = new widget.panelisi();
+        jLabel8 = new widget.Label();
+        TglPinjam2 = new widget.Tanggal();
+        jLabel22 = new widget.Label();
+        TglPinjam1 = new widget.Tanggal();
         jLabel6 = new widget.Label();
         TCari = new widget.TextBox();
         BtnCari = new widget.Button();
@@ -123,10 +129,16 @@ public class PerpustakaanKategori extends javax.swing.JDialog {
         jLabel7 = new widget.Label();
         LCount = new widget.Label();
         panelGlass7 = new widget.panelisi();
-        jLabel3 = new widget.Label();
-        jLabel4 = new widget.Label();
-        TKd = new widget.TextBox();
-        TNm = new widget.TextBox();
+        LblTgl = new widget.Label();
+        tgl = new widget.Tanggal();
+        label9 = new widget.Label();
+        TNoA = new widget.TextBox();
+        TNmA = new widget.TextBox();
+        btnAng = new widget.Button();
+        label1 = new widget.Label();
+        TNoI = new widget.TextBox();
+        TJudul = new widget.TextBox();
+        btnInv = new widget.Button();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -140,7 +152,7 @@ public class PerpustakaanKategori extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Data Kategori Koleksi ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(70, 70, 70))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Bayar Denda perpustakaan ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(70, 70, 70))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -247,6 +259,17 @@ public class PerpustakaanKategori extends javax.swing.JDialog {
         });
         panelGlass8.add(BtnEdit);
 
+        jLabel9.setText("Ttl.Denda :");
+        jLabel9.setName("jLabel9"); // NOI18N
+        jLabel9.setPreferredSize(new java.awt.Dimension(65, 23));
+        panelGlass8.add(jLabel9);
+
+        LCount1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        LCount1.setText("0");
+        LCount1.setName("LCount1"); // NOI18N
+        LCount1.setPreferredSize(new java.awt.Dimension(110, 23));
+        panelGlass8.add(LCount1);
+
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
         BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
@@ -271,13 +294,48 @@ public class PerpustakaanKategori extends javax.swing.JDialog {
         panelGlass9.setPreferredSize(new java.awt.Dimension(44, 44));
         panelGlass9.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 3, 9));
 
+        jLabel8.setText("Periode :");
+        jLabel8.setName("jLabel8"); // NOI18N
+        jLabel8.setPreferredSize(new java.awt.Dimension(52, 23));
+        panelGlass9.add(jLabel8);
+
+        TglPinjam2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-04-2019" }));
+        TglPinjam2.setDisplayFormat("dd-MM-yyyy");
+        TglPinjam2.setName("TglPinjam2"); // NOI18N
+        TglPinjam2.setOpaque(false);
+        TglPinjam2.setPreferredSize(new java.awt.Dimension(90, 23));
+        TglPinjam2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TglPinjam2KeyPressed(evt);
+            }
+        });
+        panelGlass9.add(TglPinjam2);
+
+        jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel22.setText("s.d");
+        jLabel22.setName("jLabel22"); // NOI18N
+        jLabel22.setPreferredSize(new java.awt.Dimension(25, 23));
+        panelGlass9.add(jLabel22);
+
+        TglPinjam1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-04-2019" }));
+        TglPinjam1.setDisplayFormat("dd-MM-yyyy");
+        TglPinjam1.setName("TglPinjam1"); // NOI18N
+        TglPinjam1.setOpaque(false);
+        TglPinjam1.setPreferredSize(new java.awt.Dimension(90, 23));
+        TglPinjam1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TglPinjam1KeyPressed(evt);
+            }
+        });
+        panelGlass9.add(TglPinjam1);
+
         jLabel6.setText("Key Word :");
         jLabel6.setName("jLabel6"); // NOI18N
-        jLabel6.setPreferredSize(new java.awt.Dimension(70, 23));
+        jLabel6.setPreferredSize(new java.awt.Dimension(65, 23));
         panelGlass9.add(jLabel6);
 
         TCari.setName("TCari"); // NOI18N
-        TCari.setPreferredSize(new java.awt.Dimension(250, 23));
+        TCari.setPreferredSize(new java.awt.Dimension(180, 23));
         TCari.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TCariKeyPressed(evt);
@@ -326,13 +384,13 @@ public class PerpustakaanKategori extends javax.swing.JDialog {
 
         jLabel7.setText("Record :");
         jLabel7.setName("jLabel7"); // NOI18N
-        jLabel7.setPreferredSize(new java.awt.Dimension(65, 23));
+        jLabel7.setPreferredSize(new java.awt.Dimension(55, 23));
         panelGlass9.add(jLabel7);
 
         LCount.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         LCount.setText("0");
         LCount.setName("LCount"); // NOI18N
-        LCount.setPreferredSize(new java.awt.Dimension(50, 23));
+        LCount.setPreferredSize(new java.awt.Dimension(80, 23));
         panelGlass9.add(LCount);
 
         jPanel3.add(panelGlass9, java.awt.BorderLayout.PAGE_START);
@@ -340,37 +398,98 @@ public class PerpustakaanKategori extends javax.swing.JDialog {
         internalFrame1.add(jPanel3, java.awt.BorderLayout.PAGE_END);
 
         panelGlass7.setName("panelGlass7"); // NOI18N
-        panelGlass7.setPreferredSize(new java.awt.Dimension(44, 45));
+        panelGlass7.setPreferredSize(new java.awt.Dimension(44, 75));
         panelGlass7.setLayout(null);
 
-        jLabel3.setText("Kode Kategori :");
-        jLabel3.setName("jLabel3"); // NOI18N
-        panelGlass7.add(jLabel3);
-        jLabel3.setBounds(2, 10, 87, 23);
+        LblTgl.setText("Tgl.Denda :");
+        LblTgl.setName("LblTgl"); // NOI18N
+        panelGlass7.add(LblTgl);
+        LblTgl.setBounds(0, 10, 85, 23);
 
-        jLabel4.setText("Nama Kategori :");
-        jLabel4.setName("jLabel4"); // NOI18N
-        panelGlass7.add(jLabel4);
-        jLabel4.setBounds(176, 10, 100, 23);
-
-        TKd.setHighlighter(null);
-        TKd.setName("TKd"); // NOI18N
-        TKd.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                TKdKeyPressed(evt);
+        tgl.setForeground(new java.awt.Color(50, 70, 50));
+        tgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-04-2019" }));
+        tgl.setDisplayFormat("dd-MM-yyyy");
+        tgl.setName("tgl"); // NOI18N
+        tgl.setOpaque(false);
+        tgl.setPreferredSize(new java.awt.Dimension(90, 23));
+        tgl.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                tglItemStateChanged(evt);
             }
         });
-        panelGlass7.add(TKd);
-        TKd.setBounds(93, 10, 80, 23);
-
-        TNm.setName("TNm"); // NOI18N
-        TNm.addKeyListener(new java.awt.event.KeyAdapter() {
+        tgl.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                TNmKeyPressed(evt);
+                tglKeyPressed(evt);
             }
         });
-        panelGlass7.add(TNm);
-        TNm.setBounds(280, 10, 235, 23);
+        panelGlass7.add(tgl);
+        tgl.setBounds(88, 10, 90, 23);
+
+        label9.setText("Peminjam :");
+        label9.setName("label9"); // NOI18N
+        panelGlass7.add(label9);
+        label9.setBounds(191, 10, 90, 23);
+
+        TNoA.setName("TNoA"); // NOI18N
+        TNoA.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TNoAKeyPressed(evt);
+            }
+        });
+        panelGlass7.add(TNoA);
+        TNoA.setBounds(284, 10, 120, 23);
+
+        TNmA.setEditable(false);
+        TNmA.setName("TNmA"); // NOI18N
+        panelGlass7.add(TNmA);
+        TNmA.setBounds(407, 10, 260, 23);
+
+        btnAng.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        btnAng.setMnemonic('3');
+        btnAng.setToolTipText("Alt+3");
+        btnAng.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnAng.setName("btnAng"); // NOI18N
+        btnAng.setPreferredSize(new java.awt.Dimension(100, 30));
+        btnAng.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAngActionPerformed(evt);
+            }
+        });
+        panelGlass7.add(btnAng);
+        btnAng.setBounds(670, 10, 25, 23);
+
+        label1.setText("No.Inventaris :");
+        label1.setName("label1"); // NOI18N
+        panelGlass7.add(label1);
+        label1.setBounds(0, 40, 85, 23);
+
+        TNoI.setName("TNoI"); // NOI18N
+        TNoI.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TNoIKeyPressed(evt);
+            }
+        });
+        panelGlass7.add(TNoI);
+        TNoI.setBounds(88, 40, 130, 23);
+
+        TJudul.setEditable(false);
+        TJudul.setName("TJudul"); // NOI18N
+        panelGlass7.add(TJudul);
+        TJudul.setBounds(221, 40, 446, 23);
+
+        btnInv.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        btnInv.setMnemonic('1');
+        btnInv.setToolTipText("Alt+1");
+        btnInv.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnInv.setName("btnInv"); // NOI18N
+        btnInv.setPreferredSize(new java.awt.Dimension(100, 30));
+        btnInv.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInvActionPerformed(evt);
+            }
+        });
+        panelGlass7.add(btnInv);
+        btnInv.setBounds(670, 40, 25, 23);
 
         internalFrame1.add(panelGlass7, java.awt.BorderLayout.PAGE_START);
 
@@ -379,21 +498,13 @@ public class PerpustakaanKategori extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void TKdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKeyPressed
-        Valid.pindah(evt,TCari,TNm);
-}//GEN-LAST:event_TKdKeyPressed
-
-    private void TNmKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TNmKeyPressed
-        Valid.pindah(evt,TKd,BtnSimpan);
-}//GEN-LAST:event_TNmKeyPressed
-
     private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSimpanActionPerformed
         if(TKd.getText().trim().equals("")){
-            Valid.textKosong(TKd,"Kode Kategori");
+            Valid.textKosong(TKd,"Kode Pengarang/Penulis");
         }else if(TNm.getText().trim().equals("")){
-            Valid.textKosong(TNm,"Nama Kategori");
+            Valid.textKosong(TNm,"Nama Pengarang/Penulis");
         }else{
-            Sequel.menyimpan("perpustakaan_kategori","'"+TKd.getText()+"','"+TNm.getText()+"'","Kode Kategori");
+            Sequel.menyimpan("perpustakaan_pengarang","'"+TKd.getText()+"','"+TNm.getText()+"'","Kode Pengarang/Penulis");
             tampil();
             emptTeks();
         }
@@ -418,7 +529,7 @@ public class PerpustakaanKategori extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnBatalKeyPressed
 
     private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusActionPerformed
-        Valid.hapusTable(tabMode,TKd,"perpustakaan_kategori","id_kategori");
+        Valid.hapusTable(tabMode,TKd,"perpustakaan_pengarang","kode_pengarang");
         tampil();
         emptTeks();
 }//GEN-LAST:event_BtnHapusActionPerformed
@@ -433,12 +544,12 @@ public class PerpustakaanKategori extends javax.swing.JDialog {
 
     private void BtnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEditActionPerformed
         if(TKd.getText().trim().equals("")){
-            Valid.textKosong(TKd,"Kode Kategori");
+            Valid.textKosong(TKd,"Kode Pengarang/Penulis");
         }else if(TNm.getText().trim().equals("")){
-            Valid.textKosong(TNm,"Nama Kategori");
+            Valid.textKosong(TNm,"Nama Pengarang/Penulis");
         }else{
             if(tbSpesialis.getSelectedRow()> -1){
-                Sequel.mengedit("perpustakaan_kategori","id_kategori=?","id_kategori=?,nama_kategori=?",3,new String[]{
+                Sequel.mengedit("perpustakaan_pengarang","kode_pengarang=?","kode_pengarang=?,nama_pengarang=?",3,new String[]{
                     TKd.getText(),TNm.getText(),tbSpesialis.getValueAt(tbSpesialis.getSelectedRow(),0).toString()
                 });
                 if(tabMode.getRowCount()!=0){tampil();}
@@ -543,12 +654,74 @@ public class PerpustakaanKategori extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_tbSpesialisKeyReleased
 
+    private void tglItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_tglItemStateChanged
+        if(TNoI.isEditable()==true){
+            isDay();
+        }else if(TNoI.isEditable()==false){
+            isDaySub();
+        }
+    }//GEN-LAST:event_tglItemStateChanged
+
+    private void tglKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tglKeyPressed
+        Valid.pindah(evt,InventarisCari,TglPinjam2);
+    }//GEN-LAST:event_tglKeyPressed
+
+    private void TNoAKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TNoAKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            TNIP.requestFocus();
+            Sequel.cariIsi("select nama_anggota from perpustakaan_anggota where no_anggota='"+TNoA.getText()+"'", TNmA);
+            Sequel.cariIsi("select masa_berlaku from perpustakaan_anggota where no_anggota='"+TNoA.getText()+"'", lblTglKdl);
+        }else if(evt.getKeyCode()==KeyEvent.VK_PAGE_UP){
+            TNoI.requestFocus();
+        }
+    }//GEN-LAST:event_TNoAKeyPressed
+
+    private void btnAngActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAngActionPerformed
+        anggota.isCek();
+        anggota.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+        anggota.setLocationRelativeTo(internalFrame1);
+        anggota.setAlwaysOnTop(false);
+        anggota.setVisible(true);
+    }//GEN-LAST:event_btnAngActionPerformed
+
+    private void TNoIKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TNoIKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_PAGE_DOWN){
+            isInventaris();
+        }else if(evt.getKeyCode()==KeyEvent.VK_PAGE_UP){
+            isInventaris();
+            BtnCloseIn.requestFocus();
+        }else if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            isInventaris();
+            //peminjam.requestFocus();
+        } else if(evt.getKeyCode()==KeyEvent.VK_UP){
+            btnInvActionPerformed(null);
+        }
+    }//GEN-LAST:event_TNoIKeyPressed
+
+    private void btnInvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInvActionPerformed
+        pilihan=1;
+        perpustakaan_inventaris.isCek();
+        perpustakaan_inventaris.tampil();
+        perpustakaan_inventaris.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+        perpustakaan_inventaris.setLocationRelativeTo(internalFrame1);
+        perpustakaan_inventaris.setAlwaysOnTop(false);
+        perpustakaan_inventaris.setVisible(true);
+    }//GEN-LAST:event_btnInvActionPerformed
+
+    private void TglPinjam2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TglPinjam2KeyPressed
+        Valid.pindah(evt,TglPinjam1,InventarisCari);
+    }//GEN-LAST:event_TglPinjam2KeyPressed
+
+    private void TglPinjam1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TglPinjam1KeyPressed
+        Valid.pindah(evt,InventarisCari,TglPinjam2);
+    }//GEN-LAST:event_TglPinjam1KeyPressed
+
     /**
     * @param args the command line arguments
     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> {
-            PerpustakaanKategori dialog = new PerpustakaanKategori(new javax.swing.JFrame(), true);
+            PerpustakaanBayarDenda dialog = new PerpustakaanBayarDenda(new javax.swing.JFrame(), true);
             dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                 @Override
                 public void windowClosing(java.awt.event.WindowEvent e) {
@@ -568,26 +741,38 @@ public class PerpustakaanKategori extends javax.swing.JDialog {
     private widget.Button BtnKeluar;
     private widget.Button BtnSimpan;
     private widget.Label LCount;
+    private widget.Label LCount1;
+    private widget.Label LblTgl;
     private widget.ScrollPane Scroll;
     private widget.TextBox TCari;
-    private widget.TextBox TKd;
-    private widget.TextBox TNm;
+    private widget.TextBox TJudul;
+    private widget.TextBox TNmA;
+    private widget.TextBox TNoA;
+    private widget.TextBox TNoI;
+    private widget.Tanggal TglPinjam1;
+    private widget.Tanggal TglPinjam2;
+    private widget.Button btnAng;
+    private widget.Button btnInv;
     private widget.InternalFrame internalFrame1;
-    private widget.Label jLabel3;
-    private widget.Label jLabel4;
+    private widget.Label jLabel22;
     private widget.Label jLabel6;
     private widget.Label jLabel7;
+    private widget.Label jLabel8;
+    private widget.Label jLabel9;
     private javax.swing.JPanel jPanel3;
+    private widget.Label label1;
+    private widget.Label label9;
     private widget.panelisi panelGlass7;
     private widget.panelisi panelGlass8;
     private widget.panelisi panelGlass9;
     private widget.Table tbSpesialis;
+    private widget.Tanggal tgl;
     // End of variables declaration//GEN-END:variables
 
     public void tampil() {
         Valid.tabelKosong(tabMode);
         try{
-            ps=koneksi.prepareStatement("select * from perpustakaan_kategori where id_kategori like ? or nama_kategori like ? order by id_kategori");
+            ps=koneksi.prepareStatement("select * from perpustakaan_pengarang where kode_pengarang like ? or nama_pengarang like ? order by kode_pengarang");
             try {
                 ps.setString(1,"%"+TCari.getText().trim()+"%");
                 ps.setString(2,"%"+TCari.getText().trim()+"%");
@@ -616,7 +801,7 @@ public class PerpustakaanKategori extends javax.swing.JDialog {
         TNm.setText("");
         TCari.setText("");
         TKd.requestFocus();
-        Valid.autoNomer(tabMode,"KK",3,TKd);
+        Valid.autoNomer(tabMode,"PP",3,TKd);
         TKd.requestFocus();
     }
 
@@ -632,8 +817,8 @@ public class PerpustakaanKategori extends javax.swing.JDialog {
     }
     
     public void isCek(){
-       BtnSimpan.setEnabled(var.getkategori_perpustakaan());
-       BtnHapus.setEnabled(var.getkategori_perpustakaan());
-       BtnEdit.setEnabled(var.getkategori_perpustakaan());
+       BtnSimpan.setEnabled(var.getpengarang_perpustakaan());
+       BtnHapus.setEnabled(var.getpengarang_perpustakaan());
+       BtnEdit.setEnabled(var.getpengarang_perpustakaan());
     }
 }
