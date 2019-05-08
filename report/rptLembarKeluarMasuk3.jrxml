@@ -4,6 +4,10 @@
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="0"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="1000"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="koneksi"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<parameter name="namars" class="java.lang.String"/>
 	<parameter name="alamatrs" class="java.lang.String"/>
 	<parameter name="kotars" class="java.lang.String"/>
@@ -11,77 +15,126 @@
 	<parameter name="kontakrs" class="java.lang.String"/>
 	<parameter name="emailrs" class="java.lang.String"/>
 	<parameter name="logo" class="java.io.InputStream"/>
+	<parameter name="dirawatke" class="java.lang.String"/>
+	<parameter name="kiriman" class="java.lang.String"/>
+	<parameter name="terakhirdirawat" class="java.lang.String"/>
+	<parameter name="doktermasuk" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[select pasien.no_rkm_medis, pasien.nm_pasien, pasien.no_ktp, pasien.jk, 
 pasien.tmp_lahir, pasien.tgl_lahir,pasien.nm_ibu, concat(pasien.alamat,', ',kelurahan.nm_kel,', ',kecamatan.nm_kec,', ',kabupaten.nm_kab) as alamat, pasien.gol_darah, pasien.pekerjaan,
 pasien.stts_nikah,pasien.agama,pasien.tgl_daftar,pasien.no_tlp,pasien.umur,
-pasien.pnd, pasien.keluarga, pasien.namakeluarga,penjab.png_jawab,pasien.pekerjaanpj,
+pasien.pnd, pasien.keluarga, pasien.namakeluarga,penjab.png_jawab,pasien.pekerjaanpj, suku_bangsa.nama_suku_bangsa,
 concat(pasien.alamatpj,', ',pasien.kelurahanpj,', ',pasien.kecamatanpj,', ',pasien.kabupatenpj) as alamatpj from pasien 
-inner join kelurahan inner join kecamatan inner join kabupaten 
+inner join kelurahan inner join kecamatan inner join kabupaten inner join suku_bangsa
 inner join penjab on pasien.kd_pj=penjab.kd_pj and pasien.kd_kel=kelurahan.kd_kel 
-and pasien.kd_kec=kecamatan.kd_kec and pasien.kd_kab=kabupaten.kd_kab]]>
+and pasien.kd_kec=kecamatan.kd_kec and pasien.kd_kab=kabupaten.kd_kab
+and suku_bangsa.id=pasien.suku_bangsa]]>
 	</queryString>
 	<field name="no_rkm_medis" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="no_rkm_medis"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pasien"/>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="nm_pasien" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nm_pasien"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pasien"/>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="no_ktp" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="no_ktp"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pasien"/>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="jk" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="jk"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pasien"/>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="tmp_lahir" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="tmp_lahir"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pasien"/>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="tgl_lahir" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="tgl_lahir"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pasien"/>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="nm_ibu" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nm_ibu"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pasien"/>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="alamat" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="alamat"/>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="gol_darah" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="gol_darah"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pasien"/>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="pekerjaan" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="pekerjaan"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pasien"/>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="stts_nikah" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="stts_nikah"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pasien"/>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="agama" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="agama"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pasien"/>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="tgl_daftar" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="tgl_daftar"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pasien"/>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="no_tlp" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="no_tlp"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pasien"/>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="umur" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="umur"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pasien"/>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="pnd" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="pnd"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pasien"/>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="keluarga" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="keluarga"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pasien"/>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="namakeluarga" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="namakeluarga"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pasien"/>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="png_jawab" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="png_jawab"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="penjab"/>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="pekerjaanpj" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="pekerjaanpj"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pasien"/>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
+	<field name="nama_suku_bangsa" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nama_suku_bangsa"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="suku_bangsa"/>
+	</field>
 	<field name="alamatpj" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="alamatpj"/>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<background>
@@ -261,12 +314,6 @@ and pasien.kd_kec=kecamatan.kd_kec and pasien.kd_kab=kabupaten.kd_kab]]>
 				</textElement>
 				<text><![CDATA[Alamat]]></text>
 			</staticText>
-			<line>
-				<reportElement x="190" y="232" width="169" height="1" uuid="8d70ab4e-cb07-4650-8d4a-d2281b78b380"/>
-				<graphicElement>
-					<pen lineWidth="0.5"/>
-				</graphicElement>
-			</line>
 			<staticText>
 				<reportElement x="108" y="99" width="85" height="11" uuid="515a242d-f5ba-4f72-ada4-ad0d87352cf8"/>
 				<textElement textAlignment="Left">
@@ -537,90 +584,6 @@ and pasien.kd_kec=kecamatan.kd_kec and pasien.kd_kab=kabupaten.kd_kab]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{pnd}]]></textFieldExpression>
 			</textField>
-			<rectangle>
-				<reportElement x="190" y="209" width="8" height="8" uuid="6d64bdec-194e-4a0e-ae47-7f449e11743f"/>
-				<graphicElement>
-					<pen lineWidth="0.75"/>
-				</graphicElement>
-			</rectangle>
-			<staticText>
-				<reportElement x="203" y="207" width="14" height="13" uuid="99a0559a-8b13-42eb-8b7e-b125d95d6856"/>
-				<textElement textAlignment="Left">
-					<font fontName="Tahoma" size="10"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[1]]></text>
-			</staticText>
-			<rectangle>
-				<reportElement x="220" y="209" width="8" height="8" uuid="6c175778-3f10-4867-a08d-3886fc301631"/>
-				<graphicElement>
-					<pen lineWidth="0.75"/>
-				</graphicElement>
-			</rectangle>
-			<staticText>
-				<reportElement x="233" y="207" width="14" height="13" uuid="db74ff54-c5d2-4685-bf75-a59d4bcd6e98"/>
-				<textElement textAlignment="Left">
-					<font fontName="Tahoma" size="10"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[2]]></text>
-			</staticText>
-			<rectangle>
-				<reportElement x="250" y="209" width="8" height="8" uuid="f0399249-7f71-4b37-b799-e058c0b1fb74"/>
-				<graphicElement>
-					<pen lineWidth="0.75"/>
-				</graphicElement>
-			</rectangle>
-			<staticText>
-				<reportElement x="263" y="207" width="14" height="13" uuid="508f2ad1-3fd4-46b0-9a87-381753e99420"/>
-				<textElement textAlignment="Left">
-					<font fontName="Tahoma" size="10"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[3]]></text>
-			</staticText>
-			<rectangle>
-				<reportElement x="280" y="209" width="8" height="8" uuid="513f37c6-ec18-43be-a6ad-f9734748cd18"/>
-				<graphicElement>
-					<pen lineWidth="0.75"/>
-				</graphicElement>
-			</rectangle>
-			<staticText>
-				<reportElement x="293" y="207" width="14" height="13" uuid="9fa53e0d-45a3-4988-ad7a-10469940481b"/>
-				<textElement textAlignment="Left">
-					<font fontName="Tahoma" size="10"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[4]]></text>
-			</staticText>
-			<rectangle>
-				<reportElement x="310" y="209" width="8" height="8" uuid="39a9ff13-f1e1-42d1-a160-ee90f34a0a68"/>
-				<graphicElement>
-					<pen lineWidth="0.75"/>
-				</graphicElement>
-			</rectangle>
-			<staticText>
-				<reportElement x="323" y="207" width="14" height="13" uuid="7bca9a0e-85a7-4d4f-8c90-0c3a6c09f662"/>
-				<textElement textAlignment="Left">
-					<font fontName="Tahoma" size="10"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[5]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="360" y="220" width="40" height="13" uuid="f02f2056-2933-480d-ab1f-8d2c85fa5593"/>
-				<textElement textAlignment="Left">
-					<font fontName="Tahoma" size="10"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[di ruang]]></text>
-			</staticText>
-			<line>
-				<reportElement x="400" y="232" width="140" height="1" uuid="0981cac0-b01d-48fa-86d2-5fc2b87ba633"/>
-				<graphicElement>
-					<pen lineWidth="0.5"/>
-				</graphicElement>
-			</line>
 			<staticText>
 				<reportElement x="183" y="233" width="5" height="13" uuid="8b27dc84-d9a4-4d69-9e2f-d3b7ec9fe415"/>
 				<textElement textAlignment="Left">
@@ -669,96 +632,6 @@ and pasien.kd_kec=kecamatan.kd_kec and pasien.kd_kab=kabupaten.kd_kab]]>
 				</textElement>
 				<text><![CDATA[Suku Bangsa]]></text>
 			</staticText>
-			<rectangle>
-				<reportElement x="190" y="261" width="8" height="8" uuid="2b424255-606a-4577-a922-9f976bce5a45"/>
-				<graphicElement>
-					<pen lineWidth="0.75"/>
-				</graphicElement>
-			</rectangle>
-			<staticText>
-				<reportElement x="200" y="259" width="30" height="13" uuid="c38778c1-86e5-422a-8eb8-fa45ac6567ce"/>
-				<textElement textAlignment="Left">
-					<font fontName="Tahoma" size="10"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[Jawa]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="241" y="259" width="30" height="13" uuid="954d7c22-1999-4172-b92e-d15e43693710"/>
-				<textElement textAlignment="Left">
-					<font fontName="Tahoma" size="10"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[Sunda]]></text>
-			</staticText>
-			<rectangle>
-				<reportElement x="231" y="261" width="8" height="8" uuid="50682940-e669-4d66-9f28-87a264586feb"/>
-				<graphicElement>
-					<pen lineWidth="0.75"/>
-				</graphicElement>
-			</rectangle>
-			<staticText>
-				<reportElement x="282" y="259" width="35" height="13" uuid="eb9849c0-a8e2-4b2d-9603-f5f201af136a"/>
-				<textElement textAlignment="Left">
-					<font fontName="Tahoma" size="10"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[Madura]]></text>
-			</staticText>
-			<rectangle>
-				<reportElement x="272" y="261" width="8" height="8" uuid="cce49924-56b8-406c-bd7e-fa839db2f7ab"/>
-				<graphicElement>
-					<pen lineWidth="0.75"/>
-				</graphicElement>
-			</rectangle>
-			<staticText>
-				<reportElement x="329" y="259" width="35" height="13" uuid="88087cc1-c830-43cc-bbf0-46ff032d0d11"/>
-				<textElement textAlignment="Left">
-					<font fontName="Tahoma" size="10"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[Banjar]]></text>
-			</staticText>
-			<rectangle>
-				<reportElement x="319" y="261" width="8" height="8" uuid="3ff487c6-e43d-4524-84b0-f450d7736168"/>
-				<graphicElement>
-					<pen lineWidth="0.75"/>
-				</graphicElement>
-			</rectangle>
-			<staticText>
-				<reportElement x="373" y="259" width="30" height="13" uuid="369ca14d-c531-48f5-b936-594e1e1db98b"/>
-				<textElement textAlignment="Left">
-					<font fontName="Tahoma" size="10"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[Asing]]></text>
-			</staticText>
-			<rectangle>
-				<reportElement x="363" y="261" width="8" height="8" uuid="fe137e18-4380-4a5a-a9ea-2e2a6a14be3c"/>
-				<graphicElement>
-					<pen lineWidth="0.75"/>
-				</graphicElement>
-			</rectangle>
-			<rectangle>
-				<reportElement x="401" y="261" width="8" height="8" uuid="612b21aa-2a76-4a42-857e-89315909f8d3"/>
-				<graphicElement>
-					<pen lineWidth="0.75"/>
-				</graphicElement>
-			</rectangle>
-			<staticText>
-				<reportElement x="411" y="259" width="46" height="13" uuid="7bd65f34-417d-4216-952f-6d1ae222c0c3"/>
-				<textElement textAlignment="Left">
-					<font fontName="Tahoma" size="10"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[Lain-lain]]></text>
-			</staticText>
-			<line>
-				<reportElement x="452" y="270" width="88" height="1" uuid="4398d19b-7852-4d0f-b775-fe771360be03"/>
-				<graphicElement>
-					<pen lineWidth="0.5"/>
-				</graphicElement>
-			</line>
 			<staticText>
 				<reportElement x="183" y="272" width="5" height="13" uuid="84e1ac24-cf3d-40b4-a770-b2970ea06a29"/>
 				<textElement textAlignment="Left">
@@ -877,82 +750,6 @@ and pasien.kd_kec=kecamatan.kd_kec and pasien.kd_kab=kabupaten.kd_kab]]>
 				</textElement>
 				<text><![CDATA[Nama]]></text>
 			</staticText>
-			<staticText>
-				<reportElement x="200" y="285" width="70" height="13" uuid="34f6ac06-837f-4bdb-b41e-24b717aeabd1"/>
-				<textElement textAlignment="Left">
-					<font fontName="Tahoma" size="10"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[RS.Pemerintah]]></text>
-			</staticText>
-			<rectangle>
-				<reportElement x="190" y="287" width="8" height="8" uuid="f729f4f0-14c8-4993-a448-66d57630a473"/>
-				<graphicElement>
-					<pen lineWidth="0.75"/>
-				</graphicElement>
-			</rectangle>
-			<rectangle>
-				<reportElement x="268" y="287" width="8" height="8" uuid="27f8dd53-3437-4248-8723-b9d5f01ae8e3"/>
-				<graphicElement>
-					<pen lineWidth="0.75"/>
-				</graphicElement>
-			</rectangle>
-			<staticText>
-				<reportElement x="278" y="285" width="60" height="13" uuid="85427153-4729-4f3a-8b16-712349501dac"/>
-				<textElement textAlignment="Left">
-					<font fontName="Tahoma" size="10"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[Puskesmas]]></text>
-			</staticText>
-			<rectangle>
-				<reportElement x="330" y="287" width="8" height="8" uuid="8a0af9a8-8288-4c28-8a9f-c5cc72246d3f"/>
-				<graphicElement>
-					<pen lineWidth="0.75"/>
-				</graphicElement>
-			</rectangle>
-			<staticText>
-				<reportElement x="340" y="285" width="40" height="13" uuid="7718e6fd-b267-450e-af39-6de4bda104c3"/>
-				<textElement textAlignment="Left">
-					<font fontName="Tahoma" size="10"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[Dokter]]></text>
-			</staticText>
-			<rectangle>
-				<reportElement x="375" y="287" width="8" height="8" uuid="3c768a97-b209-4288-b017-daa3dddea020"/>
-				<graphicElement>
-					<pen lineWidth="0.75"/>
-				</graphicElement>
-			</rectangle>
-			<staticText>
-				<reportElement x="385" y="285" width="50" height="13" uuid="5cd3d4f0-9a72-456c-9709-91b8eccdb3c2"/>
-				<textElement textAlignment="Left">
-					<font fontName="Tahoma" size="10"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[RS.Swasta]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="445" y="285" width="45" height="13" uuid="2644a82b-3ebe-4275-80ac-51c371eaac0b"/>
-				<textElement textAlignment="Left">
-					<font fontName="Tahoma" size="10"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[Lain-Lain]]></text>
-			</staticText>
-			<rectangle>
-				<reportElement x="435" y="287" width="8" height="8" uuid="0647b60c-8853-42ee-94c7-d8157aee060a"/>
-				<graphicElement>
-					<pen lineWidth="0.75"/>
-				</graphicElement>
-			</rectangle>
-			<line>
-				<reportElement x="492" y="295" width="48" height="1" uuid="32c14946-2ace-410e-bfc5-16222d7dcb28"/>
-				<graphicElement>
-					<pen lineWidth="0.5"/>
-				</graphicElement>
-			</line>
 			<textField>
 				<reportElement mode="Transparent" x="130" y="341" width="400" height="13" uuid="eac29f3d-3d87-45d6-8283-738556cd0ed8"/>
 				<textElement verticalAlignment="Middle">
@@ -2077,14 +1874,14 @@ and pasien.kd_kec=kecamatan.kd_kec and pasien.kd_kab=kabupaten.kd_kab]]>
 				</textElement>
 				<text><![CDATA[Dokter yang merawat]]></text>
 			</staticText>
-			<staticText>
-				<reportElement x="418" y="882" width="120" height="13" uuid="f7fa32e4-0191-4435-8e4c-9a51f7d388b0"/>
+			<textField>
+				<reportElement x="407" y="882" width="142" height="13" uuid="dc31d8fe-d7c9-4d6c-a94c-e4ebb20ca16d"/>
 				<textElement textAlignment="Center">
 					<font fontName="Tahoma" size="10"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<text><![CDATA[ttd & nama terang]]></text>
-			</staticText>
+				<textFieldExpression><![CDATA[$P{doktermasuk}]]></textFieldExpression>
+			</textField>
 			<staticText>
 				<reportElement x="38" y="882" width="350" height="13" uuid="523cc330-e72b-4ff8-aee2-c8eca6edbd13"/>
 				<textElement>
@@ -2093,12 +1890,38 @@ and pasien.kd_kec=kecamatan.kd_kec and pasien.kd_kab=kabupaten.kd_kab]]>
 				</textElement>
 				<text><![CDATA[NB : Tulis lengkap dengan huruf cetak, jelas dan terbaca (tidak disingkat)]]></text>
 			</staticText>
-			<line>
-				<reportElement x="424" y="883" width="110" height="1" uuid="420ebfc1-797f-4808-84d9-4199ad3dbc4b"/>
-				<graphicElement>
-					<pen lineWidth="0.5"/>
-				</graphicElement>
-			</line>
+			<textField>
+				<reportElement mode="Transparent" x="189" y="207" width="251" height="13" uuid="260dcb5b-f6bc-4cd4-a7ed-30135954cdbb"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{dirawatke}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Transparent" x="189" y="220" width="251" height="13" uuid="70f3ffc0-5bb4-4c55-a0dc-37c6b28c2a32"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{terakhirdirawat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Transparent" x="189" y="259" width="251" height="13" uuid="e3e7e2eb-b299-4014-9cc6-7885e55fc144"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nama_suku_bangsa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Transparent" x="189" y="285" width="251" height="13" uuid="baaf9406-ce5b-4c3d-9cc6-8ff2dbc31800"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{kiriman}]]></textFieldExpression>
+			</textField>
 		</band>
 	</title>
 </jasperReport>
