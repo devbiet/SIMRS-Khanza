@@ -22,7 +22,7 @@ import org.springframework.web.client.RestTemplate;
  *
  * @author khanzasoft
  */
-public class DUKCAPILAcehCekNIK {
+public class DUKCAPILCekNIK {
     public String EKTP_STATUS="",NO_KK="",NIK="",NAMA_LGKP="",KAB_NAME="",AGAMA="",
             NO_RW="",KEC_NAME="",JENIS_PKRJN="",NO_RT="",NO_KEL="",ALAMAT="",NO_KEC="",
             TMPT_LHR="",PDDK_AKH="",STATUS_KAWIN="",NO_PROP="",NAMA_LGKP_IBU="",
@@ -37,11 +37,11 @@ public class DUKCAPILAcehCekNIK {
     private ObjectMapper mapper = new ObjectMapper();
     private JsonNode root;
     private JsonNode nameNode;
-    public DUKCAPILAcehCekNIK(){
+    public DUKCAPILCekNIK(){
         super();
         try {
             prop.loadFromXML(new FileInputStream("setting/database.xml"));
-            URL = prop.getProperty("URLDUKCAPILACEH")+"/CALL_NIK";
+            URL = prop.getProperty("URLDUKCAPIL");
         } catch (Exception e) {
             System.out.println("Notif : "+e);
         }
@@ -54,9 +54,9 @@ public class DUKCAPILAcehCekNIK {
 	    headers.add("Accept","application/json");
             requestJson="{"+
                           "\"nik\": \""+nik+"\"," +
-                            "\"user_id\" : \""+prop.getProperty("USERDUKCAPILACEH")+"\"," +
-                            "\"password\": \""+prop.getProperty("PASSDUKCAPILACEH")+"\"," +
-                            "\"IP_USER\":\""+prop.getProperty("IPUSERDUKCAPILACEH")+"\"" +
+                            "\"user_id\" : \""+prop.getProperty("USERDUKCAPIL")+"\"," +
+                            "\"password\": \""+prop.getProperty("PASSDUKCAPIL")+"\"," +
+                            "\"IP_USER\":\""+prop.getProperty("IPUSERDUKCAPIL")+"\"" +
                             "}"; 
             //System.out.println("JSON dikirim : "+requestJson);
 	    requestEntity = new HttpEntity(requestJson,headers);	    
