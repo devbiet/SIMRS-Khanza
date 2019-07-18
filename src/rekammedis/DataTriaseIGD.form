@@ -245,10 +245,11 @@
                                 <Component class="widget.ComboBox" name="PrimerKubutuhanKusus">
                                   <Properties>
                                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                                      <StringArray count="3">
-                                        <StringItem index="0" value="UPPA"/>
-                                        <StringItem index="1" value="Airborne"/>
-                                        <StringItem index="2" value="Dekontaminan"/>
+                                      <StringArray count="4">
+                                        <StringItem index="0" value="-"/>
+                                        <StringItem index="1" value="UPPA"/>
+                                        <StringItem index="2" value="Airborne"/>
+                                        <StringItem index="3" value="Dekontaminan"/>
                                       </StringArray>
                                     </Property>
                                     <Property name="name" type="java.lang.String" value="PrimerKubutuhanKusus" noResource="true"/>
@@ -1859,7 +1860,7 @@
                                                 <Component class="widget.Table" name="tbSkala5">
                                                   <Properties>
                                                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                                      <Color blue="aa" green="aa" red="aa" type="rgb"/>
+                                                      <Color blue="96" green="96" red="96" type="rgb"/>
                                                     </Property>
                                                     <Property name="name" type="java.lang.String" value="tbSkala5" noResource="true"/>
                                                     <Property name="selectionForeground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
