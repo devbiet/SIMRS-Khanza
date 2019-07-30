@@ -332,7 +332,7 @@
                     </Property>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="1">
-                        <StringItem index="0" value="11-07-2019"/>
+                        <StringItem index="0" value="29-07-2019"/>
                       </StringArray>
                     </Property>
                     <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -360,7 +360,7 @@
                     </Property>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="1">
-                        <StringItem index="0" value="11-07-2019"/>
+                        <StringItem index="0" value="29-07-2019"/>
                       </StringArray>
                     </Property>
                     <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -1167,7 +1167,9 @@
                   <Color blue="eb" green="ff" red="eb" type="rgb"/>
                 </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="null"/>
+                  <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
+                    <EmptyBorder/>
+                  </Border>
                 </Property>
                 <Property name="name" type="java.lang.String" value="internalFrame5" noResource="true"/>
               </Properties>
@@ -1684,7 +1686,9 @@
                   <Color blue="eb" green="ff" red="eb" type="rgb"/>
                 </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="null"/>
+                  <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
+                    <EmptyBorder/>
+                  </Border>
                 </Property>
                 <Property name="name" type="java.lang.String" value="internalFrame6" noResource="true"/>
               </Properties>
@@ -2422,7 +2426,9 @@
                   <Color blue="eb" green="ff" red="eb" type="rgb"/>
                 </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="null"/>
+                  <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
+                    <EmptyBorder/>
+                  </Border>
                 </Property>
                 <Property name="name" type="java.lang.String" value="internalFrame7" noResource="true"/>
               </Properties>
@@ -3180,7 +3186,7 @@
                 </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="1">
-                    <StringItem index="0" value="11-07-2019"/>
+                    <StringItem index="0" value="29-07-2019"/>
                   </StringArray>
                 </Property>
                 <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -3461,11 +3467,19 @@
           <SubComponents>
             <Component class="widget.CekBox" name="ChkAccor">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="f8" green="ff" red="fa" type="rgb"/>
+                </Property>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                    <LineBorder>
+                      <Color PropertyName="color" blue="f8" green="ff" red="fa" type="rgb"/>
+                    </LineBorder>
+                  </Border>
+                </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/picture/kanan.png"/>
                 </Property>
-                <Property name="borderPainted" type="boolean" value="true"/>
-                <Property name="borderPaintedFlat" type="boolean" value="true"/>
                 <Property name="focusable" type="boolean" value="false"/>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
