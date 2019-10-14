@@ -198,6 +198,32 @@
                 </Component>
               </SubComponents>
             </Container>
+            <Container class="widget.ScrollPane" name="Scroll2">
+              <Properties>
+                <Property name="name" type="java.lang.String" value="Scroll2" noResource="true"/>
+                <Property name="opaque" type="boolean" value="true"/>
+              </Properties>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+                  <JTabbedPaneConstraints tabName="Tarif Ranap">
+                    <Property name="tabTitle" type="java.lang.String" value="Tarif Ranap"/>
+                  </JTabbedPaneConstraints>
+                </Constraint>
+              </Constraints>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+              <SubComponents>
+                <Component class="widget.Table" name="tbPengaturanRanap">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="Semua akun harus terisi"/>
+                    <Property name="name" type="java.lang.String" value="tbPengaturanRanap" noResource="true"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tbPengaturanRanapKeyPressed"/>
+                  </Events>
+                </Component>
+              </SubComponents>
+            </Container>
           </SubComponents>
         </Container>
       </SubComponents>
