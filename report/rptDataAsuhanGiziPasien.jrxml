@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.11.0.final using JasperReports Library version 6.11.0-0c4056ccaa4d25a5a8c45672d2f764ea3498bebb  -->
+<!-- Created with Jaspersoft Studio version 6.8.0.final using JasperReports Library version 6.8.0-2ed8dfabb690ff337a5797129f2cd92902b0c87b  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="1910" pageHeight="595" orientation="Landscape" columnWidth="1870" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0f92f69c-b7ef-4c40-8feb-4253834b38e2">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="105"/>
@@ -232,7 +232,7 @@ inner join petugas on asuhan_gizi.nip=petugas.nip]]>
 		<band splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="22" splitType="Stretch">
+		<band height="17" splitType="Stretch">
 			<staticText>
 				<reportElement mode="Opaque" x="1176" y="0" width="110" height="16" forecolor="#000000" backcolor="#F0F0DC" uuid="f916916e-befc-4b66-9c7b-280cbecc3df3">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -576,8 +576,8 @@ inner join petugas on asuhan_gizi.nip=petugas.nip]]>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="15" splitType="Stretch">
-			<textField textAdjust="StretchHeight">
+		<band height="12" splitType="Stretch">
+			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="0" y="0" width="75" height="10" uuid="a12ab6eb-09bd-448e-a314-b92bb9ed0de0"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
@@ -585,7 +585,7 @@ inner join petugas on asuhan_gizi.nip=petugas.nip]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{no_rawat}]]></textFieldExpression>
 			</textField>
-			<textField textAdjust="StretchHeight">
+			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="75" y="0" width="45" height="10" uuid="9caaea48-6581-4e5b-9f68-cec1581a1f96"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
@@ -593,7 +593,7 @@ inner join petugas on asuhan_gizi.nip=petugas.nip]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{no_rkm_medis}]]></textFieldExpression>
 			</textField>
-			<textField textAdjust="StretchHeight">
+			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="120" y="0" width="110" height="10" uuid="244f27ae-327e-42c6-a310-df3d7c519960"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
@@ -610,7 +610,7 @@ inner join petugas on asuhan_gizi.nip=petugas.nip]]>
 					<pen lineWidth="0.25" lineStyle="Solid"/>
 				</graphicElement>
 			</line>
-			<textField textAdjust="StretchHeight">
+			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="230" y="0" width="16" height="10" uuid="bfdd9640-0754-4961-8c5b-90d0e360c693">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -620,7 +620,7 @@ inner join petugas on asuhan_gizi.nip=petugas.nip]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{jk}]]></textFieldExpression>
 			</textField>
-			<textField textAdjust="StretchHeight" pattern="dd/MM/yyyy">
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy">
 				<reportElement positionType="Float" x="246" y="0" width="46" height="10" uuid="0eb42de4-5d65-4ea2-a335-ed6d2004503b">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -630,7 +630,7 @@ inner join petugas on asuhan_gizi.nip=petugas.nip]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{tgl_lahir}]]></textFieldExpression>
 			</textField>
-			<textField textAdjust="StretchHeight" pattern="dd/MM/yyyy">
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy">
 				<reportElement positionType="Float" x="292" y="0" width="46" height="10" uuid="7fd7a8a7-c763-4de6-8d7d-b55016c79784">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -640,7 +640,7 @@ inner join petugas on asuhan_gizi.nip=petugas.nip]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{tanggal}]]></textFieldExpression>
 			</textField>
-			<textField textAdjust="StretchHeight">
+			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="338" y="0" width="28" height="10" uuid="4a8d3e19-170f-4849-884f-5513f816791c">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -650,7 +650,7 @@ inner join petugas on asuhan_gizi.nip=petugas.nip]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{antropometri_bb}]]></textFieldExpression>
 			</textField>
-			<textField textAdjust="StretchHeight">
+			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="366" y="0" width="30" height="10" uuid="bf068e06-8616-48c1-9145-8b785083fd69">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -660,7 +660,7 @@ inner join petugas on asuhan_gizi.nip=petugas.nip]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{antropometri_tb}]]></textFieldExpression>
 			</textField>
-			<textField textAdjust="StretchHeight">
+			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="396" y="0" width="47" height="10" uuid="a06b28dd-5949-445b-9f2d-168fb0f8d124">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -670,7 +670,7 @@ inner join petugas on asuhan_gizi.nip=petugas.nip]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{antropometri_imt}]]></textFieldExpression>
 			</textField>
-			<textField textAdjust="StretchHeight">
+			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="443" y="0" width="36" height="10" uuid="b869d1b4-d1f9-4a9b-a55a-3c47b6b2105c">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -680,7 +680,7 @@ inner join petugas on asuhan_gizi.nip=petugas.nip]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{antropometri_lla}]]></textFieldExpression>
 			</textField>
-			<textField textAdjust="StretchHeight">
+			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="479" y="0" width="31" height="10" uuid="a0edc125-a93c-4c96-8c7a-e593f2805434">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -690,7 +690,7 @@ inner join petugas on asuhan_gizi.nip=petugas.nip]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{antropometri_tl}]]></textFieldExpression>
 			</textField>
-			<textField textAdjust="StretchHeight">
+			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="510" y="0" width="40" height="10" uuid="9fec4dc9-7b9d-420a-897b-01dd38ffb675">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -700,7 +700,7 @@ inner join petugas on asuhan_gizi.nip=petugas.nip]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{antropometri_ulna}]]></textFieldExpression>
 			</textField>
-			<textField textAdjust="StretchHeight">
+			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="550" y="0" width="48" height="10" uuid="5e35d51a-3106-4d7c-a388-abc1a5723b56"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
@@ -708,7 +708,7 @@ inner join petugas on asuhan_gizi.nip=petugas.nip]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{antropometri_bbideal}]]></textFieldExpression>
 			</textField>
-			<textField textAdjust="StretchHeight">
+			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="598" y="0" width="35" height="10" uuid="faf3f120-b495-4198-aa93-c9a971440a67"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
@@ -716,7 +716,7 @@ inner join petugas on asuhan_gizi.nip=petugas.nip]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{antropometri_bbperu}]]></textFieldExpression>
 			</textField>
-			<textField textAdjust="StretchHeight">
+			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="633" y="0" width="35" height="10" uuid="7f1d2d09-7415-4f49-9cdd-0def57d606da"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
@@ -724,7 +724,7 @@ inner join petugas on asuhan_gizi.nip=petugas.nip]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{antropometri_tbperu}]]></textFieldExpression>
 			</textField>
-			<textField textAdjust="StretchHeight">
+			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="668" y="0" width="39" height="10" uuid="735b0832-e1e8-4e2e-8ead-3e3685e21135"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
@@ -732,7 +732,7 @@ inner join petugas on asuhan_gizi.nip=petugas.nip]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{antropometri_bbpertb}]]></textFieldExpression>
 			</textField>
-			<textField textAdjust="StretchHeight">
+			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="707" y="0" width="40" height="10" uuid="6e5b7a0e-e753-4fd1-8200-14dd55a252a3"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
@@ -740,7 +740,7 @@ inner join petugas on asuhan_gizi.nip=petugas.nip]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{antropometri_llaperu}]]></textFieldExpression>
 			</textField>
-			<textField textAdjust="StretchHeight">
+			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="747" y="0" width="110" height="10" uuid="86f5a432-42f8-434d-8e7f-e629a76a38d7"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
@@ -748,7 +748,7 @@ inner join petugas on asuhan_gizi.nip=petugas.nip]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{biokimia}]]></textFieldExpression>
 			</textField>
-			<textField textAdjust="StretchHeight">
+			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="857" y="0" width="110" height="10" uuid="75f88863-09ba-4d45-9ee0-cf68d4d3019f"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
@@ -756,7 +756,7 @@ inner join petugas on asuhan_gizi.nip=petugas.nip]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{fisik_klinis}]]></textFieldExpression>
 			</textField>
-			<textField textAdjust="StretchHeight">
+			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="967" y="0" width="24" height="10" uuid="d6d95f55-73eb-468b-a7c2-54be56241b46"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
@@ -764,7 +764,7 @@ inner join petugas on asuhan_gizi.nip=petugas.nip]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{alergi_telur}]]></textFieldExpression>
 			</textField>
-			<textField textAdjust="StretchHeight">
+			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="991" y="0" width="40" height="10" uuid="d48cf084-2bf9-4e1d-adc8-ea557811af80"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
@@ -772,7 +772,7 @@ inner join petugas on asuhan_gizi.nip=petugas.nip]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{alergi_susu_sapi}]]></textFieldExpression>
 			</textField>
-			<textField textAdjust="StretchHeight">
+			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="1031" y="0" width="31" height="10" uuid="81eb3e5a-64c4-492b-a91b-bbf56d70f9cc">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -782,7 +782,7 @@ inner join petugas on asuhan_gizi.nip=petugas.nip]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{alergi_kacang}]]></textFieldExpression>
 			</textField>
-			<textField textAdjust="StretchHeight">
+			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="1062" y="0" width="28" height="10" uuid="96ba0e9f-877d-4eb1-9591-b65aea792e79"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
@@ -790,7 +790,7 @@ inner join petugas on asuhan_gizi.nip=petugas.nip]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{alergi_gluten}]]></textFieldExpression>
 			</textField>
-			<textField textAdjust="StretchHeight">
+			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="1090" y="0" width="28" height="10" uuid="d040e34b-7896-4382-bb28-fa0b68bb88bb"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
@@ -798,7 +798,7 @@ inner join petugas on asuhan_gizi.nip=petugas.nip]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{alergi_udang}]]></textFieldExpression>
 			</textField>
-			<textField textAdjust="StretchHeight">
+			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="1118" y="0" width="23" height="10" uuid="f2422779-9c78-48ae-a73a-b9e1d14ba84a">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -808,7 +808,7 @@ inner join petugas on asuhan_gizi.nip=petugas.nip]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{alergi_ikan}]]></textFieldExpression>
 			</textField>
-			<textField textAdjust="StretchHeight">
+			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="1141" y="0" width="34" height="10" uuid="b6c2bde2-6dda-4cc2-8e40-e79162e6910c"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
@@ -816,7 +816,7 @@ inner join petugas on asuhan_gizi.nip=petugas.nip]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{alergi_hazelnut}]]></textFieldExpression>
 			</textField>
-			<textField textAdjust="StretchHeight">
+			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="1176" y="0" width="110" height="10" uuid="090522bd-d154-4e2b-aabf-f3f4937f76c6"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
@@ -824,7 +824,7 @@ inner join petugas on asuhan_gizi.nip=petugas.nip]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{pola_makan}]]></textFieldExpression>
 			</textField>
-			<textField textAdjust="StretchHeight">
+			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="1287" y="0" width="108" height="10" uuid="f7572cba-7f76-4157-aef1-df42dea1c4e2"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
@@ -832,7 +832,7 @@ inner join petugas on asuhan_gizi.nip=petugas.nip]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{riwayat_personal}]]></textFieldExpression>
 			</textField>
-			<textField textAdjust="StretchHeight">
+			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="1396" y="0" width="109" height="10" uuid="a0822509-5d8e-49a2-a972-f49b38b49f29">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -842,7 +842,7 @@ inner join petugas on asuhan_gizi.nip=petugas.nip]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{diagnosis}]]></textFieldExpression>
 			</textField>
-			<textField textAdjust="StretchHeight">
+			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="1506" y="0" width="109" height="10" uuid="821f6174-ce19-4956-ac8d-22b19e6ec181">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -852,7 +852,7 @@ inner join petugas on asuhan_gizi.nip=petugas.nip]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{intervensi_gizi}]]></textFieldExpression>
 			</textField>
-			<textField textAdjust="StretchHeight">
+			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="1616" y="0" width="109" height="10" uuid="9a6b518a-faa3-458e-b7fa-1a1380c58f59">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -862,7 +862,7 @@ inner join petugas on asuhan_gizi.nip=petugas.nip]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{monitoring_evaluasi}]]></textFieldExpression>
 			</textField>
-			<textField textAdjust="StretchHeight">
+			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="1726" y="0" width="53" height="10" uuid="13216ca3-178c-4ba0-8f47-ddf103325286">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -872,7 +872,7 @@ inner join petugas on asuhan_gizi.nip=petugas.nip]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nip}]]></textFieldExpression>
 			</textField>
-			<textField textAdjust="StretchHeight">
+			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="1780" y="0" width="88" height="10" uuid="08d8d77d-39a7-40d0-8148-13fba9e7ce1f">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
