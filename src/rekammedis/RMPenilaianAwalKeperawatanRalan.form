@@ -761,7 +761,7 @@
                         </Component>
                         <Component class="widget.Label" name="jLabel37">
                           <Properties>
-                            <Property name="text" type="java.lang.String" value="Alergi :"/>
+                            <Property name="text" type="java.lang.String" value="Riwayat Alergi :"/>
                             <Property name="name" type="java.lang.String" value="jLabel37" noResource="true"/>
                           </Properties>
                           <Constraints>
@@ -1337,7 +1337,7 @@
                         </Component>
                         <Component class="widget.Label" name="jLabel65">
                           <Properties>
-                            <Property name="text" type="java.lang.String" value="a. Tidak seimbang / sempoyongan / limbung :"/>
+                            <Property name="text" type="java.lang.String" value="1. Tidak seimbang / sempoyongan / limbung :"/>
                             <Property name="name" type="java.lang.String" value="jLabel65" noResource="true"/>
                           </Properties>
                           <Constraints>
@@ -1348,7 +1348,7 @@
                         </Component>
                         <Component class="widget.Label" name="jLabel66">
                           <Properties>
-                            <Property name="text" type="java.lang.String" value="b. Jalan dengan menggunakan alat bantu (kruk, tripot, kursi roda, orang lain) :"/>
+                            <Property name="text" type="java.lang.String" value="2. Jalan dengan menggunakan alat bantu (kruk, tripot, kursi roda, orang lain) :"/>
                             <Property name="name" type="java.lang.String" value="jLabel66" noResource="true"/>
                           </Properties>
                           <Constraints>
@@ -1372,7 +1372,7 @@
                           </Events>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                              <AbsoluteConstraints x="563" y="660" width="80" height="23"/>
+                              <AbsoluteConstraints x="575" y="660" width="80" height="23"/>
                             </Constraint>
                           </Constraints>
                         </Component>
@@ -1503,12 +1503,12 @@
                         </Component>
                         <Component class="widget.Label" name="jLabel70">
                           <Properties>
-                            <Property name="text" type="java.lang.String" value="Menopang saat akan duduk, tampak memegang pinggiran kursi atau meja / benda lain sebagai penopang :"/>
+                            <Property name="text" type="java.lang.String" value="b. Menopang saat akan duduk, tampak memegang pinggiran kursi atau meja / benda lain sebagai penopang :"/>
                             <Property name="name" type="java.lang.String" value="jLabel70" noResource="true"/>
                           </Properties>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                              <AbsoluteConstraints x="0" y="630" width="559" height="23"/>
+                              <AbsoluteConstraints x="0" y="630" width="571" height="23"/>
                             </Constraint>
                           </Constraints>
                         </Component>
@@ -1538,12 +1538,12 @@
                         </Component>
                         <Component class="widget.Label" name="jLabel72">
                           <Properties>
-                            <Property name="text" type="java.lang.String" value="Cara Berjalan :"/>
+                            <Property name="text" type="java.lang.String" value="a. Cara Berjalan :"/>
                             <Property name="name" type="java.lang.String" value="jLabel72" noResource="true"/>
                           </Properties>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                              <AbsoluteConstraints x="0" y="580" width="114" height="23"/>
+                              <AbsoluteConstraints x="0" y="580" width="126" height="23"/>
                             </Constraint>
                           </Constraints>
                         </Component>
@@ -1586,7 +1586,7 @@
                           </Events>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                              <AbsoluteConstraints x="563" y="630" width="80" height="23"/>
+                              <AbsoluteConstraints x="575" y="630" width="80" height="23"/>
                             </Constraint>
                           </Constraints>
                         </Component>
@@ -2057,7 +2057,7 @@
                             </Property>
                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                               <StringArray count="1">
-                                <StringItem index="0" value="06-02-2020 21:14:20"/>
+                                <StringItem index="0" value="07-02-2020 07:09:04"/>
                               </StringArray>
                             </Property>
                             <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy HH:mm:ss"/>
@@ -2234,7 +2234,7 @@
                           </Properties>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                              <AbsoluteConstraints x="369" y="660" width="190" height="23"/>
+                              <AbsoluteConstraints x="381" y="660" width="190" height="23"/>
                             </Constraint>
                           </Constraints>
                         </Component>
@@ -2773,7 +2773,7 @@
                         </Property>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="1">
-                            <StringItem index="0" value="06-02-2020"/>
+                            <StringItem index="0" value="07-02-2020"/>
                           </StringArray>
                         </Property>
                         <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -2801,7 +2801,7 @@
                         </Property>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="1">
-                            <StringItem index="0" value="06-02-2020"/>
+                            <StringItem index="0" value="07-02-2020"/>
                           </StringArray>
                         </Property>
                         <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
