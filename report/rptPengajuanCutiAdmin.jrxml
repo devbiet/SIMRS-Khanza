@@ -158,7 +158,7 @@ pengajuan_inventaris.nik=peg1.nik and pengajuan_inventaris.nik_pj=peg2.nik]]>
 		<band/>
 	</pageHeader>
 	<columnHeader>
-		<band height="21">
+		<band height="18">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<staticText>
 				<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="750" y="0" width="30" height="18" forecolor="#000000" backcolor="#F0F0DC" uuid="a56edf2f-b2ae-46e9-85dd-b4087b1d295a"/>
@@ -283,7 +283,7 @@ pengajuan_inventaris.nik=peg1.nik and pengajuan_inventaris.nik_pj=peg2.nik]]>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="16">
+		<band height="12">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement positionType="Float" x="0" y="0" width="60" height="10" uuid="b89319ee-66ad-4ba1-b591-34bafc11f9e2">
@@ -408,6 +408,15 @@ pengajuan_inventaris.nik=peg1.nik and pengajuan_inventaris.nik_pj=peg2.nik]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{tanggal_awal}]]></textFieldExpression>
 			</textField>
+			<line>
+				<reportElement positionType="Float" x="0" y="11" width="1108" height="1" uuid="ee2ef0bb-9b76-4fd3-8379-6995795fed61">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
 		</band>
 	</detail>
 	<columnFooter>
@@ -484,7 +493,7 @@ pengajuan_inventaris.nik=peg1.nik and pengajuan_inventaris.nik_pj=peg2.nik]]>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<graphicElement>
-					<pen lineWidth="0.5"/>
+					<pen lineWidth="0.5" lineStyle="Solid"/>
 				</graphicElement>
 			</line>
 			<line>
@@ -501,7 +510,7 @@ pengajuan_inventaris.nik=peg1.nik and pengajuan_inventaris.nik_pj=peg2.nik]]>
 		<band height="18">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<textField pattern="#,##0" isBlankWhenNull="false">
-				<reportElement key="textField" x="750" y="1" width="30" height="11" forecolor="#000000" backcolor="#FFFFFF" uuid="0bd6ebe6-42b3-4b0b-a364-712939f37e75">
+				<reportElement key="textField" x="740" y="1" width="50" height="11" forecolor="#000000" backcolor="#FFFFFF" uuid="0bd6ebe6-42b3-4b0b-a364-712939f37e75">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<box>
@@ -518,7 +527,7 @@ pengajuan_inventaris.nik=peg1.nik and pengajuan_inventaris.nik_pj=peg2.nik]]>
 			</textField>
 			<staticText>
 				<reportElement mode="Opaque" x="0" y="2" width="46" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="dd6cf1e0-91a1-45e0-8469-13248b99c227"/>
-				<textElement textAlignment="Right">
+				<textElement textAlignment="Left">
 					<font fontName="Tahoma" size="8" isBold="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
