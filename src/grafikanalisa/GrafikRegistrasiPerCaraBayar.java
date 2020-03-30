@@ -28,7 +28,7 @@ import org.jfree.data.general.DefaultPieDataset;
  *
  * @author dosen
  */
-public class GrafikKunjunganPerPendidikan extends javax.swing.JDialog {
+public class GrafikRegistrasiPerCaraBayar extends javax.swing.JDialog {
     private final Connection koneksi=koneksiDB.condb();
     private final validasi Valid=new validasi();
     private ResultSet rs;
@@ -36,7 +36,7 @@ public class GrafikKunjunganPerPendidikan extends javax.swing.JDialog {
     /** Creates new form DlgSpesialis
      * @param parent
      * @param modal */
-    public GrafikKunjunganPerPendidikan(java.awt.Frame parent, boolean modal) {
+    public GrafikRegistrasiPerCaraBayar(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
 
@@ -77,7 +77,7 @@ public class GrafikKunjunganPerPendidikan extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Grafik Kunjungan Registrasi Per Pendidikan ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50,50,50))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Grafik Registrasi Per Cara Bayar ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -89,13 +89,13 @@ public class GrafikKunjunganPerPendidikan extends javax.swing.JDialog {
         panelGlass5.setPreferredSize(new java.awt.Dimension(55, 55));
         panelGlass5.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
 
-        jLabel33.setText("Periode Kunjungan :");
+        jLabel33.setText("Periode Registrasi :");
         jLabel33.setName("jLabel33"); // NOI18N
         jLabel33.setPreferredSize(new java.awt.Dimension(105, 23));
         panelGlass5.add(jLabel33);
 
         Tanggal1.setForeground(new java.awt.Color(50, 70, 50));
-        Tanggal1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-04-2019" }));
+        Tanggal1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-03-2020" }));
         Tanggal1.setDisplayFormat("dd-MM-yyyy");
         Tanggal1.setName("Tanggal1"); // NOI18N
         Tanggal1.setOpaque(false);
@@ -109,7 +109,7 @@ public class GrafikKunjunganPerPendidikan extends javax.swing.JDialog {
         panelGlass5.add(jLabel32);
 
         Tanggal2.setForeground(new java.awt.Color(50, 70, 50));
-        Tanggal2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-04-2019" }));
+        Tanggal2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-03-2020" }));
         Tanggal2.setDisplayFormat("dd-MM-yyyy");
         Tanggal2.setName("Tanggal2"); // NOI18N
         Tanggal2.setOpaque(false);
@@ -211,27 +211,24 @@ public class GrafikKunjunganPerPendidikan extends javax.swing.JDialog {
     private void BtnPrint3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPrint3ActionPerformed
         DefaultCategoryDataset dcd = new DefaultCategoryDataset();
         try {                
-            rs = koneksi.prepareStatement("select pasien.pnd,count(pasien.pnd) as jumlah "+
-                "from reg_periksa inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
-                "where tgl_registrasi between '"+Valid.SetTgl(Tanggal1.getSelectedItem()+"")+"' and '"+Valid.SetTgl(Tanggal2.getSelectedItem()+"")+"' group by pasien.pnd").executeQuery();
+            rs = koneksi.prepareStatement("select penjab.png_jawab,count(penjab.png_jawab) as jumlah "+
+                   "from reg_periksa inner join penjab on reg_periksa.kd_pj=penjab.kd_pj "+
+                   "where tgl_registrasi between '"+Valid.SetTgl(Tanggal1.getSelectedItem()+"")+"' and '"+Valid.SetTgl(Tanggal2.getSelectedItem()+"")+"' group by penjab.png_jawab").executeQuery();
             while(rs.next()) {
                 dcd.setValue(rs.getDouble(2),rs.getString(1)+"("+rs.getString(2)+")",rs.getString(1));
-            }
-            
-            if(rs!=null){
-                rs.close();
             }
         } catch (Exception e) {
             System.out.println("Notifikasi : " + e);
         }
-        JFreeChart freeChart = ChartFactory.createBarChart("Grafik Kunjungan Per Pendidikan Tanggal "+Valid.SetTgl(Tanggal1.getSelectedItem()+"")+" S.D. "+Valid.SetTgl(Tanggal2.getSelectedItem()+""),"Pendidikan","Jumlah Pasien", dcd, PlotOrientation.VERTICAL,true, true,true); 
-        ChartFrame cf = new ChartFrame("Grafik Kunjungan Per Pendidikan",freeChart);
+        
+       JFreeChart freeChart = ChartFactory.createBarChart("Grafik Registrasi Per Cara Bayar Tanggal "+Valid.SetTgl(Tanggal1.getSelectedItem()+"")+" S.D. "+Valid.SetTgl(Tanggal2.getSelectedItem()+""),"Cara Bayar","Jumlah Pasien", dcd, PlotOrientation.VERTICAL,true, true,true); 
+        ChartFrame cf = new ChartFrame("Grafik Registrasi Per Cara Bayar",freeChart);
         cf.setSize(panelBiasa3.getWidth(),panelBiasa3.getHeight());   
-        cf.setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
         cf.setLocationRelativeTo(panelBiasa3);
+        cf.setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
         cf.setAlwaysOnTop(true);
         cf.setIconImage(new ImageIcon(super.getClass().getResource("/picture/addressbook-edit24.png")).getImage());
-        cf.setVisible(true);  
+        cf.setVisible(true);         
     }//GEN-LAST:event_BtnPrint3ActionPerformed
 
     private void BtnPrint3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnPrint3KeyPressed
@@ -247,10 +244,10 @@ public class GrafikKunjunganPerPendidikan extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnKeluar3KeyPressed
 
     private void BtnPrint4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPrint4ActionPerformed
-       grafiksql2 kas=new grafiksql2("Grafik Kunjungan Per Pendidikan Tanggal "+Valid.SetTgl(Tanggal1.getSelectedItem()+"")+" S.D. "+Valid.SetTgl(Tanggal2.getSelectedItem()+""),
-               "select pasien.pnd,count(pasien.pnd) as jumlah from reg_periksa inner join pasien "+
-               "on reg_periksa.no_rkm_medis=pasien.no_rkm_medis where tgl_registrasi between '"+Valid.SetTgl(Tanggal1.getSelectedItem()+"")+"' and '"+Valid.SetTgl(Tanggal2.getSelectedItem()+"")+"' "+
-               "group by pasien.pnd","Pendidikan");
+       grafiksql2 kas=new grafiksql2("Grafik Registrasi Per Cara Bayar Tanggal "+Valid.SetTgl(Tanggal1.getSelectedItem()+"")+" S.D. "+Valid.SetTgl(Tanggal2.getSelectedItem()+""),
+               "select penjab.png_jawab,count(penjab.png_jawab) as jumlah "+
+                   "from reg_periksa inner join penjab on reg_periksa.kd_pj=penjab.kd_pj "+
+                   "where tgl_registrasi between '"+Valid.SetTgl(Tanggal1.getSelectedItem()+"")+"' and '"+Valid.SetTgl(Tanggal2.getSelectedItem()+"")+"' group by penjab.png_jawab","Cara Bayar");
        kas.setSize(panelBiasa3.getWidth(),panelBiasa3.getHeight());  
        kas.setModal(true);
        kas.setAlwaysOnTop(true);
@@ -263,30 +260,27 @@ public class GrafikKunjunganPerPendidikan extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnPrint4KeyPressed
 
     private void BtnPrint5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPrint5ActionPerformed
+        
         DefaultPieDataset dpd = new DefaultPieDataset();
         try {                
-            rs = koneksi.prepareStatement("select pasien.pnd,count(pasien.pnd) as jumlah "+
-                "from reg_periksa inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
-                "where tgl_registrasi between '"+Valid.SetTgl(Tanggal1.getSelectedItem()+"")+"' and '"+Valid.SetTgl(Tanggal2.getSelectedItem()+"")+"' group by pasien.pnd").executeQuery();
+            rs = koneksi.prepareStatement("select penjab.png_jawab,count(penjab.png_jawab) as jumlah "+
+                   "from reg_periksa inner join penjab on reg_periksa.kd_pj=penjab.kd_pj "+
+                   "where tgl_registrasi between '"+Valid.SetTgl(Tanggal1.getSelectedItem()+"")+"' and '"+Valid.SetTgl(Tanggal2.getSelectedItem()+"")+"' group by penjab.png_jawab").executeQuery();
             while(rs.next()) {
                 dpd.setValue(rs.getString(1)+"("+rs.getString(2)+")",rs.getDouble(2));
             }
-            
-            if(rs!=null){
-                rs.close();
-            }
         } catch (Exception e) {
             System.out.println("Notifikasi : " + e);
-        } 
+        }
         
-        JFreeChart freeChart = ChartFactory.createPieChart("Grafik Kunjungan Per Pendidikan Tanggal "+Valid.SetTgl(Tanggal1.getSelectedItem()+"")+" S.D. "+Valid.SetTgl(Tanggal2.getSelectedItem()+""),dpd,true,true, false); //String title,PieDatasheet datasheet,boolean legends,boolean tooltips,boolean url 
-        ChartFrame cf = new ChartFrame("Grafik Kunjungan Per Pendidikan",freeChart);
+        JFreeChart freeChart = ChartFactory.createPieChart("Grafik Registrasi Per Cara Bayar Tanggal "+Valid.SetTgl(Tanggal1.getSelectedItem()+"")+" S.D. "+Valid.SetTgl(Tanggal2.getSelectedItem()+""),dpd,true,true, false);
+        ChartFrame cf = new ChartFrame("Grafik Registrasi Per Cara Bayar",freeChart);
         cf.setSize(panelBiasa3.getWidth(),panelBiasa3.getHeight());   
-        cf.setLocationRelativeTo(panelBiasa3);
         cf.setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
+        cf.setLocationRelativeTo(panelBiasa3);
         cf.setAlwaysOnTop(true);
         cf.setIconImage(new ImageIcon(super.getClass().getResource("/picture/addressbook-edit24.png")).getImage());
-        cf.setVisible(true);  
+        cf.setVisible(true);
     }//GEN-LAST:event_BtnPrint5ActionPerformed
 
     private void BtnPrint5KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnPrint5KeyPressed
@@ -298,7 +292,7 @@ public class GrafikKunjunganPerPendidikan extends javax.swing.JDialog {
     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> {
-            GrafikKunjunganPerPendidikan dialog = new GrafikKunjunganPerPendidikan(new javax.swing.JFrame(), true);
+            GrafikRegistrasiPerCaraBayar dialog = new GrafikRegistrasiPerCaraBayar(new javax.swing.JFrame(), true);
             dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                 @Override
                 public void windowClosing(java.awt.event.WindowEvent e) {
