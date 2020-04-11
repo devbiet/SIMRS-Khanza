@@ -24,12 +24,13 @@ import javax.swing.table.TableColumn;
 import keuangan.Jurnal;
 import kepegawaian.DlgCariPetugas;
 
-public class DlgPengambilanPenunjangUTD extends javax.swing.JDialog {
+public class IPSRSPengambilanPenunjangUTD extends javax.swing.JDialog {
     private final DefaultTableModel tabMode;
     private sekuel Sequel=new sekuel();
     private validasi Valid=new validasi();
     private Connection koneksi=koneksiDB.condb();
     private PreparedStatement ps,psstok2;
+    private riwayatnonmedis Trackbarang=new riwayatnonmedis();
     private ResultSet rs,rsstok;
     private int jml=0,i=0,row=0,index=0;
     private String[] kodebarang,namabarang,jumlah,satuan,stokasal,stoktujuan,hbeli,total;
@@ -41,7 +42,7 @@ public class DlgPengambilanPenunjangUTD extends javax.swing.JDialog {
     /** Creates new form DlgProgramStudi
      * @param parent
      * @param modal */
-    public DlgPengambilanPenunjangUTD(java.awt.Frame parent, boolean modal) {
+    public IPSRSPengambilanPenunjangUTD(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
 
@@ -461,7 +462,7 @@ public class DlgPengambilanPenunjangUTD extends javax.swing.JDialog {
 
     private void BtnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCariActionPerformed
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        DlgCariPengambilanPenunjangUTD pindah=new DlgCariPengambilanPenunjangUTD(null,true);
+        IPSRSCariPengambilanPenunjangUTD pindah=new IPSRSCariPengambilanPenunjangUTD(null,true);
         pindah.tampil();
         pindah.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
         pindah.setLocationRelativeTo(internalFrame1);
@@ -503,6 +504,7 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
                             if(Sequel.menyimpantf2("utd_pengambilan_penunjang","'"+tbDokter.getValueAt(i,1).toString()+"','"+tbDokter.getValueAt(i,0).toString()+"','"+
                                     tbDokter.getValueAt(i,3).toString()+"','"+tbDokter.getValueAt(i,4).toString()+"','"+Nip.getText()+"','"+
                                     Valid.SetTgl(Tanggal.getSelectedItem()+"")+" "+Tanggal.getSelectedItem().toString().substring(11,19)+"','"+Keterangan.getText()+"'","Pengambilan BHP UTD")==true){
+                                Trackbarang.catatRiwayat(tabMode.getValueAt(i,1).toString(),0,Valid.SetAngka(tabMode.getValueAt(i,0).toString()),"Pengambilan UTD", akses.getkode(),"Simpan");
                                 Sequel.mengedit("ipsrsbarang","kode_brng=?","stok=stok-?",2,new String[]{
                                     tbDokter.getValueAt(i,0).toString(),tbDokter.getValueAt(i,1).toString()
                                 });
@@ -720,7 +722,7 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> {
-            DlgPengambilanPenunjangUTD dialog = new DlgPengambilanPenunjangUTD(new javax.swing.JFrame(), true);
+            IPSRSPengambilanPenunjangUTD dialog = new IPSRSPengambilanPenunjangUTD(new javax.swing.JFrame(), true);
             dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                 @Override
                 public void windowClosing(java.awt.event.WindowEvent e) {

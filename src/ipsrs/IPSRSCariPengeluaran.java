@@ -7,7 +7,6 @@ import fungsi.validasi;
 import fungsi.akses;
 import java.awt.Cursor;
 import java.awt.Dimension;
-import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
@@ -26,13 +25,14 @@ import javax.swing.table.TableColumn;
 import keuangan.Jurnal;
 import kepegawaian.DlgCariPetugas;
 
-public class DlgCariPengeluaranIpsrs extends javax.swing.JDialog {
+public class IPSRSCariPengeluaran extends javax.swing.JDialog {
     private final DefaultTableModel tabMode,tabMode2;
     private sekuel Sequel=new sekuel();
     private validasi Valid=new validasi();
     private Connection koneksi=koneksiDB.condb();
     public  DlgCariPetugas petugas=new DlgCariPetugas(null,false);
     public  IPSRSBarang barang=new IPSRSBarang(null,false);
+    private riwayatnonmedis Trackbarang=new riwayatnonmedis();
     private PreparedStatement ps,ps2,psdetailpengeluaran;
     private Jurnal jur=new Jurnal();
     private ResultSet rs,rs2;
@@ -42,7 +42,7 @@ public class DlgCariPengeluaranIpsrs extends javax.swing.JDialog {
     /** Creates new form DlgProgramStudi
      * @param parent
      * @param modal */
-    public DlgCariPengeluaranIpsrs(java.awt.Frame parent, boolean modal) {
+    public IPSRSCariPengeluaran(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
 
@@ -314,7 +314,7 @@ public class DlgCariPengeluaranIpsrs extends javax.swing.JDialog {
 
         ppHapus.setBackground(new java.awt.Color(255, 255, 254));
         ppHapus.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        ppHapus.setForeground(new java.awt.Color(50,50,50));
+        ppHapus.setForeground(new java.awt.Color(50, 50, 50));
         ppHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppHapus.setText("Hapus Data Stok Keluar");
         ppHapus.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -332,7 +332,7 @@ public class DlgCariPengeluaranIpsrs extends javax.swing.JDialog {
         setUndecorated(true);
         setResizable(false);
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Cari Stok Keluar Barang Non Medis dan Penunjang ( Lab & RO ) ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50,50,50))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Cari Stok Keluar Barang Non Medis dan Penunjang ( Lab & RO ) ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -612,7 +612,7 @@ public class DlgCariPengeluaranIpsrs extends javax.swing.JDialog {
 
         TabRawat.setBackground(new java.awt.Color(255, 255, 253));
         TabRawat.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(239, 244, 234)));
-        TabRawat.setForeground(new java.awt.Color(50,50,50));
+        TabRawat.setForeground(new java.awt.Color(50, 50, 50));
         TabRawat.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         TabRawat.setName("TabRawat"); // NOI18N
         TabRawat.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -892,6 +892,7 @@ private void ppHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
             rs2=psdetailpengeluaran.executeQuery();
             total=0;
             while(rs2.next()){
+               Trackbarang.catatRiwayat(rs2.getString("kode_brng"),rs2.getDouble("jumlah"),0,"Stok Keluar", akses.getkode(),"Hapus");
                Sequel.mengedit("ipsrsbarang","kode_brng=?","stok=stok+?",2,new String[]{
                    rs2.getString("jumlah"),rs2.getString("kode_brng")
                });
@@ -953,7 +954,7 @@ private void ppHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> {
-            DlgCariPengeluaranIpsrs dialog = new DlgCariPengeluaranIpsrs(new javax.swing.JFrame(), true);
+            IPSRSCariPengeluaran dialog = new IPSRSCariPengeluaran(new javax.swing.JFrame(), true);
             dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                 @Override
                 public void windowClosing(java.awt.event.WindowEvent e) {

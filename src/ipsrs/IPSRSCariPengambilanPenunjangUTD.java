@@ -11,7 +11,6 @@
 
 package ipsrs;
 
-import inventory.*;
 import fungsi.WarnaTable;
 import fungsi.batasInput;
 import fungsi.koneksiDB;
@@ -20,7 +19,6 @@ import fungsi.validasi;
 import fungsi.akses;
 import java.awt.Cursor;
 import java.awt.Dimension;
-import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -38,19 +36,20 @@ import keuangan.Jurnal;
  *
  * @author dosen
  */
-public final class DlgCariPengambilanPenunjangUTD extends javax.swing.JDialog {
+public final class IPSRSCariPengambilanPenunjangUTD extends javax.swing.JDialog {
     private final DefaultTableModel tabMode;
     private sekuel Sequel=new sekuel();
     private validasi Valid=new validasi(); 
     private Connection koneksi=koneksiDB.condb(); 
     private ResultSet rs;
     private PreparedStatement ps;
+    private riwayatnonmedis Trackbarang=new riwayatnonmedis();
     private double total=0;
     private Jurnal jur=new Jurnal();
     /** Creates new form DlgPenyakit
      * @param parent
      * @param modal */
-    public DlgCariPengambilanPenunjangUTD(java.awt.Frame parent, boolean modal) {
+    public IPSRSCariPengambilanPenunjangUTD(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setLocation(10,2);
@@ -157,7 +156,7 @@ public final class DlgCariPengambilanPenunjangUTD extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Data Pengambilan BHP Non Medis Unit Tranfusi Darah ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50,50,50))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Data Pengambilan BHP Non Medis Unit Tranfusi Darah ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -184,7 +183,7 @@ public final class DlgCariPengambilanPenunjangUTD extends javax.swing.JDialog {
         panelisi3.add(jLabel19);
 
         DTPCari1.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-05-2019" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-05-2019" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -198,7 +197,7 @@ public final class DlgCariPengambilanPenunjangUTD extends javax.swing.JDialog {
         panelisi3.add(jLabel21);
 
         DTPCari2.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-05-2019" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-05-2019" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -356,6 +355,7 @@ public final class DlgCariPengambilanPenunjangUTD extends javax.swing.JDialog {
                           "and nip='"+tbKamar.getValueAt(tbKamar.getSelectedRow(),6)+"' "+
                           "and tanggal='"+tbKamar.getValueAt(tbKamar.getSelectedRow(),7).toString()+"' "+
                           "and jml='"+tbKamar.getValueAt(tbKamar.getSelectedRow(),2)+"'");
+            Trackbarang.catatRiwayat(tbKamar.getValueAt(tbKamar.getSelectedRow(),0).toString(),Double.parseDouble(tbKamar.getValueAt(tbKamar.getSelectedRow(),2).toString()),0,"Pengambilan UTD", akses.getkode(),"Hapus");
             Sequel.mengedit("ipsrsbarang","kode_brng=?","stok=stok+?",2,new String[]{
                                 tbKamar.getValueAt(tbKamar.getSelectedRow(),2).toString(),
                                 tbKamar.getValueAt(tbKamar.getSelectedRow(),0).toString()
@@ -468,7 +468,7 @@ private void BtnCetakKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> {
-            DlgCariPengambilanPenunjangUTD dialog = new DlgCariPengambilanPenunjangUTD(new javax.swing.JFrame(), true);
+            IPSRSCariPengambilanPenunjangUTD dialog = new IPSRSCariPengambilanPenunjangUTD(new javax.swing.JFrame(), true);
             dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                 @Override
                 public void windowClosing(java.awt.event.WindowEvent e) {

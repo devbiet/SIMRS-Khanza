@@ -9,7 +9,6 @@ import fungsi.validasi;
 import fungsi.akses;
 import java.awt.Cursor;
 import java.awt.Dimension;
-import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
@@ -24,15 +23,16 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import keuangan.Jurnal;
 
-public class DlgPengeluaranIPSRS extends javax.swing.JDialog {
+public class IPSRSPengeluaran extends javax.swing.JDialog {
     private final DefaultTableModel tabMode;
     private sekuel Sequel=new sekuel();
     private validasi Valid=new validasi();
     private Jurnal jur=new Jurnal();
     private Connection koneksi=koneksiDB.condb();
+    private riwayatnonmedis Trackbarang=new riwayatnonmedis();
     private PreparedStatement ps;
     private ResultSet rs;
-    private DlgCariPengeluaranIpsrs form=new DlgCariPengeluaranIpsrs(null,false);
+    private IPSRSCariPengeluaran form=new IPSRSCariPengeluaran(null,false);
     private int jml=0,i=0,row=0,index=0;
     private double ttl,keluar;
     private String[] kodebarang,namabarang,satuan,jumlah,stok;
@@ -44,7 +44,7 @@ public class DlgPengeluaranIPSRS extends javax.swing.JDialog {
     /** Creates new form DlgProgramStudi
      * @param parent
      * @param modal */
-    public DlgPengeluaranIPSRS(java.awt.Frame parent, boolean modal) {
+    public IPSRSPengeluaran(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
 
@@ -535,6 +535,7 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
                                 NoKeluar.getText(),tbDokter.getValueAt(i,1).toString(),tbDokter.getValueAt(i,3).toString(),
                                 tbDokter.getValueAt(i,0).toString(),tbDokter.getValueAt(i,5).toString(),tbDokter.getValueAt(i,6).toString()
                             })==true){
+                                Trackbarang.catatRiwayat(tabMode.getValueAt(i,1).toString(),0,Valid.SetAngka(tabMode.getValueAt(i,0).toString()),"Stok Keluar", akses.getkode(),"Simpan");
                                 Sequel.mengedit("ipsrsbarang","kode_brng=?","stok=stok-?",2,new String[]{
                                     tbDokter.getValueAt(i,0).toString(),tbDokter.getValueAt(i,1).toString()
                                 });
@@ -712,7 +713,7 @@ private void btnPetugasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> {
-            DlgPengeluaranIPSRS dialog = new DlgPengeluaranIPSRS(new javax.swing.JFrame(), true);
+            IPSRSPengeluaran dialog = new IPSRSPengeluaran(new javax.swing.JFrame(), true);
             dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                 @Override
                 public void windowClosing(java.awt.event.WindowEvent e) {

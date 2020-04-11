@@ -30,7 +30,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
-public class DlgInputStokIPSRS extends javax.swing.JDialog {
+public class IPSRSInputStok extends javax.swing.JDialog {
     private final DefaultTableModel tabMode;
     private sekuel Sequel=new sekuel();
     private validasi Valid=new validasi();
@@ -42,12 +42,13 @@ public class DlgInputStokIPSRS extends javax.swing.JDialog {
     private String[] real,kodebarang,namabarang,kategori,satuan;
     private double[] hargabeli,stok,selisih,nomihilang;
     private WarnaTable2 warna=new WarnaTable2();
+    private riwayatnonmedis Trackbarang=new riwayatnonmedis();
     private boolean sukses=true;    
 
     /** Creates new form DlgProgramStudi
      * @param parent
      * @param modal */
-    public DlgInputStokIPSRS(java.awt.Frame parent, boolean modal) {
+    public IPSRSInputStok(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
 
@@ -442,7 +443,7 @@ public class DlgInputStokIPSRS extends javax.swing.JDialog {
 
     private void BtnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCariActionPerformed
        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        DlgStokOpnameIPSRS ipsrsopname=new DlgStokOpnameIPSRS(null,true);
+        IPSRSStokOpname ipsrsopname=new IPSRSStokOpname(null,true);
         ipsrsopname.isCek(); 
         ipsrsopname.emptTeks();
         ipsrsopname.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
@@ -486,6 +487,7 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
                                         tbDokter.getValueAt(i,1).toString(),tbDokter.getValueAt(i,5).toString(),Valid.SetTgl(Tgl.getSelectedItem()+""),tbDokter.getValueAt(i,6).toString(),
                                         tbDokter.getValueAt(i,0).toString(),tbDokter.getValueAt(i,7).toString(),tbDokter.getValueAt(i,8).toString(),catatan.getText()
                                     })==true){
+                                    Trackbarang.catatRiwayat(tbDokter.getValueAt(i,1).toString(),Valid.SetAngka(tbDokter.getValueAt(i,0).toString()),0,"Opname",akses.getkode(),"Simpan");
                                     Sequel.mengedit3("ipsrsbarang","kode_brng=?","stok=?",2,new String[]{
                                         tbDokter.getValueAt(i,0).toString(),tbDokter.getValueAt(i,1).toString()
                                     });
@@ -613,7 +615,7 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> {
-            DlgInputStokIPSRS dialog = new DlgInputStokIPSRS(new javax.swing.JFrame(), true);
+            IPSRSInputStok dialog = new IPSRSInputStok(new javax.swing.JFrame(), true);
             dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                 @Override
                 public void windowClosing(java.awt.event.WindowEvent e) {
