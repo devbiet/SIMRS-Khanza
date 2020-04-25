@@ -41,7 +41,7 @@ import kepegawaian.DlgCariPetugas;
  *
  * @author perpustakaan
  */
-public final class RMPenilaianAwalKeperawatanGizi extends javax.swing.JDialog {
+public final class RMPenilaianAwalKeperawatanGigi extends javax.swing.JDialog {
     private final DefaultTableModel tabMode,tabModeMasalah,tabModeDetailMasalah;
     private Connection koneksi=koneksiDB.condb();
     private sekuel Sequel=new sekuel();
@@ -58,7 +58,7 @@ public final class RMPenilaianAwalKeperawatanGizi extends javax.swing.JDialog {
     /** Creates new form DlgRujuk
      * @param parent
      * @param modal */
-    public RMPenilaianAwalKeperawatanGizi(java.awt.Frame parent, boolean modal) {
+    public RMPenilaianAwalKeperawatanGigi(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         
@@ -279,14 +279,10 @@ public final class RMPenilaianAwalKeperawatanGizi extends javax.swing.JDialog {
         Nadi.setDocument(new batasInput((byte)5).getKata(Nadi));
         RR.setDocument(new batasInput((byte)5).getKata(RR));
         Suhu.setDocument(new batasInput((byte)5).getKata(Suhu));
-        GCS.setDocument(new batasInput((byte)5).getKata(GCS));
         BB.setDocument(new batasInput((byte)5).getKata(BB));
         TB.setDocument(new batasInput((byte)5).getKata(TB));
         BMI.setDocument(new batasInput((byte)5).getKata(BMI));
         KeluhanUtama.setDocument(new batasInput((int)150).getKata(KeluhanUtama));
-        RPD.setDocument(new batasInput((int)100).getKata(RPD));
-        RPK.setDocument(new batasInput((int)100).getKata(RPK));
-        RPO.setDocument(new batasInput((int)100).getKata(RPO));
         Alergi.setDocument(new batasInput((int)25).getKata(Alergi));
         KetBantu.setDocument(new batasInput((int)50).getKata(KetBantu));
         KetProthesa.setDocument(new batasInput((int)50).getKata(KetProthesa));
@@ -405,7 +401,6 @@ public final class RMPenilaianAwalKeperawatanGizi extends javax.swing.JDialog {
         BtnDokter = new widget.Button();
         jLabel8 = new widget.Label();
         TglLahir = new widget.TextBox();
-        jLabel9 = new widget.Label();
         Jk = new widget.TextBox();
         jLabel10 = new widget.Label();
         label11 = new widget.Label();
@@ -442,14 +437,6 @@ public final class RMPenilaianAwalKeperawatanGizi extends javax.swing.JDialog {
         scrollPane1 = new widget.ScrollPane();
         KeluhanUtama = new widget.TextArea();
         jLabel30 = new widget.Label();
-        scrollPane2 = new widget.ScrollPane();
-        RPD = new widget.TextArea();
-        jLabel31 = new widget.Label();
-        scrollPane3 = new widget.ScrollPane();
-        RPK = new widget.TextArea();
-        jLabel32 = new widget.Label();
-        scrollPane4 = new widget.ScrollPane();
-        RPO = new widget.TextArea();
         AlatBantu = new widget.ComboBox();
         KetBantu = new widget.TextBox();
         jLabel54 = new widget.Label();
@@ -519,8 +506,6 @@ public final class RMPenilaianAwalKeperawatanGizi extends javax.swing.JDialog {
         jLabel92 = new widget.Label();
         TotalHasil = new widget.TextBox();
         TglAsuhan = new widget.Tanggal();
-        jLabel28 = new widget.Label();
-        GCS = new widget.TextBox();
         jLabel93 = new widget.Label();
         jLabel94 = new widget.Label();
         jLabel51 = new widget.Label();
@@ -556,6 +541,19 @@ public final class RMPenilaianAwalKeperawatanGizi extends javax.swing.JDialog {
         jLabel76 = new widget.Label();
         jLabel77 = new widget.Label();
         Agama = new widget.TextBox();
+        jLabel78 = new widget.Label();
+        AlatBantu1 = new widget.ComboBox();
+        KetBantu1 = new widget.TextBox();
+        jLabel90 = new widget.Label();
+        AlatBantu2 = new widget.ComboBox();
+        KetBantu2 = new widget.TextBox();
+        jLabel91 = new widget.Label();
+        AlatBantu3 = new widget.ComboBox();
+        jLabel98 = new widget.Label();
+        AlatBantu4 = new widget.ComboBox();
+        KetBantu3 = new widget.TextBox();
+        jLabel38 = new widget.Label();
+        Alergi1 = new widget.TextBox();
         internalFrame3 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbObat = new widget.Table();
@@ -828,11 +826,6 @@ public final class RMPenilaianAwalKeperawatanGizi extends javax.swing.JDialog {
         FormInput.add(TglLahir);
         TglLahir.setBounds(644, 10, 80, 23);
 
-        jLabel9.setText("Riwayat Pengobatan :");
-        jLabel9.setName("jLabel9"); // NOI18N
-        FormInput.add(jLabel9);
-        jLabel9.setBounds(440, 240, 150, 23);
-
         Jk.setEditable(false);
         Jk.setHighlighter(null);
         Jk.setName("Jk"); // NOI18N
@@ -884,18 +877,18 @@ public final class RMPenilaianAwalKeperawatanGizi extends javax.swing.JDialog {
             }
         });
         FormInput.add(TB);
-        TB.setBounds(250, 140, 60, 23);
+        TB.setBounds(300, 140, 60, 23);
 
         jLabel15.setText("TB :");
         jLabel15.setName("jLabel15"); // NOI18N
         FormInput.add(jLabel15);
-        jLabel15.setBounds(206, 140, 40, 23);
+        jLabel15.setBounds(256, 140, 40, 23);
 
         jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel16.setText("x/menit");
         jLabel16.setName("jLabel16"); // NOI18N
         FormInput.add(jLabel16);
-        jLabel16.setBounds(313, 90, 50, 23);
+        jLabel16.setBounds(363, 90, 50, 23);
 
         Nadi.setFocusTraversalPolicyProvider(true);
         Nadi.setName("Nadi"); // NOI18N
@@ -905,17 +898,17 @@ public final class RMPenilaianAwalKeperawatanGizi extends javax.swing.JDialog {
             }
         });
         FormInput.add(Nadi);
-        Nadi.setBounds(250, 90, 60, 23);
+        Nadi.setBounds(300, 90, 60, 23);
 
         jLabel17.setText("Nadi :");
         jLabel17.setName("jLabel17"); // NOI18N
         FormInput.add(jLabel17);
-        jLabel17.setBounds(206, 90, 40, 23);
+        jLabel17.setBounds(256, 90, 40, 23);
 
         jLabel18.setText("Suhu :");
         jLabel18.setName("jLabel18"); // NOI18N
         FormInput.add(jLabel18);
-        jLabel18.setBounds(566, 90, 40, 23);
+        jLabel18.setBounds(716, 90, 40, 23);
 
         Suhu.setFocusTraversalPolicyProvider(true);
         Suhu.setName("Suhu"); // NOI18N
@@ -925,7 +918,7 @@ public final class RMPenilaianAwalKeperawatanGizi extends javax.swing.JDialog {
             }
         });
         FormInput.add(Suhu);
-        Suhu.setBounds(610, 90, 60, 23);
+        Suhu.setBounds(760, 90, 60, 23);
 
         jLabel22.setText("TD :");
         jLabel22.setName("jLabel22"); // NOI18N
@@ -946,7 +939,7 @@ public final class RMPenilaianAwalKeperawatanGizi extends javax.swing.JDialog {
         jLabel20.setText("°C");
         jLabel20.setName("jLabel20"); // NOI18N
         FormInput.add(jLabel20);
-        jLabel20.setBounds(673, 90, 30, 23);
+        jLabel20.setBounds(823, 90, 30, 23);
 
         jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel23.setText("mmHg");
@@ -958,13 +951,13 @@ public final class RMPenilaianAwalKeperawatanGizi extends javax.swing.JDialog {
         jLabel24.setText("Cm");
         jLabel24.setName("jLabel24"); // NOI18N
         FormInput.add(jLabel24);
-        jLabel24.setBounds(313, 140, 30, 23);
+        jLabel24.setBounds(363, 140, 30, 23);
 
         jLabel25.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel25.setText("x/menit");
         jLabel25.setName("jLabel25"); // NOI18N
         FormInput.add(jLabel25);
-        jLabel25.setBounds(485, 90, 50, 23);
+        jLabel25.setBounds(585, 90, 50, 23);
 
         RR.setFocusTraversalPolicyProvider(true);
         RR.setName("RR"); // NOI18N
@@ -974,17 +967,17 @@ public final class RMPenilaianAwalKeperawatanGizi extends javax.swing.JDialog {
             }
         });
         FormInput.add(RR);
-        RR.setBounds(422, 90, 60, 23);
+        RR.setBounds(522, 90, 60, 23);
 
         jLabel26.setText("RR :");
         jLabel26.setName("jLabel26"); // NOI18N
         FormInput.add(jLabel26);
-        jLabel26.setBounds(378, 90, 40, 23);
+        jLabel26.setBounds(478, 90, 40, 23);
 
         jLabel14.setText("BMI :");
         jLabel14.setName("jLabel14"); // NOI18N
         FormInput.add(jLabel14);
-        jLabel14.setBounds(378, 140, 40, 23);
+        jLabel14.setBounds(478, 140, 40, 23);
 
         BMI.setFocusTraversalPolicyProvider(true);
         BMI.setName("BMI"); // NOI18N
@@ -994,13 +987,13 @@ public final class RMPenilaianAwalKeperawatanGizi extends javax.swing.JDialog {
             }
         });
         FormInput.add(BMI);
-        BMI.setBounds(422, 140, 60, 23);
+        BMI.setBounds(522, 140, 60, 23);
 
         jLabel27.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel27.setText("Kg/m²");
         jLabel27.setName("jLabel27"); // NOI18N
         FormInput.add(jLabel27);
-        jLabel27.setBounds(485, 140, 50, 23);
+        jLabel27.setBounds(585, 140, 50, 23);
 
         jLabel36.setText("Informasi didapat dari :");
         jLabel36.setName("jLabel36"); // NOI18N
@@ -1010,7 +1003,7 @@ public final class RMPenilaianAwalKeperawatanGizi extends javax.swing.JDialog {
         jLabel37.setText("Riwayat Alergi :");
         jLabel37.setName("jLabel37"); // NOI18N
         FormInput.add(jLabel37);
-        jLabel37.setBounds(0, 290, 175, 23);
+        jLabel37.setBounds(0, 250, 147, 23);
 
         Alergi.setFocusTraversalPolicyProvider(true);
         Alergi.setName("Alergi"); // NOI18N
@@ -1020,7 +1013,7 @@ public final class RMPenilaianAwalKeperawatanGizi extends javax.swing.JDialog {
             }
         });
         FormInput.add(Alergi);
-        Alergi.setBounds(179, 290, 260, 23);
+        Alergi.setBounds(151, 250, 250, 23);
 
         jLabel43.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel43.setText("2. Apakah nafsu makan berkurang karena tidak nafsu makan ?");
@@ -1070,73 +1063,12 @@ public final class RMPenilaianAwalKeperawatanGizi extends javax.swing.JDialog {
         scrollPane1.setViewportView(KeluhanUtama);
 
         FormInput.add(scrollPane1);
-        scrollPane1.setBounds(179, 190, 260, 43);
+        scrollPane1.setBounds(151, 190, 250, 52);
 
         jLabel30.setText("Keluhan Utama :");
         jLabel30.setName("jLabel30"); // NOI18N
         FormInput.add(jLabel30);
-        jLabel30.setBounds(0, 190, 175, 20);
-
-        scrollPane2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        scrollPane2.setName("scrollPane2"); // NOI18N
-
-        RPD.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        RPD.setColumns(20);
-        RPD.setRows(5);
-        RPD.setName("RPD"); // NOI18N
-        RPD.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                RPDKeyPressed(evt);
-            }
-        });
-        scrollPane2.setViewportView(RPD);
-
-        FormInput.add(scrollPane2);
-        scrollPane2.setBounds(179, 240, 260, 43);
-
-        jLabel31.setText("Riwayat Penyakit Dahulu :");
-        jLabel31.setName("jLabel31"); // NOI18N
-        FormInput.add(jLabel31);
-        jLabel31.setBounds(0, 240, 175, 23);
-
-        scrollPane3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        scrollPane3.setName("scrollPane3"); // NOI18N
-
-        RPK.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        RPK.setColumns(20);
-        RPK.setRows(5);
-        RPK.setName("RPK"); // NOI18N
-        RPK.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                RPKKeyPressed(evt);
-            }
-        });
-        scrollPane3.setViewportView(RPK);
-
-        FormInput.add(scrollPane3);
-        scrollPane3.setBounds(594, 190, 260, 42);
-
-        jLabel32.setText("Riwayat Penyakit Keluarga :");
-        jLabel32.setName("jLabel32"); // NOI18N
-        FormInput.add(jLabel32);
-        jLabel32.setBounds(440, 190, 150, 23);
-
-        scrollPane4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        scrollPane4.setName("scrollPane4"); // NOI18N
-
-        RPO.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        RPO.setColumns(20);
-        RPO.setRows(5);
-        RPO.setName("RPO"); // NOI18N
-        RPO.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                RPOKeyPressed(evt);
-            }
-        });
-        scrollPane4.setViewportView(RPO);
-
-        FormInput.add(scrollPane4);
-        scrollPane4.setBounds(594, 240, 260, 42);
+        jLabel30.setBounds(0, 190, 147, 20);
 
         AlatBantu.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tidak", "Ya" }));
         AlatBantu.setName("AlatBantu"); // NOI18N
@@ -1692,7 +1624,7 @@ public final class RMPenilaianAwalKeperawatanGizi extends javax.swing.JDialog {
         TotalHasil.setBounds(774, 770, 80, 23);
 
         TglAsuhan.setForeground(new java.awt.Color(50, 70, 50));
-        TglAsuhan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-04-2020 13:04:12" }));
+        TglAsuhan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-04-2020 18:46:55" }));
         TglAsuhan.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TglAsuhan.setName("TglAsuhan"); // NOI18N
         TglAsuhan.setOpaque(false);
@@ -1703,21 +1635,6 @@ public final class RMPenilaianAwalKeperawatanGizi extends javax.swing.JDialog {
         });
         FormInput.add(TglAsuhan);
         TglAsuhan.setBounds(456, 40, 130, 23);
-
-        jLabel28.setText("GCS(E,V,M) :");
-        jLabel28.setName("jLabel28"); // NOI18N
-        FormInput.add(jLabel28);
-        jLabel28.setBounds(700, 90, 90, 23);
-
-        GCS.setFocusTraversalPolicyProvider(true);
-        GCS.setName("GCS"); // NOI18N
-        GCS.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                GCSKeyPressed(evt);
-            }
-        });
-        FormInput.add(GCS);
-        GCS.setBounds(794, 90, 60, 23);
 
         jLabel93.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel93.setText("II. STATUS NUTRISI");
@@ -1982,6 +1899,111 @@ public final class RMPenilaianAwalKeperawatanGizi extends javax.swing.JDialog {
         FormInput.add(Agama);
         Agama.setBounds(86, 530, 110, 23);
 
+        jLabel78.setText("Riwayat Penyakit :");
+        jLabel78.setName("jLabel78"); // NOI18N
+        FormInput.add(jLabel78);
+        jLabel78.setBounds(440, 190, 110, 23);
+
+        AlatBantu1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tidak Ada", "Diabetes Melitus", "Hipertensi", "Penyakit Jantung", "HIV", "Hepatitis", "Haemophilia", "Lain-lain" }));
+        AlatBantu1.setName("AlatBantu1"); // NOI18N
+        AlatBantu1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                AlatBantu1KeyPressed(evt);
+            }
+        });
+        FormInput.add(AlatBantu1);
+        AlatBantu1.setBounds(550, 190, 135, 23);
+
+        KetBantu1.setFocusTraversalPolicyProvider(true);
+        KetBantu1.setName("KetBantu1"); // NOI18N
+        KetBantu1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                KetBantu1KeyPressed(evt);
+            }
+        });
+        FormInput.add(KetBantu1);
+        KetBantu1.setBounds(690, 190, 180, 23);
+
+        jLabel90.setText("Riwayat Perawatan Gigi :");
+        jLabel90.setName("jLabel90"); // NOI18N
+        FormInput.add(jLabel90);
+        jLabel90.setBounds(410, 220, 140, 23);
+
+        AlatBantu2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tidak", "Ya, Kapan" }));
+        AlatBantu2.setName("AlatBantu2"); // NOI18N
+        AlatBantu2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                AlatBantu2KeyPressed(evt);
+            }
+        });
+        FormInput.add(AlatBantu2);
+        AlatBantu2.setBounds(550, 220, 100, 23);
+
+        KetBantu2.setFocusTraversalPolicyProvider(true);
+        KetBantu2.setName("KetBantu2"); // NOI18N
+        KetBantu2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                KetBantu2KeyPressed(evt);
+            }
+        });
+        FormInput.add(KetBantu2);
+        KetBantu2.setBounds(660, 220, 210, 23);
+
+        jLabel91.setText("Kebiasaan Sikat Gigi :");
+        jLabel91.setName("jLabel91"); // NOI18N
+        FormInput.add(jLabel91);
+        jLabel91.setBounds(0, 280, 147, 23);
+
+        AlatBantu3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1x", "2x", "3x", "Mandi", "Setelah Makan", "Sebelum Tidur" }));
+        AlatBantu3.setName("AlatBantu3"); // NOI18N
+        AlatBantu3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                AlatBantu3KeyPressed(evt);
+            }
+        });
+        FormInput.add(AlatBantu3);
+        AlatBantu3.setBounds(151, 280, 150, 23);
+
+        jLabel98.setText("Kebiasaan Lain :");
+        jLabel98.setName("jLabel98"); // NOI18N
+        FormInput.add(jLabel98);
+        jLabel98.setBounds(410, 250, 140, 23);
+
+        AlatBantu4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tidak ada", "Minum kopi/teh", "Minum alkohol", "Bruxism", "Menggigit pensil", "Mengunyah 1 sisi rahang", "Merokok", "Lain-lain" }));
+        AlatBantu4.setName("AlatBantu4"); // NOI18N
+        AlatBantu4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                AlatBantu4KeyPressed(evt);
+            }
+        });
+        FormInput.add(AlatBantu4);
+        AlatBantu4.setBounds(550, 250, 160, 23);
+
+        KetBantu3.setFocusTraversalPolicyProvider(true);
+        KetBantu3.setName("KetBantu3"); // NOI18N
+        KetBantu3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                KetBantu3KeyPressed(evt);
+            }
+        });
+        FormInput.add(KetBantu3);
+        KetBantu3.setBounds(720, 250, 150, 23);
+
+        jLabel38.setText("Obat Yang Diminum Saat Ini :");
+        jLabel38.setName("jLabel38"); // NOI18N
+        FormInput.add(jLabel38);
+        jLabel38.setBounds(380, 280, 175, 23);
+
+        Alergi1.setFocusTraversalPolicyProvider(true);
+        Alergi1.setName("Alergi1"); // NOI18N
+        Alergi1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                Alergi1KeyPressed(evt);
+            }
+        });
+        FormInput.add(Alergi1);
+        Alergi1.setBounds(560, 280, 260, 23);
+
         scrollInput.setViewportView(FormInput);
 
         internalFrame2.add(scrollInput, java.awt.BorderLayout.CENTER);
@@ -2210,8 +2232,6 @@ public final class RMPenilaianAwalKeperawatanGizi extends javax.swing.JDialog {
             Valid.textKosong(RR,"RR(x/menit)");
         }else if(Suhu.getText().trim().equals("")){
             Valid.textKosong(Suhu,"Suhu(C)");
-        }else if(GCS.getText().trim().equals("")){
-            Valid.textKosong(GCS,"GCS");
         }else if(BB.getText().trim().equals("")){
             Valid.textKosong(BB,"BB(Kg)");
         }else if(TB.getText().trim().equals("")){
@@ -2220,12 +2240,6 @@ public final class RMPenilaianAwalKeperawatanGizi extends javax.swing.JDialog {
             Valid.textKosong(BMI,"BMI(Kg/m2)");
         }else if(KeluhanUtama.getText().trim().equals("")){
             Valid.textKosong(KeluhanUtama,"Keluhan Utama");
-        }else if(RPD.getText().trim().equals("")){
-            Valid.textKosong(RPD,"Riwayat Penyakit Dahulu");
-        }else if(RPK.getText().trim().equals("")){
-            Valid.textKosong(RPK,"Riwayat Penyakit Keluarga");
-        }else if(RPO.getText().trim().equals("")){
-            Valid.textKosong(RPO,"Riwayat Pengobatan");
         }else if(Alergi.getText().trim().equals("")){
             Valid.textKosong(Alergi,"Alergi");
         }else if(TotalHasil.getText().trim().equals("")){
@@ -2237,7 +2251,7 @@ public final class RMPenilaianAwalKeperawatanGizi extends javax.swing.JDialog {
         }else if(NmPetugas.getText().trim().equals("")){
             Valid.textKosong(BtnDokter,"Petugas");
         }else{
-            if(Sequel.menyimpantf("penilaian_awal_keperawatan_ralan","?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?","No.Rawat",57,new String[]{
+            /*if(Sequel.menyimpantf("penilaian_awal_keperawatan_gigi","?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?","No.Rawat",57,new String[]{
                     TNoRw.getText(),Valid.SetTgl(TglAsuhan.getSelectedItem()+"")+" "+TglAsuhan.getSelectedItem().toString().substring(11,19),Informasi.getSelectedItem().toString(),TD.getText(),Nadi.getText(),RR.getText(),
                     Suhu.getText(),GCS.getText(),BB.getText(),TB.getText(),BMI.getText(),KeluhanUtama.getText(),RPD.getText(),RPK.getText(),RPO.getText(),Alergi.getText(),AlatBantu.getSelectedItem().toString(),KetBantu.getText(), 
                     Prothesa.getSelectedItem().toString(),KetProthesa.getText(),ADL.getSelectedItem().toString(),StatusPsiko.getSelectedItem().toString(),KetPsiko.getText(),HubunganKeluarga.getSelectedItem().toString(), 
@@ -2249,11 +2263,11 @@ public final class RMPenilaianAwalKeperawatanGizi extends javax.swing.JDialog {
                 })==true){
                     for (i = 0; i < tbMasalahKeperawatan.getRowCount(); i++) {
                         if(tbMasalahKeperawatan.getValueAt(i,0).toString().equals("true")){
-                            Sequel.menyimpan2("penilaian_awal_keperawatan_ralan_masalah","?,?",2,new String[]{TNoRw.getText(),tbMasalahKeperawatan.getValueAt(i,1).toString()});
+                            Sequel.menyimpan2("penilaian_awal_keperawatan_gigi_masalah","?,?",2,new String[]{TNoRw.getText(),tbMasalahKeperawatan.getValueAt(i,1).toString()});
                         }
                     }
                     emptTeks();
-            }
+            }*/
         }
     
 }//GEN-LAST:event_BtnSimpanActionPerformed
@@ -2278,12 +2292,12 @@ public final class RMPenilaianAwalKeperawatanGizi extends javax.swing.JDialog {
 
     private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusActionPerformed
         if(tbObat.getSelectedRow()>-1){
-            if(Sequel.queryu2tf("delete from penilaian_awal_keperawatan_ralan where no_rawat=?",1,new String[]{
+            if(Sequel.queryu2tf("delete from penilaian_awal_keperawatan_gigi where no_rawat=?",1,new String[]{
                 tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()
             })==true){
                 TNoRM1.setText("");
                 TPasien1.setText("");
-                Sequel.meghapus("penilaian_awal_keperawatan_ralan_masalah","no_rawat",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString());
+                Sequel.meghapus("penilaian_awal_keperawatan_gigi_masalah","no_rawat",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString());
                 Valid.tabelKosong(tabModeDetailMasalah);
                 ChkAccor.setSelected(false);
                 isMenu();
@@ -2317,8 +2331,6 @@ public final class RMPenilaianAwalKeperawatanGizi extends javax.swing.JDialog {
             Valid.textKosong(RR,"RR(x/menit)");
         }else if(Suhu.getText().trim().equals("")){
             Valid.textKosong(Suhu,"Suhu(C)");
-        }else if(GCS.getText().trim().equals("")){
-            Valid.textKosong(GCS,"GCS");
         }else if(BB.getText().trim().equals("")){
             Valid.textKosong(BB,"BB(Kg)");
         }else if(TB.getText().trim().equals("")){
@@ -2327,12 +2339,6 @@ public final class RMPenilaianAwalKeperawatanGizi extends javax.swing.JDialog {
             Valid.textKosong(BMI,"BMI(Kg/m2)");
         }else if(KeluhanUtama.getText().trim().equals("")){
             Valid.textKosong(KeluhanUtama,"Keluhan Utama");
-        }else if(RPD.getText().trim().equals("")){
-            Valid.textKosong(RPD,"Riwayat Penyakit Dahulu");
-        }else if(RPK.getText().trim().equals("")){
-            Valid.textKosong(RPK,"Riwayat Penyakit Keluarga");
-        }else if(RPO.getText().trim().equals("")){
-            Valid.textKosong(RPO,"Riwayat Pengobatan");
         }else if(Alergi.getText().trim().equals("")){
             Valid.textKosong(Alergi,"Alergi");
         }else if(TotalHasil.getText().trim().equals("")){
@@ -2344,7 +2350,7 @@ public final class RMPenilaianAwalKeperawatanGizi extends javax.swing.JDialog {
         }else if(NmPetugas.getText().trim().equals("")){
             Valid.textKosong(BtnDokter,"Petugas");
         }else{
-            if(Sequel.mengedittf("penilaian_awal_keperawatan_ralan","no_rawat=?","no_rawat=?,tanggal=?,informasi=?,td=?,nadi=?,rr=?,suhu=?,gcs=?,bb=?,tb=?,bmi=?,keluhan_utama=?,rpd=?,rpk=?,rpo=?,alergi=?,alat_bantu=?,ket_bantu=?,prothesa=?,ket_pro=?,adl=?,status_psiko=?,ket_psiko=?,hub_keluarga=?,tinggal_dengan=?,ket_tinggal=?,ekonomi=?,budaya=?,ket_budaya=?,edukasi=?,ket_edukasi=?,berjalan_a=?,berjalan_b=?,berjalan_c=?,hasil=?,lapor=?,ket_lapor=?,sg1=?,nilai1=?,sg2=?,nilai2=?,total_hasil=?,nyeri=?,provokes=?,ket_provokes=?,quality=?,ket_quality=?,lokasi=?,menyebar=?,skala_nyeri=?,durasi=?,nyeri_hilang=?,ket_nyeri=?,pada_dokter=?,ket_dokter=?,rencana=?,nip=?",58,new String[]{
+            /*if(Sequel.mengedittf("penilaian_awal_keperawatan_gigi","no_rawat=?","no_rawat=?,tanggal=?,informasi=?,td=?,nadi=?,rr=?,suhu=?,gcs=?,bb=?,tb=?,bmi=?,keluhan_utama=?,rpd=?,rpk=?,rpo=?,alergi=?,alat_bantu=?,ket_bantu=?,prothesa=?,ket_pro=?,adl=?,status_psiko=?,ket_psiko=?,hub_keluarga=?,tinggal_dengan=?,ket_tinggal=?,ekonomi=?,budaya=?,ket_budaya=?,edukasi=?,ket_edukasi=?,berjalan_a=?,berjalan_b=?,berjalan_c=?,hasil=?,lapor=?,ket_lapor=?,sg1=?,nilai1=?,sg2=?,nilai2=?,total_hasil=?,nyeri=?,provokes=?,ket_provokes=?,quality=?,ket_quality=?,lokasi=?,menyebar=?,skala_nyeri=?,durasi=?,nyeri_hilang=?,ket_nyeri=?,pada_dokter=?,ket_dokter=?,rencana=?,nip=?",58,new String[]{
                     TNoRw.getText(),Valid.SetTgl(TglAsuhan.getSelectedItem()+"")+" "+TglAsuhan.getSelectedItem().toString().substring(11,19),Informasi.getSelectedItem().toString(),TD.getText(),Nadi.getText(),RR.getText(),
                     Suhu.getText(),GCS.getText(),BB.getText(),TB.getText(),BMI.getText(),KeluhanUtama.getText(),RPD.getText(),RPK.getText(),RPO.getText(),Alergi.getText(),AlatBantu.getSelectedItem().toString(),KetBantu.getText(), 
                     Prothesa.getSelectedItem().toString(),KetProthesa.getText(),ADL.getSelectedItem().toString(),StatusPsiko.getSelectedItem().toString(),KetPsiko.getText(),HubunganKeluarga.getSelectedItem().toString(), 
@@ -2358,7 +2364,7 @@ public final class RMPenilaianAwalKeperawatanGizi extends javax.swing.JDialog {
                     tampil();
                     emptTeks();
                     TabRawat.setSelectedIndex(1);
-            }
+            }*/
         }
 }//GEN-LAST:event_BtnEditActionPerformed
 
@@ -2389,44 +2395,44 @@ public final class RMPenilaianAwalKeperawatanGizi extends javax.swing.JDialog {
             try{
                 if(TCari.getText().equals("")){
                     ps=koneksi.prepareStatement(
-                            "select reg_periksa.no_rawat,pasien.no_rkm_medis,pasien.nm_pasien,if(pasien.jk='L','Laki-Laki','Perempuan') as jk,pasien.tgl_lahir,pasien.agama,bahasa_pasien.nama_bahasa,cacat_fisik.nama_cacat,penilaian_awal_keperawatan_ralan.tanggal,"+
-                            "penilaian_awal_keperawatan_ralan.informasi,penilaian_awal_keperawatan_ralan.td,penilaian_awal_keperawatan_ralan.nadi,penilaian_awal_keperawatan_ralan.rr,penilaian_awal_keperawatan_ralan.suhu,penilaian_awal_keperawatan_ralan.bb,penilaian_awal_keperawatan_ralan.tb,"+
-                            "penilaian_awal_keperawatan_ralan.nadi,penilaian_awal_keperawatan_ralan.rr,penilaian_awal_keperawatan_ralan.suhu,penilaian_awal_keperawatan_ralan.gcs,penilaian_awal_keperawatan_ralan.bb,penilaian_awal_keperawatan_ralan.tb,penilaian_awal_keperawatan_ralan.bmi,penilaian_awal_keperawatan_ralan.keluhan_utama,"+
-                            "penilaian_awal_keperawatan_ralan.rpd,penilaian_awal_keperawatan_ralan.rpk,penilaian_awal_keperawatan_ralan.rpo,penilaian_awal_keperawatan_ralan.alergi,penilaian_awal_keperawatan_ralan.alat_bantu,penilaian_awal_keperawatan_ralan.ket_bantu,penilaian_awal_keperawatan_ralan.prothesa,"+
-                            "penilaian_awal_keperawatan_ralan.ket_pro,penilaian_awal_keperawatan_ralan.adl,penilaian_awal_keperawatan_ralan.status_psiko,penilaian_awal_keperawatan_ralan.ket_psiko,penilaian_awal_keperawatan_ralan.hub_keluarga,penilaian_awal_keperawatan_ralan.tinggal_dengan,"+
-                            "penilaian_awal_keperawatan_ralan.ket_tinggal,penilaian_awal_keperawatan_ralan.ekonomi,penilaian_awal_keperawatan_ralan.edukasi,penilaian_awal_keperawatan_ralan.ket_edukasi,penilaian_awal_keperawatan_ralan.berjalan_a,penilaian_awal_keperawatan_ralan.berjalan_b,"+
-                            "penilaian_awal_keperawatan_ralan.berjalan_c,penilaian_awal_keperawatan_ralan.hasil,penilaian_awal_keperawatan_ralan.lapor,penilaian_awal_keperawatan_ralan.ket_lapor,penilaian_awal_keperawatan_ralan.sg1,penilaian_awal_keperawatan_ralan.nilai1,penilaian_awal_keperawatan_ralan.sg2,penilaian_awal_keperawatan_ralan.nilai2,"+
-                            "penilaian_awal_keperawatan_ralan.total_hasil,penilaian_awal_keperawatan_ralan.nyeri,penilaian_awal_keperawatan_ralan.provokes,penilaian_awal_keperawatan_ralan.ket_provokes,penilaian_awal_keperawatan_ralan.quality,penilaian_awal_keperawatan_ralan.ket_quality,penilaian_awal_keperawatan_ralan.lokasi,penilaian_awal_keperawatan_ralan.menyebar,"+
-                            "penilaian_awal_keperawatan_ralan.skala_nyeri,penilaian_awal_keperawatan_ralan.durasi,penilaian_awal_keperawatan_ralan.nyeri_hilang,penilaian_awal_keperawatan_ralan.ket_nyeri,penilaian_awal_keperawatan_ralan.pada_dokter,penilaian_awal_keperawatan_ralan.ket_dokter,penilaian_awal_keperawatan_ralan.rencana,"+
-                            "penilaian_awal_keperawatan_ralan.nip,petugas.nama,penilaian_awal_keperawatan_ralan.budaya,penilaian_awal_keperawatan_ralan.ket_budaya "+
+                            "select reg_periksa.no_rawat,pasien.no_rkm_medis,pasien.nm_pasien,if(pasien.jk='L','Laki-Laki','Perempuan') as jk,pasien.tgl_lahir,pasien.agama,bahasa_pasien.nama_bahasa,cacat_fisik.nama_cacat,penilaian_awal_keperawatan_gigi.tanggal,"+
+                            "penilaian_awal_keperawatan_gigi.informasi,penilaian_awal_keperawatan_gigi.td,penilaian_awal_keperawatan_gigi.nadi,penilaian_awal_keperawatan_gigi.rr,penilaian_awal_keperawatan_gigi.suhu,penilaian_awal_keperawatan_gigi.bb,penilaian_awal_keperawatan_gigi.tb,"+
+                            "penilaian_awal_keperawatan_gigi.nadi,penilaian_awal_keperawatan_gigi.rr,penilaian_awal_keperawatan_gigi.suhu,penilaian_awal_keperawatan_gigi.gcs,penilaian_awal_keperawatan_gigi.bb,penilaian_awal_keperawatan_gigi.tb,penilaian_awal_keperawatan_gigi.bmi,penilaian_awal_keperawatan_gigi.keluhan_utama,"+
+                            "penilaian_awal_keperawatan_gigi.rpd,penilaian_awal_keperawatan_gigi.rpk,penilaian_awal_keperawatan_gigi.rpo,penilaian_awal_keperawatan_gigi.alergi,penilaian_awal_keperawatan_gigi.alat_bantu,penilaian_awal_keperawatan_gigi.ket_bantu,penilaian_awal_keperawatan_gigi.prothesa,"+
+                            "penilaian_awal_keperawatan_gigi.ket_pro,penilaian_awal_keperawatan_gigi.adl,penilaian_awal_keperawatan_gigi.status_psiko,penilaian_awal_keperawatan_gigi.ket_psiko,penilaian_awal_keperawatan_gigi.hub_keluarga,penilaian_awal_keperawatan_gigi.tinggal_dengan,"+
+                            "penilaian_awal_keperawatan_gigi.ket_tinggal,penilaian_awal_keperawatan_gigi.ekonomi,penilaian_awal_keperawatan_gigi.edukasi,penilaian_awal_keperawatan_gigi.ket_edukasi,penilaian_awal_keperawatan_gigi.berjalan_a,penilaian_awal_keperawatan_gigi.berjalan_b,"+
+                            "penilaian_awal_keperawatan_gigi.berjalan_c,penilaian_awal_keperawatan_gigi.hasil,penilaian_awal_keperawatan_gigi.lapor,penilaian_awal_keperawatan_gigi.ket_lapor,penilaian_awal_keperawatan_gigi.sg1,penilaian_awal_keperawatan_gigi.nilai1,penilaian_awal_keperawatan_gigi.sg2,penilaian_awal_keperawatan_gigi.nilai2,"+
+                            "penilaian_awal_keperawatan_gigi.total_hasil,penilaian_awal_keperawatan_gigi.nyeri,penilaian_awal_keperawatan_gigi.provokes,penilaian_awal_keperawatan_gigi.ket_provokes,penilaian_awal_keperawatan_gigi.quality,penilaian_awal_keperawatan_gigi.ket_quality,penilaian_awal_keperawatan_gigi.lokasi,penilaian_awal_keperawatan_gigi.menyebar,"+
+                            "penilaian_awal_keperawatan_gigi.skala_nyeri,penilaian_awal_keperawatan_gigi.durasi,penilaian_awal_keperawatan_gigi.nyeri_hilang,penilaian_awal_keperawatan_gigi.ket_nyeri,penilaian_awal_keperawatan_gigi.pada_dokter,penilaian_awal_keperawatan_gigi.ket_dokter,penilaian_awal_keperawatan_gigi.rencana,"+
+                            "penilaian_awal_keperawatan_gigi.nip,petugas.nama,penilaian_awal_keperawatan_gigi.budaya,penilaian_awal_keperawatan_gigi.ket_budaya "+
                             "from reg_periksa inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
-                            "inner join penilaian_awal_keperawatan_ralan on reg_periksa.no_rawat=penilaian_awal_keperawatan_ralan.no_rawat "+
-                            "inner join petugas on penilaian_awal_keperawatan_ralan.nip=petugas.nip "+
+                            "inner join penilaian_awal_keperawatan_gigi on reg_periksa.no_rawat=penilaian_awal_keperawatan_gigi.no_rawat "+
+                            "inner join petugas on penilaian_awal_keperawatan_gigi.nip=petugas.nip "+
                             "inner join bahasa_pasien on bahasa_pasien.id=pasien.bahasa_pasien "+
                             "inner join cacat_fisik on cacat_fisik.id=pasien.cacat_fisik where "+
-                            "penilaian_awal_keperawatan_ralan.tanggal between ? and ? order by penilaian_awal_keperawatan_ralan.tanggal");
+                            "penilaian_awal_keperawatan_gigi.tanggal between ? and ? order by penilaian_awal_keperawatan_gigi.tanggal");
                 }else{
                     ps=koneksi.prepareStatement(
-                            "select reg_periksa.no_rawat,pasien.no_rkm_medis,pasien.nm_pasien,if(pasien.jk='L','Laki-Laki','Perempuan') as jk,pasien.tgl_lahir,pasien.agama,bahasa_pasien.nama_bahasa,cacat_fisik.nama_cacat,penilaian_awal_keperawatan_ralan.tanggal,"+
-                            "penilaian_awal_keperawatan_ralan.informasi,penilaian_awal_keperawatan_ralan.td,penilaian_awal_keperawatan_ralan.nadi,penilaian_awal_keperawatan_ralan.rr,penilaian_awal_keperawatan_ralan.suhu,penilaian_awal_keperawatan_ralan.bb,penilaian_awal_keperawatan_ralan.tb,"+
-                            "penilaian_awal_keperawatan_ralan.nadi,penilaian_awal_keperawatan_ralan.rr,penilaian_awal_keperawatan_ralan.suhu,penilaian_awal_keperawatan_ralan.gcs,penilaian_awal_keperawatan_ralan.bb,penilaian_awal_keperawatan_ralan.tb,penilaian_awal_keperawatan_ralan.bmi,penilaian_awal_keperawatan_ralan.keluhan_utama,"+
-                            "penilaian_awal_keperawatan_ralan.rpd,penilaian_awal_keperawatan_ralan.rpk,penilaian_awal_keperawatan_ralan.rpo,penilaian_awal_keperawatan_ralan.alergi,penilaian_awal_keperawatan_ralan.alat_bantu,penilaian_awal_keperawatan_ralan.ket_bantu,penilaian_awal_keperawatan_ralan.prothesa,"+
-                            "penilaian_awal_keperawatan_ralan.ket_pro,penilaian_awal_keperawatan_ralan.adl,penilaian_awal_keperawatan_ralan.status_psiko,penilaian_awal_keperawatan_ralan.ket_psiko,penilaian_awal_keperawatan_ralan.hub_keluarga,penilaian_awal_keperawatan_ralan.tinggal_dengan,"+
-                            "penilaian_awal_keperawatan_ralan.ket_tinggal,penilaian_awal_keperawatan_ralan.ekonomi,penilaian_awal_keperawatan_ralan.edukasi,penilaian_awal_keperawatan_ralan.ket_edukasi,penilaian_awal_keperawatan_ralan.berjalan_a,penilaian_awal_keperawatan_ralan.berjalan_b,"+
-                            "penilaian_awal_keperawatan_ralan.berjalan_c,penilaian_awal_keperawatan_ralan.hasil,penilaian_awal_keperawatan_ralan.lapor,penilaian_awal_keperawatan_ralan.ket_lapor,penilaian_awal_keperawatan_ralan.sg1,penilaian_awal_keperawatan_ralan.nilai1,penilaian_awal_keperawatan_ralan.sg2,penilaian_awal_keperawatan_ralan.nilai2,"+
-                            "penilaian_awal_keperawatan_ralan.total_hasil,penilaian_awal_keperawatan_ralan.nyeri,penilaian_awal_keperawatan_ralan.provokes,penilaian_awal_keperawatan_ralan.ket_provokes,penilaian_awal_keperawatan_ralan.quality,penilaian_awal_keperawatan_ralan.ket_quality,penilaian_awal_keperawatan_ralan.lokasi,penilaian_awal_keperawatan_ralan.menyebar,"+
-                            "penilaian_awal_keperawatan_ralan.skala_nyeri,penilaian_awal_keperawatan_ralan.durasi,penilaian_awal_keperawatan_ralan.nyeri_hilang,penilaian_awal_keperawatan_ralan.ket_nyeri,penilaian_awal_keperawatan_ralan.pada_dokter,penilaian_awal_keperawatan_ralan.ket_dokter,penilaian_awal_keperawatan_ralan.rencana,"+
-                            "penilaian_awal_keperawatan_ralan.nip,petugas.nama,penilaian_awal_keperawatan_ralan.budaya,penilaian_awal_keperawatan_ralan.ket_budaya "+
+                            "select reg_periksa.no_rawat,pasien.no_rkm_medis,pasien.nm_pasien,if(pasien.jk='L','Laki-Laki','Perempuan') as jk,pasien.tgl_lahir,pasien.agama,bahasa_pasien.nama_bahasa,cacat_fisik.nama_cacat,penilaian_awal_keperawatan_gigi.tanggal,"+
+                            "penilaian_awal_keperawatan_gigi.informasi,penilaian_awal_keperawatan_gigi.td,penilaian_awal_keperawatan_gigi.nadi,penilaian_awal_keperawatan_gigi.rr,penilaian_awal_keperawatan_gigi.suhu,penilaian_awal_keperawatan_gigi.bb,penilaian_awal_keperawatan_gigi.tb,"+
+                            "penilaian_awal_keperawatan_gigi.nadi,penilaian_awal_keperawatan_gigi.rr,penilaian_awal_keperawatan_gigi.suhu,penilaian_awal_keperawatan_gigi.gcs,penilaian_awal_keperawatan_gigi.bb,penilaian_awal_keperawatan_gigi.tb,penilaian_awal_keperawatan_gigi.bmi,penilaian_awal_keperawatan_gigi.keluhan_utama,"+
+                            "penilaian_awal_keperawatan_gigi.rpd,penilaian_awal_keperawatan_gigi.rpk,penilaian_awal_keperawatan_gigi.rpo,penilaian_awal_keperawatan_gigi.alergi,penilaian_awal_keperawatan_gigi.alat_bantu,penilaian_awal_keperawatan_gigi.ket_bantu,penilaian_awal_keperawatan_gigi.prothesa,"+
+                            "penilaian_awal_keperawatan_gigi.ket_pro,penilaian_awal_keperawatan_gigi.adl,penilaian_awal_keperawatan_gigi.status_psiko,penilaian_awal_keperawatan_gigi.ket_psiko,penilaian_awal_keperawatan_gigi.hub_keluarga,penilaian_awal_keperawatan_gigi.tinggal_dengan,"+
+                            "penilaian_awal_keperawatan_gigi.ket_tinggal,penilaian_awal_keperawatan_gigi.ekonomi,penilaian_awal_keperawatan_gigi.edukasi,penilaian_awal_keperawatan_gigi.ket_edukasi,penilaian_awal_keperawatan_gigi.berjalan_a,penilaian_awal_keperawatan_gigi.berjalan_b,"+
+                            "penilaian_awal_keperawatan_gigi.berjalan_c,penilaian_awal_keperawatan_gigi.hasil,penilaian_awal_keperawatan_gigi.lapor,penilaian_awal_keperawatan_gigi.ket_lapor,penilaian_awal_keperawatan_gigi.sg1,penilaian_awal_keperawatan_gigi.nilai1,penilaian_awal_keperawatan_gigi.sg2,penilaian_awal_keperawatan_gigi.nilai2,"+
+                            "penilaian_awal_keperawatan_gigi.total_hasil,penilaian_awal_keperawatan_gigi.nyeri,penilaian_awal_keperawatan_gigi.provokes,penilaian_awal_keperawatan_gigi.ket_provokes,penilaian_awal_keperawatan_gigi.quality,penilaian_awal_keperawatan_gigi.ket_quality,penilaian_awal_keperawatan_gigi.lokasi,penilaian_awal_keperawatan_gigi.menyebar,"+
+                            "penilaian_awal_keperawatan_gigi.skala_nyeri,penilaian_awal_keperawatan_gigi.durasi,penilaian_awal_keperawatan_gigi.nyeri_hilang,penilaian_awal_keperawatan_gigi.ket_nyeri,penilaian_awal_keperawatan_gigi.pada_dokter,penilaian_awal_keperawatan_gigi.ket_dokter,penilaian_awal_keperawatan_gigi.rencana,"+
+                            "penilaian_awal_keperawatan_gigi.nip,petugas.nama,penilaian_awal_keperawatan_gigi.budaya,penilaian_awal_keperawatan_gigi.ket_budaya "+
                             "from reg_periksa inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
-                            "inner join penilaian_awal_keperawatan_ralan on reg_periksa.no_rawat=penilaian_awal_keperawatan_ralan.no_rawat "+
-                            "inner join petugas on penilaian_awal_keperawatan_ralan.nip=petugas.nip "+
+                            "inner join penilaian_awal_keperawatan_gigi on reg_periksa.no_rawat=penilaian_awal_keperawatan_gigi.no_rawat "+
+                            "inner join petugas on penilaian_awal_keperawatan_gigi.nip=petugas.nip "+
                             "inner join bahasa_pasien on bahasa_pasien.id=pasien.bahasa_pasien "+
                             "inner join cacat_fisik on cacat_fisik.id=pasien.cacat_fisik where "+
-                            "penilaian_awal_keperawatan_ralan.tanggal between ? and ? and reg_periksa.no_rawat like ? or "+
-                            "penilaian_awal_keperawatan_ralan.tanggal between ? and ? and pasien.no_rkm_medis like ? or "+
-                            "penilaian_awal_keperawatan_ralan.tanggal between ? and ? and pasien.nm_pasien like ? or "+
-                            "penilaian_awal_keperawatan_ralan.tanggal between ? and ? and penilaian_awal_keperawatan_ralan.nip like ? or "+
-                            "penilaian_awal_keperawatan_ralan.tanggal between ? and ? and petugas.nama like ? order by penilaian_awal_keperawatan_ralan.tanggal");
+                            "penilaian_awal_keperawatan_gigi.tanggal between ? and ? and reg_periksa.no_rawat like ? or "+
+                            "penilaian_awal_keperawatan_gigi.tanggal between ? and ? and pasien.no_rkm_medis like ? or "+
+                            "penilaian_awal_keperawatan_gigi.tanggal between ? and ? and pasien.nm_pasien like ? or "+
+                            "penilaian_awal_keperawatan_gigi.tanggal between ? and ? and penilaian_awal_keperawatan_gigi.nip like ? or "+
+                            "penilaian_awal_keperawatan_gigi.tanggal between ? and ? and petugas.nama like ? order by penilaian_awal_keperawatan_gigi.tanggal");
                 }
 
                 try {
@@ -2469,9 +2475,9 @@ public final class RMPenilaianAwalKeperawatanGizi extends javax.swing.JDialog {
                     while(rs.next()){
                         masalahkeperawatan="";
                         ps2=koneksi.prepareStatement(
-                            "select master_masalah_keperawatan.kode_masalah,master_masalah_keperawatan.nama_masalah from master_masalah_keperawatan "+
-                            "inner join penilaian_awal_keperawatan_ralan_masalah on penilaian_awal_keperawatan_ralan_masalah.kode_masalah=master_masalah_keperawatan.kode_masalah "+
-                            "where penilaian_awal_keperawatan_ralan_masalah.no_rawat=? order by kode_masalah");
+                            "select master_masalah_keperawatan_gigi.kode_masalah,master_masalah_keperawatan_gigi.nama_masalah from master_masalah_keperawatan_gigi "+
+                            "inner join penilaian_awal_keperawatan_gigi_masalah on penilaian_awal_keperawatan_gigi_masalah.kode_masalah=master_masalah_keperawatan_gigi.kode_masalah "+
+                            "where penilaian_awal_keperawatan_gigi_masalah.no_rawat=? order by kode_masalah");
                         try {
                             ps2.setString(1,rs.getString("no_rawat"));
                             rs2=ps2.executeQuery();
@@ -2871,7 +2877,7 @@ public final class RMPenilaianAwalKeperawatanGizi extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnDokterKeyPressed
 
     private void BBKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BBKeyPressed
-        Valid.pindah(evt,GCS,TB);
+        //Valid.pindah(evt,GCS,TB);
     }//GEN-LAST:event_BBKeyPressed
 
     private void TBKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TBKeyPressed
@@ -2883,7 +2889,7 @@ public final class RMPenilaianAwalKeperawatanGizi extends javax.swing.JDialog {
     }//GEN-LAST:event_NadiKeyPressed
 
     private void SuhuKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SuhuKeyPressed
-        Valid.pindah(evt,RR,GCS);
+        //Valid.pindah(evt,RR,GCS);
     }//GEN-LAST:event_SuhuKeyPressed
 
     private void TDKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TDKeyPressed
@@ -2899,7 +2905,7 @@ public final class RMPenilaianAwalKeperawatanGizi extends javax.swing.JDialog {
     }//GEN-LAST:event_BMIKeyPressed
 
     private void AlergiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_AlergiKeyPressed
-        Valid.pindah(evt,RPO,AlatBantu);
+        //Valid.pindah(evt,RPO,AlatBantu);
     }//GEN-LAST:event_AlergiKeyPressed
 
     private void InformasiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_InformasiKeyPressed
@@ -2907,20 +2913,8 @@ public final class RMPenilaianAwalKeperawatanGizi extends javax.swing.JDialog {
     }//GEN-LAST:event_InformasiKeyPressed
 
     private void KeluhanUtamaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_KeluhanUtamaKeyPressed
-        Valid.pindah(evt,BMI,RPK);
+        //Valid.pindah(evt,BMI,RPK);
     }//GEN-LAST:event_KeluhanUtamaKeyPressed
-
-    private void RPDKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_RPDKeyPressed
-        Valid.pindah(evt,RPK,RPO);
-    }//GEN-LAST:event_RPDKeyPressed
-
-    private void RPKKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_RPKKeyPressed
-        Valid.pindah(evt,KeluhanUtama,RPD);
-    }//GEN-LAST:event_RPKKeyPressed
-
-    private void RPOKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_RPOKeyPressed
-        Valid.pindah(evt,RPD,Alergi);
-    }//GEN-LAST:event_RPOKeyPressed
 
     private void AlatBantuKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_AlatBantuKeyPressed
         Valid.pindah(evt,Alergi,KetBantu);
@@ -3078,10 +3072,6 @@ public final class RMPenilaianAwalKeperawatanGizi extends javax.swing.JDialog {
         Valid.pindah(evt,Rencana,Informasi);
     }//GEN-LAST:event_TglAsuhanKeyPressed
 
-    private void GCSKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_GCSKeyPressed
-        Valid.pindah(evt,Suhu,BB);
-    }//GEN-LAST:event_GCSKeyPressed
-
     private void CacatFisikKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CacatFisikKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_CacatFisikKeyPressed
@@ -3177,9 +3167,9 @@ public final class RMPenilaianAwalKeperawatanGizi extends javax.swing.JDialog {
             try {
                 masalahkeperawatan="";
                 ps2=koneksi.prepareStatement(
-                    "select master_masalah_keperawatan.kode_masalah,master_masalah_keperawatan.nama_masalah from master_masalah_keperawatan "+
-                    "inner join penilaian_awal_keperawatan_ralan_masalah on penilaian_awal_keperawatan_ralan_masalah.kode_masalah=master_masalah_keperawatan.kode_masalah "+
-                    "where penilaian_awal_keperawatan_ralan_masalah.no_rawat=? order by kode_masalah");
+                    "select master_masalah_keperawatan_gigi.kode_masalah,master_masalah_keperawatan_gigi.nama_masalah from master_masalah_keperawatan_gigi "+
+                    "inner join penilaian_awal_keperawatan_gigi_masalah on penilaian_awal_keperawatan_gigi_masalah.kode_masalah=master_masalah_keperawatan_gigi.kode_masalah "+
+                    "where penilaian_awal_keperawatan_gigi_masalah.no_rawat=? order by kode_masalah");
                 try {
                     ps2.setString(1,tbObat.getValueAt(tbObat.getSelectedRow(),0).toString());
                     rs2=ps2.executeQuery();
@@ -3201,19 +3191,19 @@ public final class RMPenilaianAwalKeperawatanGizi extends javax.swing.JDialog {
             }
             param.put("masalah",masalahkeperawatan);  
             Valid.MyReportqry("rptCetakPenilaianAwalKeperawatanRalan.jasper","report","::[ Laporan Penilaian Awal Keperawatan Ralan ]::",
-                        "select reg_periksa.no_rawat,pasien.no_rkm_medis,pasien.nm_pasien,if(pasien.jk='L','Laki-Laki','Perempuan') as jk,pasien.tgl_lahir,pasien.agama,bahasa_pasien.nama_bahasa,cacat_fisik.nama_cacat,penilaian_awal_keperawatan_ralan.tanggal,"+
-                        "penilaian_awal_keperawatan_ralan.informasi,penilaian_awal_keperawatan_ralan.td,penilaian_awal_keperawatan_ralan.nadi,penilaian_awal_keperawatan_ralan.rr,penilaian_awal_keperawatan_ralan.suhu,penilaian_awal_keperawatan_ralan.bb,penilaian_awal_keperawatan_ralan.tb,"+
-                        "penilaian_awal_keperawatan_ralan.nadi,penilaian_awal_keperawatan_ralan.rr,penilaian_awal_keperawatan_ralan.suhu,penilaian_awal_keperawatan_ralan.gcs,penilaian_awal_keperawatan_ralan.bb,penilaian_awal_keperawatan_ralan.tb,penilaian_awal_keperawatan_ralan.bmi,penilaian_awal_keperawatan_ralan.keluhan_utama,"+
-                        "penilaian_awal_keperawatan_ralan.rpd,penilaian_awal_keperawatan_ralan.rpk,penilaian_awal_keperawatan_ralan.rpo,penilaian_awal_keperawatan_ralan.alergi,penilaian_awal_keperawatan_ralan.alat_bantu,penilaian_awal_keperawatan_ralan.ket_bantu,penilaian_awal_keperawatan_ralan.prothesa,"+
-                        "penilaian_awal_keperawatan_ralan.ket_pro,penilaian_awal_keperawatan_ralan.adl,penilaian_awal_keperawatan_ralan.status_psiko,penilaian_awal_keperawatan_ralan.ket_psiko,penilaian_awal_keperawatan_ralan.hub_keluarga,penilaian_awal_keperawatan_ralan.tinggal_dengan,"+
-                        "penilaian_awal_keperawatan_ralan.ket_tinggal,penilaian_awal_keperawatan_ralan.ekonomi,penilaian_awal_keperawatan_ralan.edukasi,penilaian_awal_keperawatan_ralan.ket_edukasi,penilaian_awal_keperawatan_ralan.berjalan_a,penilaian_awal_keperawatan_ralan.berjalan_b,"+
-                        "penilaian_awal_keperawatan_ralan.berjalan_c,penilaian_awal_keperawatan_ralan.hasil,penilaian_awal_keperawatan_ralan.lapor,penilaian_awal_keperawatan_ralan.ket_lapor,penilaian_awal_keperawatan_ralan.sg1,penilaian_awal_keperawatan_ralan.nilai1,penilaian_awal_keperawatan_ralan.sg2,penilaian_awal_keperawatan_ralan.nilai2,"+
-                        "penilaian_awal_keperawatan_ralan.total_hasil,penilaian_awal_keperawatan_ralan.nyeri,penilaian_awal_keperawatan_ralan.provokes,penilaian_awal_keperawatan_ralan.ket_provokes,penilaian_awal_keperawatan_ralan.quality,penilaian_awal_keperawatan_ralan.ket_quality,penilaian_awal_keperawatan_ralan.lokasi,penilaian_awal_keperawatan_ralan.menyebar,"+
-                        "penilaian_awal_keperawatan_ralan.skala_nyeri,penilaian_awal_keperawatan_ralan.durasi,penilaian_awal_keperawatan_ralan.nyeri_hilang,penilaian_awal_keperawatan_ralan.ket_nyeri,penilaian_awal_keperawatan_ralan.pada_dokter,penilaian_awal_keperawatan_ralan.ket_dokter,penilaian_awal_keperawatan_ralan.rencana,"+
-                        "penilaian_awal_keperawatan_ralan.nip,petugas.nama,penilaian_awal_keperawatan_ralan.budaya,penilaian_awal_keperawatan_ralan.ket_budaya "+
+                        "select reg_periksa.no_rawat,pasien.no_rkm_medis,pasien.nm_pasien,if(pasien.jk='L','Laki-Laki','Perempuan') as jk,pasien.tgl_lahir,pasien.agama,bahasa_pasien.nama_bahasa,cacat_fisik.nama_cacat,penilaian_awal_keperawatan_gigi.tanggal,"+
+                        "penilaian_awal_keperawatan_gigi.informasi,penilaian_awal_keperawatan_gigi.td,penilaian_awal_keperawatan_gigi.nadi,penilaian_awal_keperawatan_gigi.rr,penilaian_awal_keperawatan_gigi.suhu,penilaian_awal_keperawatan_gigi.bb,penilaian_awal_keperawatan_gigi.tb,"+
+                        "penilaian_awal_keperawatan_gigi.nadi,penilaian_awal_keperawatan_gigi.rr,penilaian_awal_keperawatan_gigi.suhu,penilaian_awal_keperawatan_gigi.gcs,penilaian_awal_keperawatan_gigi.bb,penilaian_awal_keperawatan_gigi.tb,penilaian_awal_keperawatan_gigi.bmi,penilaian_awal_keperawatan_gigi.keluhan_utama,"+
+                        "penilaian_awal_keperawatan_gigi.rpd,penilaian_awal_keperawatan_gigi.rpk,penilaian_awal_keperawatan_gigi.rpo,penilaian_awal_keperawatan_gigi.alergi,penilaian_awal_keperawatan_gigi.alat_bantu,penilaian_awal_keperawatan_gigi.ket_bantu,penilaian_awal_keperawatan_gigi.prothesa,"+
+                        "penilaian_awal_keperawatan_gigi.ket_pro,penilaian_awal_keperawatan_gigi.adl,penilaian_awal_keperawatan_gigi.status_psiko,penilaian_awal_keperawatan_gigi.ket_psiko,penilaian_awal_keperawatan_gigi.hub_keluarga,penilaian_awal_keperawatan_gigi.tinggal_dengan,"+
+                        "penilaian_awal_keperawatan_gigi.ket_tinggal,penilaian_awal_keperawatan_gigi.ekonomi,penilaian_awal_keperawatan_gigi.edukasi,penilaian_awal_keperawatan_gigi.ket_edukasi,penilaian_awal_keperawatan_gigi.berjalan_a,penilaian_awal_keperawatan_gigi.berjalan_b,"+
+                        "penilaian_awal_keperawatan_gigi.berjalan_c,penilaian_awal_keperawatan_gigi.hasil,penilaian_awal_keperawatan_gigi.lapor,penilaian_awal_keperawatan_gigi.ket_lapor,penilaian_awal_keperawatan_gigi.sg1,penilaian_awal_keperawatan_gigi.nilai1,penilaian_awal_keperawatan_gigi.sg2,penilaian_awal_keperawatan_gigi.nilai2,"+
+                        "penilaian_awal_keperawatan_gigi.total_hasil,penilaian_awal_keperawatan_gigi.nyeri,penilaian_awal_keperawatan_gigi.provokes,penilaian_awal_keperawatan_gigi.ket_provokes,penilaian_awal_keperawatan_gigi.quality,penilaian_awal_keperawatan_gigi.ket_quality,penilaian_awal_keperawatan_gigi.lokasi,penilaian_awal_keperawatan_gigi.menyebar,"+
+                        "penilaian_awal_keperawatan_gigi.skala_nyeri,penilaian_awal_keperawatan_gigi.durasi,penilaian_awal_keperawatan_gigi.nyeri_hilang,penilaian_awal_keperawatan_gigi.ket_nyeri,penilaian_awal_keperawatan_gigi.pada_dokter,penilaian_awal_keperawatan_gigi.ket_dokter,penilaian_awal_keperawatan_gigi.rencana,"+
+                        "penilaian_awal_keperawatan_gigi.nip,petugas.nama,penilaian_awal_keperawatan_gigi.budaya,penilaian_awal_keperawatan_gigi.ket_budaya "+
                         "from reg_periksa inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
-                        "inner join penilaian_awal_keperawatan_ralan on reg_periksa.no_rawat=penilaian_awal_keperawatan_ralan.no_rawat "+
-                        "inner join petugas on penilaian_awal_keperawatan_ralan.nip=petugas.nip "+
+                        "inner join penilaian_awal_keperawatan_gigi on reg_periksa.no_rawat=penilaian_awal_keperawatan_gigi.no_rawat "+
+                        "inner join petugas on penilaian_awal_keperawatan_gigi.nip=petugas.nip "+
                         "inner join bahasa_pasien on bahasa_pasien.id=pasien.bahasa_pasien "+
                         "inner join cacat_fisik on cacat_fisik.id=pasien.cacat_fisik where reg_periksa.no_rawat='"+tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()+"'",param);
         } 
@@ -3223,12 +3213,44 @@ public final class RMPenilaianAwalKeperawatanGizi extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_DetailRencanaKeyPressed
 
+    private void AlatBantu1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_AlatBantu1KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AlatBantu1KeyPressed
+
+    private void KetBantu1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_KetBantu1KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_KetBantu1KeyPressed
+
+    private void AlatBantu2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_AlatBantu2KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AlatBantu2KeyPressed
+
+    private void KetBantu2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_KetBantu2KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_KetBantu2KeyPressed
+
+    private void AlatBantu3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_AlatBantu3KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AlatBantu3KeyPressed
+
+    private void AlatBantu4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_AlatBantu4KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AlatBantu4KeyPressed
+
+    private void KetBantu3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_KetBantu3KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_KetBantu3KeyPressed
+
+    private void Alergi1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Alergi1KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Alergi1KeyPressed
+
     /**
     * @param args the command line arguments
     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> {
-            RMPenilaianAwalKeperawatanGizi dialog = new RMPenilaianAwalKeperawatanGizi(new javax.swing.JFrame(), true);
+            RMPenilaianAwalKeperawatanGigi dialog = new RMPenilaianAwalKeperawatanGigi(new javax.swing.JFrame(), true);
             dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                 @Override
                 public void windowClosing(java.awt.event.WindowEvent e) {
@@ -3244,7 +3266,12 @@ public final class RMPenilaianAwalKeperawatanGizi extends javax.swing.JDialog {
     private widget.ComboBox ATS;
     private widget.TextBox Agama;
     private widget.ComboBox AlatBantu;
+    private widget.ComboBox AlatBantu1;
+    private widget.ComboBox AlatBantu2;
+    private widget.ComboBox AlatBantu3;
+    private widget.ComboBox AlatBantu4;
     private widget.TextBox Alergi;
+    private widget.TextBox Alergi1;
     private widget.TextBox BB;
     private widget.ComboBox BJM;
     private widget.TextBox BMI;
@@ -3272,7 +3299,6 @@ public final class RMPenilaianAwalKeperawatanGizi extends javax.swing.JDialog {
     private widget.PanelBiasa FormInput;
     private widget.PanelBiasa FormMasalahRencana;
     private widget.PanelBiasa FormMenu;
-    private widget.TextBox GCS;
     private widget.ComboBox Hasil;
     private widget.ComboBox HubunganKeluarga;
     private widget.ComboBox Informasi;
@@ -3280,6 +3306,9 @@ public final class RMPenilaianAwalKeperawatanGizi extends javax.swing.JDialog {
     private widget.TextBox KdPetugas;
     private widget.TextArea KeluhanUtama;
     private widget.TextBox KetBantu;
+    private widget.TextBox KetBantu1;
+    private widget.TextBox KetBantu2;
+    private widget.TextBox KetBantu3;
     private widget.TextBox KetBudaya;
     private widget.TextBox KetDokter;
     private widget.TextBox KetEdukasi;
@@ -3308,9 +3337,6 @@ public final class RMPenilaianAwalKeperawatanGizi extends javax.swing.JDialog {
     private widget.ComboBox Prothesa;
     private widget.ComboBox Provokes;
     private widget.ComboBox Quality;
-    private widget.TextArea RPD;
-    private widget.TextArea RPK;
-    private widget.TextArea RPO;
     private widget.TextBox RR;
     private widget.TextArea Rencana;
     private widget.ComboBox SG1;
@@ -3357,13 +3383,11 @@ public final class RMPenilaianAwalKeperawatanGizi extends javax.swing.JDialog {
     private widget.Label jLabel25;
     private widget.Label jLabel26;
     private widget.Label jLabel27;
-    private widget.Label jLabel28;
     private widget.Label jLabel30;
-    private widget.Label jLabel31;
-    private widget.Label jLabel32;
     private widget.Label jLabel34;
     private widget.Label jLabel36;
     private widget.Label jLabel37;
+    private widget.Label jLabel38;
     private widget.Label jLabel43;
     private widget.Label jLabel50;
     private widget.Label jLabel51;
@@ -3395,6 +3419,7 @@ public final class RMPenilaianAwalKeperawatanGizi extends javax.swing.JDialog {
     private widget.Label jLabel75;
     private widget.Label jLabel76;
     private widget.Label jLabel77;
+    private widget.Label jLabel78;
     private widget.Label jLabel79;
     private widget.Label jLabel8;
     private widget.Label jLabel80;
@@ -3407,13 +3432,15 @@ public final class RMPenilaianAwalKeperawatanGizi extends javax.swing.JDialog {
     private widget.Label jLabel87;
     private widget.Label jLabel88;
     private widget.Label jLabel89;
-    private widget.Label jLabel9;
+    private widget.Label jLabel90;
+    private widget.Label jLabel91;
     private widget.Label jLabel92;
     private widget.Label jLabel93;
     private widget.Label jLabel94;
     private widget.Label jLabel95;
     private widget.Label jLabel96;
     private widget.Label jLabel97;
+    private widget.Label jLabel98;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator10;
     private javax.swing.JSeparator jSeparator2;
@@ -3431,9 +3458,6 @@ public final class RMPenilaianAwalKeperawatanGizi extends javax.swing.JDialog {
     private widget.panelisi panelGlass9;
     private widget.ScrollPane scrollInput;
     private widget.ScrollPane scrollPane1;
-    private widget.ScrollPane scrollPane2;
-    private widget.ScrollPane scrollPane3;
-    private widget.ScrollPane scrollPane4;
     private widget.ScrollPane scrollPane5;
     private widget.ScrollPane scrollPane6;
     private widget.Table tbMasalahDetailMasalah;
@@ -3442,49 +3466,48 @@ public final class RMPenilaianAwalKeperawatanGizi extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     private void tampil() {
-        System.out.println("Notip ");
         Valid.tabelKosong(tabMode);
         try{
             if(TCari.getText().equals("")){
                 ps=koneksi.prepareStatement(
-                        "select reg_periksa.no_rawat,pasien.no_rkm_medis,pasien.nm_pasien,if(pasien.jk='L','Laki-Laki','Perempuan') as jk,pasien.tgl_lahir,pasien.agama,bahasa_pasien.nama_bahasa,cacat_fisik.nama_cacat,penilaian_awal_keperawatan_ralan.tanggal,"+
-                        "penilaian_awal_keperawatan_ralan.informasi,penilaian_awal_keperawatan_ralan.td,penilaian_awal_keperawatan_ralan.nadi,penilaian_awal_keperawatan_ralan.rr,penilaian_awal_keperawatan_ralan.suhu,penilaian_awal_keperawatan_ralan.bb,penilaian_awal_keperawatan_ralan.tb,"+
-                        "penilaian_awal_keperawatan_ralan.nadi,penilaian_awal_keperawatan_ralan.rr,penilaian_awal_keperawatan_ralan.suhu,penilaian_awal_keperawatan_ralan.gcs,penilaian_awal_keperawatan_ralan.bb,penilaian_awal_keperawatan_ralan.tb,penilaian_awal_keperawatan_ralan.bmi,penilaian_awal_keperawatan_ralan.keluhan_utama,"+
-                        "penilaian_awal_keperawatan_ralan.rpd,penilaian_awal_keperawatan_ralan.rpk,penilaian_awal_keperawatan_ralan.rpo,penilaian_awal_keperawatan_ralan.alergi,penilaian_awal_keperawatan_ralan.alat_bantu,penilaian_awal_keperawatan_ralan.ket_bantu,penilaian_awal_keperawatan_ralan.prothesa,"+
-                        "penilaian_awal_keperawatan_ralan.ket_pro,penilaian_awal_keperawatan_ralan.adl,penilaian_awal_keperawatan_ralan.status_psiko,penilaian_awal_keperawatan_ralan.ket_psiko,penilaian_awal_keperawatan_ralan.hub_keluarga,penilaian_awal_keperawatan_ralan.tinggal_dengan,"+
-                        "penilaian_awal_keperawatan_ralan.ket_tinggal,penilaian_awal_keperawatan_ralan.ekonomi,penilaian_awal_keperawatan_ralan.edukasi,penilaian_awal_keperawatan_ralan.ket_edukasi,penilaian_awal_keperawatan_ralan.berjalan_a,penilaian_awal_keperawatan_ralan.berjalan_b,"+
-                        "penilaian_awal_keperawatan_ralan.berjalan_c,penilaian_awal_keperawatan_ralan.hasil,penilaian_awal_keperawatan_ralan.lapor,penilaian_awal_keperawatan_ralan.ket_lapor,penilaian_awal_keperawatan_ralan.sg1,penilaian_awal_keperawatan_ralan.nilai1,penilaian_awal_keperawatan_ralan.sg2,penilaian_awal_keperawatan_ralan.nilai2,"+
-                        "penilaian_awal_keperawatan_ralan.total_hasil,penilaian_awal_keperawatan_ralan.nyeri,penilaian_awal_keperawatan_ralan.provokes,penilaian_awal_keperawatan_ralan.ket_provokes,penilaian_awal_keperawatan_ralan.quality,penilaian_awal_keperawatan_ralan.ket_quality,penilaian_awal_keperawatan_ralan.lokasi,penilaian_awal_keperawatan_ralan.menyebar,"+
-                        "penilaian_awal_keperawatan_ralan.skala_nyeri,penilaian_awal_keperawatan_ralan.durasi,penilaian_awal_keperawatan_ralan.nyeri_hilang,penilaian_awal_keperawatan_ralan.ket_nyeri,penilaian_awal_keperawatan_ralan.pada_dokter,penilaian_awal_keperawatan_ralan.ket_dokter,penilaian_awal_keperawatan_ralan.rencana,"+
-                        "penilaian_awal_keperawatan_ralan.nip,petugas.nama,penilaian_awal_keperawatan_ralan.budaya,penilaian_awal_keperawatan_ralan.ket_budaya "+
+                        "select reg_periksa.no_rawat,pasien.no_rkm_medis,pasien.nm_pasien,if(pasien.jk='L','Laki-Laki','Perempuan') as jk,pasien.tgl_lahir,pasien.agama,bahasa_pasien.nama_bahasa,cacat_fisik.nama_cacat,penilaian_awal_keperawatan_gigi.tanggal,"+
+                        "penilaian_awal_keperawatan_gigi.informasi,penilaian_awal_keperawatan_gigi.td,penilaian_awal_keperawatan_gigi.nadi,penilaian_awal_keperawatan_gigi.rr,penilaian_awal_keperawatan_gigi.suhu,penilaian_awal_keperawatan_gigi.bb,penilaian_awal_keperawatan_gigi.tb,"+
+                        "penilaian_awal_keperawatan_gigi.nadi,penilaian_awal_keperawatan_gigi.rr,penilaian_awal_keperawatan_gigi.suhu,penilaian_awal_keperawatan_gigi.gcs,penilaian_awal_keperawatan_gigi.bb,penilaian_awal_keperawatan_gigi.tb,penilaian_awal_keperawatan_gigi.bmi,penilaian_awal_keperawatan_gigi.keluhan_utama,"+
+                        "penilaian_awal_keperawatan_gigi.rpd,penilaian_awal_keperawatan_gigi.rpk,penilaian_awal_keperawatan_gigi.rpo,penilaian_awal_keperawatan_gigi.alergi,penilaian_awal_keperawatan_gigi.alat_bantu,penilaian_awal_keperawatan_gigi.ket_bantu,penilaian_awal_keperawatan_gigi.prothesa,"+
+                        "penilaian_awal_keperawatan_gigi.ket_pro,penilaian_awal_keperawatan_gigi.adl,penilaian_awal_keperawatan_gigi.status_psiko,penilaian_awal_keperawatan_gigi.ket_psiko,penilaian_awal_keperawatan_gigi.hub_keluarga,penilaian_awal_keperawatan_gigi.tinggal_dengan,"+
+                        "penilaian_awal_keperawatan_gigi.ket_tinggal,penilaian_awal_keperawatan_gigi.ekonomi,penilaian_awal_keperawatan_gigi.edukasi,penilaian_awal_keperawatan_gigi.ket_edukasi,penilaian_awal_keperawatan_gigi.berjalan_a,penilaian_awal_keperawatan_gigi.berjalan_b,"+
+                        "penilaian_awal_keperawatan_gigi.berjalan_c,penilaian_awal_keperawatan_gigi.hasil,penilaian_awal_keperawatan_gigi.lapor,penilaian_awal_keperawatan_gigi.ket_lapor,penilaian_awal_keperawatan_gigi.sg1,penilaian_awal_keperawatan_gigi.nilai1,penilaian_awal_keperawatan_gigi.sg2,penilaian_awal_keperawatan_gigi.nilai2,"+
+                        "penilaian_awal_keperawatan_gigi.total_hasil,penilaian_awal_keperawatan_gigi.nyeri,penilaian_awal_keperawatan_gigi.provokes,penilaian_awal_keperawatan_gigi.ket_provokes,penilaian_awal_keperawatan_gigi.quality,penilaian_awal_keperawatan_gigi.ket_quality,penilaian_awal_keperawatan_gigi.lokasi,penilaian_awal_keperawatan_gigi.menyebar,"+
+                        "penilaian_awal_keperawatan_gigi.skala_nyeri,penilaian_awal_keperawatan_gigi.durasi,penilaian_awal_keperawatan_gigi.nyeri_hilang,penilaian_awal_keperawatan_gigi.ket_nyeri,penilaian_awal_keperawatan_gigi.pada_dokter,penilaian_awal_keperawatan_gigi.ket_dokter,penilaian_awal_keperawatan_gigi.rencana,"+
+                        "penilaian_awal_keperawatan_gigi.nip,petugas.nama,penilaian_awal_keperawatan_gigi.budaya,penilaian_awal_keperawatan_gigi.ket_budaya "+
                         "from reg_periksa inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
-                        "inner join penilaian_awal_keperawatan_ralan on reg_periksa.no_rawat=penilaian_awal_keperawatan_ralan.no_rawat "+
-                        "inner join petugas on penilaian_awal_keperawatan_ralan.nip=petugas.nip "+
+                        "inner join penilaian_awal_keperawatan_gigi on reg_periksa.no_rawat=penilaian_awal_keperawatan_gigi.no_rawat "+
+                        "inner join petugas on penilaian_awal_keperawatan_gigi.nip=petugas.nip "+
                         "inner join bahasa_pasien on bahasa_pasien.id=pasien.bahasa_pasien "+
                         "inner join cacat_fisik on cacat_fisik.id=pasien.cacat_fisik where "+
-                        "penilaian_awal_keperawatan_ralan.tanggal between ? and ? order by penilaian_awal_keperawatan_ralan.tanggal");
+                        "penilaian_awal_keperawatan_gigi.tanggal between ? and ? order by penilaian_awal_keperawatan_gigi.tanggal");
             }else{
                 ps=koneksi.prepareStatement(
-                        "select reg_periksa.no_rawat,pasien.no_rkm_medis,pasien.nm_pasien,if(pasien.jk='L','Laki-Laki','Perempuan') as jk,pasien.tgl_lahir,pasien.agama,bahasa_pasien.nama_bahasa,cacat_fisik.nama_cacat,penilaian_awal_keperawatan_ralan.tanggal,"+
-                        "penilaian_awal_keperawatan_ralan.informasi,penilaian_awal_keperawatan_ralan.td,penilaian_awal_keperawatan_ralan.nadi,penilaian_awal_keperawatan_ralan.rr,penilaian_awal_keperawatan_ralan.suhu,penilaian_awal_keperawatan_ralan.bb,penilaian_awal_keperawatan_ralan.tb,"+
-                        "penilaian_awal_keperawatan_ralan.nadi,penilaian_awal_keperawatan_ralan.rr,penilaian_awal_keperawatan_ralan.suhu,penilaian_awal_keperawatan_ralan.gcs,penilaian_awal_keperawatan_ralan.bb,penilaian_awal_keperawatan_ralan.tb,penilaian_awal_keperawatan_ralan.bmi,penilaian_awal_keperawatan_ralan.keluhan_utama,"+
-                        "penilaian_awal_keperawatan_ralan.rpd,penilaian_awal_keperawatan_ralan.rpk,penilaian_awal_keperawatan_ralan.rpo,penilaian_awal_keperawatan_ralan.alergi,penilaian_awal_keperawatan_ralan.alat_bantu,penilaian_awal_keperawatan_ralan.ket_bantu,penilaian_awal_keperawatan_ralan.prothesa,"+
-                        "penilaian_awal_keperawatan_ralan.ket_pro,penilaian_awal_keperawatan_ralan.adl,penilaian_awal_keperawatan_ralan.status_psiko,penilaian_awal_keperawatan_ralan.ket_psiko,penilaian_awal_keperawatan_ralan.hub_keluarga,penilaian_awal_keperawatan_ralan.tinggal_dengan,"+
-                        "penilaian_awal_keperawatan_ralan.ket_tinggal,penilaian_awal_keperawatan_ralan.ekonomi,penilaian_awal_keperawatan_ralan.edukasi,penilaian_awal_keperawatan_ralan.ket_edukasi,penilaian_awal_keperawatan_ralan.berjalan_a,penilaian_awal_keperawatan_ralan.berjalan_b,"+
-                        "penilaian_awal_keperawatan_ralan.berjalan_c,penilaian_awal_keperawatan_ralan.hasil,penilaian_awal_keperawatan_ralan.lapor,penilaian_awal_keperawatan_ralan.ket_lapor,penilaian_awal_keperawatan_ralan.sg1,penilaian_awal_keperawatan_ralan.nilai1,penilaian_awal_keperawatan_ralan.sg2,penilaian_awal_keperawatan_ralan.nilai2,"+
-                        "penilaian_awal_keperawatan_ralan.total_hasil,penilaian_awal_keperawatan_ralan.nyeri,penilaian_awal_keperawatan_ralan.provokes,penilaian_awal_keperawatan_ralan.ket_provokes,penilaian_awal_keperawatan_ralan.quality,penilaian_awal_keperawatan_ralan.ket_quality,penilaian_awal_keperawatan_ralan.lokasi,penilaian_awal_keperawatan_ralan.menyebar,"+
-                        "penilaian_awal_keperawatan_ralan.skala_nyeri,penilaian_awal_keperawatan_ralan.durasi,penilaian_awal_keperawatan_ralan.nyeri_hilang,penilaian_awal_keperawatan_ralan.ket_nyeri,penilaian_awal_keperawatan_ralan.pada_dokter,penilaian_awal_keperawatan_ralan.ket_dokter,penilaian_awal_keperawatan_ralan.rencana,"+
-                        "penilaian_awal_keperawatan_ralan.nip,petugas.nama,penilaian_awal_keperawatan_ralan.budaya,penilaian_awal_keperawatan_ralan.ket_budaya "+
+                        "select reg_periksa.no_rawat,pasien.no_rkm_medis,pasien.nm_pasien,if(pasien.jk='L','Laki-Laki','Perempuan') as jk,pasien.tgl_lahir,pasien.agama,bahasa_pasien.nama_bahasa,cacat_fisik.nama_cacat,penilaian_awal_keperawatan_gigi.tanggal,"+
+                        "penilaian_awal_keperawatan_gigi.informasi,penilaian_awal_keperawatan_gigi.td,penilaian_awal_keperawatan_gigi.nadi,penilaian_awal_keperawatan_gigi.rr,penilaian_awal_keperawatan_gigi.suhu,penilaian_awal_keperawatan_gigi.bb,penilaian_awal_keperawatan_gigi.tb,"+
+                        "penilaian_awal_keperawatan_gigi.nadi,penilaian_awal_keperawatan_gigi.rr,penilaian_awal_keperawatan_gigi.suhu,penilaian_awal_keperawatan_gigi.gcs,penilaian_awal_keperawatan_gigi.bb,penilaian_awal_keperawatan_gigi.tb,penilaian_awal_keperawatan_gigi.bmi,penilaian_awal_keperawatan_gigi.keluhan_utama,"+
+                        "penilaian_awal_keperawatan_gigi.rpd,penilaian_awal_keperawatan_gigi.rpk,penilaian_awal_keperawatan_gigi.rpo,penilaian_awal_keperawatan_gigi.alergi,penilaian_awal_keperawatan_gigi.alat_bantu,penilaian_awal_keperawatan_gigi.ket_bantu,penilaian_awal_keperawatan_gigi.prothesa,"+
+                        "penilaian_awal_keperawatan_gigi.ket_pro,penilaian_awal_keperawatan_gigi.adl,penilaian_awal_keperawatan_gigi.status_psiko,penilaian_awal_keperawatan_gigi.ket_psiko,penilaian_awal_keperawatan_gigi.hub_keluarga,penilaian_awal_keperawatan_gigi.tinggal_dengan,"+
+                        "penilaian_awal_keperawatan_gigi.ket_tinggal,penilaian_awal_keperawatan_gigi.ekonomi,penilaian_awal_keperawatan_gigi.edukasi,penilaian_awal_keperawatan_gigi.ket_edukasi,penilaian_awal_keperawatan_gigi.berjalan_a,penilaian_awal_keperawatan_gigi.berjalan_b,"+
+                        "penilaian_awal_keperawatan_gigi.berjalan_c,penilaian_awal_keperawatan_gigi.hasil,penilaian_awal_keperawatan_gigi.lapor,penilaian_awal_keperawatan_gigi.ket_lapor,penilaian_awal_keperawatan_gigi.sg1,penilaian_awal_keperawatan_gigi.nilai1,penilaian_awal_keperawatan_gigi.sg2,penilaian_awal_keperawatan_gigi.nilai2,"+
+                        "penilaian_awal_keperawatan_gigi.total_hasil,penilaian_awal_keperawatan_gigi.nyeri,penilaian_awal_keperawatan_gigi.provokes,penilaian_awal_keperawatan_gigi.ket_provokes,penilaian_awal_keperawatan_gigi.quality,penilaian_awal_keperawatan_gigi.ket_quality,penilaian_awal_keperawatan_gigi.lokasi,penilaian_awal_keperawatan_gigi.menyebar,"+
+                        "penilaian_awal_keperawatan_gigi.skala_nyeri,penilaian_awal_keperawatan_gigi.durasi,penilaian_awal_keperawatan_gigi.nyeri_hilang,penilaian_awal_keperawatan_gigi.ket_nyeri,penilaian_awal_keperawatan_gigi.pada_dokter,penilaian_awal_keperawatan_gigi.ket_dokter,penilaian_awal_keperawatan_gigi.rencana,"+
+                        "penilaian_awal_keperawatan_gigi.nip,petugas.nama,penilaian_awal_keperawatan_gigi.budaya,penilaian_awal_keperawatan_gigi.ket_budaya "+
                         "from reg_periksa inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
-                        "inner join penilaian_awal_keperawatan_ralan on reg_periksa.no_rawat=penilaian_awal_keperawatan_ralan.no_rawat "+
-                        "inner join petugas on penilaian_awal_keperawatan_ralan.nip=petugas.nip "+
+                        "inner join penilaian_awal_keperawatan_gigi on reg_periksa.no_rawat=penilaian_awal_keperawatan_gigi.no_rawat "+
+                        "inner join petugas on penilaian_awal_keperawatan_gigi.nip=petugas.nip "+
                         "inner join bahasa_pasien on bahasa_pasien.id=pasien.bahasa_pasien "+
                         "inner join cacat_fisik on cacat_fisik.id=pasien.cacat_fisik where "+
-                        "penilaian_awal_keperawatan_ralan.tanggal between ? and ? and reg_periksa.no_rawat like ? or "+
-                        "penilaian_awal_keperawatan_ralan.tanggal between ? and ? and pasien.no_rkm_medis like ? or "+
-                        "penilaian_awal_keperawatan_ralan.tanggal between ? and ? and pasien.nm_pasien like ? or "+
-                        "penilaian_awal_keperawatan_ralan.tanggal between ? and ? and penilaian_awal_keperawatan_ralan.nip like ? or "+
-                        "penilaian_awal_keperawatan_ralan.tanggal between ? and ? and petugas.nama like ? order by penilaian_awal_keperawatan_ralan.tanggal");
+                        "penilaian_awal_keperawatan_gigi.tanggal between ? and ? and reg_periksa.no_rawat like ? or "+
+                        "penilaian_awal_keperawatan_gigi.tanggal between ? and ? and pasien.no_rkm_medis like ? or "+
+                        "penilaian_awal_keperawatan_gigi.tanggal between ? and ? and pasien.nm_pasien like ? or "+
+                        "penilaian_awal_keperawatan_gigi.tanggal between ? and ? and penilaian_awal_keperawatan_gigi.nip like ? or "+
+                        "penilaian_awal_keperawatan_gigi.tanggal between ? and ? and petugas.nama like ? order by penilaian_awal_keperawatan_gigi.tanggal");
             }
                 
             try {
@@ -3547,14 +3570,10 @@ public final class RMPenilaianAwalKeperawatanGizi extends javax.swing.JDialog {
         Nadi.setText("");
         RR.setText("");
         Suhu.setText("");
-        GCS.setText("");
         BB.setText("");
         TB.setText("");
         BMI.setText("");
         KeluhanUtama.setText("");
-        RPK.setText("");
-        RPD.setText("");
-        RPO.setText("");
         Alergi.setText("");
         AlatBantu.setSelectedIndex(0);
         KetBantu.setText("");
@@ -3599,6 +3618,7 @@ public final class RMPenilaianAwalKeperawatanGizi extends javax.swing.JDialog {
         for (i = 0; i < tabModeMasalah.getRowCount(); i++) {
             tabModeMasalah.setValueAt(false,i,0);
         }
+        TabRawat.setSelectedIndex(0);
         Informasi.requestFocus();
     } 
 
@@ -3617,14 +3637,10 @@ public final class RMPenilaianAwalKeperawatanGizi extends javax.swing.JDialog {
             Nadi.setText(tbObat.getValueAt(tbObat.getSelectedRow(),11).toString());
             RR.setText(tbObat.getValueAt(tbObat.getSelectedRow(),12).toString());
             Suhu.setText(tbObat.getValueAt(tbObat.getSelectedRow(),13).toString());
-            GCS.setText(tbObat.getValueAt(tbObat.getSelectedRow(),14).toString());
             BB.setText(tbObat.getValueAt(tbObat.getSelectedRow(),15).toString());
             TB.setText(tbObat.getValueAt(tbObat.getSelectedRow(),16).toString());
             BMI.setText(tbObat.getValueAt(tbObat.getSelectedRow(),17).toString());
             KeluhanUtama.setText(tbObat.getValueAt(tbObat.getSelectedRow(),18).toString());
-            RPD.setText(tbObat.getValueAt(tbObat.getSelectedRow(),19).toString());
-            RPK.setText(tbObat.getValueAt(tbObat.getSelectedRow(),20).toString());
-            RPO.setText(tbObat.getValueAt(tbObat.getSelectedRow(),21).toString());
             Alergi.setText(tbObat.getValueAt(tbObat.getSelectedRow(),22).toString());
             AlatBantu.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),23).toString());
             KetBantu.setText(tbObat.getValueAt(tbObat.getSelectedRow(),24).toString());
@@ -3674,9 +3690,9 @@ public final class RMPenilaianAwalKeperawatanGizi extends javax.swing.JDialog {
                 Valid.tabelKosong(tabModeMasalah);
                 
                 ps=koneksi.prepareStatement(
-                        "select master_masalah_keperawatan.kode_masalah,master_masalah_keperawatan.nama_masalah from master_masalah_keperawatan "+
-                        "inner join penilaian_awal_keperawatan_ralan_masalah on penilaian_awal_keperawatan_ralan_masalah.kode_masalah=master_masalah_keperawatan.kode_masalah "+
-                        "where penilaian_awal_keperawatan_ralan_masalah.no_rawat=? order by kode_masalah");
+                        "select master_masalah_keperawatan_gigi.kode_masalah,master_masalah_keperawatan_gigi.nama_masalah from master_masalah_keperawatan_gigi "+
+                        "inner join penilaian_awal_keperawatan_gigi_masalah on penilaian_awal_keperawatan_gigi_masalah.kode_masalah=master_masalah_keperawatan_gigi.kode_masalah "+
+                        "where penilaian_awal_keperawatan_gigi_masalah.no_rawat=? order by kode_masalah");
                 try {
                     ps.setString(1,tbObat.getValueAt(tbObat.getSelectedRow(),0).toString());
                     rs=ps.executeQuery();
@@ -3743,11 +3759,11 @@ public final class RMPenilaianAwalKeperawatanGizi extends javax.swing.JDialog {
     
     
     public void isCek(){
-        BtnSimpan.setEnabled(akses.getpenilaian_awal_keperawatan_ralan());
-        BtnHapus.setEnabled(akses.getpenilaian_awal_keperawatan_ralan());
-        BtnEdit.setEnabled(akses.getpenilaian_awal_keperawatan_ralan());
-        BtnEdit.setEnabled(akses.getpenilaian_awal_keperawatan_ralan());
-        BtnTambahMasalah.setEnabled(akses.getmaster_masalah_keperawatan());  
+        BtnSimpan.setEnabled(akses.getpenilaian_awal_keperawatan_gigi());
+        BtnHapus.setEnabled(akses.getpenilaian_awal_keperawatan_gigi());
+        BtnEdit.setEnabled(akses.getpenilaian_awal_keperawatan_gigi());
+        BtnEdit.setEnabled(akses.getpenilaian_awal_keperawatan_gigi());
+        BtnTambahMasalah.setEnabled(akses.getmaster_masalah_keperawatan_gigi());  
         if(akses.getjml2()>=1){
             KdPetugas.setEditable(false);
             BtnDokter.setEnabled(false);
@@ -3798,7 +3814,7 @@ public final class RMPenilaianAwalKeperawatanGizi extends javax.swing.JDialog {
                     pilih[i],kode[i],masalah[i]
                 });
             }
-            ps=koneksi.prepareStatement("select * from master_masalah_keperawatan where kode_masalah like ? or nama_masalah like ? order by kode_masalah");
+            ps=koneksi.prepareStatement("select * from master_masalah_keperawatan_gigi where kode_masalah like ? or nama_masalah like ? order by kode_masalah");
             try {
                 ps.setString(1,"%"+TCariMasalah.getText().trim()+"%");
                 ps.setString(2,"%"+TCariMasalah.getText().trim()+"%");
@@ -3845,9 +3861,9 @@ public final class RMPenilaianAwalKeperawatanGizi extends javax.swing.JDialog {
             try {
                 Valid.tabelKosong(tabModeDetailMasalah);
                 ps=koneksi.prepareStatement(
-                        "select master_masalah_keperawatan.kode_masalah,master_masalah_keperawatan.nama_masalah from master_masalah_keperawatan "+
-                        "inner join penilaian_awal_keperawatan_ralan_masalah on penilaian_awal_keperawatan_ralan_masalah.kode_masalah=master_masalah_keperawatan.kode_masalah "+
-                        "where penilaian_awal_keperawatan_ralan_masalah.no_rawat=? order by kode_masalah");
+                        "select master_masalah_keperawatan_gigi.kode_masalah,master_masalah_keperawatan_gigi.nama_masalah from master_masalah_keperawatan_gigi "+
+                        "inner join penilaian_awal_keperawatan_gigi_masalah on penilaian_awal_keperawatan_gigi_masalah.kode_masalah=master_masalah_keperawatan_gigi.kode_masalah "+
+                        "where penilaian_awal_keperawatan_gigi_masalah.no_rawat=? order by kode_masalah");
                 try {
                     ps.setString(1,tbObat.getValueAt(tbObat.getSelectedRow(),0).toString());
                     rs=ps.executeQuery();
