@@ -46,7 +46,7 @@ import laporan.DlgCariPenyakit;
  *
  * @author perpustakaan
  */
-public final class DlgHemodialisa extends javax.swing.JDialog {
+public final class RMHemodialisa extends javax.swing.JDialog {
     private final DefaultTableModel tabMode;
     private Connection koneksi=koneksiDB.condb();
     private sekuel Sequel=new sekuel();
@@ -59,7 +59,7 @@ public final class DlgHemodialisa extends javax.swing.JDialog {
     /** Creates new form DlgRujuk
      * @param parent
      * @param modal */
-    public DlgHemodialisa(java.awt.Frame parent, boolean modal) {
+    public RMHemodialisa(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setLocation(8,1);
@@ -223,6 +223,9 @@ public final class DlgHemodialisa extends javax.swing.JDialog {
         
         ChkInput.setSelected(false);
         isForm();
+        
+        kddok.setText(Sequel.cariIsi("select kd_dokterhemodialisa from set_pjlab"));
+        namadokter.setText(Sequel.cariIsi("select nm_dokter from dokter where kd_dokter=?",kddok.getText()));
         
         jam();
     }
@@ -483,7 +486,7 @@ public final class DlgHemodialisa extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-08-2020" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-08-2020" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -497,7 +500,7 @@ public final class DlgHemodialisa extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-08-2020" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-08-2020" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -593,7 +596,7 @@ public final class DlgHemodialisa extends javax.swing.JDialog {
         TPasien.setBounds(336, 10, 450, 23);
 
         Tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-08-2020" }));
+        Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-08-2020" }));
         Tanggal.setDisplayFormat("dd-MM-yyyy");
         Tanggal.setName("Tanggal"); // NOI18N
         Tanggal.setOpaque(false);
@@ -661,7 +664,7 @@ public final class DlgHemodialisa extends javax.swing.JDialog {
         FormInput.add(ChkKejadian);
         ChkKejadian.setBounds(368, 40, 23, 23);
 
-        jLabel18.setText("Dokter P.J :");
+        jLabel18.setText("Dokter P.J. :");
         jLabel18.setName("jLabel18"); // NOI18N
         FormInput.add(jLabel18);
         jLabel18.setBounds(400, 40, 70, 23);
@@ -1420,7 +1423,7 @@ public final class DlgHemodialisa extends javax.swing.JDialog {
     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> {
-            DlgHemodialisa dialog = new DlgHemodialisa(new javax.swing.JFrame(), true);
+            RMHemodialisa dialog = new RMHemodialisa(new javax.swing.JFrame(), true);
             dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                 @Override
                 public void windowClosing(java.awt.event.WindowEvent e) {
@@ -1602,8 +1605,6 @@ public final class DlgHemodialisa extends javax.swing.JDialog {
     }
 
     public void emptTeks() {
-        kddok.setText("");
-        namadokter.setText("");
         TLama.setText("");
         TAkses.setText("Femoral / Cimino");
         TDialist.setText("Bicarbonat");
@@ -1662,11 +1663,9 @@ public final class DlgHemodialisa extends javax.swing.JDialog {
         Sequel.cariIsi("select nm_pasien from pasien where no_rkm_medis='"+TNoRM.getText()+"' ",TPasien);
     }
     
-    public void setNoRm(String norwt, Date tgl2) {
+    public void setNoRm(String norwt) {
         TNoRw.setText(norwt);
         TCari.setText(norwt);
-        Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='"+norwt+"'", DTPCari1);
-        DTPCari2.setDate(tgl2);
         isRawat();
         isPsien();              
         ChkInput.setSelected(true);
@@ -1688,14 +1687,10 @@ public final class DlgHemodialisa extends javax.swing.JDialog {
     }
     
     public void isCek(){
-        BtnSimpan.setEnabled(akses.gettindakan_ralan());
-        BtnHapus.setEnabled(akses.gettindakan_ralan());
-        BtnEdit.setEnabled(akses.gettindakan_ralan());
-        BtnPrint.setEnabled(akses.gettindakan_ralan()); 
-//        if(akses.getjml2()>=1){
-//            kddok.setText(akses.getkode());
-//            Sequel.cariIsi("select nm_dokter from petugas where nip=?",namadokter,kddok.getText());
-//        }            
+        BtnSimpan.setEnabled(akses.gethemodialisa());
+        BtnHapus.setEnabled(akses.gethemodialisa());
+        BtnEdit.setEnabled(akses.gethemodialisa());
+        BtnPrint.setEnabled(akses.gethemodialisa()); 
     }
 
     private void jam(){
