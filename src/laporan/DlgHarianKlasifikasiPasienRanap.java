@@ -23,7 +23,7 @@ import javax.swing.text.html.StyleSheet;
 import simrskhanza.DlgCariBangsal;
 import simrskhanza.DlgPenanggungJawab;
 
-public class DlgHarianKlasifikasi extends javax.swing.JDialog {
+public class DlgHarianKlasifikasiPasienRanap extends javax.swing.JDialog {
     private sekuel Sequel=new sekuel();
     private validasi Valid=new validasi();
     private Connection koneksi=koneksiDB.condb();
@@ -36,7 +36,7 @@ public class DlgHarianKlasifikasi extends javax.swing.JDialog {
     /** Creates new form DlgProgramStudi
      * @param parent
      * @param modal */
-    public DlgHarianKlasifikasi(java.awt.Frame parent, boolean modal) {
+    public DlgHarianKlasifikasiPasienRanap(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         
@@ -161,7 +161,7 @@ public class DlgHarianKlasifikasi extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Laporan Harian Klasifikasi Pasien ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Laporan Harian Klasifikasi Pasien Ranap ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -493,7 +493,7 @@ private void btnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b
     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> {
-            DlgHarianKlasifikasi dialog = new DlgHarianKlasifikasi(new javax.swing.JFrame(), true);
+            DlgHarianKlasifikasiPasienRanap dialog = new DlgHarianKlasifikasiPasienRanap(new javax.swing.JFrame(), true);
             dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                 @Override
                 public void windowClosing(java.awt.event.WindowEvent e) {
@@ -537,11 +537,11 @@ private void btnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b
             htmlContent.append(                             
                 "<tr class='isi'>"+
                     "<td valign='middle' bgcolor='#FFFAF8' align='center' width='2%' rowspan='2'>No.</td>"+
-                    "<td valign='middle' bgcolor='#FFFAF8' align='center' width='4%' rowspan='2'>No.R.M</td>"+
-                    "<td valign='middle' bgcolor='#FFFAF8' align='center' width='13%' rowspan='2'>Nama Pasien</td>"+
-                    "<td valign='middle' bgcolor='#FFFAF8' align='center' width='5%' rowspan='2'>Tanggal</td>"+
-                    "<td valign='middle' bgcolor='#FFFAF8' align='center' width='15%' colspan='3'>Klasifikasi Ketergantungan Pasien</td>"+
-                    "<td valign='middle' bgcolor='#FFFAF8' align='center' width='13%' rowspan='2'>Kamar/Bangsal</td>"+
+                    "<td valign='middle' bgcolor='#FFFAF8' align='center' width='10%' rowspan='2'>No.R.M</td>"+
+                    "<td valign='middle' bgcolor='#FFFAF8' align='center' width='20%' rowspan='2'>Nama Pasien</td>"+
+                    "<td valign='middle' bgcolor='#FFFAF8' align='center' width='10%' rowspan='2'>Tanggal</td>"+
+                    "<td valign='middle' bgcolor='#FFFAF8' align='center' width='38%' colspan='3'>Klasifikasi Ketergantungan Pasien</td>"+
+                    "<td valign='middle' bgcolor='#FFFAF8' align='center' width='20%' rowspan='2'>Kamar/Bangsal</td>"+
                 "</tr>"+
                 "<tr class='isi'>"+
                     "<td valign='middle' bgcolor='#FFFAF8' align='center'>Minimal</td>"+
@@ -550,16 +550,16 @@ private void btnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b
                 "</tr>"
             );     
             ps=koneksi.prepareStatement(
-                "select data_klasifikasi.tanggal,data_klasifikasi.no_rawat,reg_periksa.no_rkm_medis,pasien.nm_pasien,"+
-                "data_klasifikasi.Minimal,data_klasifikasi.Partial,data_klasifikasi.Total,"+
-                "concat(data_klasifikasi.kd_kamar,', ',bangsal.nm_bangsal) as ruang,data_klasifikasi.kd_kamar from data_klasifikasi inner join reg_periksa "+
-                "inner join pasien inner join kamar inner join bangsal inner join penjab on data_klasifikasi.kd_kamar=kamar.kd_kamar "+
-                "and kamar.kd_bangsal=bangsal.kd_bangsal and data_klasifikasi.no_rawat=reg_periksa.no_rawat "+
+                "select data_klasifikasi_pasien_ranap.tanggal,data_klasifikasi_pasien_ranap.no_rawat,reg_periksa.no_rkm_medis,pasien.nm_pasien,"+
+                "data_klasifikasi_pasien_ranap.Minimal,data_klasifikasi_pasien_ranap.Partial,data_klasifikasi_pasien_ranap.Total,"+
+                "concat(data_klasifikasi_pasien_ranap.kd_kamar,', ',bangsal.nm_bangsal) as ruang,data_klasifikasi_pasien_ranap.kd_kamar from data_klasifikasi_pasien_ranap inner join reg_periksa "+
+                "inner join pasien inner join kamar inner join bangsal inner join penjab on data_klasifikasi_pasien_ranap.kd_kamar=kamar.kd_kamar "+
+                "and kamar.kd_bangsal=bangsal.kd_bangsal and data_klasifikasi_pasien_ranap.no_rawat=reg_periksa.no_rawat "+
                 "and reg_periksa.kd_pj=penjab.kd_pj and reg_periksa.no_rkm_medis=pasien.no_rkm_medis where "+
-                "data_klasifikasi.tanggal between ? and ? and bangsal.nm_bangsal like ? and penjab.png_jawab like ? and data_klasifikasi.no_rawat like ? or "+
-                "data_klasifikasi.tanggal between ? and ? and bangsal.nm_bangsal like ? and penjab.png_jawab like ? and reg_periksa.no_rkm_medis like ? or "+
-                "data_klasifikasi.tanggal between ? and ? and bangsal.nm_bangsal like ? and penjab.png_jawab like ? and bangsal.nm_bangsal like ? or "+
-                "data_klasifikasi.tanggal between ? and ? and bangsal.nm_bangsal like ? and penjab.png_jawab like ? and pasien.nm_pasien like ? order by data_klasifikasi.tanggal ");
+                "data_klasifikasi_pasien_ranap.tanggal between ? and ? and bangsal.nm_bangsal like ? and penjab.png_jawab like ? and data_klasifikasi_pasien_ranap.no_rawat like ? or "+
+                "data_klasifikasi_pasien_ranap.tanggal between ? and ? and bangsal.nm_bangsal like ? and penjab.png_jawab like ? and reg_periksa.no_rkm_medis like ? or "+
+                "data_klasifikasi_pasien_ranap.tanggal between ? and ? and bangsal.nm_bangsal like ? and penjab.png_jawab like ? and bangsal.nm_bangsal like ? or "+
+                "data_klasifikasi_pasien_ranap.tanggal between ? and ? and bangsal.nm_bangsal like ? and penjab.png_jawab like ? and pasien.nm_pasien like ? order by data_klasifikasi_pasien_ranap.tanggal ");
             try {
                 i=1;
                 jmlminimal=0;jmlpartial=0;jmltotal=0;                 
@@ -649,7 +649,7 @@ private void btnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b
     }
     
     public void isCek(){
-        //BtnPrint.setEnabled(akses.getlaporan_harian_klasifikasi());
+        BtnPrint.setEnabled(akses.getharian_klasifikasi_pasien_ranap());
     }
 
     public void tampil() {
