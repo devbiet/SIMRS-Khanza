@@ -23,7 +23,7 @@ import javax.swing.text.html.StyleSheet;
 import simrskhanza.DlgCariBangsal;
 import simrskhanza.DlgPenanggungJawab;
 
-public class DlgBulananKlasifikasi extends javax.swing.JDialog {
+public class DlgBulananKlasifikasiPasienRanap extends javax.swing.JDialog {
     private sekuel Sequel=new sekuel();
     private validasi Valid=new validasi();
     private Connection koneksi=koneksiDB.condb();
@@ -37,7 +37,7 @@ public class DlgBulananKlasifikasi extends javax.swing.JDialog {
     /** Creates new form DlgProgramStudi
      * @param parent
      * @param modal */
-    public DlgBulananKlasifikasi(java.awt.Frame parent, boolean modal) {
+    public DlgBulananKlasifikasiPasienRanap(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         
@@ -465,7 +465,7 @@ private void btnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b
     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> {
-            DlgBulananKlasifikasi dialog = new DlgBulananKlasifikasi(new javax.swing.JFrame(), true);
+            DlgBulananKlasifikasiPasienRanap dialog = new DlgBulananKlasifikasiPasienRanap(new javax.swing.JFrame(), true);
             dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                 @Override
                 public void windowClosing(java.awt.event.WindowEvent e) {
@@ -507,9 +507,9 @@ private void btnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b
             htmlContent.append(                             
                 "<tr class='isi'>"+
                     "<td valign='middle' bgcolor='#FFFAF8' align='center' width='2%' rowspan='2'>No.</td>"+
-                    "<td valign='middle' bgcolor='#FFFAF8' align='center' width='6%' rowspan='2'>Tanggal</td>"+
-                    "<td valign='middle' bgcolor='#FFFAF8' align='center' width='5%' rowspan='2'>Jml.Pasien</td>"+
-                    "<td valign='middle' bgcolor='#FFFAF8' align='center' width='17%' colspan='3'>Klasifikasi Ketergantungan Pasien</td>"+
+                    "<td valign='middle' bgcolor='#FFFAF8' align='center' width='10%' rowspan='2'>Tanggal</td>"+
+                    "<td valign='middle' bgcolor='#FFFAF8' align='center' width='10%' rowspan='2'>Jml.Pasien</td>"+
+                    "<td valign='middle' bgcolor='#FFFAF8' align='center' width='60%' colspan='3'>Klasifikasi Ketergantungan Pasien Rawat Inap</td>"+
                 "</tr>"+
                 "<tr class='isi'>"+
                     "<td valign='middle' bgcolor='#FFFAF8' align='center'>Minimal</td>"+
@@ -518,7 +518,7 @@ private void btnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b
                 "</tr>"
             );     
             ps=koneksi.prepareStatement(
-                    "select data_klasifikasi.tanggal from data_klasifikasi inner join reg_periksa inner join kamar inner join bangsal inner join penjab on data_klasifikasi.kd_kamar=kamar.kd_kamar and kamar.kd_bangsal=bangsal.kd_bangsal and data_klasifikasi.no_rawat=reg_periksa.no_rawat and reg_periksa.kd_pj=penjab.kd_pj where tanggal between ? and ? and bangsal.nm_bangsal like ? and penjab.png_jawab like ? group by tanggal order by tanggal");
+                    "select data_klasifikasi_pasien_ranap.tanggal from data_klasifikasi_pasien_ranap inner join reg_periksa inner join kamar inner join bangsal inner join penjab on data_klasifikasi_pasien_ranap.kd_kamar=kamar.kd_kamar and kamar.kd_bangsal=bangsal.kd_bangsal and data_klasifikasi_pasien_ranap.no_rawat=reg_periksa.no_rawat and reg_periksa.kd_pj=penjab.kd_pj where tanggal between ? and ? and bangsal.nm_bangsal like ? and penjab.png_jawab like ? group by tanggal order by tanggal");
             try {
                 i=1;
                 jmlminimal=0;jmlpartial=0;jmltotal=0;jmlpasien=0;                      
@@ -528,13 +528,13 @@ private void btnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b
                 ps.setString(4,"%"+NmPenjab.getText().trim()+"%");
                 rs=ps.executeQuery();
                 while(rs.next()){
-                    pasien=Sequel.cariInteger("select count(data_klasifikasi.no_rawat) from data_klasifikasi inner join reg_periksa inner join kamar inner join bangsal inner join penjab on data_klasifikasi.kd_kamar=kamar.kd_kamar and kamar.kd_bangsal=bangsal.kd_bangsal and data_klasifikasi.no_rawat=reg_periksa.no_rawat and reg_periksa.kd_pj=penjab.kd_pj where data_klasifikasi.tanggal=? and bangsal.nm_bangsal like ? and penjab.png_jawab like ?",rs.getString("tanggal"),"%"+NmKamar.getText().trim()+"%","%"+NmPenjab.getText().trim()+"%");
+                    pasien=Sequel.cariInteger("select count(data_klasifikasi_pasien_ranap.no_rawat) from data_klasifikasi_pasien_ranap inner join reg_periksa inner join kamar inner join bangsal inner join penjab on data_klasifikasi_pasien_ranap.kd_kamar=kamar.kd_kamar and kamar.kd_bangsal=bangsal.kd_bangsal and data_klasifikasi_pasien_ranap.no_rawat=reg_periksa.no_rawat and reg_periksa.kd_pj=penjab.kd_pj where data_klasifikasi_pasien_ranap.tanggal=? and bangsal.nm_bangsal like ? and penjab.png_jawab like ?",rs.getString("tanggal"),"%"+NmKamar.getText().trim()+"%","%"+NmPenjab.getText().trim()+"%");
                     jmlpasien=jmlpasien+pasien;
-                    minimal=Sequel.cariInteger("select count(data_klasifikasi.no_rawat) from data_klasifikasi inner join reg_periksa inner join kamar inner join bangsal inner join penjab on data_klasifikasi.kd_kamar=kamar.kd_kamar and kamar.kd_bangsal=bangsal.kd_bangsal and data_klasifikasi.no_rawat=reg_periksa.no_rawat and reg_periksa.kd_pj=penjab.kd_pj where data_klasifikasi.minimal='IYA' and tanggal=? and bangsal.nm_bangsal like ? and penjab.png_jawab like ?",rs.getString("tanggal"),"%"+NmKamar.getText().trim()+"%","%"+NmPenjab.getText().trim()+"%");
+                    minimal=Sequel.cariInteger("select count(data_klasifikasi_pasien_ranap.no_rawat) from data_klasifikasi_pasien_ranap inner join reg_periksa inner join kamar inner join bangsal inner join penjab on data_klasifikasi_pasien_ranap.kd_kamar=kamar.kd_kamar and kamar.kd_bangsal=bangsal.kd_bangsal and data_klasifikasi_pasien_ranap.no_rawat=reg_periksa.no_rawat and reg_periksa.kd_pj=penjab.kd_pj where data_klasifikasi_pasien_ranap.minimal='IYA' and tanggal=? and bangsal.nm_bangsal like ? and penjab.png_jawab like ?",rs.getString("tanggal"),"%"+NmKamar.getText().trim()+"%","%"+NmPenjab.getText().trim()+"%");
                     jmlminimal=jmlminimal+minimal;
-                    partial=Sequel.cariInteger("select count(data_klasifikasi.no_rawat) from data_klasifikasi inner join reg_periksa inner join kamar inner join bangsal inner join penjab on data_klasifikasi.kd_kamar=kamar.kd_kamar and kamar.kd_bangsal=bangsal.kd_bangsal and data_klasifikasi.no_rawat=reg_periksa.no_rawat and reg_periksa.kd_pj=penjab.kd_pj where data_klasifikasi.partial='IYA' and tanggal=? and bangsal.nm_bangsal like ? and penjab.png_jawab like ?",rs.getString("tanggal"),"%"+NmKamar.getText().trim()+"%","%"+NmPenjab.getText().trim()+"%");
+                    partial=Sequel.cariInteger("select count(data_klasifikasi_pasien_ranap.no_rawat) from data_klasifikasi_pasien_ranap inner join reg_periksa inner join kamar inner join bangsal inner join penjab on data_klasifikasi_pasien_ranap.kd_kamar=kamar.kd_kamar and kamar.kd_bangsal=bangsal.kd_bangsal and data_klasifikasi_pasien_ranap.no_rawat=reg_periksa.no_rawat and reg_periksa.kd_pj=penjab.kd_pj where data_klasifikasi_pasien_ranap.partial='IYA' and tanggal=? and bangsal.nm_bangsal like ? and penjab.png_jawab like ?",rs.getString("tanggal"),"%"+NmKamar.getText().trim()+"%","%"+NmPenjab.getText().trim()+"%");
                     jmlpartial=jmlpartial+partial;
-                    total=Sequel.cariInteger("select count(data_klasifikasi.no_rawat) from data_klasifikasi inner join reg_periksa inner join kamar inner join bangsal inner join penjab on data_klasifikasi.kd_kamar=kamar.kd_kamar and kamar.kd_bangsal=bangsal.kd_bangsal and data_klasifikasi.no_rawat=reg_periksa.no_rawat and reg_periksa.kd_pj=penjab.kd_pj where data_klasifikasi.total='IYA' and tanggal=? and bangsal.nm_bangsal like ? and penjab.png_jawab like ?",rs.getString("tanggal"),"%"+NmKamar.getText().trim()+"%","%"+NmPenjab.getText().trim()+"%");
+                    total=Sequel.cariInteger("select count(data_klasifikasi_pasien_ranap.no_rawat) from data_klasifikasi_pasien_ranap inner join reg_periksa inner join kamar inner join bangsal inner join penjab on data_klasifikasi_pasien_ranap.kd_kamar=kamar.kd_kamar and kamar.kd_bangsal=bangsal.kd_bangsal and data_klasifikasi_pasien_ranap.no_rawat=reg_periksa.no_rawat and reg_periksa.kd_pj=penjab.kd_pj where data_klasifikasi_pasien_ranap.total='IYA' and tanggal=? and bangsal.nm_bangsal like ? and penjab.png_jawab like ?",rs.getString("tanggal"),"%"+NmKamar.getText().trim()+"%","%"+NmPenjab.getText().trim()+"%");
                     jmltotal=jmltotal+total;
                     htmlContent.append(                             
                         "<tr class='isi'>"+
@@ -583,7 +583,7 @@ private void btnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b
     }
     
     public void isCek(){
-        //BtnPrint.setEnabled(akses.getlaporan_bulanan_klasifikasi());
+        BtnPrint.setEnabled(akses.getbulanan_klasifikasi_pasien_ranap());
     }
     
 }
