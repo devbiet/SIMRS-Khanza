@@ -9,7 +9,7 @@
  * Created on May 23, 2010, 12:57:16 AM
  */
 
-package kepegawaian;
+package simrskhanza;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -27,7 +27,6 @@ import java.io.FileWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import javax.swing.JTable;
 import javax.swing.event.DocumentEvent;
 import javax.swing.table.DefaultTableModel;
@@ -37,7 +36,7 @@ import javax.swing.table.TableColumn;
  *
  * @author dosen
  */
-public final class DlgCariDokter extends javax.swing.JDialog {
+public final class DlgCariCaraBayar extends javax.swing.JDialog {
     private final DefaultTableModel tabMode;
     private validasi Valid=new validasi();
     private Connection koneksi=koneksiDB.condb();
@@ -50,57 +49,45 @@ public final class DlgCariDokter extends javax.swing.JDialog {
     private JsonNode root;
     private JsonNode response;
     private FileReader myObj;
+    private int i=0;
     /** Creates new form DlgPenyakit
      * @param parent
      * @param modal */
-    public DlgCariDokter(java.awt.Frame parent, boolean modal) {
+    public DlgCariCaraBayar(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setLocation(10,2);
         setSize(656,250);
 
-        Object[] row={"Kode Dokter","Nama Dokter","J.K.","Tmp.Lahir","Tgl.Lahir","G.D.","Agama","Alamat Tinggal","No.HP/Telp","Stts.Nikah","Spesialis","Alumni","No.Ijin Praktek"};
+        Object[] row={"No.","Kode Asuransi","Nama Asuransi","Perusahaan Asuransi","Alamat Asuransi","No.Telp","Attn"};
         tabMode=new DefaultTableModel(null,row){
-              @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
+             @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
         tbKamar.setModel(tabMode);
         //tbPenyakit.setDefaultRenderer(Object.class, new WarnaTable(panelJudul.getBackground(),tbPenyakit.getBackground()));
         tbKamar.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbKamar.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (int i = 0; i < 13; i++) {
+        for (i = 0; i < 7; i++) {
             TableColumn column = tbKamar.getColumnModel().getColumn(i);
             if(i==0){
-                column.setPreferredWidth(100);
+                column.setPreferredWidth(30);
             }else if(i==1){
-                column.setPreferredWidth(200);
+                column.setPreferredWidth(100);
             }else if(i==2){
-                column.setPreferredWidth(40);
+                column.setPreferredWidth(160);
             }else if(i==3){
-                column.setPreferredWidth(100);
+                column.setPreferredWidth(160);
             }else if(i==4){
-                column.setPreferredWidth(100);
+                column.setPreferredWidth(170);
             }else if(i==5){
-                column.setPreferredWidth(40);
+                column.setPreferredWidth(100);
             }else if(i==6){
                 column.setPreferredWidth(150);
-            }else if(i==7){
-                column.setPreferredWidth(150);
-            }else if(i==8){
-                column.setPreferredWidth(100);
-            }else if(i==9){
-                column.setPreferredWidth(100);
-            }else if(i==10){
-                column.setPreferredWidth(150);
-            }else if(i==11){
-                column.setPreferredWidth(200);
-            }else if(i==12){
-                column.setPreferredWidth(100);
             }
         }
         tbKamar.setDefaultRenderer(Object.class, new WarnaTable());
         TCari.setDocument(new batasInput((byte)100).getKata(TCari));
-        
         if(koneksiDB.CARICEPAT().equals("aktif")){
             TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener(){
                 @Override
@@ -124,8 +111,6 @@ public final class DlgCariDokter extends javax.swing.JDialog {
             });
         }
     }
-    
-
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -161,7 +146,7 @@ public final class DlgCariDokter extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Data Dokter ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50,50,50))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Penanggung Pasien/Asuransi/Askes ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -324,6 +309,23 @@ public final class DlgCariDokter extends javax.swing.JDialog {
         }
 }//GEN-LAST:event_tbKamarMouseClicked
 
+    private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
+        dispose();
+    }//GEN-LAST:event_BtnKeluarActionPerformed
+
+    private void BtnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTambahActionPerformed
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        DlgPenanggungJawab penjab=new DlgPenanggungJawab(null,false);
+        penjab.emptTeks();
+        penjab.isCek();
+        penjab.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+        penjab.setLocationRelativeTo(internalFrame1);
+        penjab.setAlwaysOnTop(false);
+        penjab.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());   
+        
+    }//GEN-LAST:event_BtnTambahActionPerformed
+
     private void tbKamarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbKamarKeyPressed
         if(tabMode.getRowCount()!=0){
             if(evt.getKeyCode()==KeyEvent.VK_SPACE){
@@ -333,25 +335,7 @@ public final class DlgCariDokter extends javax.swing.JDialog {
                 TCari.requestFocus();
             }
         }
-}//GEN-LAST:event_tbKamarKeyPressed
-
-    private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
-    }//GEN-LAST:event_BtnKeluarActionPerformed
-
-    private void BtnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTambahActionPerformed
-        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));        
-        //nm_dokter.setModal(true);
-        DlgDokter dokter=new DlgDokter(null,false);
-        dokter.emptTeks();
-        dokter.isCek();
-        dokter.setSize(internalFrame1.getWidth(),internalFrame1.getHeight());
-        dokter.setLocationRelativeTo(internalFrame1);
-        dokter.setAlwaysOnTop(false);
-        dokter.setVisible(true);
-        this.setCursor(Cursor.getDefaultCursor());   
-        
-    }//GEN-LAST:event_BtnTambahActionPerformed
+    }//GEN-LAST:event_tbKamarKeyPressed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         emptTeks();
@@ -366,7 +350,7 @@ public final class DlgCariDokter extends javax.swing.JDialog {
     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> {
-            DlgCariDokter dialog = new DlgCariDokter(new javax.swing.JFrame(), true);
+            DlgCariCaraBayar dialog = new DlgCariCaraBayar(new javax.swing.JFrame(), true);
             dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                 @Override
                 public void windowClosing(java.awt.event.WindowEvent e) {
@@ -384,7 +368,7 @@ public final class DlgCariDokter extends javax.swing.JDialog {
     private widget.Button BtnTambah;
     private widget.Label LCount;
     private widget.ScrollPane Scroll;
-    public widget.TextBox TCari;
+    private widget.TextBox TCari;
     private widget.InternalFrame internalFrame1;
     private widget.Label label10;
     private widget.Label label9;
@@ -395,71 +379,65 @@ public final class DlgCariDokter extends javax.swing.JDialog {
     private void tampil() {
         Valid.tabelKosong(tabMode);
         try {
-            file=new File("./cache/dokter.iyem");
+            file=new File("./cache/penjab.iyem");
             file.createNewFile();
             fileWriter = new FileWriter(file);
             iyem="";
-            ps=koneksi.prepareStatement("select kd_dokter,nm_dokter,jk,tmp_lahir, "+
-                "tgl_lahir,gol_drh,agama,almt_tgl,no_telp, "+
-                "stts_nikah,nm_sps,alumni,no_ijn_praktek "+
-                "from dokter inner join spesialis on dokter.kd_sps=spesialis.kd_sps "+
-                "where status='1' order by nm_dokter");
-            try{
+            ps=koneksi.prepareStatement("select * from penjab order by png_jawab");
+            try{           
                 rs=ps.executeQuery();
+                i=1;
                 while(rs.next()){
-                    tabMode.addRow(new String[]{
-                        rs.getString(1),rs.getString(2),rs.getString(3),
-                        rs.getString(4),rs.getString(5),rs.getString(6),
-                        rs.getString(7),rs.getString(8),rs.getString(9),
-                        rs.getString(10),rs.getString(11),rs.getString(12),
-                        rs.getString(13)
-                    });
-                    iyem=iyem+"{\"KodeDokter\":\""+rs.getString(1)+"\",\"NamaDokter\":\""+rs.getString(2)+"\",\"JK\":\""+rs.getString(3)+"\",\"TmpLahir\":\""+rs.getString(4)+"\",\"TglLahir\":\""+rs.getString(5)+"\",\"GD\":\""+rs.getString(6)+"\",\"Agama\":\""+rs.getString(7)+"\",\"AlamatTinggal\":\""+rs.getString(8)+"\",\"NoTelp\":\""+rs.getString(9)+"\",\"SttsNikah\":\""+rs.getString(10)+"\",\"Spesialis\":\""+rs.getString(11)+"\",\"Alumni\":\""+rs.getString(12)+"\",\"NoIjinPraktek\":\""+rs.getString(13)+"\"},";
+                    tabMode.addRow(new Object[]{i,rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6)});
+                    iyem=iyem+"{\"KodeAsuransi\":\""+rs.getString(1)+"\",\"NamaAsuransi\":\""+rs.getString(2)+"\",\"PerusahaanAsuransi\":\""+rs.getString(3)+"\",\"AlamatAsuransi\":\""+rs.getString(4)+"\",\"NoTelp\":\""+rs.getString(5)+"\",\"Attn\":\""+rs.getString(6)+"\"},";
+                    i++;
                 }
-            }catch(SQLException e){
+            }catch(Exception e){
                 System.out.println("Notifikasi : "+e);
             }finally{
-                if( rs != null ){
+                if(rs != null){
                     rs.close();
                 }
                 
-                if( ps != null ){
+                if(ps != null){
                     ps.close();
                 }
             }
-            fileWriter.write("{\"dokter\":["+iyem.substring(0,iyem.length()-1)+"]}");
+
+            fileWriter.write("{\"penjab\":["+iyem.substring(0,iyem.length()-1)+"]}");
             fileWriter.flush();
             fileWriter.close();
             iyem=null;
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println("Notifikasi : "+e);
         }
         LCount.setText(""+tabMode.getRowCount());
     }
 
-    public void emptTeks() { 
+    public void emptTeks() {   
         TCari.requestFocus();
     }
-
+  
     public JTable getTable(){
         return tbKamar;
     }
     
     public void isCek(){        
-        BtnTambah.setEnabled(akses.getdokter());
+        BtnTambah.setEnabled(akses.getadmin());
     }
     
     public void tampil2() {
         try {
-            myObj = new FileReader("./cache/dokter.iyem");
+            myObj = new FileReader("./cache/penjab.iyem");
             root = mapper.readTree(myObj);
             Valid.tabelKosong(tabMode);
-            response = root.path("dokter");
+            response = root.path("penjab");
             if(response.isArray()){
+                i=1;
                 for(JsonNode list:response){
-                    if(list.path("KodeDokter").asText().toLowerCase().contains(TCari.getText().toLowerCase())||list.path("NamaDokter").asText().toLowerCase().contains(TCari.getText().toLowerCase())||list.path("Spesialis").asText().toLowerCase().contains(TCari.getText().toLowerCase())){
+                    if(list.path("KodeAsuransi").asText().toLowerCase().contains(TCari.getText().toLowerCase())||list.path("NamaAsuransi").asText().toLowerCase().contains(TCari.getText().toLowerCase())){
                         tabMode.addRow(new Object[]{
-                            list.path("KodeDokter").asText(),list.path("NamaDokter").asText(),list.path("JK").asText(),list.path("TmpLahir").asText(),list.path("TglLahir").asText(),list.path("GD").asText(),list.path("Agama").asText(),list.path("AlamatTinggal").asText(),list.path("NoTelp").asText(),list.path("SttsNikah").asText(),list.path("Spesialis").asText(),list.path("Alumni").asText(),list.path("NoIjinPraktek").asText()
+                            i,list.path("KodeAsuransi").asText(),list.path("NamaAsuransi").asText(),list.path("PerusahaanAsuransi").asText(),list.path("AlamatAsuransi").asText(),list.path("NoTelp").asText(),list.path("Attn").asText()
                         });
                     }
                 }
@@ -469,4 +447,8 @@ public final class DlgCariDokter extends javax.swing.JDialog {
             System.out.println("Notifikasi : "+ex);
         }
     } 
+    
+    public void onCari(){        
+        TCari.requestFocus();
+    }
 }
