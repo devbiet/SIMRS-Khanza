@@ -36,7 +36,7 @@ import javax.swing.table.TableColumn;
  *
  * @author dosen
  */
-public final class DlgCariSuku extends javax.swing.JDialog {
+public final class DlgCariBahasa extends javax.swing.JDialog {
     private final DefaultTableModel tabMode;
     private validasi Valid=new validasi();
     private Connection koneksi=koneksiDB.condb();
@@ -52,13 +52,13 @@ public final class DlgCariSuku extends javax.swing.JDialog {
     /** Creates new form DlgPenyakit
      * @param parent
      * @param modal */
-    public DlgCariSuku(java.awt.Frame parent, boolean modal) {
+    public DlgCariBahasa(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setLocation(10,2);
         setSize(656,250);
 
-        Object[] row={"ID","Suku/Bangsa Pasien"};
+        Object[] row={"ID","Bahasa Pasien"};
         tabMode=new DefaultTableModel(null,row){
               @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
@@ -136,7 +136,7 @@ public final class DlgCariSuku extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Suku/Bangsa Pasien ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Bahasa Pasien ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -305,13 +305,13 @@ public final class DlgCariSuku extends javax.swing.JDialog {
 
     private void BtnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTambahActionPerformed
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        DlgSuku suku=new DlgSuku(null,false);
-        suku.emptTeks();
-        suku.isCek();
-        suku.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
-        suku.setLocationRelativeTo(internalFrame1);
-        suku.setAlwaysOnTop(false);
-        suku.setVisible(true);
+        DlgBahasa bahasa=new DlgBahasa(null,false);
+        bahasa.emptTeks();
+        bahasa.isCek();
+        bahasa.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+        bahasa.setLocationRelativeTo(internalFrame1);
+        bahasa.setAlwaysOnTop(false);
+        bahasa.setVisible(true);
         this.setCursor(Cursor.getDefaultCursor());   
         
     }//GEN-LAST:event_BtnTambahActionPerformed
@@ -340,7 +340,7 @@ public final class DlgCariSuku extends javax.swing.JDialog {
     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> {
-            DlgCariSuku dialog = new DlgCariSuku(new javax.swing.JFrame(), true);
+            DlgCariBahasa dialog = new DlgCariBahasa(new javax.swing.JFrame(), true);
             dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                 @Override
                 public void windowClosing(java.awt.event.WindowEvent e) {
@@ -369,16 +369,16 @@ public final class DlgCariSuku extends javax.swing.JDialog {
     private void tampil() {
         Valid.tabelKosong(tabMode);
         try {
-            file=new File("./cache/suku.iyem");
+            file=new File("./cache/bahasa.iyem");
             file.createNewFile();
             fileWriter = new FileWriter(file);
             iyem="";
-            ps=koneksi.prepareStatement("select * from suku_bangsa ");
+            ps=koneksi.prepareStatement("select * from bahasa_pasien ");
             try{           
                 rs=ps.executeQuery();
                 while(rs.next()){
                     tabMode.addRow(new Object[]{rs.getString(1),rs.getString(2)});
-                    iyem=iyem+"{\"ID\":\""+rs.getString(1)+"\",\"Suku\":\""+rs.getString(2)+"\"},";
+                    iyem=iyem+"{\"ID\":\""+rs.getString(1)+"\",\"Bahasa\":\""+rs.getString(2)+"\"},";
                 }
             }catch(Exception e){
                 System.out.println("Notifikasi : "+e);
@@ -392,7 +392,7 @@ public final class DlgCariSuku extends javax.swing.JDialog {
                 }
             }
 
-            fileWriter.write("{\"suku\":["+iyem.substring(0,iyem.length()-1)+"]}");
+            fileWriter.write("{\"bahasa\":["+iyem.substring(0,iyem.length()-1)+"]}");
             fileWriter.flush();
             fileWriter.close();
             iyem=null;
@@ -411,20 +411,20 @@ public final class DlgCariSuku extends javax.swing.JDialog {
     }
     
     public void isCek(){        
-        BtnTambah.setEnabled(akses.getsuku_bangsa());
+        BtnTambah.setEnabled(akses.getbahasa_pasien());
     }
     
     private void tampil2() {
         try {
-            myObj = new FileReader("./cache/suku.iyem");
+            myObj = new FileReader("./cache/bahasa.iyem");
             root = mapper.readTree(myObj);
             Valid.tabelKosong(tabMode);
-            response = root.path("suku");
+            response = root.path("bahasa");
             if(response.isArray()){
                 for(JsonNode list:response){
-                    if(list.path("Suku").asText().toLowerCase().contains(TCari.getText().toLowerCase())){
+                    if(list.path("Bahasa").asText().toLowerCase().contains(TCari.getText().toLowerCase())){
                         tabMode.addRow(new Object[]{
-                            list.path("ID").asText(),list.path("Suku").asText()
+                            list.path("ID").asText(),list.path("Bahasa").asText()
                         });
                     }
                 }
