@@ -19,7 +19,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
-public class InventarisSuplier extends javax.swing.JDialog {
+public class InventorySuplier extends javax.swing.JDialog {
     private final DefaultTableModel tabMode;
     private sekuel Sequel=new sekuel();
     private validasi Valid=new validasi();
@@ -31,7 +31,7 @@ public class InventarisSuplier extends javax.swing.JDialog {
     /** Creates new form DlgProgramStudi
      * @param parent
      * @param modal */
-    public InventarisSuplier(java.awt.Frame parent, boolean modal) {
+    public InventorySuplier(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
 
@@ -793,7 +793,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> {
-            InventarisSuplier dialog = new InventarisSuplier(new javax.swing.JFrame(), true);
+            InventorySuplier dialog = new InventorySuplier(new javax.swing.JFrame(), true);
             dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                 @Override
                 public void windowClosing(java.awt.event.WindowEvent e) {

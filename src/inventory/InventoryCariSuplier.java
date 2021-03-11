@@ -1,16 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
- * DlgPenyakit.java
- *
- * Created on May 23, 2010, 12:57:16 AM
- */
-
 package inventory;
-
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import fungsi.WarnaTable;
@@ -27,22 +15,18 @@ import java.io.FileWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import javax.swing.JTable;
 import javax.swing.event.DocumentEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
-/**
- *
- * @author dosen
- */
-public final class DlgCariJenis extends javax.swing.JDialog {
+public class InventoryCariSuplier extends javax.swing.JDialog {
     private final DefaultTableModel tabMode;
     private validasi Valid=new validasi();
+    private Connection koneksi=koneksiDB.condb();
     private PreparedStatement ps;
     private ResultSet rs;
-    private Connection koneksi=koneksiDB.condb();
+    private int i;
     private File file;
     private FileWriter fileWriter;
     private String iyem;
@@ -50,36 +34,44 @@ public final class DlgCariJenis extends javax.swing.JDialog {
     private JsonNode root;
     private JsonNode response;
     private FileReader myObj;
-    /** Creates new form DlgPenyakit
+
+    /** Creates new form DlgProgramStudi
      * @param parent
      * @param modal */
-    public DlgCariJenis(java.awt.Frame parent, boolean modal) {
+    public InventoryCariSuplier(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        this.setLocation(10,2);
-        setSize(656,250);
 
-        Object[] row={"Kode Jenis","Nama Jenis","Keterangan"};
+        Object[] row={"Kode Supplier","Nama Supplier","Alamat Supplier","Kota","No.Telp","Nama Bank","No.Rekening"};
         tabMode=new DefaultTableModel(null,row){
               @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
-        tbKamar.setModel(tabMode);
-        //tbPenyakit.setDefaultRenderer(Object.class, new WarnaTable(panelJudul.getBackground(),tbPenyakit.getBackground()));
-        tbKamar.setPreferredScrollableViewportSize(new Dimension(500,500));
-        tbKamar.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        tbDokter.setModel(tabMode);
 
-        for (int i = 0; i < 3; i++) {
-            TableColumn column = tbKamar.getColumnModel().getColumn(i);
+        tbDokter.setPreferredScrollableViewportSize(new Dimension(800,800));
+        tbDokter.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+
+        for (i = 0; i < 7; i++) {
+            TableColumn column = tbDokter.getColumnModel().getColumn(i);
             if(i==0){
                 column.setPreferredWidth(100);
             }else if(i==1){
-                column.setPreferredWidth(300);
+                column.setPreferredWidth(200);
             }else if(i==2){
                 column.setPreferredWidth(200);
+            }else if(i==3){
+                column.setPreferredWidth(100);
+            }else if(i==4){
+                column.setPreferredWidth(100);
+            }else if(i==5){
+                column.setPreferredWidth(150);
+            }else if(i==6){
+                column.setPreferredWidth(100);
             }
         }
-        tbKamar.setDefaultRenderer(Object.class, new WarnaTable());
-        TCari.setDocument(new batasInput((byte)100).getKata(TCari));
+        tbDokter.setDefaultRenderer(Object.class, new WarnaTable());
+
+        TCari.setDocument(new batasInput((byte)100).getKata(TCari));      
         if(koneksiDB.CARICEPAT().equals("aktif")){
             TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener(){
                 @Override
@@ -101,9 +93,8 @@ public final class DlgCariJenis extends javax.swing.JDialog {
                     }
                 }
             });
-        }
-    }    
-
+        }           
+    }
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -115,8 +106,8 @@ public final class DlgCariJenis extends javax.swing.JDialog {
     private void initComponents() {
 
         internalFrame1 = new widget.InternalFrame();
-        Scroll = new widget.ScrollPane();
-        tbKamar = new widget.Table();
+        scrollPane1 = new widget.ScrollPane();
+        tbDokter = new widget.Table();
         panelisi3 = new widget.panelisi();
         label9 = new widget.Label();
         TCari = new widget.TextBox();
@@ -131,37 +122,35 @@ public final class DlgCariJenis extends javax.swing.JDialog {
         setUndecorated(true);
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowActivated(java.awt.event.WindowEvent evt) {
-                formWindowActivated(evt);
-            }
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Jenis Obat, Alkes & BHP Medis ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Data Supplier Obat, Alkes & BHP Medis ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
-        Scroll.setName("Scroll"); // NOI18N
-        Scroll.setOpaque(true);
+        scrollPane1.setName("scrollPane1"); // NOI18N
+        scrollPane1.setOpaque(true);
 
-        tbKamar.setAutoCreateRowSorter(true);
-        tbKamar.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
-        tbKamar.setName("tbKamar"); // NOI18N
-        tbKamar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tbKamarMouseClicked(evt);
-            }
-        });
-        tbKamar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                tbKamarKeyPressed(evt);
-            }
-        });
-        Scroll.setViewportView(tbKamar);
+        tbDokter.setAutoCreateRowSorter(true);
+        tbDokter.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
 
-        internalFrame1.add(Scroll, java.awt.BorderLayout.CENTER);
+            }
+        ));
+        tbDokter.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
+        tbDokter.setName("tbDokter"); // NOI18N
+        scrollPane1.setViewportView(tbDokter);
+
+        internalFrame1.add(scrollPane1, java.awt.BorderLayout.CENTER);
 
         panelisi3.setName("panelisi3"); // NOI18N
         panelisi3.setPreferredSize(new java.awt.Dimension(100, 43));
@@ -173,7 +162,7 @@ public final class DlgCariJenis extends javax.swing.JDialog {
         panelisi3.add(label9);
 
         TCari.setName("TCari"); // NOI18N
-        TCari.setPreferredSize(new java.awt.Dimension(212, 23));
+        TCari.setPreferredSize(new java.awt.Dimension(312, 23));
         TCari.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TCariKeyPressed(evt);
@@ -256,7 +245,15 @@ public final class DlgCariJenis extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+/*
+private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKeyPressed
+    Valid.pindah(evt,BtnCari,Nm);
+}//GEN-LAST:event_TKdKeyPressed
+*/
 
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        tampil();
+    }//GEN-LAST:event_formWindowOpened
 
     private void TCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TCariKeyPressed
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
@@ -266,13 +263,13 @@ public final class DlgCariJenis extends javax.swing.JDialog {
         }else if(evt.getKeyCode()==KeyEvent.VK_PAGE_UP){
             BtnKeluar.requestFocus();
         }else if(evt.getKeyCode()==KeyEvent.VK_UP){
-            tbKamar.requestFocus();
+            tbDokter.requestFocus();
         }
-}//GEN-LAST:event_TCariKeyPressed
+    }//GEN-LAST:event_TCariKeyPressed
 
     private void BtnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCariActionPerformed
         tampil2();
-}//GEN-LAST:event_BtnCariActionPerformed
+    }//GEN-LAST:event_BtnCariActionPerformed
 
     private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnCariKeyPressed
         if(evt.getKeyCode()==KeyEvent.VK_SPACE){
@@ -280,12 +277,12 @@ public final class DlgCariJenis extends javax.swing.JDialog {
         }else{
             Valid.pindah(evt, TCari, BtnAll);
         }
-}//GEN-LAST:event_BtnCariKeyPressed
+    }//GEN-LAST:event_BtnCariKeyPressed
 
     private void BtnAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAllActionPerformed
         TCari.setText("");
         tampil();
-}//GEN-LAST:event_BtnAllActionPerformed
+    }//GEN-LAST:event_BtnAllActionPerformed
 
     private void BtnAllKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnAllKeyPressed
         if(evt.getKeyCode()==KeyEvent.VK_SPACE){
@@ -293,57 +290,31 @@ public final class DlgCariJenis extends javax.swing.JDialog {
         }else{
             Valid.pindah(evt, BtnCari, TCari);
         }
-}//GEN-LAST:event_BtnAllKeyPressed
+    }//GEN-LAST:event_BtnAllKeyPressed
 
-    private void tbKamarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbKamarMouseClicked
-        if(tabMode.getRowCount()!=0){
-            if(evt.getClickCount()==2){
-                dispose();
-            }
-        } 
-}//GEN-LAST:event_tbKamarMouseClicked
+    private void BtnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTambahActionPerformed
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        InventorySuplier form=new InventorySuplier(null,false);
+        form.emptTeks();
+        form.isCek();
+        form.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+        form.setLocationRelativeTo(internalFrame1);
+        form.setAlwaysOnTop(false);
+        form.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
 
-    private void tbKamarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbKamarKeyPressed
-        if(tabMode.getRowCount()!=0){
-            if(evt.getKeyCode()==KeyEvent.VK_SPACE){
-                dispose();
-            }else if(evt.getKeyCode()==KeyEvent.VK_SHIFT){
-                TCari.requestFocus();
-            }
-        } 
-}//GEN-LAST:event_tbKamarKeyPressed
+    }//GEN-LAST:event_BtnTambahActionPerformed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
         dispose();
     }//GEN-LAST:event_BtnKeluarActionPerformed
-
-    private void BtnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTambahActionPerformed
-        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        DlgJenis jenis=new DlgJenis(null,false);
-        jenis.emptTeks();
-        jenis.isCek();
-        jenis.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
-        jenis.setLocationRelativeTo(internalFrame1);
-        jenis.setAlwaysOnTop(false);
-        jenis.setVisible(true);
-        this.setCursor(Cursor.getDefaultCursor());   
-        
-    }//GEN-LAST:event_BtnTambahActionPerformed
-
-    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
-        emptTeks();
-    }//GEN-LAST:event_formWindowActivated
-
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        tampil();
-    }//GEN-LAST:event_formWindowOpened
 
     /**
     * @param args the command line arguments
     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> {
-            DlgCariJenis dialog = new DlgCariJenis(new javax.swing.JFrame(), true);
+            InventoryCariSuplier dialog = new InventoryCariSuplier(new javax.swing.JFrame(), true);
             dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                 @Override
                 public void windowClosing(java.awt.event.WindowEvent e) {
@@ -360,30 +331,46 @@ public final class DlgCariJenis extends javax.swing.JDialog {
     private widget.Button BtnKeluar;
     private widget.Button BtnTambah;
     private widget.Label LCount;
-    private widget.ScrollPane Scroll;
     private widget.TextBox TCari;
     private widget.InternalFrame internalFrame1;
     private widget.Label label10;
     private widget.Label label9;
     private widget.panelisi panelisi3;
-    private widget.Table tbKamar;
+    private widget.ScrollPane scrollPane1;
+    private widget.Table tbDokter;
     // End of variables declaration//GEN-END:variables
 
-    
     private void tampil() {
         Valid.tabelKosong(tabMode);
-        try{  
-            file=new File("./cache/jenisobat.iyem");
+        try{
+            file=new File("./cache/suplierobat.iyem");
             file.createNewFile();
             fileWriter = new FileWriter(file);
             iyem="";
-            
-            ps=koneksi.prepareStatement("select * from jenis order by nama ");
+            ps=koneksi.prepareStatement(
+                    "select datasuplier.kode_suplier, datasuplier.nama_suplier, "+
+                    " datasuplier.alamat,datasuplier.kota, datasuplier.no_telp,"+
+                    " datasuplier.nama_bank,datasuplier.rekening from datasuplier "+
+                    " where datasuplier.kode_suplier like ? or "+
+                    " datasuplier.nama_suplier like ? or "+
+                    " datasuplier.alamat like ? or "+
+                    " datasuplier.kota like ? or "+
+                    " datasuplier.nama_bank like ? or "+
+                    " datasuplier.no_telp like ? order by datasuplier.kode_suplier");
             try {
+                ps.setString(1,"%"+TCari.getText().trim()+"%");
+                ps.setString(2,"%"+TCari.getText().trim()+"%");
+                ps.setString(3,"%"+TCari.getText().trim()+"%");
+                ps.setString(4,"%"+TCari.getText().trim()+"%");
+                ps.setString(5,"%"+TCari.getText().trim()+"%");
+                ps.setString(6,"%"+TCari.getText().trim()+"%");
                 rs=ps.executeQuery();
                 while(rs.next()){
-                    tabMode.addRow(new String[]{rs.getString(1),rs.getString(2),rs.getString(3)});
-                    iyem=iyem+"{\"KodeJenis\":\""+rs.getString(1)+"\",\"NamaJenis\":\""+rs.getString(2)+"\",\"Keterangan\":\""+rs.getString(3)+"\"},";
+                    tabMode.addRow(new Object[]{
+                        rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),
+                        rs.getString(5),rs.getString(6),rs.getString(7)
+                    });
+                    iyem=iyem+"{\"KodeSupplier\":\""+rs.getString(1)+"\",\"NamaSupplier\":\""+rs.getString(2)+"\",\"AlamatSupplier\":\""+rs.getString(3)+"\",\"Kota\":\""+rs.getString(4)+"\",\"NoTelp\":\""+rs.getString(5)+"\",\"NamaBank\":\""+rs.getString(6)+"\",\"NoRekening\":\""+rs.getString(7)+"\"},";
                 }
             } catch (Exception e) {
                 System.out.println(e);
@@ -394,9 +381,8 @@ public final class DlgCariJenis extends javax.swing.JDialog {
                 if(ps!=null){
                     ps.close();
                 }
-            }   
-                
-            fileWriter.write("{\"jenisobat\":["+iyem.substring(0,iyem.length()-1)+"]}");
+            }
+            fileWriter.write("{\"suplierobat\":["+iyem.substring(0,iyem.length()-1)+"]}");
             fileWriter.flush();
             fileWriter.close();
             iyem=null;
@@ -405,18 +391,18 @@ public final class DlgCariJenis extends javax.swing.JDialog {
         }
         LCount.setText(""+tabMode.getRowCount());
     }
-    
+
     private void tampil2() {
         try {
-            myObj = new FileReader("./cache/jenisobat.iyem");
+            myObj = new FileReader("./cache/suplierobat.iyem");
             root = mapper.readTree(myObj);
             Valid.tabelKosong(tabMode);
-            response = root.path("jenisobat");
+            response = root.path("suplierobat");
             if(response.isArray()){
                 for(JsonNode list:response){
-                    if(list.path("NamaJenis").asText().toLowerCase().contains(TCari.getText().toLowerCase())){
+                    if(list.path("KodeSupplier").asText().toLowerCase().contains(TCari.getText().toLowerCase())||list.path("NamaSupplier").asText().toLowerCase().contains(TCari.getText().toLowerCase())||list.path("Kota").asText().toLowerCase().contains(TCari.getText().toLowerCase())){
                         tabMode.addRow(new Object[]{
-                            list.path("KodeJenis").asText(),list.path("NamaJenis").asText(),list.path("Keterangan").asText()
+                            list.path("KodeSupplier").asText(),list.path("NamaSupplier").asText(),list.path("AlamatSupplier").asText(),list.path("Kota").asText(),list.path("NoTelp").asText(),list.path("NamaBank").asText(),list.path("NoRekening").asText()
                         });
                     }
                 }
@@ -430,12 +416,13 @@ public final class DlgCariJenis extends javax.swing.JDialog {
     public void emptTeks() {
         TCari.requestFocus();
     }
-
+    
     public JTable getTable(){
-        return tbKamar;
+        return tbDokter;
     }
     
-    public void isCek(){        
-        BtnTambah.setEnabled(akses.getobat());
+    public void isCek(){
+        BtnTambah.setEnabled(akses.getsuplier());
     }
+    
 }
