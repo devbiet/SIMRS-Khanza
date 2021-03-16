@@ -17,7 +17,6 @@ import fungsi.WarnaTable;
 import fungsi.batasInput;
 import fungsi.koneksiDB;
 import fungsi.validasi;
-import fungsi.akses;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
@@ -36,7 +35,7 @@ import javax.swing.table.TableColumn;
  *
  * @author dosen
  */
-public final class DlgCariSatuan extends javax.swing.JDialog {
+public final class DlgCariAturanPakai extends javax.swing.JDialog {
     private final DefaultTableModel tabMode;
     private validasi Valid=new validasi();
     private PreparedStatement ps;
@@ -53,11 +52,11 @@ public final class DlgCariSatuan extends javax.swing.JDialog {
     /** Creates new form DlgPenyakit
      * @param parent
      * @param modal */
-    public DlgCariSatuan(java.awt.Frame parent, boolean modal) {
+    public DlgCariAturanPakai(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         
-        Object[] row={"Kode Satuan","Nama Satuan"};        
+        Object[] row={"Aturan Pakai"};        
         tabMode=new DefaultTableModel(null,row){
               @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
@@ -65,12 +64,10 @@ public final class DlgCariSatuan extends javax.swing.JDialog {
         tbKamar.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbKamar.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 1; i++) {
             TableColumn column = tbKamar.getColumnModel().getColumn(i);
             if(i==0){
-                column.setPreferredWidth(110);
-            }else if(i==1){
-                column.setPreferredWidth(300);
+                column.setPreferredWidth(500);
             }
         }
         tbKamar.setDefaultRenderer(Object.class, new WarnaTable());
@@ -98,7 +95,6 @@ public final class DlgCariSatuan extends javax.swing.JDialog {
                 }
             });
         }
-        
     }    
 
 
@@ -136,7 +132,7 @@ public final class DlgCariSatuan extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Satuan ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Data Aturan Pakai ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -319,13 +315,13 @@ public final class DlgCariSatuan extends javax.swing.JDialog {
 
     private void BtnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTambahActionPerformed
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        DlgSatuan satuan=new DlgSatuan(null,false);
-        satuan.emptTeks();
-        satuan.isCek();
-        satuan.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
-        satuan.setLocationRelativeTo(internalFrame1);
-        satuan.setAlwaysOnTop(false);
-        satuan.setVisible(true);
+        DlgKategori nama=new DlgKategori(null,false);
+        nama.emptTeks();
+        nama.isCek();
+        nama.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+        nama.setLocationRelativeTo(internalFrame1);
+        nama.setAlwaysOnTop(false);
+        nama.setVisible(true);
         this.setCursor(Cursor.getDefaultCursor());   
         
     }//GEN-LAST:event_BtnTambahActionPerformed
@@ -343,7 +339,7 @@ public final class DlgCariSatuan extends javax.swing.JDialog {
     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> {
-            DlgCariSatuan dialog = new DlgCariSatuan(new javax.swing.JFrame(), true);
+            DlgCariAturanPakai dialog = new DlgCariAturanPakai(new javax.swing.JFrame(), true);
             dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                 @Override
                 public void windowClosing(java.awt.event.WindowEvent e) {
@@ -368,21 +364,21 @@ public final class DlgCariSatuan extends javax.swing.JDialog {
     private widget.panelisi panelisi3;
     private widget.Table tbKamar;
     // End of variables declaration//GEN-END:variables
-
+    
     private void tampil() {
         Valid.tabelKosong(tabMode);
         try{  
-            file=new File("./cache/satuanbarang.iyem");
+            file=new File("./cache/aturanpakai.iyem");
             file.createNewFile();
             fileWriter = new FileWriter(file);
             iyem="";
             
-            ps=koneksi.prepareStatement("select * from kodesatuan order by satuan ");
+            ps=koneksi.prepareStatement("select * from master_aturan_pakai order by aturan ");
             try {
                 rs=ps.executeQuery();
                 while(rs.next()){
-                    tabMode.addRow(new String[]{rs.getString(1),rs.getString(2)});
-                    iyem=iyem+"{\"KodeSatuan\":\""+rs.getString(1)+"\",\"NamaSatuan\":\""+rs.getString(2)+"\"},";
+                    tabMode.addRow(new String[]{rs.getString(1)});
+                    iyem=iyem+"{\"AturanPakai\":\""+rs.getString(1)+"\"},";
                 }
             } catch (Exception e) {
                 System.out.println(e);
@@ -395,7 +391,7 @@ public final class DlgCariSatuan extends javax.swing.JDialog {
                 }
             }   
                 
-            fileWriter.write("{\"satuanbarang\":["+iyem.substring(0,iyem.length()-1)+"]}");
+            fileWriter.write("{\"aturanpakai\":["+iyem.substring(0,iyem.length()-1)+"]}");
             fileWriter.flush();
             fileWriter.close();
             iyem=null;
@@ -403,6 +399,27 @@ public final class DlgCariSatuan extends javax.swing.JDialog {
             System.out.println("Notifikasi : "+e);
         }
         LCount.setText(""+tabMode.getRowCount());
+    }
+    
+    private void tampil2() {
+        try {
+            myObj = new FileReader("./cache/aturanpakai.iyem");
+            root = mapper.readTree(myObj);
+            Valid.tabelKosong(tabMode);
+            response = root.path("aturanpakai");
+            if(response.isArray()){
+                for(JsonNode list:response){
+                    if(list.path("AturanPakai").asText().toLowerCase().contains(TCari.getText().toLowerCase())){
+                        tabMode.addRow(new Object[]{
+                            list.path("AturanPakai").asText()
+                        });
+                    }
+                }
+            }
+            myObj.close();
+        } catch (Exception ex) {
+            System.out.println("Notifikasi : Data tidak ditemukan..!!");
+        }
     }
 
     public void emptTeks() {
@@ -413,28 +430,7 @@ public final class DlgCariSatuan extends javax.swing.JDialog {
         return tbKamar;
     }
     
-    public void isCek(){        
-        BtnTambah.setEnabled(akses.getsatuan_barang());
-    }
-    
-    private void tampil2() {
-        try {
-            myObj = new FileReader("./cache/satuanbarang.iyem");
-            root = mapper.readTree(myObj);
-            Valid.tabelKosong(tabMode);
-            response = root.path("satuanbarang");
-            if(response.isArray()){
-                for(JsonNode list:response){
-                    if(list.path("NamaSatuan").asText().toLowerCase().contains(TCari.getText().toLowerCase())){
-                        tabMode.addRow(new Object[]{
-                            list.path("KodeSatuan").asText(),list.path("NamaSatuan").asText()
-                        });
-                    }
-                }
-            }
-            myObj.close();
-        } catch (Exception ex) {
-            System.out.println("Notifikasi : Data tidak ditemukan..!!");
-        }
+    public void onCari(){
+        TCari.requestFocus();
     }
 }
