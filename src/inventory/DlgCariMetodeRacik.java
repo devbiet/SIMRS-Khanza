@@ -9,7 +9,7 @@
  * Created on May 23, 2010, 12:57:16 AM
  */
 
-package simrskhanza;
+package inventory;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -36,12 +36,12 @@ import javax.swing.table.TableColumn;
  *
  * @author dosen
  */
-public final class DlgCariPoli extends javax.swing.JDialog {
+public final class DlgCariMetodeRacik extends javax.swing.JDialog {
     private final DefaultTableModel tabMode;
     private validasi Valid=new validasi();
-    private Connection koneksi=koneksiDB.condb();
     private PreparedStatement ps;
     private ResultSet rs;
+    private Connection koneksi=koneksiDB.condb();
     private File file;
     private FileWriter fileWriter;
     private String iyem;
@@ -49,37 +49,35 @@ public final class DlgCariPoli extends javax.swing.JDialog {
     private JsonNode root;
     private JsonNode response;
     private FileReader myObj;
+    private int i=0;
+    
     /** Creates new form DlgPenyakit
      * @param parent
      * @param modal */
-    public DlgCariPoli(java.awt.Frame parent, boolean modal) {
+    public DlgCariMetodeRacik(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        this.setLocation(10,2);
-        setSize(656,250);
-
-        Object[] row={"Kode Unit","Nama Unit","Registrasi Baru","Registrasi Lama"};
+        
+        Object[] row={"No.","Kode","Metode Racik"};        
         tabMode=new DefaultTableModel(null,row){
               @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
         tbKamar.setModel(tabMode);
-        //tbPenyakit.setDefaultRenderer(Object.class, new WarnaTable(panelJudul.getBackground(),tbPenyakit.getBackground()));
         tbKamar.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbKamar.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (int i = 0; i < 4; i++) {
+        for (i = 0; i < 3; i++) {
             TableColumn column = tbKamar.getColumnModel().getColumn(i);
             if(i==0){
-                column.setPreferredWidth(90);
+                column.setPreferredWidth(25);
             }else if(i==1){
-                column.setPreferredWidth(300);
+                column.setPreferredWidth(80);
             }else if(i==2){
-                column.setPreferredWidth(120);
-            }else if(i==3){
-                column.setPreferredWidth(120);
+                column.setPreferredWidth(350);
             }
         }
         tbKamar.setDefaultRenderer(Object.class, new WarnaTable());
+        TCari.setDocument(new batasInput((byte)100).getKata(TCari));
         TCari.setDocument(new batasInput((byte)100).getKata(TCari));
         if(koneksiDB.CARICEPAT().equals("aktif")){
             TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener(){
@@ -103,7 +101,9 @@ public final class DlgCariPoli extends javax.swing.JDialog {
                 }
             });
         }
-    }
+        
+    }    
+
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -139,7 +139,7 @@ public final class DlgCariPoli extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Unit/Poliklinik ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50,50,50))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Data Metode Racik ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -147,6 +147,7 @@ public final class DlgCariPoli extends javax.swing.JDialog {
         Scroll.setOpaque(true);
 
         tbKamar.setAutoCreateRowSorter(true);
+        tbKamar.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbKamar.setName("tbKamar"); // NOI18N
         tbKamar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -171,8 +172,9 @@ public final class DlgCariPoli extends javax.swing.JDialog {
         label9.setPreferredSize(new java.awt.Dimension(68, 23));
         panelisi3.add(label9);
 
+        TCari.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         TCari.setName("TCari"); // NOI18N
-        TCari.setPreferredSize(new java.awt.Dimension(312, 23));
+        TCari.setPreferredSize(new java.awt.Dimension(212, 23));
         TCari.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TCariKeyPressed(evt);
@@ -183,6 +185,7 @@ public final class DlgCariPoli extends javax.swing.JDialog {
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
         BtnCari.setMnemonic('1');
         BtnCari.setToolTipText("Alt+1");
+        BtnCari.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         BtnCari.setName("BtnCari"); // NOI18N
         BtnCari.setPreferredSize(new java.awt.Dimension(28, 23));
         BtnCari.addActionListener(new java.awt.event.ActionListener() {
@@ -200,6 +203,7 @@ public final class DlgCariPoli extends javax.swing.JDialog {
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
         BtnAll.setMnemonic('2');
         BtnAll.setToolTipText("2Alt+2");
+        BtnAll.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         BtnAll.setName("BtnAll"); // NOI18N
         BtnAll.setPreferredSize(new java.awt.Dimension(28, 23));
         BtnAll.addActionListener(new java.awt.event.ActionListener() {
@@ -299,8 +303,18 @@ public final class DlgCariPoli extends javax.swing.JDialog {
             if(evt.getClickCount()==2){
                 dispose();
             }
-        }
+        }         
 }//GEN-LAST:event_tbKamarMouseClicked
+
+    private void tbKamarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbKamarKeyPressed
+       if(tabMode.getRowCount()!=0){
+            if(evt.getKeyCode()==KeyEvent.VK_SPACE){
+                dispose();
+            }else if(evt.getKeyCode()==KeyEvent.VK_SHIFT){
+                TCari.requestFocus();
+            }
+        }
+}//GEN-LAST:event_tbKamarKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
         dispose();
@@ -308,27 +322,16 @@ public final class DlgCariPoli extends javax.swing.JDialog {
 
     private void BtnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTambahActionPerformed
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        DlgPoli poli=new DlgPoli(null,false);
-        poli.emptTeks();
-        poli.isCek();
-        poli.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
-        poli.setLocationRelativeTo(internalFrame1);
-        poli.setAlwaysOnTop(false);
-        poli.setVisible(true);
+        DlgMetodeRacik nama=new DlgMetodeRacik(null,false);
+        nama.emptTeks();
+        nama.isCek();
+        nama.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+        nama.setLocationRelativeTo(internalFrame1);
+        nama.setAlwaysOnTop(false);
+        nama.setVisible(true);
         this.setCursor(Cursor.getDefaultCursor());   
         
     }//GEN-LAST:event_BtnTambahActionPerformed
-
-    private void tbKamarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbKamarKeyPressed
-        if(tabMode.getRowCount()!=0){
-            if(evt.getKeyCode()==KeyEvent.VK_SPACE){
-                dispose();
-            }else if(evt.getKeyCode()==KeyEvent.VK_SHIFT){
-                TCari.setText("");
-                TCari.requestFocus();
-            }
-        }
-    }//GEN-LAST:event_tbKamarKeyPressed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         emptTeks();
@@ -343,7 +346,7 @@ public final class DlgCariPoli extends javax.swing.JDialog {
     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> {
-            DlgCariPoli dialog = new DlgCariPoli(new javax.swing.JFrame(), true);
+            DlgCariMetodeRacik dialog = new DlgCariMetodeRacik(new javax.swing.JFrame(), true);
             dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                 @Override
                 public void windowClosing(java.awt.event.WindowEvent e) {
@@ -371,68 +374,56 @@ public final class DlgCariPoli extends javax.swing.JDialog {
 
     private void tampil() {
         Valid.tabelKosong(tabMode);
-        try {
-            file=new File("./cache/poli.iyem");
+        try{  
+            file=new File("./cache/metoderacik.iyem");
             file.createNewFile();
             fileWriter = new FileWriter(file);
             iyem="";
-            ps=koneksi.prepareStatement("select * from poliklinik where status='1'");
-            try{           
+            
+            i=1;
+            ps=koneksi.prepareStatement("select * from metode_racik order by nm_racik ");
+            try {
                 rs=ps.executeQuery();
                 while(rs.next()){
-                    tabMode.addRow(new Object[]{rs.getString(1),rs.getString(2),Valid.SetAngka(rs.getDouble(3)),Valid.SetAngka(rs.getDouble(4))});
-                    iyem=iyem+"{\"KodeUnit\":\""+rs.getString(1)+"\",\"NamaUnit\":\""+rs.getString(2)+"\",\"RegistrasiBaru\":\""+rs.getString(3)+"\",\"RegistrasiLama\":\""+rs.getString(4)+"\"},";
+                    tabMode.addRow(new String[]{i+"",rs.getString(1),rs.getString(2)});
+                    iyem=iyem+"{\"KodeRacik\":\""+rs.getString(1)+"\",\"NamaRacik\":\""+rs.getString(2)+"\"},";
+                    i++;
                 }
-            }catch(Exception e){
-                System.out.println("Notifikasi : "+e);
-            }finally{
-                if(rs != null){
+            } catch (Exception e) {
+                System.out.println(e);
+            } finally{
+                if(rs!=null){
                     rs.close();
                 }
-                
-                if(ps != null){
+                if(ps!=null){
                     ps.close();
                 }
-            }
-
-            fileWriter.write("{\"poli\":["+iyem.substring(0,iyem.length()-1)+"]}");
+            }   
+                
+            fileWriter.write("{\"metoderacik\":["+iyem.substring(0,iyem.length()-1)+"]}");
             fileWriter.flush();
             fileWriter.close();
             iyem=null;
-        } catch (Exception e) {
-            if(e.toString().contains("begin")){
-                System.out.println("Notifikasi : Data tidak ditemukan..!!");
-            }else{
-                System.out.println("Notifikasi : "+e);
-            }
+        }catch(Exception e){
+            System.out.println("Notifikasi : "+e);
         }
         LCount.setText(""+tabMode.getRowCount());
-    }
-
-    public void emptTeks() {   
-        TCari.requestFocus();
-    }
-  
-    public JTable getTable(){
-        return tbKamar;
-    }
-    
-    public void isCek(){        
-        BtnTambah.setEnabled(akses.getadmin());
     }
     
     private void tampil2() {
         try {
-            myObj = new FileReader("./cache/poli.iyem");
+            myObj = new FileReader("./cache/metoderacik.iyem");
             root = mapper.readTree(myObj);
             Valid.tabelKosong(tabMode);
-            response = root.path("poli");
+            response = root.path("metoderacik");
+            i=1;
             if(response.isArray()){
                 for(JsonNode list:response){
-                    if(list.path("KodeUnit").asText().toLowerCase().contains(TCari.getText().toLowerCase())||list.path("NamaUnit").asText().toLowerCase().contains(TCari.getText().toLowerCase())){
+                    if(list.path("NamaRacik").asText().toLowerCase().contains(TCari.getText().toLowerCase())){
                         tabMode.addRow(new Object[]{
-                            list.path("KodeUnit").asText(),list.path("NamaUnit").asText(),list.path("RegistrasiBaru").asText(),list.path("RegistrasiLama").asText()
+                            i+"",list.path("KodeRacik").asText(),list.path("NamaRacik").asText()
                         });
+                        i++;
                     }
                 }
             }
@@ -440,5 +431,17 @@ public final class DlgCariPoli extends javax.swing.JDialog {
         } catch (Exception ex) {
             System.out.println("Notifikasi : Data tidak ditemukan..!!");
         }
-    } 
+    }
+
+    public void emptTeks() {
+        TCari.requestFocus();
+    }
+
+    public JTable getTable(){
+        return tbKamar;
+    }
+    
+    public void isCek(){        
+        BtnTambah.setEnabled(akses.getmetode_racik());
+    }
 }
