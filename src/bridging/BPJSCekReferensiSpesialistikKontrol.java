@@ -35,7 +35,7 @@ import org.springframework.http.MediaType;
  *
  * @author dosen
  */
-public final class BPJSCekReferensiSpesialistik extends javax.swing.JDialog {
+public final class BPJSCekReferensiSpesialistikKontrol extends javax.swing.JDialog {
     private final DefaultTableModel tabMode;
     private validasi Valid=new validasi();
     private int i=0;
@@ -51,14 +51,14 @@ public final class BPJSCekReferensiSpesialistik extends javax.swing.JDialog {
     /** Creates new form DlgKamar
      * @param parent
      * @param modal */
-    public BPJSCekReferensiSpesialistik(java.awt.Frame parent, boolean modal) {
+    public BPJSCekReferensiSpesialistikKontrol(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
 
         this.setLocation(10,2);
         setSize(628,674);
 
-        tabMode=new DefaultTableModel(null,new String[]{"No.","Kode Spesialistik","Nama Spesialistik"}){
+        tabMode=new DefaultTableModel(null,new String[]{"No.","Kode Poli","Nama Poli","Kapasitas","Jml.Rencana","Persentase"}){
               @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
         tbKamar.setModel(tabMode);
@@ -67,14 +67,20 @@ public final class BPJSCekReferensiSpesialistik extends javax.swing.JDialog {
         tbKamar.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbKamar.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 6; i++) {
             TableColumn column = tbKamar.getColumnModel().getColumn(i);
             if(i==0){
-                column.setPreferredWidth(40);
+                column.setPreferredWidth(35);
             }else if(i==1){
-                column.setPreferredWidth(100);
+                column.setPreferredWidth(80);
             }else if(i==2){
-                column.setPreferredWidth(380);
+                column.setPreferredWidth(200);
+            }else if(i==3){
+                column.setPreferredWidth(61);
+            }else if(i==4){
+                column.setPreferredWidth(73);
+            }else if(i==5){
+                column.setPreferredWidth(66);
             }
         }
         tbKamar.setDefaultRenderer(Object.class, new WarnaTable());
@@ -86,19 +92,19 @@ public final class BPJSCekReferensiSpesialistik extends javax.swing.JDialog {
                 @Override
                 public void insertUpdate(DocumentEvent e) {
                     if(Poli.getText().length()>2){
-                        tampil(Poli.getText());
+                        tampil();
                     }
                 }
                 @Override
                 public void removeUpdate(DocumentEvent e) {
                     if(Poli.getText().length()>2){
-                        tampil(Poli.getText());
+                        tampil();
                     }
                 }
                 @Override
                 public void changedUpdate(DocumentEvent e) {
                     if(Poli.getText().length()>2){
-                        tampil(Poli.getText());
+                        tampil();
                     }
                 }
             });
@@ -106,7 +112,7 @@ public final class BPJSCekReferensiSpesialistik extends javax.swing.JDialog {
         
         try {
             link=koneksiDB.URLAPIBPJS();
-            URL = link+"/referensi/spesialistik";
+            URL = link+"/RencanaKontrol/ListSpesialistik/JnsKontrol";
         } catch (Exception e) {
             System.out.println("E : "+e);
         }
@@ -124,6 +130,9 @@ public final class BPJSCekReferensiSpesialistik extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        Nomor = new widget.TextBox();
+        TanggalKontrol = new widget.TextBox();
+        JenisKontrol = new widget.TextBox();
         internalFrame1 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbKamar = new widget.Table();
@@ -134,13 +143,25 @@ public final class BPJSCekReferensiSpesialistik extends javax.swing.JDialog {
         jLabel17 = new widget.Label();
         BtnKeluar = new widget.Button();
 
+        Nomor.setEditable(false);
+        Nomor.setName("Nomor"); // NOI18N
+        Nomor.setPreferredSize(new java.awt.Dimension(170, 23));
+
+        TanggalKontrol.setEditable(false);
+        TanggalKontrol.setName("TanggalKontrol"); // NOI18N
+        TanggalKontrol.setPreferredSize(new java.awt.Dimension(100, 23));
+
+        JenisKontrol.setEditable(false);
+        JenisKontrol.setName("JenisKontrol"); // NOI18N
+        JenisKontrol.setPreferredSize(new java.awt.Dimension(130, 23));
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconImage(null);
         setIconImages(null);
         setUndecorated(true);
         setResizable(false);
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Pencarian Data Referensi Spesialistik VClaim ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50,50,50))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Data Poli/Spesialistik VClaim ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -157,9 +178,9 @@ public final class BPJSCekReferensiSpesialistik extends javax.swing.JDialog {
         panelGlass6.setPreferredSize(new java.awt.Dimension(44, 54));
         panelGlass6.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
 
-        jLabel16.setText("Spesiliastik :");
+        jLabel16.setText("Poli/Spesiliastik :");
         jLabel16.setName("jLabel16"); // NOI18N
-        jLabel16.setPreferredSize(new java.awt.Dimension(75, 23));
+        jLabel16.setPreferredSize(new java.awt.Dimension(95, 23));
         panelGlass6.add(jLabel16);
 
         Poli.setName("Poli"); // NOI18N
@@ -189,7 +210,7 @@ public final class BPJSCekReferensiSpesialistik extends javax.swing.JDialog {
         panelGlass6.add(BtnCari);
 
         jLabel17.setName("jLabel17"); // NOI18N
-        jLabel17.setPreferredSize(new java.awt.Dimension(30, 23));
+        jLabel17.setPreferredSize(new java.awt.Dimension(25, 23));
         panelGlass6.add(jLabel17);
 
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
@@ -224,25 +245,12 @@ public final class BPJSCekReferensiSpesialistik extends javax.swing.JDialog {
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
         if(evt.getKeyCode()==KeyEvent.VK_SPACE){
             dispose();
-        }else{Valid.pindah(evt,Poli,BtnKeluar);}
+        }else{Valid.pindah(evt,Nomor,BtnKeluar);}
     }//GEN-LAST:event_BtnKeluarKeyPressed
-
-    private void PoliKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PoliKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
-            tampil(Poli.getText());
-            Poli.requestFocus();
-        }else if(evt.getKeyCode()==KeyEvent.VK_PAGE_DOWN){
-            tampil(Poli.getText());
-        }else if(evt.getKeyCode()==KeyEvent.VK_PAGE_UP){
-            BtnKeluar.requestFocus();
-        }else if(evt.getKeyCode()==KeyEvent.VK_UP){
-            BtnCariActionPerformed(null);
-        }
-    }//GEN-LAST:event_PoliKeyPressed
 
     private void BtnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCariActionPerformed
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        tampil(Poli.getText());
+        tampil();
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_BtnCariActionPerformed
 
@@ -250,16 +258,29 @@ public final class BPJSCekReferensiSpesialistik extends javax.swing.JDialog {
         if(evt.getKeyCode()==KeyEvent.VK_SPACE){
             BtnCariActionPerformed(null);
         }else{
-            Valid.pindah(evt,Poli,BtnKeluar);
+            Valid.pindah(evt,Nomor,BtnKeluar);
         }
     }//GEN-LAST:event_BtnCariKeyPressed
+
+    private void PoliKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PoliKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            tampil();
+            Poli.requestFocus();
+        }else if(evt.getKeyCode()==KeyEvent.VK_PAGE_DOWN){
+            tampil();
+        }else if(evt.getKeyCode()==KeyEvent.VK_PAGE_UP){
+            BtnKeluar.requestFocus();
+        }else if(evt.getKeyCode()==KeyEvent.VK_UP){
+            BtnCariActionPerformed(null);
+        }
+    }//GEN-LAST:event_PoliKeyPressed
 
     /**
     * @param args the command line arguments
     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> {
-            BPJSCekReferensiSpesialistik dialog = new BPJSCekReferensiSpesialistik(new javax.swing.JFrame(), true);
+            BPJSCekReferensiSpesialistikKontrol dialog = new BPJSCekReferensiSpesialistikKontrol(new javax.swing.JFrame(), true);
             dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                 @Override
                 public void windowClosing(java.awt.event.WindowEvent e) {
@@ -273,8 +294,11 @@ public final class BPJSCekReferensiSpesialistik extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private widget.Button BtnCari;
     private widget.Button BtnKeluar;
+    private widget.TextBox JenisKontrol;
+    private widget.TextBox Nomor;
     private widget.TextBox Poli;
     private widget.ScrollPane Scroll;
+    private widget.TextBox TanggalKontrol;
     private widget.InternalFrame internalFrame1;
     private widget.Label jLabel16;
     private widget.Label jLabel17;
@@ -282,15 +306,20 @@ public final class BPJSCekReferensiSpesialistik extends javax.swing.JDialog {
     private widget.Table tbKamar;
     // End of variables declaration//GEN-END:variables
 
-    public void tampil(String poli) {
+    public void tampil() {
         try {
             headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_JSON);
 	    headers.add("X-Cons-ID",koneksiDB.CONSIDAPIBPJS());
 	    headers.add("X-Timestamp",String.valueOf(api.GetUTCdatetimeAsString()));            
 	    headers.add("X-Signature",api.getHmac());
+            /*System.out.println("X-Cons-ID:"+koneksiDB.CONSIDAPIBPJS());
+	    System.out.println("X-Timestamp:"+String.valueOf(api.GetUTCdatetimeAsString()));            
+	    System.out.println("X-Signature:"+api.getHmac());
+            System.out.println("Content-Type: Application/x-www-form-urlencoded");*/
 	    requestEntity = new HttpEntity(headers);
-            root = mapper.readTree(api.getRest().exchange(URL, HttpMethod.GET, requestEntity, String.class).getBody());
+            //System.out.println(URL+"/"+JenisKontrol.getText().substring(0,1)+"/nomor/"+Nomor.getText()+"/TglRencanaKontrol/"+TanggalKontrol.getText());
+            root = mapper.readTree(api.getRest().exchange(URL+"/"+JenisKontrol.getText().substring(0,1)+"/nomor/"+Nomor.getText()+"/TglRencanaKontrol/"+TanggalKontrol.getText(), HttpMethod.GET, requestEntity, String.class).getBody());
             nameNode = root.path("metaData");
             if(nameNode.path("code").asText().equals("200")){
                 Valid.tabelKosong(tabMode);
@@ -298,13 +327,13 @@ public final class BPJSCekReferensiSpesialistik extends javax.swing.JDialog {
                 if(response.path("list").isArray()){
                     i=1;
                     for(JsonNode list:response.path("list")){
-                        if(list.path("kode").asText().toLowerCase().contains(poli.toLowerCase())||
-                                list.path("nama").asText().toLowerCase().contains(poli.toLowerCase())){
+                        if(list.path("kodePoli").asText().toLowerCase().contains(Poli.getText().toLowerCase())||
+                                list.path("namaPoli").asText().toLowerCase().contains(Poli.getText().toLowerCase())){
                             tabMode.addRow(new Object[]{
-                                i+".",list.path("kode").asText(),list.path("nama").asText()
+                                i+".",list.path("kodePoli").asText(),list.path("namaPoli").asText(),list.path("kapasitas").asText(),list.path("jmlRencanaKontroldanRujukan").asText(),list.path("persentase").asText()
                             });
+                            i++;
                         }
-                        i++;
                     }
                 }
             }else {
@@ -320,5 +349,15 @@ public final class BPJSCekReferensiSpesialistik extends javax.swing.JDialog {
 
     public JTable getTable(){
         return tbKamar;
+    }
+    
+    public void SetKontrol(String nokartu,String nosep,String jeniskontrol,String tanggalkontrol){
+        TanggalKontrol.setText(tanggalkontrol);
+        JenisKontrol.setText(jeniskontrol);
+        if(jeniskontrol.equals("1: Rencana Kontrol")){
+            Nomor.setText(nokartu);
+        }else if(jeniskontrol.equals("2: SPRI")){
+            Nomor.setText(nosep);
+        }
     }
 }
