@@ -185,7 +185,7 @@
 					<font fontName="Tahoma" size="11" isBold="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<text><![CDATA[Laporan Jumlah Inventaris Per Kategori]]></text>
+				<text><![CDATA[Laporan Jumlah Inventaris Per Merk]]></text>
 			</staticText>
 			<line>
 				<reportElement positionType="FixRelativeToBottom" x="0" y="83" width="555" height="1" uuid="e25e51fd-680e-4bcb-aba0-7162d85424a8"/>
@@ -273,7 +273,7 @@
 					<font fontName="Tahoma" size="8" isBold="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<text><![CDATA[Nama Kategori]]></text>
+				<text><![CDATA[Nama Merk]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="220" y="0" width="60" height="15" forecolor="#000000" backcolor="#F0F0DC" uuid="be8fce3d-39ef-428c-bcc7-a85ac3bfd28b">
