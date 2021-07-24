@@ -1,4 +1,4 @@
-package inventory;
+package ipsrs;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import fungsi.WarnaTable;
@@ -20,7 +20,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
-public class InventoryCariSuplier extends javax.swing.JDialog {
+public class IPSRSCariSuplier extends javax.swing.JDialog {
     private final DefaultTableModel tabMode;
     private validasi Valid=new validasi();
     private Connection koneksi=koneksiDB.condb();
@@ -38,7 +38,7 @@ public class InventoryCariSuplier extends javax.swing.JDialog {
     /** Creates new form DlgProgramStudi
      * @param parent
      * @param modal */
-    public InventoryCariSuplier(java.awt.Frame parent, boolean modal) {
+    public IPSRSCariSuplier(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
 
@@ -127,7 +127,7 @@ public class InventoryCariSuplier extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Data Supplier Obat, Alkes & BHP Medis ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Data Supplier Barang Non Medis dan Penunjang ( Lab & RO ) ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -294,7 +294,7 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
 
     private void BtnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTambahActionPerformed
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        InventorySuplier form=new InventorySuplier(null,false);
+        IPSRSSuplier form=new IPSRSSuplier(null,false);
         form.emptTeks();
         form.isCek();
         form.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
@@ -314,7 +314,7 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> {
-            InventoryCariSuplier dialog = new InventoryCariSuplier(new javax.swing.JFrame(), true);
+            IPSRSCariSuplier dialog = new IPSRSCariSuplier(new javax.swing.JFrame(), true);
             dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                 @Override
                 public void windowClosing(java.awt.event.WindowEvent e) {
@@ -343,15 +343,15 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
     private void tampil() {
         Valid.tabelKosong(tabMode);
         try{
-            file=new File("./cache/suplierobat.iyem");
+            file=new File("./cache/suplieripsrs.iyem");
             file.createNewFile();
             fileWriter = new FileWriter(file);
             iyem="";
             ps=koneksi.prepareStatement(
-                    "select datasuplier.kode_suplier, datasuplier.nama_suplier, "+
-                    " datasuplier.alamat,datasuplier.kota, datasuplier.no_telp,"+
-                    " datasuplier.nama_bank,datasuplier.rekening from datasuplier "+
-                    " order by datasuplier.kode_suplier");
+                    "select ipsrssuplier.kode_suplier, ipsrssuplier.nama_suplier, "+
+                    " ipsrssuplier.alamat,ipsrssuplier.kota, ipsrssuplier.no_telp,"+
+                    " ipsrssuplier.nama_bank,ipsrssuplier.rekening from ipsrssuplier "+
+                    " order by ipsrssuplier.kode_suplier");
             try {
                 rs=ps.executeQuery();
                 while(rs.next()){
@@ -371,7 +371,7 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
                     ps.close();
                 }
             }
-            fileWriter.write("{\"suplierobat\":["+iyem.substring(0,iyem.length()-1)+"]}");
+            fileWriter.write("{\"suplieripsrs\":["+iyem.substring(0,iyem.length()-1)+"]}");
             fileWriter.flush();
             fileWriter.close();
             iyem=null;
@@ -387,10 +387,10 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
 
     private void tampil2() {
         try {
-            myObj = new FileReader("./cache/suplierobat.iyem");
+            myObj = new FileReader("./cache/suplieripsrs.iyem");
             root = mapper.readTree(myObj);
             Valid.tabelKosong(tabMode);
-            response = root.path("suplierobat");
+            response = root.path("suplieripsrs");
             if(response.isArray()){
                 for(JsonNode list:response){
                     if(list.path("KodeSupplier").asText().toLowerCase().contains(TCari.getText().toLowerCase())||list.path("NamaSupplier").asText().toLowerCase().contains(TCari.getText().toLowerCase())||list.path("Kota").asText().toLowerCase().contains(TCari.getText().toLowerCase())){
