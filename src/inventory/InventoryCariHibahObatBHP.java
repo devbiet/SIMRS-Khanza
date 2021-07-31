@@ -26,7 +26,7 @@ import javax.swing.table.TableColumn;
 import keuangan.Jurnal;
 import kepegawaian.DlgCariPetugas;
 
-public class CariHibahObatBHP extends javax.swing.JDialog {
+public class InventoryCariHibahObatBHP extends javax.swing.JDialog {
     private final DefaultTableModel tabMode;
     private sekuel Sequel=new sekuel();
     private validasi Valid=new validasi();
@@ -45,7 +45,7 @@ public class CariHibahObatBHP extends javax.swing.JDialog {
     /** Creates new form DlgProgramStudi
      * @param parent
      * @param modal */
-    public CariHibahObatBHP(java.awt.Frame parent, boolean modal) {
+    public InventoryCariHibahObatBHP(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         
@@ -1100,7 +1100,7 @@ private void ppHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> {
-            CariHibahObatBHP dialog = new CariHibahObatBHP(new javax.swing.JFrame(), true);
+            InventoryCariHibahObatBHP dialog = new InventoryCariHibahObatBHP(new javax.swing.JFrame(), true);
             dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                 @Override
                 public void windowClosing(java.awt.event.WindowEvent e) {

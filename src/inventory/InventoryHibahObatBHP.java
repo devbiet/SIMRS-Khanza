@@ -25,7 +25,7 @@ import javax.swing.table.TableColumn;
 import keuangan.Jurnal;
 import simrskhanza.DlgCariBangsal;
 
-public class HibahObatBHP extends javax.swing.JDialog {
+public class InventoryHibahObatBHP extends javax.swing.JDialog {
     private final DefaultTableModel tabMode;
     private sekuel Sequel=new sekuel();
     private validasi Valid=new validasi();
@@ -35,7 +35,7 @@ public class HibahObatBHP extends javax.swing.JDialog {
     private PreparedStatement ps;
     private ResultSet rs;
     private DlgCariBangsal bangsal=new DlgCariBangsal(null,false);
-    private CariHibahObatBHP form=new CariHibahObatBHP(null,false);
+    private InventoryCariHibahObatBHP form=new InventoryCariHibahObatBHP(null,false);
     private DlgCariDataKonversi datakonversi=new DlgCariDataKonversi(null,false);
     private double hargakonversi=0,ttl=0,ttl2=0,y=0,w=0,jmlkonversi=0,nilaibarang;
     private int jml=0,i=0,row=0,index=0;
@@ -49,7 +49,7 @@ public class HibahObatBHP extends javax.swing.JDialog {
     /** Creates new form DlgProgramStudi
      * @param parent
      * @param modal */
-    public HibahObatBHP(java.awt.Frame parent, boolean modal) {
+    public InventoryHibahObatBHP(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         
@@ -1153,7 +1153,7 @@ private void btnGudangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> {
-            HibahObatBHP dialog = new HibahObatBHP(new javax.swing.JFrame(), true);
+            InventoryHibahObatBHP dialog = new InventoryHibahObatBHP(new javax.swing.JFrame(), true);
             dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                 @Override
                 public void windowClosing(java.awt.event.WindowEvent e) {
