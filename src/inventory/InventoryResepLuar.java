@@ -45,7 +45,7 @@ import widget.Button;
  *
  * @author dosen
  */
-public final class DlgResepLuar extends javax.swing.JDialog {
+public final class InventoryResepLuar extends javax.swing.JDialog {
     private final DefaultTableModel tabModeResep,tabModeDetailResepRacikan,tabModeResepRacikan;
     private sekuel Sequel=new sekuel();
     private validasi Valid=new validasi();
@@ -54,8 +54,8 @@ public final class DlgResepLuar extends javax.swing.JDialog {
     private ResultSet rsobat;
     private double jumlahracik=0,persenracik=0,kapasitasracik=0;
     private int i=0,z=0,jmlobat=0,r=0;
-    private boolean sukses=true;
     private double[] jumlah,kapasitas,p1,p2;
+    private boolean sukses=true;
     private String[] no,kodebarang,namabarang,kodesatuan,kandungan,letakbarang,namajenis,aturan,industri,komposisi;
     public DlgBarang barang=new DlgBarang(null,false);
     public DlgCariAturanPakai aturanpakai=new DlgCariAturanPakai(null,false);
@@ -68,7 +68,7 @@ public final class DlgResepLuar extends javax.swing.JDialog {
     /** Creates new form DlgPenyakit
      * @param parent
      * @param modal */
-    public DlgResepLuar(java.awt.Frame parent, boolean modal) {
+    public InventoryResepLuar(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setLocation(10,2);
@@ -361,13 +361,12 @@ public final class DlgResepLuar extends javax.swing.JDialog {
         TCari = new widget.TextBox();
         BtnCari = new widget.Button();
         BtnAll = new widget.Button();
-        label12 = new widget.Label();
-        Jeniskelas = new widget.ComboBox();
         BtnTambah = new widget.Button();
         BtnSeek5 = new widget.Button();
         BtnSimpan = new widget.Button();
         BtnTambah1 = new widget.Button();
         BtnHapus = new widget.Button();
+        BtnCari1 = new widget.Button();
         BtnKeluar = new widget.Button();
         FormInput = new widget.PanelBiasa();
         TNoRw = new widget.TextBox();
@@ -431,7 +430,7 @@ public final class DlgResepLuar extends javax.swing.JDialog {
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
         panelisi3.setName("panelisi3"); // NOI18N
-        panelisi3.setPreferredSize(new java.awt.Dimension(100, 43));
+        panelisi3.setPreferredSize(new java.awt.Dimension(734, 56));
         panelisi3.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 4, 9));
 
         label9.setText("Key Word :");
@@ -482,26 +481,6 @@ public final class DlgResepLuar extends javax.swing.JDialog {
             }
         });
         panelisi3.add(BtnAll);
-
-        label12.setText("Tarif :");
-        label12.setName("label12"); // NOI18N
-        label12.setPreferredSize(new java.awt.Dimension(50, 23));
-        panelisi3.add(label12);
-
-        Jeniskelas.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Rawat Jalan", "Beli Luar", "Karyawan", "Utama/BPJS", "Kelas 1", "Kelas 2", "Kelas 3", "VIP", "VVIP" }));
-        Jeniskelas.setName("Jeniskelas"); // NOI18N
-        Jeniskelas.setPreferredSize(new java.awt.Dimension(120, 23));
-        Jeniskelas.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                JeniskelasItemStateChanged(evt);
-            }
-        });
-        Jeniskelas.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                JeniskelasKeyPressed(evt);
-            }
-        });
-        panelisi3.add(Jeniskelas);
 
         BtnTambah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/plus_16.png"))); // NOI18N
         BtnTambah.setMnemonic('3');
@@ -568,11 +547,30 @@ public final class DlgResepLuar extends javax.swing.JDialog {
         });
         panelisi3.add(BtnHapus);
 
+        BtnCari1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
+        BtnCari1.setMnemonic('C');
+        BtnCari1.setText("Cari");
+        BtnCari1.setToolTipText("Alt+C");
+        BtnCari1.setName("BtnCari1"); // NOI18N
+        BtnCari1.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnCari1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCari1ActionPerformed(evt);
+            }
+        });
+        BtnCari1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BtnCari1KeyPressed(evt);
+            }
+        });
+        panelisi3.add(BtnCari1);
+
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
         BtnKeluar.setMnemonic('5');
+        BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+5");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
-        BtnKeluar.setPreferredSize(new java.awt.Dimension(28, 23));
+        BtnKeluar.setPreferredSize(new java.awt.Dimension(100, 30));
         BtnKeluar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnKeluarActionPerformed(evt);
@@ -666,7 +664,7 @@ public final class DlgResepLuar extends javax.swing.JDialog {
         jLabel8.setBounds(0, 42, 72, 23);
 
         DTPBeri.setForeground(new java.awt.Color(50, 70, 50));
-        DTPBeri.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-09-2021" }));
+        DTPBeri.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-09-2021" }));
         DTPBeri.setDisplayFormat("dd-MM-yyyy");
         DTPBeri.setName("DTPBeri"); // NOI18N
         DTPBeri.setOpaque(false);
@@ -1038,23 +1036,15 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
         tampilobat();
     }//GEN-LAST:event_formWindowOpened
 
-    private void JeniskelasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_JeniskelasItemStateChanged
-        tampilobat();
-    }//GEN-LAST:event_JeniskelasItemStateChanged
-
-    private void JeniskelasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JeniskelasKeyPressed
-        Valid.pindah(evt, TCari,BtnKeluar);
-    }//GEN-LAST:event_JeniskelasKeyPressed
-
     private void TabRawatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabRawatMouseClicked
         if(TabRawat.getSelectedIndex()==0){
             BtnTambah1.setVisible(false);
             BtnHapus.setVisible(false);
-            TCari.setPreferredSize(new Dimension(245, 23));
+            TCari.setPreferredSize(new Dimension(235, 23));
         }else if(TabRawat.getSelectedIndex()==1){
             BtnTambah1.setVisible(true);
             BtnHapus.setVisible(true);
-            TCari.setPreferredSize(new Dimension(181, 23));
+            TCari.setPreferredSize(new Dimension(171, 23));
         }
     }//GEN-LAST:event_TabRawatMouseClicked
 
@@ -1228,12 +1218,32 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
         }
     }//GEN-LAST:event_TNoRwKeyPressed
 
+    private void BtnCari1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCari1ActionPerformed
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        InventoryCariResepLuar form=new InventoryCariResepLuar(null,false);
+        form.setNoRm(TNoRw.getText(),DTPBeri.getDate());
+        form.isCek();
+        form.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+        form.setLocationRelativeTo(internalFrame1);
+        form.setAlwaysOnTop(false);
+        form.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_BtnCari1ActionPerformed
+
+    private void BtnCari1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnCari1KeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
+            BtnCariActionPerformed(null);
+        }else{
+            Valid.pindah(evt, BtnSimpan,BtnKeluar);
+        }
+    }//GEN-LAST:event_BtnCari1KeyPressed
+
     /**
     * @param args the command line arguments
     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> {
-            DlgResepLuar dialog = new DlgResepLuar(new javax.swing.JFrame(), true);
+            InventoryResepLuar dialog = new InventoryResepLuar(new javax.swing.JFrame(), true);
             dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                 @Override
                 public void windowClosing(java.awt.event.WindowEvent e) {
@@ -1247,6 +1257,7 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private widget.Button BtnAll;
     private widget.Button BtnCari;
+    private widget.Button BtnCari1;
     private widget.Button BtnHapus;
     private widget.Button BtnKeluar;
     private widget.Button BtnSeek5;
@@ -1257,7 +1268,6 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     private widget.CekBox ChkRM;
     private widget.Tanggal DTPBeri;
     private widget.PanelBiasa FormInput;
-    private widget.ComboBox Jeniskelas;
     private widget.TextBox KdDokter;
     private widget.TextBox NmDokter;
     private widget.TextBox NoResep;
@@ -1279,7 +1289,6 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     private widget.Label jLabel3;
     private widget.Label jLabel8;
     private javax.swing.JPanel jPanel3;
-    private widget.Label label12;
     private widget.Label label9;
     private widget.panelisi panelisi3;
     private javax.swing.JMenuItem ppBersihkan;
