@@ -3497,7 +3497,7 @@
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                             <LineBorder>
-                              <Color PropertyName="color" blue="aa" green="aa" red="aa" type="rgb"/>
+                              <Color PropertyName="color" blue="96" green="96" red="96" type="rgb"/>
                             </LineBorder>
                           </Border>
                         </Property>
@@ -3515,14 +3515,22 @@
                       <SubComponents>
                         <Component class="widget.Table" name="tbAPGAR">
                           <Properties>
+                            <Property name="autoResizeMode" type="int" value="0"/>
+                            <Property name="autoscrolls" type="boolean" value="false"/>
                             <Property name="gridColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="aa" green="aa" red="aa" type="rgb"/>
+                              <Color blue="96" green="96" red="96" type="rgb"/>
                             </Property>
                             <Property name="name" type="java.lang.String" value="tbAPGAR" noResource="true"/>
                             <Property name="rowHeight" type="int" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                               <Connection code="150" type="code"/>
                             </Property>
+                            <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                              <TableHeader reorderingAllowed="false" resizingAllowed="false"/>
+                            </Property>
                           </Properties>
+                          <Events>
+                            <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="tbAPGARPropertyChange"/>
+                          </Events>
                         </Component>
                       </SubComponents>
                     </Container>
@@ -3692,17 +3700,18 @@
                         </Constraint>
                       </Constraints>
                     </Component>
-                    <Component class="widget.TextBox2" name="textBox21">
+                    <Component class="widget.TextBox2" name="N10">
                       <Properties>
+                        <Property name="editable" type="boolean" value="false"/>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                             <LineBorder>
-                              <Color PropertyName="color" blue="aa" green="aa" red="aa" type="rgb"/>
+                              <Color PropertyName="color" blue="96" green="96" red="96" type="rgb"/>
                             </LineBorder>
                           </Border>
                         </Property>
                         <Property name="horizontalAlignment" type="int" value="0"/>
-                        <Property name="name" type="java.lang.String" value="textBox21" noResource="true"/>
+                        <Property name="name" type="java.lang.String" value="N10" noResource="true"/>
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -3710,17 +3719,18 @@
                         </Constraint>
                       </Constraints>
                     </Component>
-                    <Component class="widget.TextBox2" name="textBox22">
+                    <Component class="widget.TextBox2" name="N5">
                       <Properties>
+                        <Property name="editable" type="boolean" value="false"/>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                             <LineBorder>
-                              <Color PropertyName="color" blue="aa" green="aa" red="aa" type="rgb"/>
+                              <Color PropertyName="color" blue="96" green="96" red="96" type="rgb"/>
                             </LineBorder>
                           </Border>
                         </Property>
                         <Property name="horizontalAlignment" type="int" value="0"/>
-                        <Property name="name" type="java.lang.String" value="textBox22" noResource="true"/>
+                        <Property name="name" type="java.lang.String" value="N5" noResource="true"/>
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -3728,17 +3738,18 @@
                         </Constraint>
                       </Constraints>
                     </Component>
-                    <Component class="widget.TextBox2" name="textBox23">
+                    <Component class="widget.TextBox2" name="N1">
                       <Properties>
+                        <Property name="editable" type="boolean" value="false"/>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                             <LineBorder>
-                              <Color PropertyName="color" blue="aa" green="aa" red="aa" type="rgb"/>
+                              <Color PropertyName="color" blue="96" green="96" red="96" type="rgb"/>
                             </LineBorder>
                           </Border>
                         </Property>
                         <Property name="horizontalAlignment" type="int" value="0"/>
-                        <Property name="name" type="java.lang.String" value="textBox23" noResource="true"/>
+                        <Property name="name" type="java.lang.String" value="N1" noResource="true"/>
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
