@@ -18,7 +18,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
-public class DlgDaftarPermintaanStokPasien extends javax.swing.JDialog {
+public class DlgDaftarPermintaanResepPulang extends javax.swing.JDialog {
     private final DefaultTableModel tabMode;
     private validasi Valid=new validasi();
     private Connection koneksi=koneksiDB.condb();
@@ -31,7 +31,7 @@ public class DlgDaftarPermintaanStokPasien extends javax.swing.JDialog {
     /** Creates new form 
      * @param parent
      * @param modal */
-    public DlgDaftarPermintaanStokPasien(java.awt.Frame parent, boolean modal) {
+    public DlgDaftarPermintaanResepPulang(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         
@@ -59,7 +59,7 @@ public class DlgDaftarPermintaanStokPasien extends javax.swing.JDialog {
             }else if(i==4){
                 column.setPreferredWidth(320);
             }else if(i==5){
-                column.setPreferredWidth(270);
+                column.setPreferredWidth(200);
             }
         }
         tbPemisahan.setDefaultRenderer(Object.class, new WarnaTable());
@@ -98,7 +98,7 @@ public class DlgDaftarPermintaanStokPasien extends javax.swing.JDialog {
         setUndecorated(true);
         setResizable(false);
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Daftar Permintaan Stok Obat & BHP Medis Pasien Di Ranap ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Daftar Permintaan Resep Pulang ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -330,7 +330,7 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
             if(tbPemisahan.getValueAt(tbPemisahan.getSelectedRow(),0).toString().equals("")){
                 JOptionPane.showMessageDialog(rootPane,"Silahkan pilih No.Permintaan yang mau dihapus ..!!");
             }else {
-                Sequel.meghapus("permintaan_stok_obat_pasien","no_permintaan",tbPemisahan.getValueAt(tbPemisahan.getSelectedRow(),0).toString()); 
+                Sequel.meghapus("permintaan_resep_pulang","no_permintaan",tbPemisahan.getValueAt(tbPemisahan.getSelectedRow(),0).toString()); 
                 tampil();               
             }
         }
@@ -368,7 +368,7 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
             param.put("kontakrs",akses.getkontakrs());
             param.put("emailrs",akses.getemailrs());   
             param.put("logo",Sequel.cariGambar("select logo from setting")); 
-            Valid.MyReport2("rptDaftarResep3.jasper","report","::[ Daftar Permintaan Stok Obat Pasien ]::",param);
+            Valid.MyReport2("rptDaftarResepPulang.jasper","report","::[ Daftar Permintaan Resep Pulang ]::",param);
             this.setCursor(Cursor.getDefaultCursor());
         }
     }//GEN-LAST:event_BtnPrintActionPerformed
@@ -397,7 +397,7 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> {
-            DlgDaftarPermintaanStokPasien dialog = new DlgDaftarPermintaanStokPasien(new javax.swing.JFrame(), true);
+            DlgDaftarPermintaanResepPulang dialog = new DlgDaftarPermintaanResepPulang(new javax.swing.JFrame(), true);
             dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                 @Override
                 public void windowClosing(java.awt.event.WindowEvent e) {
@@ -433,20 +433,20 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
     public void tampil() {
         Valid.tabelKosong(tabMode);
         try{  
-            ps=koneksi.prepareStatement("select permintaan_stok_obat_pasien.no_permintaan,permintaan_stok_obat_pasien.tgl_permintaan,permintaan_stok_obat_pasien.jam,permintaan_stok_obat_pasien.no_rawat,pasien.no_rkm_medis,"+
-                    " pasien.nm_pasien,permintaan_stok_obat_pasien.kd_dokter,dokter.nm_dokter,if(permintaan_stok_obat_pasien.status='Belum','Belum Terlayani','Sudah Terlayani') as status,"+
-                    " ifnull(bangsal.nm_bangsal,'Ranap Gabung') as nm_bangsal,permintaan_stok_obat_pasien.status as status_asal,penjab.png_jawab from permintaan_stok_obat_pasien "+
-                    " inner join reg_periksa on permintaan_stok_obat_pasien.no_rawat=reg_periksa.no_rawat "+
+            ps=koneksi.prepareStatement("select permintaan_resep_pulang.no_permintaan,permintaan_resep_pulang.tgl_permintaan,permintaan_resep_pulang.jam,permintaan_resep_pulang.no_rawat,pasien.no_rkm_medis,"+
+                    " pasien.nm_pasien,permintaan_resep_pulang.kd_dokter,dokter.nm_dokter,if(permintaan_resep_pulang.status='Belum','Belum Terlayani','Sudah Terlayani') as status,"+
+                    " ifnull(bangsal.nm_bangsal,'Ranap Gabung') as nm_bangsal,permintaan_resep_pulang.status as status_asal,penjab.png_jawab from permintaan_resep_pulang "+
+                    " inner join reg_periksa on permintaan_resep_pulang.no_rawat=reg_periksa.no_rawat "+
                     " inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
-                    " inner join dokter on permintaan_stok_obat_pasien.kd_dokter=dokter.kd_dokter "+
+                    " inner join dokter on permintaan_resep_pulang.kd_dokter=dokter.kd_dokter "+
                     " left join kamar_inap on reg_periksa.no_rawat=kamar_inap.no_rawat "+
                     " left join kamar on kamar_inap.kd_kamar=kamar.kd_kamar "+
                     " left join bangsal on kamar.kd_bangsal=bangsal.kd_bangsal "+
                     " inner join penjab on reg_periksa.kd_pj=penjab.kd_pj "+
-                    " where permintaan_stok_obat_pasien.tgl_permintaan between ? and ? and "+
-                    "(permintaan_stok_obat_pasien.no_permintaan like ? or permintaan_stok_obat_pasien.no_rawat like ? or "+
+                    " where permintaan_resep_pulang.tgl_permintaan between ? and ? and "+
+                    "(permintaan_resep_pulang.no_permintaan like ? or permintaan_resep_pulang.no_rawat like ? or "+
                     "pasien.no_rkm_medis like ? or pasien.nm_pasien like ? or dokter.nm_dokter like ? or penjab.png_jawab like ?)"+
-                    "group by permintaan_stok_obat_pasien.no_permintaan order by permintaan_stok_obat_pasien.tgl_permintaan desc,permintaan_stok_obat_pasien.jam desc");
+                    "group by permintaan_resep_pulang.no_permintaan order by permintaan_resep_pulang.tgl_permintaan desc,permintaan_resep_pulang.jam desc");
             try{
                 ps.setString(1,Valid.SetTgl(Tgl1.getSelectedItem()+""));
                 ps.setString(2,Valid.SetTgl(Tgl2.getSelectedItem()+""));
@@ -466,22 +466,16 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
                         rs.getString("nm_dokter")
                     });
                     tabMode.addRow(new String[]{"","","Jumlah","Kode Obat","Nama Obat","Aturan Pakai"});                
-                    ps2=koneksi.prepareStatement("select databarang.kode_brng,databarang.nama_brng,detail_permintaan_stok_obat_pasien.jml,"+
-                        "databarang.kode_sat,detail_permintaan_stok_obat_pasien.aturan_pakai,detail_permintaan_stok_obat_pasien.pg,"+
-                        "detail_permintaan_stok_obat_pasien.sg,detail_permintaan_stok_obat_pasien.sr,detail_permintaan_stok_obat_pasien.ml "+
-                        "from detail_permintaan_stok_obat_pasien inner join databarang on detail_permintaan_stok_obat_pasien.kode_brng=databarang.kode_brng "+
-                        "where detail_permintaan_stok_obat_pasien.no_permintaan=? order by databarang.kode_brng");
+                    ps2=koneksi.prepareStatement("select databarang.kode_brng,databarang.nama_brng,detail_permintaan_resep_pulang.jml,"+
+                        "databarang.kode_sat,detail_permintaan_resep_pulang.dosis "+
+                        "from detail_permintaan_resep_pulang inner join databarang on detail_permintaan_resep_pulang.kode_brng=databarang.kode_brng "+
+                        "where detail_permintaan_resep_pulang.no_permintaan=? order by databarang.kode_brng");
                     try {
                         ps2.setString(1,rs.getString("no_permintaan"));
                         rs2=ps2.executeQuery();
                         while(rs2.next()){
                             tabMode.addRow(new String[]{
-                                "","",rs2.getString("jml")+" "+rs2.getString("kode_sat"),rs2.getString("kode_brng"),rs2.getString("nama_brng"),
-                                "Pg : "+rs2.getString("pg").replaceAll("true","✓").replaceAll("false","✕")+"  "+
-                                "Sg : "+rs2.getString("sg").replaceAll("true","✓").replaceAll("false","✕")+"  "+
-                                "Sr : "+rs2.getString("sr").replaceAll("true","✓").replaceAll("false","✕")+"  "+
-                                "Ml : "+rs2.getString("ml").replaceAll("true","✓").replaceAll("false","✕")+"   "+
-                                rs2.getString("aturan_pakai")
+                                "","",rs2.getString("jml")+" "+rs2.getString("kode_sat"),rs2.getString("kode_brng"),rs2.getString("nama_brng"),rs2.getString("dosis")
                             });
                         }
                     } catch (Exception e) {
@@ -514,6 +508,6 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
     }
 
     public void isCek(){
-        BtnHapus.setEnabled(akses.getpermintaan_stok_obat_pasien());
+        BtnHapus.setEnabled(akses.getpermintaan_resep_pulang());
     }
 }

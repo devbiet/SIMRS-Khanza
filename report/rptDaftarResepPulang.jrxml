@@ -70,7 +70,7 @@
 					<font fontName="Tahoma" size="11" isBold="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<text><![CDATA[ REKAP DATA PERMINTAAN STOK OBAT PASIEN]]></text>
+				<text><![CDATA[ REKAP DATA PERMINTAAN RESEP PULANG]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="2" y="0" width="800" height="17" uuid="49acb5bb-09f0-4bb0-9d96-d173118923da"/>
