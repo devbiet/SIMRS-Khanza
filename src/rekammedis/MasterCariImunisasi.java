@@ -9,7 +9,7 @@
  * Created on May 23, 2010, 12:57:16 AM
  */
 
-package simrskhanza;
+package rekammedis;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -36,7 +36,7 @@ import javax.swing.table.TableColumn;
  *
  * @author dosen
  */
-public final class DlgCariJabatan extends javax.swing.JDialog {
+public final class MasterCariImunisasi extends javax.swing.JDialog {
     private final DefaultTableModel tabMode;
     private validasi Valid=new validasi();
     private Connection koneksi=koneksiDB.condb();
@@ -52,14 +52,13 @@ public final class DlgCariJabatan extends javax.swing.JDialog {
     /** Creates new form DlgPenyakit
      * @param parent
      * @param modal */
-    public DlgCariJabatan(java.awt.Frame parent, boolean modal) {
+    public MasterCariImunisasi(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setLocation(10,2);
         setSize(656,250);
 
-        Object[] row={"Kode Jabatan",
-                      "Nama Jabatan"};
+        Object[] row={"Kode","Nama Imunisasi"};
         tabMode=new DefaultTableModel(null,row){
               @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
@@ -72,9 +71,9 @@ public final class DlgCariJabatan extends javax.swing.JDialog {
         for (int i = 0; i < 2; i++) {
             TableColumn column = tbKamar.getColumnModel().getColumn(i);
             if(i==0){
-                column.setPreferredWidth(110);
+                column.setPreferredWidth(50);
             }else if(i==1){
-                column.setPreferredWidth(400);
+                column.setPreferredWidth(470);
             }
         }
         tbKamar.setDefaultRenderer(Object.class, new WarnaTable());
@@ -102,7 +101,7 @@ public final class DlgCariJabatan extends javax.swing.JDialog {
             });
         } 
         
-    }    
+    }   
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -138,7 +137,7 @@ public final class DlgCariJabatan extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Jabatan ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50,50,50))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Master Imunisasi ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -294,12 +293,12 @@ public final class DlgCariJabatan extends javax.swing.JDialog {
 
     private void BtnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTambahActionPerformed
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));        
-        DlgJabatan jabatan=new DlgJabatan(null,false);
-        jabatan.emptTeks();
-        jabatan.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
-        jabatan.setLocationRelativeTo(internalFrame1);
-        jabatan.setAlwaysOnTop(false);
-        jabatan.setVisible(true);
+        //jabatan.setModal(true);
+        MasterImunisasi form=new MasterImunisasi(null,false);
+        form.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+        form.setLocationRelativeTo(internalFrame1);
+        form.setAlwaysOnTop(false);
+        form.setVisible(true);
         this.setCursor(Cursor.getDefaultCursor());   
         
     }//GEN-LAST:event_BtnTambahActionPerformed
@@ -310,7 +309,7 @@ public final class DlgCariJabatan extends javax.swing.JDialog {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         try {
-            if(Valid.daysOld("./cache/jabatan.iyem")<4){
+            if(Valid.daysOld("./cache/master_imunisasi.iyem")<4){
                 tampil2();
             }else{
                 tampil();
@@ -335,7 +334,7 @@ public final class DlgCariJabatan extends javax.swing.JDialog {
     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> {
-            DlgCariJabatan dialog = new DlgCariJabatan(new javax.swing.JFrame(), true);
+            MasterCariImunisasi dialog = new MasterCariImunisasi(new javax.swing.JFrame(), true);
             dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                 @Override
                 public void windowClosing(java.awt.event.WindowEvent e) {
@@ -364,16 +363,16 @@ public final class DlgCariJabatan extends javax.swing.JDialog {
     private void tampil() {
         Valid.tabelKosong(tabMode);
         try{
-            file=new File("./cache/jabatan.iyem");
+            file=new File("./cache/master_imunisasi.iyem");
             file.createNewFile();
             fileWriter = new FileWriter(file);
             iyem="";
-            ps=koneksi.prepareStatement("select jabatan.kd_jbtn, jabatan.nm_jbtn from jabatan order by jabatan.nm_jbtn");   
+            ps=koneksi.prepareStatement("select master_imunisasi.kode_imunisasi, master_imunisasi.nama_imunisasi from master_imunisasi order by master_imunisasi.nama_imunisasi");   
             try {
                 rs=ps.executeQuery();
                 while(rs.next()){
                     tabMode.addRow(new String[]{rs.getString(1),rs.getString(2)});
-                    iyem=iyem+"{\"KodeJabatan\":\""+rs.getString(1)+"\",\"NamaJabatan\":\""+rs.getString(2)+"\"},";
+                    iyem=iyem+"{\"KodeImunisasi\":\""+rs.getString(1)+"\",\"NamaImunisasi\":\""+rs.getString(2)+"\"},";
                 }
             } catch (Exception e) {
                 System.out.println("Notifikasi : "+e);
@@ -385,7 +384,7 @@ public final class DlgCariJabatan extends javax.swing.JDialog {
                     ps.close();
                 }
             }
-            fileWriter.write("{\"jabatan\":["+iyem.substring(0,iyem.length()-1)+"]}");
+            fileWriter.write("{\"master_imunisasi\":["+iyem.substring(0,iyem.length()-1)+"]}");
             fileWriter.flush();
             fileWriter.close();
             iyem=null;
@@ -397,15 +396,15 @@ public final class DlgCariJabatan extends javax.swing.JDialog {
     
     private void tampil2() {
         try {
-            myObj = new FileReader("./cache/jabatan.iyem");
+            myObj = new FileReader("./cache/master_imunisasi.iyem");
             root = mapper.readTree(myObj);
             Valid.tabelKosong(tabMode);
-            response = root.path("jabatan");
+            response = root.path("master_imunisasi");
             if(response.isArray()){
                 for(JsonNode list:response){
-                    if(list.path("KodeJabatan").asText().toLowerCase().contains(TCari.getText().toLowerCase())||list.path("NamaJabatan").asText().toLowerCase().contains(TCari.getText().toLowerCase())){
+                    if(list.path("KodeImunisasi").asText().toLowerCase().contains(TCari.getText().toLowerCase())||list.path("NamaImunisasi").asText().toLowerCase().contains(TCari.getText().toLowerCase())){
                         tabMode.addRow(new Object[]{
-                            list.path("KodeJabatan").asText(),list.path("NamaJabatan").asText()
+                            list.path("KodeImunisasi").asText(),list.path("NamaImunisasi").asText()
                         });                    
                     }
                 }
