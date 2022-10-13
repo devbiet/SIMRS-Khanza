@@ -35,7 +35,7 @@ import javax.swing.table.TableColumn;
  *
  * @author perpustakaan
  */
-public final class DlgPelayananLabPA extends javax.swing.JDialog {
+public final class DlgPelayananLabMB extends javax.swing.JDialog {
     private final DefaultTableModel tabMode;
     private Connection koneksi=koneksiDB.condb();
     private sekuel Sequel=new sekuel();
@@ -49,7 +49,7 @@ public final class DlgPelayananLabPA extends javax.swing.JDialog {
     /** Creates new form DlgLhtBiaya
      * @param parent
      * @param modal */
-    public DlgPelayananLabPA(java.awt.Frame parent, boolean modal) {
+    public DlgPelayananLabMB(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setLocation(8,1);
@@ -161,7 +161,7 @@ public final class DlgPelayananLabPA extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Data Lama Pelayanan Laboratorium Patologi Anatomi ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Data Lama Pelayanan Laboratorium Mikrobiologi & Bio Molekuler ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -429,7 +429,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> {
-            DlgPelayananLabPA dialog = new DlgPelayananLabPA(new javax.swing.JFrame(), true);
+            DlgPelayananLabMB dialog = new DlgPelayananLabMB(new javax.swing.JFrame(), true);
             dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                 @Override
                 public void windowClosing(java.awt.event.WindowEvent e) {
@@ -467,19 +467,19 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             limabelas2=0;tigapuluh2=0;satujam2=0;lebihsatujam2=0;
             limabelas3=0;tigapuluh3=0;satujam3=0;lebihsatujam3=0;
             ps=koneksi.prepareStatement(
-                "select reg_periksa.no_rkm_medis,pasien.nm_pasien,dokter.nm_dokter,permintaan_labpa.noorder," +
-                "permintaan_labpa.tgl_permintaan,permintaan_labpa.jam_permintaan,permintaan_labpa.tgl_sampel,"+
-                "permintaan_labpa.jam_sampel,permintaan_labpa.tgl_hasil,permintaan_labpa.jam_hasil," +
-                "round((TIME_TO_SEC(concat(permintaan_labpa.tgl_sampel,' ',permintaan_labpa.jam_sampel))-TIME_TO_SEC(concat(permintaan_labpa.tgl_permintaan,' ',permintaan_labpa.jam_permintaan)))/60,2) as permintaansampel, " +
-                "round((TIME_TO_SEC(concat(permintaan_labpa.tgl_hasil,' ',permintaan_labpa.jam_hasil))-TIME_TO_SEC(concat(permintaan_labpa.tgl_sampel,' ',permintaan_labpa.jam_sampel)))/60,2) as sampelhasil, " +
-                "round((TIME_TO_SEC(concat(permintaan_labpa.tgl_hasil,' ',permintaan_labpa.jam_hasil))-TIME_TO_SEC(concat(permintaan_labpa.tgl_permintaan,' ',permintaan_labpa.jam_permintaan)))/60,2) as permintaanhasil " +
-                "from reg_periksa inner join dokter inner join pasien inner join permintaan_labpa on reg_periksa.kd_dokter=dokter.kd_dokter " +
-                "and reg_periksa.no_rkm_medis=pasien.no_rkm_medis and reg_periksa.no_rawat=permintaan_labpa.no_rawat where "+
-                "permintaan_labpa.tgl_sampel<>'0000-00-00' and permintaan_labpa.tgl_hasil<>'0000-00-00' and permintaan_labpa.tgl_permintaan between ? and ? and permintaan_labpa.noorder like ? or " +
-                "permintaan_labpa.tgl_sampel<>'0000-00-00' and permintaan_labpa.tgl_hasil<>'0000-00-00' and permintaan_labpa.tgl_permintaan between ? and ? and dokter.nm_dokter like ? or " +
-                "permintaan_labpa.tgl_sampel<>'0000-00-00' and permintaan_labpa.tgl_hasil<>'0000-00-00' and permintaan_labpa.tgl_permintaan between ? and ? and reg_periksa.no_rkm_medis like ? or " +
-                "permintaan_labpa.tgl_sampel<>'0000-00-00' and permintaan_labpa.tgl_hasil<>'0000-00-00' and permintaan_labpa.tgl_permintaan between ? and ? and pasien.nm_pasien like ?  "+
-                "order by permintaan_labpa.tgl_permintaan,permintaan_labpa.jam_permintaan");
+                "select reg_periksa.no_rkm_medis,pasien.nm_pasien,dokter.nm_dokter,permintaan_labmb.noorder," +
+                "permintaan_labmb.tgl_permintaan,permintaan_labmb.jam_permintaan,permintaan_labmb.tgl_sampel,"+
+                "permintaan_labmb.jam_sampel,permintaan_labmb.tgl_hasil,permintaan_labmb.jam_hasil," +
+                "round((TIME_TO_SEC(concat(permintaan_labmb.tgl_sampel,' ',permintaan_labmb.jam_sampel))-TIME_TO_SEC(concat(permintaan_labmb.tgl_permintaan,' ',permintaan_labmb.jam_permintaan)))/60,2) as permintaansampel, " +
+                "round((TIME_TO_SEC(concat(permintaan_labmb.tgl_hasil,' ',permintaan_labmb.jam_hasil))-TIME_TO_SEC(concat(permintaan_labmb.tgl_sampel,' ',permintaan_labmb.jam_sampel)))/60,2) as sampelhasil, " +
+                "round((TIME_TO_SEC(concat(permintaan_labmb.tgl_hasil,' ',permintaan_labmb.jam_hasil))-TIME_TO_SEC(concat(permintaan_labmb.tgl_permintaan,' ',permintaan_labmb.jam_permintaan)))/60,2) as permintaanhasil " +
+                "from reg_periksa inner join dokter inner join pasien inner join permintaan_labmb on reg_periksa.kd_dokter=dokter.kd_dokter " +
+                "and reg_periksa.no_rkm_medis=pasien.no_rkm_medis and reg_periksa.no_rawat=permintaan_labmb.no_rawat where "+
+                "permintaan_labmb.tgl_sampel<>'0000-00-00' and permintaan_labmb.tgl_hasil<>'0000-00-00' and permintaan_labmb.tgl_permintaan between ? and ? and permintaan_labmb.noorder like ? or " +
+                "permintaan_labmb.tgl_sampel<>'0000-00-00' and permintaan_labmb.tgl_hasil<>'0000-00-00' and permintaan_labmb.tgl_permintaan between ? and ? and dokter.nm_dokter like ? or " +
+                "permintaan_labmb.tgl_sampel<>'0000-00-00' and permintaan_labmb.tgl_hasil<>'0000-00-00' and permintaan_labmb.tgl_permintaan between ? and ? and reg_periksa.no_rkm_medis like ? or " +
+                "permintaan_labmb.tgl_sampel<>'0000-00-00' and permintaan_labmb.tgl_hasil<>'0000-00-00' and permintaan_labmb.tgl_permintaan between ? and ? and pasien.nm_pasien like ?  "+
+                "order by permintaan_labmb.tgl_permintaan,permintaan_labmb.jam_permintaan");
             try {
                 ps.setString(1,Valid.SetTgl(Tgl1.getSelectedItem()+""));
                 ps.setString(2,Valid.SetTgl(Tgl2.getSelectedItem()+""));
