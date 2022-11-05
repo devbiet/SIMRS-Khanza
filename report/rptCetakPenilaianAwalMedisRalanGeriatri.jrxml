@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.17.0.final using JasperReports Library version 6.17.0-6d93193241dd8cc42629e188b94f9e0bc5722efd  -->
+<!-- Created with Jaspersoft Studio version 6.17.0.final using JasperReports Library version 5.2.0  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="842" columnWidth="557" leftMargin="19" rightMargin="19" topMargin="19" bottomMargin="19" uuid="34c13d5a-cd6b-451e-8001-9fd298d2274a">
 	<property name="ireport.zoom" value="2.0"/>
 	<property name="ireport.x" value="0"/>
@@ -29,19 +29,20 @@
 	<parameter name="masalah" class="java.lang.String"/>
 	<parameter name="finger" class="java.lang.String"/>
 	<queryString language="SQL">
-		<![CDATA[select reg_periksa.no_rawat,pasien.no_rkm_medis,pasien.nm_pasien,if(pasien.jk='L','Laki-Laki','Perempuan') as jk,pasien.tgl_lahir,penilaian_medis_ralan_penyakit_dalam.tanggal,
-penilaian_medis_ralan_penyakit_dalam.kd_dokter,penilaian_medis_ralan_penyakit_dalam.anamnesis,penilaian_medis_ralan_penyakit_dalam.hubungan,penilaian_medis_ralan_penyakit_dalam.keluhan_utama,
-penilaian_medis_ralan_penyakit_dalam.rps,penilaian_medis_ralan_penyakit_dalam.rpd,penilaian_medis_ralan_penyakit_dalam.rpo,penilaian_medis_ralan_penyakit_dalam.alergi,
-penilaian_medis_ralan_penyakit_dalam.kondisi,penilaian_medis_ralan_penyakit_dalam.status,penilaian_medis_ralan_penyakit_dalam.td,penilaian_medis_ralan_penyakit_dalam.nadi,
-penilaian_medis_ralan_penyakit_dalam.suhu,penilaian_medis_ralan_penyakit_dalam.rr,penilaian_medis_ralan_penyakit_dalam.bb,penilaian_medis_ralan_penyakit_dalam.nyeri,penilaian_medis_ralan_penyakit_dalam.gcs,
-penilaian_medis_ralan_penyakit_dalam.kepala,penilaian_medis_ralan_penyakit_dalam.thoraks,penilaian_medis_ralan_penyakit_dalam.abdomen,penilaian_medis_ralan_penyakit_dalam.ekstremitas,
-penilaian_medis_ralan_penyakit_dalam.lainnya,penilaian_medis_ralan_penyakit_dalam.lab,penilaian_medis_ralan_penyakit_dalam.rad,penilaian_medis_ralan_penyakit_dalam.penunjanglain,
-penilaian_medis_ralan_penyakit_dalam.diagnosis,penilaian_medis_ralan_penyakit_dalam.diagnosis2,penilaian_medis_ralan_penyakit_dalam.permasalahan,penilaian_medis_ralan_penyakit_dalam.terapi,
-penilaian_medis_ralan_penyakit_dalam.tindakan,penilaian_medis_ralan_penyakit_dalam.edukasi,dokter.nm_dokter,keterangan_kepala,penilaian_medis_ralan_penyakit_dalam.keterangan_thorak,
-penilaian_medis_ralan_penyakit_dalam.keterangan_abdomen,penilaian_medis_ralan_penyakit_dalam.keterangan_ekstremitas 
-from reg_periksa inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis
-inner join penilaian_medis_ralan_penyakit_dalam on reg_periksa.no_rawat=penilaian_medis_ralan_penyakit_dalam.no_rawat 
-inner join dokter on penilaian_medis_ralan_penyakit_dalam.kd_dokter=dokter.kd_dokter]]>
+		<![CDATA[select reg_periksa.no_rawat,pasien.no_rkm_medis,pasien.nm_pasien,if(pasien.jk='L','Laki-Laki','Perempuan') as jk,pasien.tgl_lahir,penilaian_medis_ralan_geriatri.tanggal,
+                        penilaian_medis_ralan_geriatri.kd_dokter,dokter.nm_dokter,penilaian_medis_ralan_geriatri.anamnesis,penilaian_medis_ralan_geriatri.hubungan,penilaian_medis_ralan_geriatri.keluhan_utama,
+                        penilaian_medis_ralan_geriatri.rps,penilaian_medis_ralan_geriatri.rpd,penilaian_medis_ralan_geriatri.rpo,penilaian_medis_ralan_geriatri.alergi,penilaian_medis_ralan_geriatri.tulang_belakang,
+                        penilaian_medis_ralan_geriatri.td,penilaian_medis_ralan_geriatri.nadi,penilaian_medis_ralan_geriatri.suhu,penilaian_medis_ralan_geriatri.rr,penilaian_medis_ralan_geriatri.kondisi_umum,
+                        penilaian_medis_ralan_geriatri.status_psikologis_gds,penilaian_medis_ralan_geriatri.kondisi_sosial,penilaian_medis_ralan_geriatri.status_kognitif_mmse,penilaian_medis_ralan_geriatri.kepala,
+                        penilaian_medis_ralan_geriatri.keterangan_kepala,penilaian_medis_ralan_geriatri.thoraks,penilaian_medis_ralan_geriatri.keterangan_thoraks,penilaian_medis_ralan_geriatri.abdomen,
+                        penilaian_medis_ralan_geriatri.keterangan_abdomen,penilaian_medis_ralan_geriatri.ekstremitas,penilaian_medis_ralan_geriatri.keterangan_ekstremitas,penilaian_medis_ralan_geriatri.Integument_kebersihan,
+                        penilaian_medis_ralan_geriatri.Integument_warna,penilaian_medis_ralan_geriatri.Integument_kelembaban,penilaian_medis_ralan_geriatri.Integument_gangguan_kulit,penilaian_medis_ralan_geriatri.status_fungsional,
+                        penilaian_medis_ralan_geriatri.skrining_jatuh,penilaian_medis_ralan_geriatri.status_nutrisi,penilaian_medis_ralan_geriatri.lainnya,penilaian_medis_ralan_geriatri.lab,penilaian_medis_ralan_geriatri.rad,
+                        penilaian_medis_ralan_geriatri.pemeriksaan,penilaian_medis_ralan_geriatri.diagnosis,penilaian_medis_ralan_geriatri.diagnosis2,penilaian_medis_ralan_geriatri.permasalahan,penilaian_medis_ralan_geriatri.terapi,
+                        penilaian_medis_ralan_geriatri.tindakan,penilaian_medis_ralan_geriatri.edukasi 
+                        from reg_periksa inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis 
+                        inner join penilaian_medis_ralan_geriatri on reg_periksa.no_rawat=penilaian_medis_ralan_geriatri.no_rawat 
+                        inner join dokter on penilaian_medis_ralan_geriatri.kd_dokter=dokter.kd_dokter]]>
 	</queryString>
 	<field name="no_rawat" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="no_rawat"/>
@@ -71,183 +72,13 @@ inner join dokter on penilaian_medis_ralan_penyakit_dalam.kd_dokter=dokter.kd_do
 	<field name="tanggal" class="java.sql.Timestamp">
 		<property name="com.jaspersoft.studio.field.name" value="tanggal"/>
 		<property name="com.jaspersoft.studio.field.label" value="tanggal"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_penyakit_dalam"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_geriatri"/>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="kd_dokter" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="kd_dokter"/>
 		<property name="com.jaspersoft.studio.field.label" value="kd_dokter"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_penyakit_dalam"/>
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="anamnesis" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="anamnesis"/>
-		<property name="com.jaspersoft.studio.field.label" value="anamnesis"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_penyakit_dalam"/>
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="hubungan" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="hubungan"/>
-		<property name="com.jaspersoft.studio.field.label" value="hubungan"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_penyakit_dalam"/>
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="keluhan_utama" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="keluhan_utama"/>
-		<property name="com.jaspersoft.studio.field.label" value="keluhan_utama"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_penyakit_dalam"/>
-	</field>
-	<field name="rps" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="rps"/>
-		<property name="com.jaspersoft.studio.field.label" value="rps"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_penyakit_dalam"/>
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="rpd" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="rpd"/>
-		<property name="com.jaspersoft.studio.field.label" value="rpd"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_penyakit_dalam"/>
-	</field>
-	<field name="rpo" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="rpo"/>
-		<property name="com.jaspersoft.studio.field.label" value="rpo"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_penyakit_dalam"/>
-	</field>
-	<field name="alergi" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="alergi"/>
-		<property name="com.jaspersoft.studio.field.label" value="alergi"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_penyakit_dalam"/>
-	</field>
-	<field name="kondisi" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="kondisi"/>
-		<property name="com.jaspersoft.studio.field.label" value="kondisi"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_penyakit_dalam"/>
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="status" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="status"/>
-		<property name="com.jaspersoft.studio.field.label" value="status"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_penyakit_dalam"/>
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="td" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="td"/>
-		<property name="com.jaspersoft.studio.field.label" value="td"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_penyakit_dalam"/>
-	</field>
-	<field name="nadi" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="nadi"/>
-		<property name="com.jaspersoft.studio.field.label" value="nadi"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_penyakit_dalam"/>
-	</field>
-	<field name="suhu" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="suhu"/>
-		<property name="com.jaspersoft.studio.field.label" value="suhu"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_penyakit_dalam"/>
-	</field>
-	<field name="rr" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="rr"/>
-		<property name="com.jaspersoft.studio.field.label" value="rr"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_penyakit_dalam"/>
-	</field>
-	<field name="bb" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="bb"/>
-		<property name="com.jaspersoft.studio.field.label" value="bb"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_penyakit_dalam"/>
-	</field>
-	<field name="nyeri" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="nyeri"/>
-		<property name="com.jaspersoft.studio.field.label" value="nyeri"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_penyakit_dalam"/>
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="gcs" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="gcs"/>
-		<property name="com.jaspersoft.studio.field.label" value="gcs"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_penyakit_dalam"/>
-	</field>
-	<field name="kepala" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="kepala"/>
-		<property name="com.jaspersoft.studio.field.label" value="kepala"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_penyakit_dalam"/>
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="thoraks" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="thoraks"/>
-		<property name="com.jaspersoft.studio.field.label" value="thoraks"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_penyakit_dalam"/>
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="abdomen" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="abdomen"/>
-		<property name="com.jaspersoft.studio.field.label" value="abdomen"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_penyakit_dalam"/>
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="ekstremitas" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="ekstremitas"/>
-		<property name="com.jaspersoft.studio.field.label" value="ekstremitas"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_penyakit_dalam"/>
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="lainnya" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="lainnya"/>
-		<property name="com.jaspersoft.studio.field.label" value="lainnya"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_penyakit_dalam"/>
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="lab" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="lab"/>
-		<property name="com.jaspersoft.studio.field.label" value="lab"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_penyakit_dalam"/>
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="rad" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="rad"/>
-		<property name="com.jaspersoft.studio.field.label" value="rad"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_penyakit_dalam"/>
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="penunjanglain" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="penunjanglain"/>
-		<property name="com.jaspersoft.studio.field.label" value="penunjanglain"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_penyakit_dalam"/>
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="diagnosis" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="diagnosis"/>
-		<property name="com.jaspersoft.studio.field.label" value="diagnosis"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_penyakit_dalam"/>
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="diagnosis2" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="diagnosis2"/>
-		<property name="com.jaspersoft.studio.field.label" value="diagnosis2"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_penyakit_dalam"/>
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="permasalahan" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="permasalahan"/>
-		<property name="com.jaspersoft.studio.field.label" value="permasalahan"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_penyakit_dalam"/>
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="terapi" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="terapi"/>
-		<property name="com.jaspersoft.studio.field.label" value="terapi"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_penyakit_dalam"/>
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="tindakan" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="tindakan"/>
-		<property name="com.jaspersoft.studio.field.label" value="tindakan"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_penyakit_dalam"/>
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="edukasi" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="edukasi"/>
-		<property name="com.jaspersoft.studio.field.label" value="edukasi"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_penyakit_dalam"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_geriatri"/>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="nm_dokter" class="java.lang.String">
@@ -256,28 +87,242 @@ inner join dokter on penilaian_medis_ralan_penyakit_dalam.kd_dokter=dokter.kd_do
 		<property name="com.jaspersoft.studio.field.tree.path" value="dokter"/>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
+	<field name="anamnesis" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="anamnesis"/>
+		<property name="com.jaspersoft.studio.field.label" value="anamnesis"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_geriatri"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hubungan" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="hubungan"/>
+		<property name="com.jaspersoft.studio.field.label" value="hubungan"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_geriatri"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="keluhan_utama" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="keluhan_utama"/>
+		<property name="com.jaspersoft.studio.field.label" value="keluhan_utama"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_geriatri"/>
+	</field>
+	<field name="rps" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="rps"/>
+		<property name="com.jaspersoft.studio.field.label" value="rps"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_geriatri"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="rpd" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="rpd"/>
+		<property name="com.jaspersoft.studio.field.label" value="rpd"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_geriatri"/>
+	</field>
+	<field name="rpo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="rpo"/>
+		<property name="com.jaspersoft.studio.field.label" value="rpo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_geriatri"/>
+	</field>
+	<field name="alergi" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="alergi"/>
+		<property name="com.jaspersoft.studio.field.label" value="alergi"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_geriatri"/>
+	</field>
+	<field name="tulang_belakang" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="tulang_belakang"/>
+		<property name="com.jaspersoft.studio.field.label" value="tulang_belakang"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_geriatri"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="td" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="td"/>
+		<property name="com.jaspersoft.studio.field.label" value="td"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_geriatri"/>
+	</field>
+	<field name="nadi" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nadi"/>
+		<property name="com.jaspersoft.studio.field.label" value="nadi"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_geriatri"/>
+	</field>
+	<field name="suhu" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="suhu"/>
+		<property name="com.jaspersoft.studio.field.label" value="suhu"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_geriatri"/>
+	</field>
+	<field name="rr" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="rr"/>
+		<property name="com.jaspersoft.studio.field.label" value="rr"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_geriatri"/>
+	</field>
+	<field name="kondisi_umum" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="kondisi_umum"/>
+		<property name="com.jaspersoft.studio.field.label" value="kondisi_umum"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_geriatri"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="status_psikologis_gds" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="status_psikologis_gds"/>
+		<property name="com.jaspersoft.studio.field.label" value="status_psikologis_gds"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_geriatri"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="kondisi_sosial" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="kondisi_sosial"/>
+		<property name="com.jaspersoft.studio.field.label" value="kondisi_sosial"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_geriatri"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="status_kognitif_mmse" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="status_kognitif_mmse"/>
+		<property name="com.jaspersoft.studio.field.label" value="status_kognitif_mmse"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_geriatri"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="kepala" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="kepala"/>
+		<property name="com.jaspersoft.studio.field.label" value="kepala"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_geriatri"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
 	<field name="keterangan_kepala" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="keterangan_kepala"/>
 		<property name="com.jaspersoft.studio.field.label" value="keterangan_kepala"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_penyakit_dalam"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_geriatri"/>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="keterangan_thorak" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="keterangan_thorak"/>
-		<property name="com.jaspersoft.studio.field.label" value="keterangan_thorak"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_penyakit_dalam"/>
+	<field name="thoraks" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="thoraks"/>
+		<property name="com.jaspersoft.studio.field.label" value="thoraks"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_geriatri"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="keterangan_thoraks" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="keterangan_thoraks"/>
+		<property name="com.jaspersoft.studio.field.label" value="keterangan_thoraks"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_geriatri"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="abdomen" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="abdomen"/>
+		<property name="com.jaspersoft.studio.field.label" value="abdomen"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_geriatri"/>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="keterangan_abdomen" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="keterangan_abdomen"/>
 		<property name="com.jaspersoft.studio.field.label" value="keterangan_abdomen"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_penyakit_dalam"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_geriatri"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ekstremitas" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="ekstremitas"/>
+		<property name="com.jaspersoft.studio.field.label" value="ekstremitas"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_geriatri"/>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="keterangan_ekstremitas" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="keterangan_ekstremitas"/>
 		<property name="com.jaspersoft.studio.field.label" value="keterangan_ekstremitas"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_penyakit_dalam"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_geriatri"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Integument_kebersihan" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Integument_kebersihan"/>
+		<property name="com.jaspersoft.studio.field.label" value="Integument_kebersihan"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_geriatri"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Integument_warna" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Integument_warna"/>
+		<property name="com.jaspersoft.studio.field.label" value="Integument_warna"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_geriatri"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Integument_kelembaban" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Integument_kelembaban"/>
+		<property name="com.jaspersoft.studio.field.label" value="Integument_kelembaban"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_geriatri"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Integument_gangguan_kulit" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Integument_gangguan_kulit"/>
+		<property name="com.jaspersoft.studio.field.label" value="Integument_gangguan_kulit"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_geriatri"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="status_fungsional" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="status_fungsional"/>
+		<property name="com.jaspersoft.studio.field.label" value="status_fungsional"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_geriatri"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="skrining_jatuh" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="skrining_jatuh"/>
+		<property name="com.jaspersoft.studio.field.label" value="skrining_jatuh"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_geriatri"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="status_nutrisi" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="status_nutrisi"/>
+		<property name="com.jaspersoft.studio.field.label" value="status_nutrisi"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_geriatri"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="lainnya" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="lainnya"/>
+		<property name="com.jaspersoft.studio.field.label" value="lainnya"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_geriatri"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="lab" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="lab"/>
+		<property name="com.jaspersoft.studio.field.label" value="lab"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_geriatri"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="rad" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="rad"/>
+		<property name="com.jaspersoft.studio.field.label" value="rad"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_geriatri"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pemeriksaan" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="pemeriksaan"/>
+		<property name="com.jaspersoft.studio.field.label" value="pemeriksaan"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_geriatri"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="diagnosis" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="diagnosis"/>
+		<property name="com.jaspersoft.studio.field.label" value="diagnosis"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_geriatri"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="diagnosis2" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="diagnosis2"/>
+		<property name="com.jaspersoft.studio.field.label" value="diagnosis2"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_geriatri"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="permasalahan" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="permasalahan"/>
+		<property name="com.jaspersoft.studio.field.label" value="permasalahan"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_geriatri"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="terapi" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="terapi"/>
+		<property name="com.jaspersoft.studio.field.label" value="terapi"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_geriatri"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tindakan" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="tindakan"/>
+		<property name="com.jaspersoft.studio.field.label" value="tindakan"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_geriatri"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="edukasi" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="edukasi"/>
+		<property name="com.jaspersoft.studio.field.label" value="edukasi"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_medis_ralan_geriatri"/>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<title>
@@ -328,7 +373,7 @@ inner join dokter on penilaian_medis_ralan_penyakit_dalam.kd_dokter=dokter.kd_do
 				<textFieldExpression><![CDATA[$F{tgl_lahir}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement mode="Transparent" x="55" y="356" width="220" height="11" uuid="6108141c-e6c6-4f78-b561-77300bd63ca8">
+				<reportElement mode="Transparent" x="55" y="303" width="355" height="11" uuid="6108141c-e6c6-4f78-b561-77300bd63ca8">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
@@ -338,7 +383,7 @@ inner join dokter on penilaian_medis_ralan_penyakit_dalam.kd_dokter=dokter.kd_do
 				<textFieldExpression><![CDATA[$F{kepala}+($F{keterangan_kepala}.equals("")?"":", "+$F{keterangan_kepala})]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="3" y="356" width="44" height="11" uuid="18c43161-0111-4c40-a343-d13b116b2655">
+				<reportElement x="3" y="303" width="44" height="11" uuid="18c43161-0111-4c40-a343-d13b116b2655">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
@@ -348,7 +393,7 @@ inner join dokter on penilaian_medis_ralan_penyakit_dalam.kd_dokter=dokter.kd_do
 				<text><![CDATA[Kepala]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="48" y="356" width="7" height="11" uuid="793bd8a9-efed-4b25-bb02-b13d2f139c83">
+				<reportElement x="48" y="303" width="7" height="11" uuid="793bd8a9-efed-4b25-bb02-b13d2f139c83">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
@@ -463,7 +508,7 @@ inner join dokter on penilaian_medis_ralan_penyakit_dalam.kd_dokter=dokter.kd_do
 					<font fontName="Tahoma" size="9" isBold="true"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<text><![CDATA[PENILAIAN AWAL MEDIS RAWAT JALAN PENYAKIT DALAM]]></text>
+				<text><![CDATA[PENILAIAN AWAL MEDIS RAWAT JALAN GERIATRI]]></text>
 			</staticText>
 			<line>
 				<reportElement x="0" y="78" width="557" height="1" uuid="ba9aa647-e524-46f8-adfb-6d4a9d562118">
@@ -557,7 +602,7 @@ inner join dokter on penilaian_medis_ralan_penyakit_dalam.kd_dokter=dokter.kd_do
 				<text><![CDATA[I. RIWAYAT KESEHATAN]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="3" y="120" width="552" height="56" uuid="5202cb5a-6780-4f02-be2c-e51561d0e8ef">
+				<reportElement x="3" y="120" width="552" height="30" uuid="5202cb5a-6780-4f02-be2c-e51561d0e8ef">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Top">
@@ -567,13 +612,13 @@ inner join dokter on penilaian_medis_ralan_penyakit_dalam.kd_dokter=dokter.kd_do
 				<textFieldExpression><![CDATA["Keluhan Utama : "+$F{keluhan_utama}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="0" y="176" width="557" height="1" uuid="39e69c44-644d-4ea7-a12d-e40942934760"/>
+				<reportElement x="0" y="153" width="557" height="1" uuid="39e69c44-644d-4ea7-a12d-e40942934760"/>
 				<graphicElement>
 					<pen lineWidth="0.5" lineStyle="Solid"/>
 				</graphicElement>
 			</line>
 			<textField>
-				<reportElement x="3" y="178" width="273" height="42" uuid="e360735c-7461-4100-87af-d72bbb700cf8">
+				<reportElement x="3" y="156" width="273" height="34" uuid="e360735c-7461-4100-87af-d72bbb700cf8">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Top">
@@ -583,7 +628,7 @@ inner join dokter on penilaian_medis_ralan_penyakit_dalam.kd_dokter=dokter.kd_do
 				<textFieldExpression><![CDATA["Riwayat Penyakit Sekarang : "+$F{rps}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="282" y="178" width="273" height="42" uuid="1fc6ace7-eb56-4cdf-8b62-6386849ac7cf">
+				<reportElement x="282" y="156" width="273" height="34" uuid="1fc6ace7-eb56-4cdf-8b62-6386849ac7cf">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Top">
@@ -593,7 +638,7 @@ inner join dokter on penilaian_medis_ralan_penyakit_dalam.kd_dokter=dokter.kd_do
 				<textFieldExpression><![CDATA["Riwayat Penyakit Dahulu : "+$F{rpd}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="278" y="177" width="1" height="81" uuid="5e11ba50-09d3-4d59-a1d3-01b4c8440200">
+				<reportElement x="278" y="154" width="1" height="73" uuid="5e11ba50-09d3-4d59-a1d3-01b4c8440200">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<graphicElement>
@@ -601,13 +646,13 @@ inner join dokter on penilaian_medis_ralan_penyakit_dalam.kd_dokter=dokter.kd_do
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="0" y="220" width="557" height="1" uuid="5e56e870-a7d1-4b81-9ec8-59e1dff6e434"/>
+				<reportElement x="0" y="193" width="557" height="1" uuid="5e56e870-a7d1-4b81-9ec8-59e1dff6e434"/>
 				<graphicElement>
 					<pen lineWidth="0.5" lineStyle="Solid"/>
 				</graphicElement>
 			</line>
 			<textField>
-				<reportElement x="3" y="222" width="273" height="34" uuid="f21be772-1c72-40b4-9379-ee30c0f1ee46">
+				<reportElement x="3" y="196" width="273" height="29" uuid="f21be772-1c72-40b4-9379-ee30c0f1ee46">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Top">
@@ -617,7 +662,7 @@ inner join dokter on penilaian_medis_ralan_penyakit_dalam.kd_dokter=dokter.kd_do
 				<textFieldExpression><![CDATA["Riwayat Penggunaan Obat : "+$F{rpo}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="282" y="222" width="273" height="34" uuid="f712c7c2-3758-4aea-9f6b-1a3609a059e8">
+				<reportElement x="282" y="196" width="273" height="29" uuid="f712c7c2-3758-4aea-9f6b-1a3609a059e8">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Top">
@@ -627,13 +672,13 @@ inner join dokter on penilaian_medis_ralan_penyakit_dalam.kd_dokter=dokter.kd_do
 				<textFieldExpression><![CDATA["Riwayat Alergi : "+$F{alergi}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="0" y="258" width="557" height="1" uuid="d2944590-aa60-4ca3-a9f5-92632d6fbb06"/>
+				<reportElement x="0" y="227" width="557" height="1" uuid="d2944590-aa60-4ca3-a9f5-92632d6fbb06"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement x="3" y="260" width="247" height="11" uuid="2871f247-643c-4a90-8b15-956b09d86686">
+				<reportElement x="3" y="229" width="247" height="11" uuid="2871f247-643c-4a90-8b15-956b09d86686">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -644,35 +689,35 @@ inner join dokter on penilaian_medis_ralan_penyakit_dalam.kd_dokter=dokter.kd_do
 				<text><![CDATA[II. PEMERIKSAAN FISIK]]></text>
 			</staticText>
 			<line>
-				<reportElement x="0" y="271" width="557" height="1" uuid="648d61f0-b3a0-45ef-b42e-d1c27870a764"/>
+				<reportElement x="0" y="240" width="557" height="1" uuid="648d61f0-b3a0-45ef-b42e-d1c27870a764"/>
 				<graphicElement>
 					<pen lineWidth="0.5" lineStyle="Solid"/>
 				</graphicElement>
 			</line>
 			<textField>
-				<reportElement x="3" y="273" width="552" height="26" uuid="0a61d571-056e-4ea1-b6f8-c4b0528a89dc">
+				<reportElement x="3" y="242" width="552" height="16" uuid="0a61d571-056e-4ea1-b6f8-c4b0528a89dc">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="8" isBold="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Status Nutrisi : "+$F{status}+"    TD : "+$F{td}+" mmHg    Nadi : "+$F{nadi}+" x/menit    Suhu : "+$F{suhu}+"°C    RR : "+$F{rr}+" x/menit    BB : "+$F{bb}+" Kg    Nyeri : "+$F{nyeri}+"    GCS(E,V,M) : "+$F{gcs}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Postur Tulang Belakang : "+$F{tulang_belakang}+"    TD : "+$F{td}+" mmHg    Nadi : "+$F{nadi}+" x/menit    Suhu : "+$F{suhu}+"°C    RR : "+$F{rr}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="0" y="301" width="557" height="1" uuid="2976073b-42f8-444e-b5f9-5a33240dca6c"/>
+				<reportElement x="0" y="259" width="557" height="1" uuid="2976073b-42f8-444e-b5f9-5a33240dca6c"/>
 				<graphicElement>
 					<pen lineWidth="0.5" lineStyle="Solid"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="0" y="354" width="557" height="1" uuid="56b65d61-23b3-4dca-8661-c13a17e05994"/>
+				<reportElement x="0" y="301" width="557" height="1" uuid="56b65d61-23b3-4dca-8661-c13a17e05994"/>
 				<graphicElement>
 					<pen lineWidth="0.5" lineStyle="Solid"/>
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement x="3" y="342" width="247" height="11" uuid="70617288-2d35-4cc5-a3c1-a256bdf2944d">
+				<reportElement x="3" y="289" width="247" height="11" uuid="70617288-2d35-4cc5-a3c1-a256bdf2944d">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -683,7 +728,7 @@ inner join dokter on penilaian_medis_ralan_penyakit_dalam.kd_dokter=dokter.kd_do
 				<text><![CDATA[III. STATUS KELAINAN]]></text>
 			</staticText>
 			<line>
-				<reportElement x="0" y="340" width="557" height="1" uuid="6be66e18-689e-41fc-8d31-e6605effd776"/>
+				<reportElement x="0" y="287" width="557" height="1" uuid="6be66e18-689e-41fc-8d31-e6605effd776"/>
 				<graphicElement>
 					<pen lineWidth="0.75" lineStyle="Solid"/>
 				</graphicElement>
@@ -753,7 +798,7 @@ inner join dokter on penilaian_medis_ralan_penyakit_dalam.kd_dokter=dokter.kd_do
 				<textFieldExpression><![CDATA[$F{nm_dokter}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="3" y="303" width="552" height="36" uuid="fc6096b6-554d-47aa-98d8-b356b7789599">
+				<reportElement x="3" y="262" width="552" height="23" uuid="fc6096b6-554d-47aa-98d8-b356b7789599">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -761,16 +806,16 @@ inner join dokter on penilaian_medis_ralan_penyakit_dalam.kd_dokter=dokter.kd_do
 					<font fontName="Tahoma" size="8" isBold="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Kondisi Umum : "+$F{kondisi}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Kondisi Umum : "+$F{kondisi_umum}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="0" y="405" width="557" height="1" uuid="c8401f8a-22b3-48e3-8b99-a431c4a9aa63"/>
+				<reportElement x="0" y="425" width="557" height="1" uuid="c8401f8a-22b3-48e3-8b99-a431c4a9aa63"/>
 				<graphicElement>
 					<pen lineWidth="0.75" lineStyle="Solid"/>
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement x="3" y="407" width="247" height="11" uuid="beae31ee-ba82-40b6-98ec-a945ab5448f2">
+				<reportElement x="3" y="427" width="247" height="11" uuid="beae31ee-ba82-40b6-98ec-a945ab5448f2">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -781,7 +826,7 @@ inner join dokter on penilaian_medis_ralan_penyakit_dalam.kd_dokter=dokter.kd_do
 				<text><![CDATA[IV. PEMERIKSAAN PENUNJANG]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="3" y="421" width="552" height="27" uuid="a09efe30-4a58-4707-b351-c731fb088083">
+				<reportElement x="3" y="441" width="552" height="27" uuid="a09efe30-4a58-4707-b351-c731fb088083">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Top">
@@ -791,13 +836,13 @@ inner join dokter on penilaian_medis_ralan_penyakit_dalam.kd_dokter=dokter.kd_do
 				<textFieldExpression><![CDATA["Laboratorium : "+$F{lab}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="0" y="509" width="557" height="1" uuid="c280c1a1-92b1-4ff2-81d6-469ae2dd853a"/>
+				<reportElement x="0" y="529" width="557" height="1" uuid="c280c1a1-92b1-4ff2-81d6-469ae2dd853a"/>
 				<graphicElement>
 					<pen lineWidth="0.75" lineStyle="Solid"/>
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement x="3" y="511" width="247" height="11" uuid="d69b42e2-6af9-498f-9e14-256641386370">
+				<reportElement x="3" y="531" width="247" height="11" uuid="d69b42e2-6af9-498f-9e14-256641386370">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -808,7 +853,7 @@ inner join dokter on penilaian_medis_ralan_penyakit_dalam.kd_dokter=dokter.kd_do
 				<text><![CDATA[V. DIAGNOSIS/ASESMEN]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="3" y="525" width="550" height="22" uuid="b1175748-3901-4e3e-8c72-3eced02be74e">
+				<reportElement x="3" y="545" width="550" height="22" uuid="b1175748-3901-4e3e-8c72-3eced02be74e">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Top">
@@ -818,13 +863,13 @@ inner join dokter on penilaian_medis_ralan_penyakit_dalam.kd_dokter=dokter.kd_do
 				<textFieldExpression><![CDATA["Asesmen Kerja : "+$F{diagnosis}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="0" y="573" width="557" height="1" uuid="5787cec8-0b13-47a9-ae57-3e9f98b810c5"/>
+				<reportElement x="0" y="594" width="557" height="1" uuid="5787cec8-0b13-47a9-ae57-3e9f98b810c5"/>
 				<graphicElement>
 					<pen lineWidth="0.75" lineStyle="Solid"/>
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement x="3" y="575" width="247" height="11" uuid="040d6704-dca4-404e-9218-d8b8af6ac63d">
+				<reportElement x="3" y="596" width="247" height="11" uuid="040d6704-dca4-404e-9218-d8b8af6ac63d">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -835,7 +880,7 @@ inner join dokter on penilaian_medis_ralan_penyakit_dalam.kd_dokter=dokter.kd_do
 				<text><![CDATA[VI. PERMASALAHAN & TATALAKSANA]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="3" y="712" width="550" height="31" uuid="7e93ceda-d4a5-4229-8831-7f8ee1c512a9">
+				<reportElement x="3" y="716" width="550" height="26" uuid="7e93ceda-d4a5-4229-8831-7f8ee1c512a9">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Top">
@@ -845,7 +890,7 @@ inner join dokter on penilaian_medis_ralan_penyakit_dalam.kd_dokter=dokter.kd_do
 				<textFieldExpression><![CDATA[$F{edukasi}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="3" y="700" width="247" height="11" uuid="fd689588-777b-4f34-b013-55cbb8bb762a">
+				<reportElement x="3" y="704" width="247" height="11" uuid="fd689588-777b-4f34-b013-55cbb8bb762a">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -856,7 +901,7 @@ inner join dokter on penilaian_medis_ralan_penyakit_dalam.kd_dokter=dokter.kd_do
 				<text><![CDATA[VII. EDUKASI]]></text>
 			</staticText>
 			<line>
-				<reportElement x="0" y="698" width="557" height="1" uuid="0c19ef55-e436-43c2-9631-b3ec4a561d82"/>
+				<reportElement x="0" y="701" width="557" height="1" uuid="0c19ef55-e436-43c2-9631-b3ec4a561d82"/>
 				<graphicElement>
 					<pen lineWidth="0.75" lineStyle="Solid"/>
 				</graphicElement>
@@ -868,7 +913,7 @@ inner join dokter on penilaian_medis_ralan_penyakit_dalam.kd_dokter=dokter.kd_do
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement x="3" y="368" width="44" height="11" uuid="d4ed3626-e580-4b95-bc0f-e924837bdab0">
+				<reportElement x="3" y="315" width="44" height="11" uuid="d4ed3626-e580-4b95-bc0f-e924837bdab0">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
@@ -878,7 +923,7 @@ inner join dokter on penilaian_medis_ralan_penyakit_dalam.kd_dokter=dokter.kd_do
 				<text><![CDATA[Thoraks]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="48" y="368" width="7" height="11" uuid="2ee29229-07f8-4b14-9e3c-9343a46afd40">
+				<reportElement x="48" y="315" width="7" height="11" uuid="2ee29229-07f8-4b14-9e3c-9343a46afd40">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
@@ -888,17 +933,17 @@ inner join dokter on penilaian_medis_ralan_penyakit_dalam.kd_dokter=dokter.kd_do
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<textField>
-				<reportElement mode="Transparent" x="55" y="368" width="220" height="11" uuid="97b01b86-81c5-41d7-aebf-70dc5635273e">
+				<reportElement mode="Transparent" x="55" y="315" width="355" height="11" uuid="97b01b86-81c5-41d7-aebf-70dc5635273e">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8" isBold="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{thoraks}+($F{keterangan_thorak}.equals("")?"":", "+$F{keterangan_thorak})]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{thoraks}+($F{keterangan_thoraks}.equals("")?"":", "+$F{keterangan_thoraks})]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="3" y="380" width="44" height="11" uuid="21956a22-9549-49af-981a-6d45a2ffbbaf">
+				<reportElement x="3" y="327" width="44" height="11" uuid="21956a22-9549-49af-981a-6d45a2ffbbaf">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
@@ -908,7 +953,7 @@ inner join dokter on penilaian_medis_ralan_penyakit_dalam.kd_dokter=dokter.kd_do
 				<text><![CDATA[Abdomen]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="48" y="380" width="7" height="11" uuid="b33f2062-b047-4844-a78d-ba8d79803e90">
+				<reportElement x="48" y="327" width="7" height="11" uuid="b33f2062-b047-4844-a78d-ba8d79803e90">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
@@ -918,7 +963,7 @@ inner join dokter on penilaian_medis_ralan_penyakit_dalam.kd_dokter=dokter.kd_do
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<textField>
-				<reportElement mode="Transparent" x="55" y="380" width="220" height="11" uuid="93cfb986-a3e0-435d-bdc3-8a213f45012a">
+				<reportElement mode="Transparent" x="55" y="327" width="355" height="11" uuid="93cfb986-a3e0-435d-bdc3-8a213f45012a">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
@@ -928,7 +973,7 @@ inner join dokter on penilaian_medis_ralan_penyakit_dalam.kd_dokter=dokter.kd_do
 				<textFieldExpression><![CDATA[$F{abdomen}+($F{keterangan_abdomen}.equals("")?"":", "+$F{keterangan_abdomen})]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="3" y="392" width="44" height="11" uuid="168ce685-365f-4ffc-82a3-dd6b1183813a">
+				<reportElement x="3" y="339" width="44" height="11" uuid="168ce685-365f-4ffc-82a3-dd6b1183813a">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
@@ -938,7 +983,7 @@ inner join dokter on penilaian_medis_ralan_penyakit_dalam.kd_dokter=dokter.kd_do
 				<text><![CDATA[Ekstremitas]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="48" y="392" width="7" height="11" uuid="56fb351f-927c-4a4b-9c91-a35d69ce7bab">
+				<reportElement x="48" y="339" width="7" height="11" uuid="56fb351f-927c-4a4b-9c91-a35d69ce7bab">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
@@ -948,7 +993,7 @@ inner join dokter on penilaian_medis_ralan_penyakit_dalam.kd_dokter=dokter.kd_do
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<textField>
-				<reportElement mode="Transparent" x="55" y="392" width="220" height="11" uuid="fe81215c-3316-4ec5-8031-fb28bd94eaf8">
+				<reportElement mode="Transparent" x="55" y="339" width="355" height="11" uuid="fe81215c-3316-4ec5-8031-fb28bd94eaf8">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
@@ -958,7 +1003,7 @@ inner join dokter on penilaian_medis_ralan_penyakit_dalam.kd_dokter=dokter.kd_do
 				<textFieldExpression><![CDATA[$F{ekstremitas}+($F{keterangan_ekstremitas}.equals("")?"":", "+$F{keterangan_ekstremitas})]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="279" y="355" width="1" height="51" uuid="c7145339-e465-4d40-8749-5638ed5f02c1">
+				<reportElement x="413" y="302" width="1" height="96" uuid="c7145339-e465-4d40-8749-5638ed5f02c1">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<graphicElement>
@@ -966,7 +1011,7 @@ inner join dokter on penilaian_medis_ralan_penyakit_dalam.kd_dokter=dokter.kd_do
 				</graphicElement>
 			</line>
 			<textField>
-				<reportElement x="282" y="356" width="273" height="47" uuid="a9c23b36-d927-4c77-907a-af1ee4c46cc3">
+				<reportElement x="3" y="353" width="407" height="32" uuid="a9c23b36-d927-4c77-907a-af1ee4c46cc3">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -977,13 +1022,13 @@ inner join dokter on penilaian_medis_ralan_penyakit_dalam.kd_dokter=dokter.kd_do
 				<textFieldExpression><![CDATA["Lainnya : "+$F{lainnya}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="0" y="419" width="557" height="1" uuid="a0816ed2-cfa3-4b5b-9340-bee3bbe34fc1"/>
+				<reportElement x="0" y="439" width="557" height="1" uuid="a0816ed2-cfa3-4b5b-9340-bee3bbe34fc1"/>
 				<graphicElement>
 					<pen lineWidth="0.5" lineStyle="Solid"/>
 				</graphicElement>
 			</line>
 			<textField>
-				<reportElement x="3" y="451" width="552" height="27" uuid="6c8aecbd-5772-4185-9354-cb182f22c7f8">
+				<reportElement x="3" y="471" width="552" height="27" uuid="6c8aecbd-5772-4185-9354-cb182f22c7f8">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Top">
@@ -993,35 +1038,35 @@ inner join dokter on penilaian_medis_ralan_penyakit_dalam.kd_dokter=dokter.kd_do
 				<textFieldExpression><![CDATA["Radiologi : "+$F{rad}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="0" y="449" width="557" height="1" uuid="060fd269-4139-4ff2-a698-75f427dba136"/>
+				<reportElement x="0" y="469" width="557" height="1" uuid="060fd269-4139-4ff2-a698-75f427dba136"/>
 				<graphicElement>
 					<pen lineWidth="0.5" lineStyle="Solid"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="0" y="479" width="557" height="1" uuid="6fdfe8d9-20ce-4c71-a9fa-34b2314e3c47"/>
+				<reportElement x="0" y="499" width="557" height="1" uuid="6fdfe8d9-20ce-4c71-a9fa-34b2314e3c47"/>
 				<graphicElement>
 					<pen lineWidth="0.5" lineStyle="Solid"/>
 				</graphicElement>
 			</line>
 			<textField>
-				<reportElement x="3" y="481" width="552" height="27" uuid="24d98e69-3dc2-46cb-850d-dd271acfac7e">
+				<reportElement x="3" y="501" width="552" height="27" uuid="24d98e69-3dc2-46cb-850d-dd271acfac7e">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="8" isBold="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Penunjang Lainnya : "+$F{penunjanglain}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Penunjang Lainnya : "+$F{pemeriksaan}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="0" y="523" width="557" height="1" uuid="d5f07b2b-c1d0-45ad-be54-6a48872157b0"/>
+				<reportElement x="0" y="543" width="557" height="1" uuid="d5f07b2b-c1d0-45ad-be54-6a48872157b0"/>
 				<graphicElement>
 					<pen lineWidth="0.5" lineStyle="Solid"/>
 				</graphicElement>
 			</line>
 			<textField>
-				<reportElement x="3" y="550" width="550" height="22" uuid="b762993a-0eff-402a-9be1-c2f6fce229a4">
+				<reportElement x="3" y="570" width="550" height="22" uuid="b762993a-0eff-402a-9be1-c2f6fce229a4">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Top">
@@ -1031,19 +1076,19 @@ inner join dokter on penilaian_medis_ralan_penyakit_dalam.kd_dokter=dokter.kd_do
 				<textFieldExpression><![CDATA["Asesmen Banding : "+$F{diagnosis2}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="0" y="548" width="557" height="1" uuid="8cdd1782-cf67-4a09-9b2e-5b691d39c34b"/>
+				<reportElement x="0" y="568" width="557" height="1" uuid="8cdd1782-cf67-4a09-9b2e-5b691d39c34b"/>
 				<graphicElement>
 					<pen lineWidth="0.5" lineStyle="Solid"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="0" y="587" width="557" height="1" uuid="2a08e10f-17ae-4ff3-abde-e1c0a1581f37"/>
+				<reportElement x="0" y="608" width="557" height="1" uuid="2a08e10f-17ae-4ff3-abde-e1c0a1581f37"/>
 				<graphicElement>
 					<pen lineWidth="0.5" lineStyle="Solid"/>
 				</graphicElement>
 			</line>
 			<textField>
-				<reportElement x="3" y="589" width="550" height="28" uuid="bf76f105-efa8-4818-b8b4-81e2db15d328">
+				<reportElement x="3" y="611" width="550" height="26" uuid="bf76f105-efa8-4818-b8b4-81e2db15d328">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Top">
@@ -1053,7 +1098,7 @@ inner join dokter on penilaian_medis_ralan_penyakit_dalam.kd_dokter=dokter.kd_do
 				<textFieldExpression><![CDATA["Permasalahan : "+$F{permasalahan}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="3" y="621" width="550" height="35" uuid="0e34a6bc-a189-4d2c-acdb-4efa16191c64">
+				<reportElement x="3" y="642" width="550" height="26" uuid="0e34a6bc-a189-4d2c-acdb-4efa16191c64">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Top">
@@ -1063,13 +1108,13 @@ inner join dokter on penilaian_medis_ralan_penyakit_dalam.kd_dokter=dokter.kd_do
 				<textFieldExpression><![CDATA["Terapi/Pengobatan : "+$F{terapi}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="0" y="619" width="557" height="1" uuid="688831bc-a0ca-4b89-be96-2cae73255f77"/>
+				<reportElement x="0" y="639" width="557" height="1" uuid="688831bc-a0ca-4b89-be96-2cae73255f77"/>
 				<graphicElement>
 					<pen lineWidth="0.5" lineStyle="Solid"/>
 				</graphicElement>
 			</line>
 			<textField>
-				<reportElement x="3" y="661" width="550" height="35" uuid="2d6df40c-bac1-4876-973e-b51d3909731e"/>
+				<reportElement x="3" y="673" width="550" height="26" uuid="2d6df40c-bac1-4876-973e-b51d3909731e"/>
 				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="8" isBold="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -1077,7 +1122,7 @@ inner join dokter on penilaian_medis_ralan_penyakit_dalam.kd_dokter=dokter.kd_do
 				<textFieldExpression><![CDATA["Tindakan/Rencana Tindakan : "+$F{tindakan}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="0" y="658" width="557" height="1" uuid="bb128d04-0606-4101-99a8-80f416e43bc4"/>
+				<reportElement x="0" y="670" width="557" height="1" uuid="bb128d04-0606-4101-99a8-80f416e43bc4"/>
 				<graphicElement>
 					<pen lineWidth="0.5" lineStyle="Solid"/>
 				</graphicElement>
@@ -1112,6 +1157,221 @@ inner join dokter on penilaian_medis_ralan_penyakit_dalam.kd_dokter=dokter.kd_do
 				</textElement>
 				<textFieldExpression><![CDATA[$F{no_rkm_medis}]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement x="415" y="303" width="56" height="11" uuid="642ebae4-a2c7-42a5-a1c5-50538e4181e9">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Integument :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="488" y="313" width="7" height="11" uuid="551a93d9-992d-449c-b712-b2fde7295806">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField>
+				<reportElement mode="Transparent" x="495" y="313" width="60" height="11" uuid="04ffa496-8b42-4909-b6bb-c6ab36120191">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Integument_kebersihan}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="429" y="313" width="58" height="11" uuid="50d6dfd0-4435-491d-a427-8b53cb52e628">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Kebersihan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="488" y="325" width="7" height="11" uuid="c8361a0b-1042-4645-8329-a743132a8ec0">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="429" y="325" width="58" height="11" uuid="74fc73db-2c1f-4619-8bdb-6cf3e0f36192">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Warna]]></text>
+			</staticText>
+			<textField>
+				<reportElement mode="Transparent" x="495" y="325" width="60" height="11" uuid="5feb7967-faec-41ca-8828-6da4e8e08d20">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Integument_warna}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="429" y="337" width="58" height="11" uuid="1058ad01-b9c6-4457-9e42-ec765e9bdf55">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Kelembaban]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="488" y="337" width="7" height="11" uuid="c50a7e34-b94f-4ffb-89ce-3be500d80b51">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField>
+				<reportElement mode="Transparent" x="495" y="337" width="60" height="11" uuid="93d66e69-5c74-4d15-bd6e-97e4beb80d0f">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Integument_kelembaban}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="429" y="349" width="58" height="11" uuid="e6ee3f18-4387-4385-bf62-b525bb7a9f13">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Gangguan Kulit]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="488" y="349" width="7" height="11" uuid="ea01350f-4f06-43eb-b2a2-c86fd6eae8e1">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField>
+				<reportElement mode="Transparent" x="495" y="349" width="60" height="11" uuid="3d5fc3eb-2d42-41f1-a2e5-af17ec4f98b5">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Integument_gangguan_kulit}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="351" width="413" height="1" uuid="980ea209-fc60-4ff9-aedf-86faf43b15f0"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="413" y="361" width="144" height="1" uuid="eef1d1fb-3201-4261-84f0-67a0579118ac"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="415" y="363" width="140" height="34" uuid="d00a29e1-6b98-481d-9e56-15858624eec7">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Top">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Kondisi Sosial : "+$F{kondisi_sosial}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Transparent" x="3" y="388" width="407" height="11" uuid="88d93fb0-419e-44ae-b140-5507fa321e87">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Psikologis (GDS) : "+$F{status_psikologis_gds}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Transparent" x="3" y="400" width="314" height="11" uuid="66ac83b4-30c8-4d6b-8bc3-6fde06c82543">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Kognitif (MMSE) : "+$F{status_kognitif_mmse}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Transparent" x="3" y="412" width="247" height="11" uuid="7d86f671-1ab6-4797-a7f4-643c4cdc3a62">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Nutrisi (MNA) : "+$F{status_nutrisi}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Transparent" x="317" y="400" width="238" height="11" uuid="d6e7f56b-750b-44dd-9678-5a8016dd2e5d">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Skrinning Risiko Jatuh (OMS) : "+$F{skrining_jatuh}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Transparent" x="250" y="412" width="305" height="11" uuid="a0fa7ec8-a334-45b5-8f34-08f398cd6beb">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Status Fungsional (ADL: BARTHEL INDEX) : "+$F{status_fungsional}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="385" width="413" height="1" uuid="376c4560-4449-4843-9b96-b173bfd63ff7"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="413" y="398" width="144" height="1" uuid="59ebe3b4-85e1-4648-b463-38c48a2183f2"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineStyle="Solid"/>
+				</graphicElement>
+			</line>
 		</band>
 	</title>
 </jasperReport>
